@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redirect</title>
+    <meta charset="UTF8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/startupRegister.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <!-- <link rel="stylesheet" href="website.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/js/apiAddresses.js"></script>
+  </head>
+  <body>
+    
+    <%- include('./_partials/navbar_2') %> 
+
+    <div class="container my-auto mx-auto d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+        <h1 class="text-center"> <%= redirectMsg %>  </h1>
+    </div>
+
+    <!-- ####################footer -->
+    <%- include('./_partials/footer') %> 
+
+    <script>
+        const redirectUrl = '<%= redirectUrl %>';
+        setTimeout(()=>{
+            window.location.href = redirectUrl;
+        },3000)
+    </script>
+  </body>
+</html>

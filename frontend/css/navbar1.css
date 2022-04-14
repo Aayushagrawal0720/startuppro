@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&family=Open+Sans&family=Raleway:wght@200;400&display=swap");
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Raleway", serif;
+}
+
+body {
+  font-family: "Raleway", serif;
+  /* font-family:'Roboto Slab', serif; */
+}
+.new__parent-navbar {
+  display: flex;
+  background: #15114b;
+}
+.new__logo {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-weight: 200;
+  background: #15114b;
+  color: #fff;
+
+  /* background-color: blue; */
+}
+.new__navbar {
+  display: flex;
+  background: #15114b;
+}
+.new__nav-list {
+  width: 100%;
+  /* background: #15114b; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.new__nav-list li {
+  list-style: none;
+  color: black;
+  padding: 15px 25px;
+}
+.new__nav-list li a {
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+  font-size: 1.1rem;
+}
+.new__nav-list li a:hover {
+  color: #fcd600;
+}
+
+.new__nav-list li a::after {
+  position: absolute;
+  content: "";
+  display: block;
+  margin-top: 5px;
+  width: 0;
+  height: 2px;
+  background: #fcd600;
+  transition: width 0.3s;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.new__nav-list li a:hover::after {
+  width: 100%;
+}
+
+#search {
+  padding: 5px;
+  font-size: 17px;
+  border: 2px solid grey;
+  border-radius: 9px;
+  margin-top: 15px;
+}
+.new__burger {
+  position: absolute;
+  cursor: pointer;
+  right: 4%;
+  top: 15px;
+  display: none;
+}
+.new__line {
+  width: 33px;
+  background: #fff;
+  height: 4px;
+  margin: 4px 3px;
+  border-radius: 43px;
+}
+
+.logo-link {
+  color: #fff;
+  text-decoration: none;
+}
+.logo-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.logo-link:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 992px) {
+  .new__parent-navbar {
+    flex-direction: column;
+  }
+  .new__logo {
+    padding-top: 10px;
+    width: 100%;
+  }
+  .new__nav-list {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .new__navbar {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-out;
+    height: 100vh;
+  }
+  .rightNav {
+    text-align: center;
+  }
+  #search {
+    width: 100%;
+  }
+  .new__burger {
+    display: block;
+  }
+  .h-nav {
+    height: 11px;
+    /* height: 372px; */
+  }
+  .v-class {
+    opacity: 0;
+    display: none;
+  }
+}

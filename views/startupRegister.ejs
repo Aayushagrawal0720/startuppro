@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Startup Register</title>
+    <meta charset="UTF8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/startupRegister.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <!-- <link rel="stylesheet" href="website.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/js/apiAddresses.js"></script>
+    <script defer src="/js/formHandler.js"></script>
+  </head>
+  <body>
+    
+    <%- include('./_partials/navbar_2') %> 
+
+    <!-- #####################################HEADING  -->
+    <div class="container py-2">
+      <div class="row">
+        <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
+          <h3 id="form-heading">Company Detail</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- ################################################# form  -->
+    <div class="container mb-5 mt-1">
+      <div class="row shadow">
+        <div class="col-md-12" id="form-container">
+          <form id="startup-reg-form">
+            <div class="row pt-2 py-0">
+              <div class="col-sm-4 pt-1">
+                <label for="startup-name" class="mb-0 ml-0 star"
+                  >Startup Name</label
+                ><br />
+                <input
+                  type="text"
+                  id="startup-name"
+                  name="startup_name"
+                  placeholder="Startup Name"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label for="contact" class="mb-0 ml-0 star">Phone Number</label
+                ><br />
+                <input
+                  type="number"
+                  id="contact"
+                  name="mobile_no"
+                  placeholder="Phone Number"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label for="password" class="mb-0 ml-0 star">Password</label
+                ><br />
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  class="p-1 outline"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                  required
+                /><br /><br />
+
+                <label for="confirm-password" class="mb-0 ml-0 star"
+                  >Confirm Password</label
+                ><br />
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm_password"
+                  placeholder="Confirm Password"
+                  class="p-1 outline"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                  required
+                />
+                <div class="form-text">
+                  <ul>
+                      <li> Password should atleast be 8 characters long.</li>
+                      <li>It must contain both capital and small letters.</li>
+                      <li>It should have atleast one symbol and one number</li>
+                      <li>It must not contain spaces.</li>
+                  </ul>
+                </div>
+                <br /><br />
+              </div>
+
+              <div class="col-md-4 pt-1">
+                <label for="email-o" class="mb-0 ml-0 star">Email Official</label
+                ><br />
+                <input
+                  type="email"
+                  id="email-o"
+                  name="email_official"
+                  placeholder="Email Official"
+                  class="p-1 outline star"
+                  required
+                /><br /><br />
+
+                <label for="email-p" class="mb-0 ml-0 star">Email Personal</label
+                ><br />
+                <input
+                  type="email"
+                  id="email-p"
+                  name="email_personal"
+                  placeholder="Email Personal"
+                  class="p-1 outline star"
+                  required
+                /><br /><br />
+
+                <label for="start_date" class="mb-0 ml-0 star">Start Date</label><br />
+                <input
+                  type="date"
+                  id="start_date"
+                  name="start_date"
+                  placeholder="State"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label for="state" class="mb-0 ml-0 star">State</label><br />
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  placeholder="State"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label for="city" class="mb-0 ml-0 star">City</label><br />
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  placeholder="City"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+              </div>
+
+              <div class="col-md-4 pt-1">
+                <label for="zip-code" class="mb-0 ml-0 star">Zip Code</label
+                ><br />
+                <input
+                  type="number"
+                  id="zip-code"
+                  name="zip_code"
+                  placeholder="Zip-code"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label for="industry-type" class="mb-0 ml-0 star"
+                  >Industry-Type</label
+                >
+                <select name="Industry" id="industry-type">
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Agriculture">Agriculture</option>
+                  <option value="Information Technology">Information Technology</option>
+                  <option value="Transportation">Transportation</option>
+                  <option value="Finance">Finance</option>
+                  <option value="News-Media">News-Media</option>
+                  <option value="Tourism">Tourism</option>
+                  <option value="Education">Education</option>
+                  <option value="Construction">Construction</option>
+                  <option value="Food">Food</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Music">Music</option>
+                  <option value="Energy">Energy</option>
+                  <option value="Mining">Mining</option>
+                  <option value="Marketing and Advertisement">Marketing and Advertisement</option>
+                </select>
+                <br /><br />
+              
+                <label for="message" class="mb-0 ml-0 star"
+                  >Description Of Idea</label
+                ><br />
+                <input
+                  type="text"
+                  id="message"
+                  name="description_of_idea"
+                  placeholder="Description Of Idea"
+                  class="p-1 outline"
+                  required
+                />
+                <br /><br />
+
+                <label for="about-company" class="mb-0 ml-0 star"
+                  >About Company</label
+                ><br />
+                <input
+                  type="text"
+                  id="about-company"
+                  name="about_company"
+                  placeholder="About Company"
+                  class="p-1 outline"
+                  required
+                />
+                <br /><br />
+
+                <label for="website-link" class="mb-0 ml-0 star">Website</label
+                ><br />
+                <input
+                  type="text"
+                  id="website-link"
+                  name="website_link"
+                  placeholder="Website"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-12 text-center">
+                <input
+                  type="submit"
+                  class="btn btn-warning py-2 px-5"
+                  value="Next"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ####################footer -->
+    <%- include('./_partials/footer') %>
+        <!-- For Password Validation -->
+        <script>
+          var password = document.getElementById("password");
+          var confirm_password = document.getElementById("confirm-password");
+  
+          function validatePassword(){
+          if(password.value != confirm_password.value) {
+              confirm_password.setCustomValidity("Passwords Don't Match");
+          } else {
+              confirm_password.setCustomValidity('');
+          }
+          }
+  
+          password.onchange = validatePassword;
+          confirm_password.onkeyup = validatePassword;
+      </script>
+  </body>
+</html>

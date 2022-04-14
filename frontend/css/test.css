@@ -1,0 +1,95 @@
+.border3{
+    border-bottom: 3px solid black
+}
+.section1 li a{
+   text-decoration: none;
+   color: black;
+}
+ul li{
+   list-style: none;
+}
+.border-bottom{
+   border-bottom: 2px solid black;
+}
+.section1 li a:hover{
+   /* color: rgb(5, 70, 190); */
+   color: blue !important;
+   border-bottom: 3.5px solid blue;
+   padding-bottom: 5.2px;
+}
+.section1 li a:focus{
+   /* color: rgb(5, 70, 190); */
+   color: blue !important;
+   border-bottom: 3.5px solid blue;
+   padding-bottom: 5.2px;
+   /* word-spacing: 0.5rem !important; */
+}
+
+
+
+.dropdown{
+    font-family:'Roboto Slab', serif;
+    position: relative !important;
+    /* opacity: 0.99; */
+}
+.dropdown-menu{
+    background: #1c185f !important; 
+    border-radius: 13px;
+    box-shadow: 0px 0px 9px 1px #15114b;
+    position: absolute !important;
+    top: 38px !important; ; 
+    left: 0px !important; 
+    transform: translate3d(0px, 0px, 0px) !important;
+    z-index: 2000 !important;
+}
+.dropdown-item
+{
+    background: none !important;
+    cursor: pointer !important;
+    opacity: 0;
+ 
+    /* transform: translateX(-50%); */
+    animation-name: change;
+    animation-duration: 0.9s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+@keyframes change{
+    from
+    {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+.overlay{
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    border-radius: 10px;
+    /* background: rgb(189, 32, 32); */
+    background: #272268;
+    left: -100%;
+    animation: slide;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    z-index: 2;
+}
+@keyframes slide{
+    from{
+       left: -100%;
+
+    }
+    to{
+       left: 0%;
+    }
+}
+.other{
+    z-index: 10;
+}
+
+

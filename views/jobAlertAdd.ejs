@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta charset="UTF8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/memberRegister.css" />
+    <link rel="stylesheet" href="/css/startupRegister.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <!-- <link rel="stylesheet" href="website.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <%- include('./_partials/navbar_2') %>
+
+    <!-- ################################### HEADING  -->
+    <div class="container py-2">
+      <div class="row">
+        <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
+          <h3>Job Alert Details</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- ############################################## form -->
+    <div class="container cont-height">
+      <div class="row shadow">
+        <div class="col-md-12">
+          <form id="job-alert-form" method="POST" action="/register/mentor">
+            <div class="row">
+              <div class="col-md-4 parent">
+                <label class="mb-0 ml-0 star" for="employment_type"
+                  >Employement Type</label
+                ><br />
+                <select name="employment_type" id="employment_type">
+                  <option value="Job">Job</option>
+                  <option value="Internship">Internship</option>
+                </select>
+                <br /><br />
+
+                <label class="mb-0 ml-0 star" for="min_qualification"
+                  >Minimum Qualifications Required</label
+                ><br />
+                <input
+                  type="text"
+                  name="min_qualification"
+                  id="min_qualification"
+                  placeholder="Ex: C++, Java etc."
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star" for="experience_req"
+                  >Experience Required</label
+                ><br />
+                <input
+                  type="number"
+                  id="experience_req"
+                  name="experience_req"
+                  placeholder="in years"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star" for="o-pass"
+                  >Salary / Stipend</label
+                ><br />
+                <input
+                  type="number"
+                  name="salary"
+                  id="salary"
+                  placeholder="Salary / Stipend"
+                  class="p-1 outline"
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star" for="c-pass">Gender</label><br />
+                <select name="gender" id="gender">
+                  <option value="Any">Any</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                <br /><br />
+              </div>
+              <div class="col-md-4 parent">
+                <label class="mb-0 ml-0 star" for="title">Role</label><br />
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  placeholder="Job Role"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+                <label class="mb-0 ml-0 star" for="skills">Skills</label><br />
+                <input
+                  type="text"
+                  id="skills"
+                  name="skills"
+                  placeholder="use commas to separate"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+                <label class="mb-0 ml-0 star" for="basic_info">Basic Info</label
+                ><br />
+                <textarea
+                  type="text"
+                  id="basic_info"
+                  name="basic_info"
+                  placeholder="Basic Info"
+                  class="p-1 outline"
+                  required
+                ></textarea
+                ><br /><br />
+                <label class="mb-0 ml-0 star" for="job_req"
+                  >Job Requirements</label
+                ><br />
+                <textarea
+                  type="text"
+                  id="job_req"
+                  name="job_req"
+                  placeholder="Job Requirements"
+                  class="p-1 outline"
+                  required
+                ></textarea
+                ><br /><br />
+              </div>
+
+              <div class="col-md-4 parent">
+                <label class="mb-0 ml-0 star" for="perks">Perks</label><br />
+                <input
+                  type="text"
+                  id="perks"
+                  name="perks"
+                  placeholder="Perks"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star" for="shift">Shift</label><br />
+                <textarea
+                  type="text"
+                  id="shift"
+                  name="shift"
+                  placeholder="Ex: 9-5, use commas to separate if shifts are more than one"
+                  class="p-1 outline"
+                  required
+                ></textarea
+                ><br /><br />
+                <label class="mb-0 ml-0 star" for="joining_from"
+                  >Joining From</label
+                ><br />
+                <input
+                  type="text"
+                  id="joining_from"
+                  name="joining_from"
+                  placeholder="Joining From"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
+                <input
+                  type="submit"
+                  class="btn btn-warning py-2 px-5"
+                  value="Submit"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./_partials/footer') %>
+
+    <script>
+        const form = document.getElementById("job-alert-form");
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            var formBody = {};
+            formBody.uid = '<%-uid%>';
+            formBody.employment_type = form.elements.employment_type.value;
+            formBody.min_qualification = form.elements.min_qualification.value
+            formBody.experience_req = parseFloat(form.elements.experience_req.value);
+            formBody.salary = parseFloat(form.elements.salary.value);
+            formBody.gender = form.elements.gender.value;
+            formBody.title = form.elements.title.value;
+            formBody.skills = form.elements.skills.value.split(",");
+            formBody.basic_info = form.elements.basic_info.value;
+            formBody.job_req = form.elements.job_req.value;
+            formBody.perks = form.elements.perks.value;
+            formBody.shift = form.elements.shift.value.split(",");
+            formBody.joining_from = form.elements.joining_from.value;
+            
+            // console.log(formBody);
+            fetch('/adddata/jobposts',{
+                method: "POST",
+                body: JSON.stringify(formBody),
+                headers:{
+                    "Content-type": "application/json",
+                }
+            })
+            .then((res)=>{
+                if(res.redirected) window.location.href = res.url;
+                if(res.status === 400) alert("Could not create alert")
+            })
+        })
+    </script>
+  </body>
+</html>

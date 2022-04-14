@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap');
+.border1 {
+  border: 8px solid black;
+}
+.border2 {
+  border: 5px solid green;
+}
+.border3 {
+  /* border: 1px solid rgba(204, 204, 7, 0.884); */
+  border: 2px solid #15114b;
+}
+
+body {
+  font-family: "Raleway", serif;
+}
+.fluid-container {
+  background: rgba(47, 52, 78, 0.822);
+}
+.logo {
+  color: black;
+  font-weight: bold;
+}
+.red {
+  color: red;
+}
+.div {
+  margin-top: 0px !important;
+}
+
+ul li {
+  list-style: none;
+  text-decoration: none;
+  display: inline-block;
+  /* border: 1px solid green; */
+}
+.box {
+  /* background: rgba(197, 190, 190, 0.747); */
+  background: #fafafc;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  outline: none;
+  /* border: none; */
+  /* border-bottom: 2px solid black; */
+
+  border-radius: 20px;
+}
+.btn {
+  border-radius: 20px;
+}
+/* a.item1 {
+  color: black;
+  text-decoration: none;
+} */
+.div ul li a.item {
+  text-decoration: none;
+  color: black;
+  color: white;
+  font-weight: 600;
+}
+
+.div ul li .item:hover {
+  border-bottom: 3px solid green;
+  padding-bottom: 2px;
+}
+.fluid-container {
+  /* border: 4px solid blue; */
+  background-color: rgba(56, 26, 26, 0.486);
+}
+.box {
+  border: 1px solid rgb(245, 242, 242);
+  border-radius: 20px;
+  box-shadow: 0px 0px 9px 1px rgb(247, 244, 244);
+}
+.register {
+  border-radius: 15px;
+  box-shadow: 0px 0px 8px 2px rgb(122, 112, 112);
+  color: black;
+}
+.header-row .div ul li.register:hover {
+  background: red !important;
+  box-shadow: 0px 0px 5px 2px rgb(177, 97, 97);
+}
+/* ###########hamburger menu########### */
+li {
+  list-style: none;
+}
+.hamburger-menu {
+  position: absolute;
+  display: none;
+
+  /* visibility: hidden; */
+  /* display: none; */
+  /* border: 2px solid red; */
+}
+
+.hamburger-menu input[type="checkbox"] {
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: 5px;
+  width: 40px;
+  height: 32px;
+  z-index: 2;
+  opacity: 0;
+  /* border: 2px solid red; */
+}
+.hamburger-lines {
+  width: 37px;
+  height: 30px;
+  /* background: lightseagreen; */
+  position: absolute;
+  top: 11px;
+  left: 7px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* display: none; */
+}
+.hamburger-lines .line {
+  display: block;
+  height: 5px;
+  width: 100%;
+  background: #232322;
+  border-radius: 5px;
+}
+
+/* 1) state check karni ana chahiya */
+/* 2)agar check box clicked hai to select karna hai menu item */
+.menu-items {
+  transform: translateX(-100%);
+  padding-top: 100px;
+  transition: transform 0.5s ease-in-out;
+  max-width: 400px;
+  /* border: 2px solid green; */
+  background: #232323;
+  padding-left: 18px;
+  padding-bottom: 20px;
+  color: #ffffff;
+  /* background: #cccccc; */
+  margin-top: -15px;
+  margin-left: -15px;
+}
+.menu-items li {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.hamburger-menu input[type="checkbox"]:checked ~ .menu-items {
+  /* display: block; */
+  transform: translateX(0);
+
+  /* color: #ffffff; */
+}
+.hamburger-menu input[type="checkbox"]:checked ~ .hamburger-lines .line {
+  background: #ffffff;
+}
+.hamburger-lines .line1 {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+.hamburger-lines .line3 {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
+}
+.hamburger-menu input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+  transform: rotate(45deg);
+}
+.hamburger-menu input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+  transform: rotate(-45deg);
+}
+.hamburger-menu input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+  opacity: 0;
+}
+
+/* ################################################# wrapper section */
+.shd {
+  box-shadow: 0px 0px 9px 1px #949ea5;
+}
+.background {
+  background: #e9ebf27d;
+}
+.insta:hover {
+  color: red;
+  /* background-color: red; */
+}
+.twitter:hover {
+  color: blue;
+}
+.facebook:hover {
+  color: darkblue;
+}
+.linkedin:hover {
+  color: blue;
+}
+
+/* ###########################footer */
+.footer ul li {
+  font-size: 13px;
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+.footer ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 13px !important;
+}
+.footer-content p {
+  margin-bottom: 0px;
+}
+.fab {
+  color: black;
+}
+
+@media (max-width: 768px) {
+  ul {
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrapper h3 {
+    font-size: 20px;
+  }
+  .wrapper h6 {
+    font-size: 14px;
+  }
+}
+@media (max-width: 576px) {
+  .logo {
+    font-size: 30px;
+  }
+  .div2 {
+    text-align: center;
+  }
+  .div2 h1 {
+    font-size: 25px;
+  }
+  ul li a {
+    font-size: 14px;
+  }
+  ul {
+    text-align: center;
+  }
+  .menu-items {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    font-size: 12px;
+  }
+  .hamburger-menu {
+    display: block;
+    font-size: 15px;
+    opacity: 1;
+    z-index: 2;
+    display: block;
+    width: 100%;
+  }
+
+  .logo {
+    padding: 10px;
+    font-weight: 700;
+  }
+  .hamburger-menu {
+    /* visibility: visible; */
+    display: block;
+    width: 100%;
+    /* height: 100vh; */
+  }
+  .hamburger-lines {
+    display: block;
+  }
+  .menu-item1 {
+    display: none;
+  }
+  .hamburger-menu .menu-items li a {
+    color: white;
+    font-size: 15.2px;
+    text-decoration: none;
+  }
+  .hamburger-menu .hamburger-items li {
+    list-style: none;
+  }
+  
+  .wrapper {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+.my-ul {
+  padding: 0 !important;
+}

@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="/css/navbar1.css" />
+
+
+<nav class="new__parent-navbar">
+  <div class="new__logo">
+    <a href="/getdata/startups" class="logo-link"><h3 class="mb-0">STARTUPPRO</h3></a>
+  </div>
+
+  <div class="new__navbar h-nav">
+    <ul class="new__nav-list v-class mb-0">
+      <h4 class="mb-0">
+        <li class="mb-0"><a href="/getdata/startups">HOME</a></li>
+      </h4>
+      <h4 class="mb-0">
+        <li class="mb-0"><a href="/about">ABOUT</a></li>
+      </h4>
+      <h4 class="mb-0">
+        <li class="mb-0"><a href="/contact">CONTACT US</a></li>
+      </h4>
+      <h4 class="mb-0">
+        <li class="mb-0"><a href="/login/startup" class="login-nav"> LOGIN </a></li>
+      </h4>
+      <h4 class="mb-0">
+        <li class="mb-0"><a href="/getdata/jobalerts">JOBS</a></li>
+      </h4>
+    </ul>
+  </div>
+
+  <!-- <div class="rightNav v-class">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm">SEARCH</button>
+            <h1>rightnav</h1>
+        </div> -->
+
+  <div class="new__burger">
+    <div class="new__line"></div>
+    <div class="new__line"></div>
+    <div class="new__line"></div>
+  </div>
+</nav>
+
+<script>
+  burger = document.querySelector(".new__burger");
+  navbar = document.querySelector(".new__navbar");
+  // rightNav = document.querySelector('.rightNav')
+  navlist = document.querySelector(".new__nav-list");
+  black = document.querySelector(".b-black");
+
+  burger.addEventListener("click", () => {
+    navbar.classList.toggle("h-nav");
+    //  rightNav.classList.toggle('v-class');
+    navlist.classList.toggle("v-class");
+    navbar.classList.toggle("b-black");
+  });
+</script>

@@ -1,0 +1,28 @@
+.fluid-container{
+    /* background:  rgba(47, 52, 78, 0.822); */
+    background-color: rgba(56, 26, 26, 0.486);
+}
+.menu-item2 ul li{
+    list-style: none;
+    display: inline;
+    color: white;
+}
+.menu-item2 ul li a{
+    text-decoration: none;
+    color: white;
+}
+.logo2{
+    color: black;
+    font-size: 40px;
+    font-weight: 500;
+}
+.menu-item2{
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+.menu-item2 ul li .item2:hover{
+    border-bottom: 3px solid green;
+    padding-bottom: 2px;
+}
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Detail</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/userLogin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <%- include('./_partials/navbar_2') %>
+
+    <div class="container d-flex flex-column justify-content-center p-2 my-2">
+        <% if(noAlerts) {%>
+            <h1>No Jobs</h1>
+        <% } else{%>
+            <% resArray.forEach((item)=>{ %>
+
+                <div class="card my-2">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-3" style="min-width: 120px">
+                          <img
+                            src=<%= item.startupData.pic_url %> 
+                            class="img-fluid"
+                            style="min-height: 50px; min-width: 50px"
+                            alt=""
+                          />
+                          <!-- <p class="mt-2 ml-3"><%= item.jobAlert.joining_from %></p> -->
+                        </div>
+                        <div class="col-md-9">
+                          <h5 class="card-title"><%= item.jobAlert.title %> </h5>
+                          <p class="card-text"><%= item.startupData.startup_name %></p>
+                          <p><%= `${item.startupData.city}, ${item.startupData.state}` %></p>
+                          <a href=<%= `/getData/jobAlert/${item.jobAlert.jid}` %>  class="btn btn-warning my-1">View Details</a>
+                          <a href=<%= `/getData/startup/jobalert/appliedcandidates/${item.jobAlert.jid}` %>  class="btn btn-warning my-1">See Applicants</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            <% }) %> 
+        <% } %>
+    </div>
+
+    <%- include('./_partials/footer') %>
+
+  </body>
+</html>

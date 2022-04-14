@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/css/navbar1.css" />
+
+<nav class="new__parent-navbar">
+  <div class="new__logo col-lg-4">
+    <h3 class="mb-0"><a href="/" style="color:#fff; text-decoration: none;">STARTUPPRO</a></h3>
+  </div>
+
+  <div class="new__navbar h-nav">
+    <ul class="new__nav-list v-class mb-0">
+      <h4 class="mb-0" style="text-align:center; font-size: 0.5rem;">
+        <li class="mb-0"><a href="/register/startup">REGISTER STARTUP</a></li>
+      </h4>
+      <h4 class="mb-0" style="text-align:center; font-size: 0.5rem;">
+        <li class="mb-0"><a href="/register/ca">REGISTER CA</a></li>
+      </h4>
+      <h4 class="mb-0" style="text-align:center; font-size: 0.5rem;">
+        <li class="mb-0"><a href="/register/mentor">REGISTER MENTOR</a></li>
+      </h4>
+      <h4 class="mb-0" style="text-align:center; font-size: 0.5rem;">
+        <li class="mb-0"><a href="/adddata/startup/teammember">REGISTER USER</a></li>
+      </h4>
+      <h4 class="mb-0" style="text-align:center; font-size: 0.5rem;">
+        <li class="mb-0"><a href="/getdata/jobalerts">JOBS</a></li>
+      </h4>
+    </ul>
+  </div>
+
+  <!-- <div class="rightNav v-class">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm">SEARCH</button>
+            <h1>rightnav</h1>
+        </div> -->
+
+  <div class="new__burger">
+    <div class="new__line"></div>
+    <div class="new__line"></div>
+    <div class="new__line"></div>
+  </div>
+</nav>
+
+<script>
+  burger = document.querySelector(".new__burger");
+  navbar = document.querySelector(".new__navbar");
+  // rightNav = document.querySelector('.rightNav')
+  navlist = document.querySelector(".new__nav-list");
+  black = document.querySelector(".b-black");
+
+  burger.addEventListener("click", () => {
+    navbar.classList.toggle("h-nav");
+    //  rightNav.classList.toggle('v-class');
+    navlist.classList.toggle("v-class");
+    navbar.classList.toggle("b-black");
+  });
+</script>

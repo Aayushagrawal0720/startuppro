@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CA Register</title>
+    <meta charset="UTF8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/memberRegister.css" />
+    <link rel="stylesheet" href="/css/startupRegister.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <!-- <link rel="stylesheet" href="website.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <%- include('./_partials/navbar_2') %> 
+    
+    <!-- ################################### HEADING  -->
+    <div class="container py-2">
+      <div class="row">
+        <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
+          <h3>Chartered Accountant Registration Details</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- ############################################## form -->
+    <div class="container cont-height">
+      <div class="row shadow">
+        <div class="col-md-12">
+          <form id="ca-reg-form" method="POST" action="/register/ca">
+            <div class="row">
+              <div class="col-md-6 parent">
+                <label class="mb-0 ml-0 star">Name</label><br />
+                <input
+                  type="text"
+                  name="ca_name"
+                  placeholder="Name"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star">Phone Number</label><br />
+                <input
+                  type="number"
+                  name="mobile_no"
+                  placeholder="Phone Number"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star">Certificate Number</label><br />
+                <input
+                  type="text"
+                  name="certificate_no"
+                  placeholder="Certificate Number"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star">Email</label><br />
+                <input
+                  type="email"
+                  name="ca_email"
+                  placeholder="Email"
+                  class="p-1 outline"
+                  required
+                /><br /><br />
+              </div>
+              <div class="col-md-6 parent">
+                <label class="mb-0 ml-0 star" for="o-pass">Password</label><br />
+                <input
+                  type="password"
+                  name="password"
+                  id="o-pass"
+                  placeholder="Password"
+                  class="p-1 outline"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                  required
+                /><br /><br />
+
+                <label class="mb-0 ml-0 star" for="c-pass">Confirm Password</label><br />
+                <input
+                  type="password"
+                  id="c-pass"
+                  name="confirm_password"
+                  placeholder="Confirm Password"
+                  class="p-1 outline"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                  required
+                />
+                <div class="form-text">
+                    <ul>
+                        <li> Your password atleast be 8 characters long.</li>
+                        <li>It must contain both capital and small letters.</li>
+                        <li>It should have atleast one symbol and one number</li>
+                        <li>It must not contain spaces.</li>
+                    </ul>
+                </div>
+
+                <label class="mb-0 ml-0">LinkedIn URL</label><br />
+                <input
+                  type="text"
+                  name="linkedin_url"
+                  placeholder="LinkedIn URL"
+                  class="p-1 outline"
+                /><br /><br />
+                <br /><br />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
+                <input
+                  type="submit"
+                  class="btn btn-warning py-2 px-5"
+                  value="Submit"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./_partials/footer') %> 
+
+    <!-- For Password Validation -->
+    <script>
+        var password = document.getElementById("o-pass");
+        var confirm_password = document.getElementById("c-pass");
+
+        function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+    </script>
+  </body>
+</html>
