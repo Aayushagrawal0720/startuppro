@@ -99,7 +99,7 @@ app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, 
 app.get("/contact", (req, res) => {
   try {
     res.status(200).render("contact");
-  } catch (e) {
+  } catch (e) {//look for an error and if it exists, log the error
     console.log(e);
     res.status(500).send("Server Error");
   }
