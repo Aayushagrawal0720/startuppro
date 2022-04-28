@@ -95,6 +95,7 @@ app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, 
   res.redirect("/getdata/startups");
 });
 
+//get request for the contact route
 app.get("/contact", (req, res) => {
   try {
     res.status(200).render("contact");
@@ -104,6 +105,7 @@ app.get("/contact", (req, res) => {
   }
 });
 
+//get request for the about route
 app.get("/about", (req, res) => {
   try {
     res.status(200).render("about");
@@ -119,6 +121,7 @@ app.use("/addData", addDataRoute);
 app.use("/deleteData", deleteDataRoute);
 app.use("/getData", getDataRoute);
 
+//checking if the server is up and running
 app.listen(port, () => {
   console.log(`Website is working! Listening on port ${port}`);
 });
