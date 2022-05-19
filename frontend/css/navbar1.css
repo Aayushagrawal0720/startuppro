@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&family=Open+Sans&family=Raleway:wght@200;400&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&family=Open+Sans&family=Raleway:wght@200;400&display=swap"); */
 
 * {
   padding: 0px;
@@ -11,25 +11,70 @@ body {
   font-family: "Raleway", serif;
   /* font-family:'Roboto Slab', serif; */
 }
+/* --------------------------------   Rachit Gupta */
+ /* .new__parent-navbar {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  justify-content: space-between;
+  transition: 0.6s;
+  z-index: 5;
+} */
+
+ nav.sticky {
+  background: #eee;
+  /* color:; */
+  /* text-decoration: ; */
+}
+nav .sticky li a{
+  text-decoration: none;
+  color: white;
+  /* background: rgb(27, 26, 90); */
+  position: relative;
+  font-size: 1.1rem; 
+} 
+
+/* -------------------------------  End  */
 .new__parent-navbar {
   display: flex;
-  background: #15114b;
+  /*START of added code*/
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  right:0;
+  z-index: 5;
+  /*DONE*/
+  /* background: white; */
+  /* box-shadow: 2px 2px 5px 1px rgb(152, 152, 152); */
+  border-radius: 0px 0px 5px 5px;
+  margin-bottom: 40px;
+  /* width: 80%; */
+}
+/*Added*/
+a.active{
+  text-decoration: 1px solid goldenrod;
+  color: aquamarine;
 }
 .new__logo {
-  width: 50%;
+  width: 30%;/*changes*/
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  font-weight: 200;
-  background: #15114b;
-  color: #fff;
+  font-weight: 300;
+  /* background: white; */
+  color: rgb(78, 78, 167);
+  /* font-size: 60px; */
 
   /* background-color: blue; */
 }
 .new__navbar {
   display: flex;
-  background: #15114b;
+  /* background: white; */
+  /* /* display: fixed;
+  top: 0px;
+  left:0px; */
+  /* z-index: 3;  */
 }
 .new__nav-list {
   width: 100%;
@@ -41,16 +86,16 @@ body {
 .new__nav-list li {
   list-style: none;
   color: black;
-  padding: 15px 25px;
+  padding: 10px 10px;
 }
 .new__nav-list li a {
   text-decoration: none;
-  color: #fff;
+  color: rgb(21, 41, 123);
   position: relative;
-  font-size: 1.1rem;
+  font-size: 1rem; /**/
 }
 .new__nav-list li a:hover {
-  color: #fcd600;
+  color: rgb(42, 10, 155);
 }
 
 .new__nav-list li a::after {
@@ -69,7 +114,6 @@ body {
 .new__nav-list li a:hover::after {
   width: 100%;
 }
-
 #search {
   padding: 5px;
   font-size: 17px;
@@ -86,22 +130,24 @@ body {
 }
 .new__line {
   width: 33px;
-  background: #fff;
+  /* background: #fff; */
   height: 4px;
   margin: 4px 3px;
   border-radius: 43px;
 }
 
 .logo-link {
-  color: #fff;
+  color: rgb(23, 27, 135);
   text-decoration: none;
+  position: absolute;
+  left: 80px; /*made a change : 80px, No change*/ 
 }
 .logo-link:hover {
-  color: #fff;
+  color: rgb(88, 100, 160);
   text-decoration: none;
 }
 .logo-link:focus {
-  color: #fff;
+  color: white;
   text-decoration: none;
 }
 
@@ -142,4 +188,19 @@ body {
     opacity: 0;
     display: none;
   }
+}
+/*My code */
+.sign{
+  height: auto;
+  width: 100px;
+  position: relative;
+  top: 2px;
+  left: 260%;
+  margin: 20px;
+  padding: 5px;
+  background-color: white;
+  color: navy;
+  text-shadow: 1px 1px 1px #eee;
+  border-radius: 20px;
+  border: 2px solid navy;
 }
