@@ -7,6 +7,14 @@
 body{
     font-family:'Raleway', serif;
 }
+/* --------------rachit gupta---------- */
+.edit{
+    padding-top: 6%;
+}
+.fluid-container{
+    padding-top: 6%;
+}
+/* --------------------end-----------    */
 ul li{
     list-style: none;
     color: black;

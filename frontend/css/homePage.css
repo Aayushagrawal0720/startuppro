@@ -13,6 +13,13 @@
 body {
   font-family: "Raleway", serif;
 }
+/* ------------------rachit gupta ----- */
+.container{
+  padding-top: 3%;
+}
+
+/* ------------------end ---------------- */
+
 .fluid-container {
   background: rgba(47, 52, 78, 0.822);
 }
