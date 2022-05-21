@@ -61,9 +61,12 @@ router.get("/startups", async (req, res) => {
     // console.log(founderArray);
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
-    var jobDetailData = await jobDetailModel.findOne({
-      mid: founderArray[0].mid,
-    });
+    if(founderArray && founderArray[0] && founderArray[0].mid){
+      
+      var jobDetailData = await jobDetailModel.findOne({
+        mid: founderArray[0].mid,
+      });
+    }
     if (!jobDetailData) {
       jobDetailData = { job_title: "Founder" };
     }
