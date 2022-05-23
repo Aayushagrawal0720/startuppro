@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //    *************
 //    Connect to db
