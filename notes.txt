@@ -1,0 +1,35 @@
+Graph api
+localhost:3000/adddata/timelinegraph/graphevent
+
+Has both adding and subtracting feature (but date sorting query not written)
+
+LOGIN of the startup can be done inside Admin's id
+
+
+ARTHGOAL PASSWORD = Arth@1234
+QUICKTRADES PASSWORD = Quick@1234
+NIKHIL PASSWORD = Nikhil@1234
+
+
+* NEED TO CHANGE URL IN TIMELINE.EJS                            ****************done
+* NEED TO CHANGE URL IN homePage.EJS in link tags                           ****************done
+* NEED TO CHNAGE URL IN MANY EJS PAGES IN FORMS AND CSS AND SCRIPT SRC                          ****************done
+
+** CHANGE PORT IN addData.js and index.js and maybe profilePicAdd.ejs
+
+
+** NEED TO PUT TEMPLATES WHEN RESPONSES FROM POST REQUESTS COME
+
+** ADD TYPE T FEATURE
+** MEMBER REGISTRATION NEED TO BE DONE
+** JOB ALERTS, JOB DETAILS, 
+
+
+change localhost in places:         *******************DONE
+addGraphData.ejs fetch
+startupDetailsEdit.ejs fetch
+founderDetailsEdit.ejs fetch
+formHandler.js fetch
+
+
+***********HANDLE REDIRECTSSSS**********

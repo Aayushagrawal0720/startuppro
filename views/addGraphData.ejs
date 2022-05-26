@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= startupData.startup_name %> - Add Data</title>
+    <meta charset="UTF8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/memberRegister.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/startupRegister.css"
+    />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <!-- <link rel="stylesheet" href="website.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+      <style>
+          .dis-class{
+              display: none;
+          }
+          .down-arrow{
+              cursor: pointer;
+          }
+      </style>
+      <!-- ######### SUBMIT FORM FUNCTION -->
+      <script src="/js/apiAddresses.js"></script>
+      <script>
+          function submitForm(type_id,diff,type_title,type_type,isLess){
+            const uid = '<%- startupData.uid %>';
+            const formBody = {
+                uid:uid,
+                type_id:type_id,
+                diff:parseFloat(diff),
+                type_title:type_title,
+                type_type: type_type,
+                isLess: isLess
+            };
+          fetch(api_addGraphData,{
+                method:'POST',
+                body:JSON.stringify(formBody),
+                headers:{
+                    'Content-type':'application/json'
+                }
+            }).then((res)=>{
+                if(res.redirected) window.location.href = res.url;
+                else if(res.status==400) alert('could not add data');
+            })
+          }
+      </script>
+    <%- include('./_partials/navbar_2') %>
+
+        <div class="edit_graph_data">
+
+    <% if(typesData.length==0){ %>
+      <h1>You can add many topics for Analysis like Revenue, Expenses, Customers etc.</h1>
+    <% } %> 
+    
+    <% if(typesData.length!=0){ %> 
+    <% typesData.forEach((item,index)=>{ %> 
+
+    <div class="container my-5 shadow">
+        <!-- ################################### HEADING  -->
+        <div class="container py-2">
+        <div class="row">
+            <div class="col-md-12 heading text-center mt-md-1 d-flex justify-content-around">
+            <h3><%= item.title %> </h3>
+            <h3>Type:&nbsp <%= item.type %> </h3>
+            <h6><i id=<%= `btn-${item.type_id}` %> class="fas fa-chevron-down down-arrow"></i></h6>
+            </div>
+        </div>
+        </div>
+
+        <!-- ############################################## form -->
+        <div class="container form-cont dis-class" id=<%= `${item.type_id}-form-cont` %>>
+        <div class="row">
+            <div class="col-md-12">
+            <form id=<%= `${item.type_id}-form` %>  method="POST">
+                <div class="row">
+                <div class="col-md-6 parent">
+                    <label class="mb-0 ml-0 star">Difference</label><br />
+                    <input
+                    type="number"
+                    name="diff"
+                    placeholder="Enter the difference"
+                    class="p-1 outline"
+                    required
+                    /><br /><br />
+                    <input type="checkbox" name="isLess" id="isLess"> 
+                    <label for="isLess">Decreased</label>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
+                    <input
+                    type="submit"
+                    class="btn btn-warning py-2 px-5"
+                    value="Add"
+                    />
+                </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+
+    <% }) %> 
+    <% } %>
+
+    <div class="container text-center">
+      <a href=<%= `/adddata/timelinegraph/type/${startupData.uid}` %> ><button class="btn btn-warning my-2">Add New Type for Analysis</button></a>
+    </div>
+
+  </div>
+    <%- include('./_partials/footer') %>
+
+    <script>
+        function toggleDisplay(){
+            const formContainers = document.querySelectorAll('.form-cont');
+            formContainers.forEach((item)=>{
+                item.classList.toggle('dis-class');
+            });
+        }
+        var downArrows = document.querySelectorAll('.down-arrow');
+        downArrows.forEach((item)=>{
+            item.addEventListener('click',()=>{
+              // console.log(item.id.length);
+              const btnId = item.id.substr(4,item.id.length);
+              // console.log(btnId);
+              const formCont = document.getElementById(`${btnId}-form-cont`);
+              formCont.classList.toggle('dis-class');
+            });
+        })
+
+    </script>
+
+    <!--############################# Form Submission Handler -->
+    <script>
+        const typesArr = <%- JSON.stringify(typesData) %>;
+
+        typesArr.forEach((item)=>{
+            document.getElementById(`${item.type_id}-form`).addEventListener('submit',(e)=>{
+                e.preventDefault();
+                var isLess = document.getElementById(`${item.type_id}-form`).elements.isLess;
+                var diff = document.getElementById(`${item.type_id}-form`).diff.value;
+                
+                submitForm(item.type_id,diff,item.title,item.type,isLess.checked);
+
+            })
+        })
+    </script>
+  </body>
+</html>

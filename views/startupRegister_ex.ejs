@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <title>Startup Register</title>
+  </head>
+  <body>
+    <h1 class="display-2">Register Startup</h1>
+    <div class="container col-10">
+      <form id="startup-reg-form">
+        <div class="mb-3">
+          <label class="form-label">Startup Name</label>
+          <input type="text" class="form-control" name="startup_name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Mobile no.</label>
+          <input type="number" class="form-control" name="mobile_no" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" name="confirm_password" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email Official</label>
+          <input type="email" class="form-control" name="email_offcial" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email Personal</label>
+          <input type="email" class="form-control" name="email_personal" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">State</label>
+          <input type="text" class="form-control" name="state" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">City</label>
+          <input type="text" class="form-control" name="city" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Zip Code</label>
+          <input type="number" class="form-control" name="zip_code" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description of your idea</label>
+          <input type="text" class="form-control" name="description_of_idea" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Industry</label>
+          <input type="text" class="form-control" name="Industry" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">About Your Company</label>
+          <input type="text" class="form-control" name="about_company" />
+        </div>
+
+        <button type="submit" class="btn btn-outline-success">Next</button>
+      </form>
+    </div>
+    <script>
+      let startupRegData = {
+        startupDetails: {},
+        founderDetails: {},
+        jobDetails: {},
+      };
+      const startupForm = document.getElementById("startup-reg-form");
+      startupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var valArray = Object.values(startupForm.elements);
+        startupRegData.startupDetails.startup_name = valArray[0].value;
+        startupRegData.startupDetails.mobile_no = parseInt(valArray[1].value);
+        startupRegData.startupDetails.password = valArray[2].value;
+        startupRegData.startupDetails.confirm_password = valArray[3].value;
+        startupRegData.startupDetails.email_official = valArray[4].value;
+        startupRegData.startupDetails.email_personal = valArray[5].value;
+        startupRegData.startupDetails.state = valArray[6].value;
+        startupRegData.startupDetails.city = valArray[7].value;
+        startupRegData.startupDetails.zip_code = parseInt(valArray[8].value);
+        startupRegData.startupDetails.description_of_idea = valArray[9].value;
+        startupRegData.startupDetails.Industry = valArray[10].value;
+        startupRegData.startupDetails.about_company = valArray[11].value;
+        // console.log(startupRegData);
+
+        const heading = document.querySelector(".display-2");
+        heading.innerText = "Register Founder";
+        const container = document.querySelector(".container");
+        container.innerHTML = `<form id="founder-reg-form">
+        <div class="mb-3">
+          <label class="form-label">Founder Name</label>
+          <input type="text" class="form-control" name="member_name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Mobile no.</label>
+          <input type="number" class="form-control" name="mobile_no" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="member_Email" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Job Title</label>
+          <input type="text" class="form-control" name="designation" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+
+        <button type="submit" class="btn btn-outline-success">Submit</button>`;
+        const founderForm = document.getElementById("founder-reg-form");
+        founderForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          // console.log("submit founder form");
+          var valArray = Object.values(founderForm.elements);
+          startupRegData.founderDetails.member_name = valArray[0].value;
+          startupRegData.founderDetails.mobile_no = parseInt(valArray[1].value);
+          startupRegData.founderDetails.member_Email = valArray[2].value;
+          startupRegData.founderDetails.password = valArray[4].value;
+
+          startupRegData.jobDetails.job_title = valArray[3].value;
+          // NOT SENDING DATE NOW
+
+          // console.log(startupRegData);
+
+          fetch("http://localhost:3000/register/startup", {
+            method: "POST",
+            body: JSON.stringify(startupRegData),
+            headers: {
+              "Content-type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => (document.body.innerHTML = JSON.stringify(data)))
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Details</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/userLogin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <script>
+      function changeStatus(mid,status){
+        fetch('/editData/startup/teammember/changestatus',{
+          method: "POST",
+          body: JSON.stringify({ status: status }),
+          headers:{
+            'Content-type': "application/json",
+            mid: mid
+          }
+        })
+        .then((res)=>{
+          if(res.status === 201)
+            document.getElementById(`status-${mid}`).innerHTML = status;
+          if(res.status === 400)
+            alert("Could not change status");
+        })
+      }
+    </script>
+    <%- include('./_partials/navbar_2') %>
+
+      <div class="edit_job_page">
+
+
+    <% if(finalArray.length==0){ %>
+      <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
+        <h1>No Job Details</h1>
+      </div>
+    <%} else{%> 
+
+    <div class="fluid-container d-flex justify-content-center align-items-center flex-wrap p-2">
+        <% finalArray.forEach((item,index)=>{ %>
+                <div class="card shadow mb-5 bg-white p-4 mx-2" style="min-width: 250px">
+                <div class="row">
+                    <div class="col-7 p-3">
+                    <p>Name: <b><%= item.userData.member_name %></b> </p>
+                    <p>Role: <b><%= item.jobData.job_title %></b> </p>
+                    <p>Status: <b id=<%=`status-${item.jobData.mid}`%>> <%= item.jobData.status %> </b>  </p>
+                    <p>Type: <b><%= item.jobData.type %></b> </p>
+                    <button type="button" class="btn btn-warning my-1 status-btn" onclick=<%= `changeStatus("${item.jobData.mid}","Approved")` %> >Approve</button>
+                    <button type="button" class="btn btn-secondary my-1 status-btn" onclick=<%= `changeStatus("${item.jobData.mid}","Rejected")` %> >Reject</button>
+                    </div>
+                    <div class="col-5 mt-3 text-right">
+                    <img
+                        src="<%= item.userData.pic_url %>"
+                        class="img-fluid"
+                        alt="user-profile"
+                        style="min-width: 100px; min-height: 100px;"
+                    />
+                    </div>
+                </div>
+                </div>          
+        <% }) %> 
+    <% } %> 
+    </div>
+
+      </div>
+    <%- include('./_partials/footer') %>
+
+    <script>
+      const btns = document.querySelectorAll("status-btn");
+
+    </script>
+  </body>
+</html>

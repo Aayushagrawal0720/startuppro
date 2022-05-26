@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/userLogin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
+
+  <% if(isLogin){ %>
+    <script>
+        document.querySelector(".login-nav").innerText = "PROFILE";
+    </script>
+  <% } %>
+
+    <div id="parent-row">
+
+      <div class="fluid-container">
+      
+
+      <!-- ########################### FILTERS -->
+      <div class="container">
+            <div class="row">
+              <div class="text-left">Filter By:</div>
+            </div>
+              <div class="row text-center">
+                <!-- <div class="col-md-10 text-center"> -->
+                  <% filterArray.forEach((item)=>{ %>
+                    <div class="m-1"><a href=<%= `/getdata/startups/${item}` %> ><button class="btn btn-dark"> <%= item %> </button></a></div>
+                    <% }) %>
+                <!-- </div> -->
+              </div>
+      </div>
+      
+      <!-- ########################### Startups -->
+      <div class="container cont-height">
+
+        <% startups.forEach((item,index)=>{ %>
+
+          <div class="container section my-5 section1 shadow-border">
+            <!-- ###########################Details -->
+            <div class="row" style="position: relative; ">
+              <div class="col-md-4">
+                <div>
+                  <div class="name mb-2">
+                    <p class="startup">
+                      <%= item.startup_name %>
+                    </p>
+                    <p class="mb-0">
+                      <%= item.about_company %>
+                    </p>
+                    <p class="text-secondary">Website: <a href=<%=`http://${item.website_link}` %>><%= item.website_link
+                          %></a> </p>
+                  </div>
+
+                  <div class="diary">
+                    <p class="text-secondary">Email:&nbsp <%= item.email_official %>
+                    </p>
+                    <p class="text-secondary">Phone:&nbsp <%= item.mobile_no %>
+                    </p>
+                    <p class="text-secondary">Industry:&nbsp <%= item.Industry %>
+                    </p>
+                    <p class="text-secondary">Headquarters:&nbsp <%= item.city %>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="my-2">
+                  <a href=<%= `/getdata/startup/${item.uid}` %> >View more details</a>
+                </div>
+              </div>
+              <div class="col-md-4 logo-div d-flex flex-column justify-content-center align-items-center">
+                <div class="image-box d-flex flex-column justify-content-center align-items-center">
+                  <img src=<%= item.pic_url %>  class="img-fluid logo" alt="startup-img" style="border: 2px solid #c9c9c9; padding: 3px; box-shadow: 0px 0px 9px 1px #d4d4d4"/>
+                </div>
+              </div>
+
+              <!-- ###################### Portfolio -->
+              <div
+                class="portfolio col-md-4 text-center px-0 pl-3 pr-3 pl-md-5 mt-4 mb-4 d-flex flex-column justify-content-end">
+                <div class="col-md-12 borderlight">
+                  <img src=<%= founderArray[index].pic_url %> class="img-fluid mt-3 mb-lg-4"
+                    alt="founder-img" />
+                  <div class="my-3">
+                    <p class="text-secondary">Name:&nbsp <%= founderArray[index].member_name %>
+                    </p>
+                    <p class="text-secondary">Designation:&nbsp <%= jobDetailData.job_title?jobDetailData.job_title:"Founder" %>  </p>
+                  </div>
+                </div>
+              </div>
+              <div class="new__wrap col-12" style=" position: absolute; height: 50%;  z-index: -1; ">
+              </div>
+            </div>
+          </div>
+
+          <% }) %>
+      </div>
+
+    </div>
+
+    </div>
+
+    <%- include('./_partials/footer') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+
+</html>

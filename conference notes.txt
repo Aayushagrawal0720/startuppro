@@ -1,0 +1,28 @@
+add member register btn in nav bar
+
+add job alert / post / internship in startup profile
+
+add industry type dropdown selection when startup registers --- fetch this from backend while rendering ejs
+
+
+Two new user types
+CA, Mentor, 
+
+Chat from Startup Page to Mentor
+Chat from Startup Page to Startup Page
+Permission to Aayush Sir before chat -- Sochenge
+Badges like CA given by Aayush Sir	--Sochenge
+CA BAdge will only be given when CA verifies the financial data --Sochenge
+
+aage paid listing hongi abhi free listing hai 
+
+Startup Profile should show all its CAs, Mentors etc.
+
+
+
+ADMIN PANEL
+like quicktrades one but better ui
+
+
+ TOUGH KAAM 
+Add advertisement stip like ig sponsored one when a user logs in

@@ -1,0 +1,225 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&family=Open+Sans&family=Raleway:wght@200;400&display=swap"); */
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Raleway", serif;
+}
+
+body {
+  font-family: "Raleway", serif;
+  /* font-family:'Roboto Slab', serif; */
+}
+/* --------------------------------   Rachit Gupta */
+ /* .new__parent-navbar {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  justify-content: space-between;
+  transition: 0.6s;
+  z-index: 5;
+} */
+
+nav.sticky {
+  top: 0%;
+  background: #FBFBFB;
+  
+  /* color:; */
+  /* text-decoration: ; */
+}
+nav .sticky li a{
+  text-decoration: none;
+  color: white;
+  /* background: rgb(27, 26, 90); */
+  position: relative;
+  font-size: 1.1rem; 
+} 
+
+/* -------------------------------  End  */
+.new__parent-navbar {
+  display: flex;
+  /*START of added code*/
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  right:0;
+  z-index: 5;
+  /*DONE*/
+  /* background: white; */
+  box-shadow: 1px 1px 4px 1px rgb(152, 152, 152);
+  /* border-radius: 0px 0px 5px 5px; */
+  margin-bottom: 40px;
+  padding: 7px 0px;
+  /* width: 80%; */
+}
+/*Added*/
+a.active{
+  text-decoration: 1px solid goldenrod;
+  color: aquamarine;
+}
+.new__logo {
+  width: 30%;/*changes*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-weight: 300;
+  position: relative;
+  left: 10px;
+  /* background: white; */
+  color: rgb(78, 78, 167);
+  /* font-size: 60px; */
+
+  /* background-color: blue; */
+}
+.new__navbar {
+  display: flex;
+  /* background: white; */
+  /* /* display: fixed;
+  top: 0px;
+  left:0px; */
+  /* z-index: 3;  */
+}
+.new__nav-list {
+  width: 100%;
+  /* background: #15114b; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.new__nav-list li {
+  list-style: none;
+  color: black;
+  padding: 10px 10px;
+}
+.new__nav-list li a {
+  text-decoration: none;
+  color: rgb(21, 41, 123);
+  position: relative;
+  font-size: 1rem; /**/
+}
+.new__nav-list li a:hover {
+  color: #2A528A;
+}
+
+.new__nav-list li a::after {
+  position: absolute;
+  content: "";
+  display: block;
+  margin-top: 5px;
+  width: 0;
+  height: 2px;
+  background: #fcd600;
+  transition: width 0.3s;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.new__nav-list li a:hover::after {
+  width: 100%;
+}
+#search {
+  padding: 5px;
+  font-size: 17px;
+  border: 2px solid grey;
+  border-radius: 9px;
+  margin-top: 15px;
+}
+.new__burger {
+  position: absolute;
+  cursor: pointer;
+  right: 4%;
+  top: 15px;
+  display: none;
+}
+.new__line {
+  width: 33px;
+  /* background: #fff; */
+  height: 4px;
+  margin: 4px 3px;
+  border-radius: 43px;
+}
+
+.logo-link {
+  margin-left: 6%;
+  color: rgb(23, 27, 135);
+  text-decoration: none;
+  position: absolute;
+  left: 80px; /*made a change : 80px, No change*/ 
+  text-shadow: 1px 1px 1px grey; /* added */
+}
+.logo-link:hover {
+  color: navy; /*midnightblue;*/
+  text-decoration: none;
+  transform: scale(1.05);
+  text-shadow: 2px 2px 2px grey;
+}
+/* .logo-link:focus {
+  color: white;
+  text-decoration: none;
+} */
+
+@media (max-width: 992px) {
+  .new__parent-navbar {
+    flex-direction: column;
+  }
+  .new__logo {
+    padding-top: 10px;
+    width: 100%;
+  }
+  .new__nav-list {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .new__navbar {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease-out;
+    height: 100vh;
+  }
+  .rightNav {
+    text-align: center;
+  }
+  #search {
+    width: 100%;
+  }
+  .new__burger {
+    display: block;
+  }
+  .h-nav {
+    height: 11px;
+    /* height: 372px; */
+  }
+  .v-class {
+    opacity: 0;
+    display: none;
+  }
+}
+/*My code  yogita*/
+.login-nav{
+  height: auto;
+  width: 100px;
+  position: relative;
+  top: 10px;
+  bottom: 20px;
+  left: 280px;
+  margin: 20px;
+  padding: 2px 10px;
+  background-color: navy;
+  color: white;
+  text-shadow: 1px 1px 1px #eee;
+  border-radius: 20px;
+  border: 2px solid navy;
+  box-shadow: 1px 1px 5px 1px grey;
+}
+.login-nav:hover{
+  box-shadow: 1px 2px 3px 1px grey;
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 2px 3px grey;
+  /* transform: scale(1.05); */
+}
+/* ---------------------end --------- */
