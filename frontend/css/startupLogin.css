@@ -340,3 +340,43 @@ ul li {
     margin: 10px auto;
   }
 }
+/* added code by yogita */
+.jobbox{
+  display: flex;
+  padding: 0px;
+  width: 50px;
+  height: 400px;
+  /* margin: 0px; */
+}
+.imageadd{
+  background-color: green;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 200px;
+  width: 380px;
+  padding: 20px;
+  /* margin-bottom: 00px; */
+  border-radius: 10px 10px 0px 0px;
+}
+.it{
+  position: relative; 
+  top:200px;
+  padding: 10px;
+}
+.button{
+  position: relative; 
+  top:230px;
+  left:140px;
+  text-decoration: none;
+  background-color: navy;
+  color: white;
+  padding: 10px;
+  margin-top: 40px;
+  border-radius: 10px;
+}
+.button:hover{
+  text-decoration: none;
+  color: white;
+  transform: scale(1.05);
+}

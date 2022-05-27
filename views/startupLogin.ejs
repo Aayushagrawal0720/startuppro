@@ -206,7 +206,7 @@
         <% } %> 
 
         <!-- JOB ALERTS DETAILS -->
-        <div class="container my-5">
+        <div class="container my-5 ">
           <div class="main-container p-3 d-flex flex-column">
             <div class="col-md-12">
               <h2 class="text-center">Jobs by <%= startupData.startup_name %> </h2>
@@ -216,11 +216,15 @@
                 <h3 class="text-center">No Jobs Posted</h3>
               <% } else{%>
                 <% jobAlerts.forEach((item) => { %>
-                  <div class="container col-md-5 my-2" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px;">
+
+                  <div class="container col-md-5 my-2 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                     <div class="m-2">
-                      <h5><%= item.title %></h5>
-                      <h6><%= item.employment_type %> </h6>
-                      <a href="<%= `/getdata/jobalert/${item.jid}` %>"><h6>View Details</h6></a>
+                      <div class="imageadd">
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      <h4 class="it"><b><%= item.title %></b></h4>
+                      <h6 class="it"><%= item.employment_type %> </h6>
+                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
                     </div>
                   </div>
                 <% }) %>
