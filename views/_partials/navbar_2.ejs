@@ -3,7 +3,7 @@
 
 <nav class="new__parent-navbar">
   <div class="new__logo">
-    <a href="/getdata/startups" class="logo-link"><h3 class="mb-0">STARTUPPRO</h3></a>
+    <a href="/getdata/startups" class="logo-link"><h1 class="mb-0"><b>STARTUPPRO</b></h1></a>
   </div>
 
   <div class="new__navbar h-nav">
@@ -17,15 +17,21 @@
       <h4 class="mb-0">
         <li class="mb-0"><a href="/contact">CONTACT US</a></li>
       </h4>
-      <h4 class="mb-0">
-        <li class="mb-0"><a href="/login/startup" class="login-nav"> LOGIN </a></li>
-      </h4>
+      
       <h4 class="mb-0">
         <li class="mb-0"><a href="/getdata/jobalerts">JOBS</a></li>
       </h4>
+      <!-- <h4 class="mb-0">
+        <li class="mb-0"><a href="/login/startup" class="login-nav"> LOGIN</a></li>
+      </h4> -->
     </ul>
+    <h4 class="mb-0">
+      <!-- <div><a href="/login/startup" class="signupbut"> Signup</a></div> -->
+      <a href="/login/startup"><input type="button" value="LOGIN" class="sign"></a>
+    </h4>
   </div>
-
+  <br>
+<br>
   <!-- <div class="rightNav v-class">
             <input type="text" name="search" id="search">
             <button class="btn btn-sm">SEARCH</button>
@@ -52,4 +58,12 @@
     navlist.classList.toggle("v-class");
     navbar.classList.toggle("b-black");
   });
+  /* --------------------------------   Rachit Gupta */
+
+  window.addEventListener("scroll",function(){
+      let header = document.querySelector("nav");
+      header.classList.toggle("sticky", window.scrollY > 0);
+    });
+
+    /* -------------------------------  End  */
 </script>

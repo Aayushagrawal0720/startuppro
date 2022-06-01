@@ -41,12 +41,14 @@ router.get("/startups", async (req, res) => {
     // console.log(startups);
 
     // creating array which only has founder info
+    if(startups != null && startups.length !=0){
     startups.forEach((item, index) => {
       startupFoundersArray.push(item.founders);
     });
-
+  }
     // creatng array of founder data
     startupFoundersArray.forEach((item) => {
+      if(item!=null && item[0] != null && item[0]!=undefined){
       founderArray.push(
         new Promise((resolve, reject) => {
           teamMemberModel
@@ -55,6 +57,7 @@ router.get("/startups", async (req, res) => {
             .catch((err) => reject(err));
         })
       );
+      }
     });
 
     founderArray = await Promise.all(founderArray);
@@ -62,11 +65,10 @@ router.get("/startups", async (req, res) => {
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
     if(founderArray && founderArray[0] && founderArray[0].mid){
-      
-      var jobDetailData = await jobDetailModel.findOne({
-        mid: founderArray[0].mid,
-      });
-    }
+    var jobDetailData = await jobDetailModel.findOne({
+      mid: founderArray[0].mid,
+    });
+  }
     if (!jobDetailData) {
       jobDetailData = { job_title: "Founder" };
     }
