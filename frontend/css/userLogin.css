@@ -7,6 +7,20 @@
 body{
     font-family:'Raleway', serif;
 }
+/* --------------rachit gupta---------- */
+.edit{
+    padding-top: 6%;
+}
+.fluid-container{
+    padding-top: 6%;
+}
+.edit_job_page{
+    padding-top: 6%;
+}
+.edit_job_alerts_pages{
+    padding-top: 6%;
+}
+/* --------------------end-----------    */
 ul li{
     list-style: none;
     color: black;
