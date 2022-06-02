@@ -220,15 +220,24 @@
                   <div class="container col-md-5 my-2 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                     <div class="m-2">
                       <div class="imageadd">
+                        <h1>Job title</h1>
                         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                       </div>
                       <h4 class="it"><b><%= item.title %></b></h4>
                       <h6 class="it"><%= item.employment_type %> </h6>
+                      <h6 class="it">Description of the job posted</h6>
+                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
                       <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
                     </div>
+            
                   </div>
+                <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
                 <% }) %>
               <% } %>
+              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
             <div class="col-md-12">
               <a href="<%= `/getdata/startup/jobalerts/public/${startupData.uid}` %> "><h6 class="text-right">View More</h6></a>
@@ -285,34 +294,32 @@
             <% if(foundData.length==0) { %>
             <h3 class="text-center">No Timeline</h3>
             <% } else{ %>
+      
               <div class="timeline-container" id="timeline-container">
-                <div class="timeline">
+                <div class="timeline" >
                   <ul>
-                    <% foundData.forEach((item,index)=> {%> <% const d=item.date;
-                    const ye=new Intl.DateTimeFormat('en', { year: 'numeric'
-                    }).format(d); const mo=new Intl.DateTimeFormat('en', { month:
-                    'short' }).format(d); const da=new Intl.DateTimeFormat('en', {
-                    day:'2-digit' }).format(d); %>
+                    <% foundData.forEach((item,index)=> {%> <% const d=item.date;const ye=new Intl.DateTimeFormat('en', { year: 'numeric'}).format(d); const mo=new Intl.DateTimeFormat('en', { month:'short' }).format(d); const da=new Intl.DateTimeFormat('en', {day:'2-digit' }).format(d); %>
                     <li>
                       <div class="timeline-content">
                         <!-- <h3 class="date">20th may, 2010</h3> -->
-                        <h1><%= `${da}-${mo}-${ye}` %></h1>
+                        <div class="date">
+                        <h5><%= `${da}-${mo}-${ye}` %></h5>
+                        </div>
+                        <div id="pcs">
+                          <div class="sc s1 active" >
                         <p><%= item.event_title %></p>
+                        </div>
+                        </div>
                         <% if(item.picUrl){ %> 
                         <div>
-                          <img
-                            style="max-height: 200px; width: auto;"
-                            class="timeline-img"
-                            src=<%= item.picUrl %> 
-                            alt="timeline-img"
-                          />
+                          <img style="max-height: 200px; width: auto;" class="timeline-img" src=<%= item.picUrl %> alt="timeline-img"/>
                         </div>
                         <% } %> 
                       </div>
-                    </li>
-
-                    <% }); %>
+                    </li><% }); %>
                   </ul>
+                  <div id="line">
+                 </div>
                 </div>
               </div>
               <div class="container my-1 text-right">

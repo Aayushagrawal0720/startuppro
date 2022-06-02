@@ -13,6 +13,13 @@
   ></script>
   <title>Timeline - <%= startupData.startup_name %> </title>
   <link rel="stylesheet" href="/css/timeline.css" />
+  <style>
+    body{
+      position: relative;
+      top: 70px;
+    
+    }
+  </style>
 </head>
 
 <body>
@@ -34,7 +41,7 @@
           <li>
             <div class="timeline-content">
               <!-- <h3 class="date">20th may, 2010</h3> -->
-              <h1><%= `${da}-${mo}-${ye}` %></h1>
+              <h5><%= `${da}-${mo}-${ye}` %></h5>
               <p><%= item.event_title %></p>
               <% if(item.picUrl){ %> 
               <div>

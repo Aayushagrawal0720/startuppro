@@ -44,7 +44,7 @@ nav .sticky li a{
   top: 0; 
   left: 0;
   right:0;
-  z-index: 5;
+  z-index: 999;
   /*DONE*/
   /* background: white; */
   box-shadow: 1px 1px 4px 1px rgb(152, 152, 152);
