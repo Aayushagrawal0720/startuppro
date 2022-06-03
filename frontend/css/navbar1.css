@@ -22,6 +22,10 @@ body {
 } */
 
  nav.sticky {
+feature/team-viewer
+=======
+   top: 0%;
+staging
   background: #eee;
   /* color:; */
   /* text-decoration: ; */
@@ -137,6 +141,10 @@ a.active{
 }
 
 .logo-link {
+feature/team-viewer
+=======
+  margin-left: 6%;
+staging
   color: rgb(23, 27, 135);
   text-decoration: none;
   position: absolute;
@@ -189,13 +197,22 @@ a.active{
     display: none;
   }
 }
+feature/team-viewer
 /*My code */
 .sign{
+=======
+/*My code  yogita*/
+.login-nav{
+staging
   height: auto;
   width: 100px;
   position: relative;
   top: 2px;
+feature/team-viewer
   left: 260%;
+=======
+  left:  320%;
+staging
   margin: 20px;
   padding: 5px;
   background-color: white;
@@ -204,3 +221,8 @@ a.active{
   border-radius: 20px;
   border: 2px solid navy;
 }
+feature/team-viewer
+=======
+/* ---------------------end --------- */
+  
+  staging

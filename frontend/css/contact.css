@@ -7,6 +7,14 @@ body{
     font-family:'Roboto Slab', serif;;
 }
 
+/* ---------------------Rachit Gupta---------- */
+.edit_about{
+    padding-top: 3%;
+}
+.container{
+    padding-top: 3%;
+}
+/* ------------------end ---------------- */
 /* ###############################tranition */
 .box1{
     transform: translateX(-150%);

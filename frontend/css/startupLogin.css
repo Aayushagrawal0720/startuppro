@@ -16,6 +16,11 @@ body {
 /* .parent-container {
   min-height: 70vh;
 } */
+
+.edit_login{
+  padding-top: 3%;
+}
+
 ul li {
   list-style: none;
   color: black;
