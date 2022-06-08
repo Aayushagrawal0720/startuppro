@@ -159,8 +159,7 @@ ul li {
 }
 .main-container {
   position: relative;
-  /* background: rgb(233, 233, 225); */
-}
+  background: linear-gradient(90deg, rgba(229, 242, 249, 0.662) 0%, #d5eaf9 50%, rgb(229, 242, 249) 100%);}
 .background-box {
   height: 150px;
   border-top-left-radius: 8px;
@@ -344,33 +343,40 @@ ul li {
 .jobbox{
   display: flex;
   padding: 0px;
-  width: 40px;
-  height: 300px;
-  /* margin: 0px; */
+  margin: 10px;
+  max-width: 200px;
+  height: 290px;
+  background: #F6F6F6;
 }
+.jobbox:hover{
+  transform: scale(1.05);
+  
+}
+
 .imageadd{
-  background-color: green;
+  /* background-color: green; */
   position: absolute;
-  top: 0em;
-  left: 0em;
-  height: 40%;
+  top: 0px;
+  left: 0px;
+  height: 30%;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   /* margin-bottom: 00px; */
   border-radius: 10px 10px 0px 0px;
+  border: 1px solid grey;
 }
 .it{
   position: relative; 
-  top:120px;
-  padding: 3px 10px;
+  top:100px;
+  padding: 3px 5px;
 }
 .button{
   position: relative; 
-  top:130px;
-  left:140px;
+  top:110px;
+  left:60px;
   text-decoration: none;
   background-color: navy;
-  color: white;
+  color: #eee;
   padding: 10px;
   margin-top: 40px;
   border-radius: 10px;
@@ -409,63 +415,114 @@ ul li {
   left: 0;
   border-radius: 0 3px 3px 0;
 }
-/* @timelineBackground: #29b6f6; */
-
-/* @entryBackground: #81d4fa;
-@entryHoverBackground: #e1f5fe;
-
-@eventMetaBackground: #e1f5fe; */
-/* @eventMetaRadius:3px; */
-.wrapper {
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  height:100%;
-    min-width:100%;}
-.wrapper .timeline {
-    display: flex;
-    align-items:flex-start;
-    /* min-width: 100%;
-    background: #29b6f6; */}
-  
-.timeline .entry {
-      background: #81d4fa;
-      margin:5px 5px 5px 1.2em;
-      position:relative;
-      bottom:0;
-      z-index:0;
-      border-radius:3px;
-        box-sizing:border-box;
-      padding:.4em 1em;
-      transition: all 300ms ease-out;
-      min-width:8em;}
-.timeline .entry :hover {
-        background: #e1f5fe;
-        bottom: 7px;
-        box-shadow:rgba(0,0,0,.4) 0 4px 3px 1px;}
-.meta {
-          bottom:90%;
-          opacity:1;
-        }
-      
-.timeline .entry .meta {
-        position:absolute;
-        opacity:0;
-        right:0;
-        bottom:0%;
-        width:100%;
-        background: #e1f5fe;
-        border-radius:3px;
-        box-sizing:border-box;
-        padding:.4em .5em;
-        z-index:-1;
-        box-shadow: rgba(0,0,0,.2) 0 -2px 4px 1px;
-        transition: all 150ms ease-out;}
-        .meta date, time, location {
-          display:block;
-          text-align:right;
-        }
-    
-
+/* added for press release */
+.container .pressre{
+  display: inline-flex;
+  padding: 0px;
+  margin: 10px;
+  max-width: 290px;
+  height: 290px;
+  background: #F6F6F6;
+  display: inline-flex;
+}
+.m-3 .added{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 70%;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid grey;
+}
+.added h1{
+  background-color: green;
+  height: 100%;
+  opacity: 0.8;
+}
+.headerit{
+  position: relative; 
+  top:190px;
+  padding: 3px 5px;
+}
 /* -------------------End------------------- */
+/* added by mohit */
+.hi-slide {
+  position: relative;
+  width: 754px;
+  height: 292px;
+  margin: 80px auto 0;
+}
+
+.hi-slide .hi-next,
+.hi-slide .hi-prev {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  border-radius: 50px;
+
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+  color: black;
+  transition: all 0.6s;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hi-slide .hi-next:hover,
+.hi-slide .hi-prev:hover {
+  opacity: 1;
+  background-color: #fff;
+}
+
+.hi-slide .hi-prev {
+  left: -60px;
+}
+
+.hi-slide .hi-prev::before {
+  content: "<";
+}
+
+.hi-slide .hi-next {
+  right: -60px;
+}
+
+.hi-slide .hi-next::before {
+  content: ">";
+}
+
+.hi-slide > ul {
+  list-style: none;
+  position: relative;
+  width: 754px;
+  height: 292px;
+  margin: 0;
+  padding: 0;
+}
+
+.hi-slide > ul > li {
+  overflow: hidden;
+  position: absolute;
+  z-index: 0;
+  left: 377px;
+  top: 146px;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  
+  border: 1px solid black;
+  background-color: #333;
+  cursor: pointer;
+  border-radius: 10px;
+}
+/* <<<added by yogita>>> */
+.hi-slide>ul>li:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 1px 1px grey;
+}
+/* -------------end--------------- */

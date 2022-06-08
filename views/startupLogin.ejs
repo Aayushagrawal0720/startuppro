@@ -7,7 +7,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+<!-- added by mohit -->
+<link rel="stylesheet" href="css/carousel.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+/>
 
+<!-- end -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -35,6 +44,7 @@
     <link rel="stylesheet" href="/css/startupLogin.css" />
     <link rel="stylesheet" href="/css/timeline.css" />
     <link rel="stylesheet" href="/css/graphs.css" />
+    <script src="css/script.js" defer></script>
   </head>
 
   <body>
@@ -217,8 +227,8 @@
               <% } else{%>
                 <% jobAlerts.forEach((item) => { %>
 
-                  <div class="container col-md-5 my-2 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                    <div class="m-2">
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
                       <div class="imageadd">
                         <h1>Job title</h1>
                         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
@@ -230,8 +240,23 @@
                       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
                       <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
                     </div>
-            
                   </div>
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b><%= item.title %></b></h4>
+                      <h6 class="it"><%= item.employment_type %> </h6>
+                      <h6 class="it">Description of the job posted</h6>
+                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
+                    </div>
+                  </div>
+                
                 <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
                 <% }) %>
@@ -328,9 +353,65 @@
             <% } %>
           </div>
         </div>
-
-        <!-- GRAPH -->
+        <!--Carousel-->   
         <div class="container my-5">
+          <div class="main-container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 style="text-align: center; padding-top: 10px;">Product details</h1>
+                <hr>
+                
+                <%- include('./mohit/carousel') %>
+              
+              </div>
+        </div>
+        </div>
+        </div>
+        <!-- PRESS RELEASE-->
+        <div class="container my-5 ">
+          <div class="main-container p-3 d-flex flex-column">
+            <div class="col-md-12">
+              <h2 class="text-center">Press Releases of <%= startupData.startup_name %> </h2>
+              <hr>
+            </div>
+            <div class="container d-flex flex-column flex-md-row justify-content-center ">
+              <div class="container col-md-5 my-3 pressre" style="position:absolute; left: 20px; top:90px;box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                <div class="m-3">
+                  <div class="added">
+                    <h1>Images</h1>
+                  </div>
+                  <h4 class="headerit"><b>Press release 1</b></h4>
+                  <h6 class="headerit">Description</h6>
+                </div>
+              </div>
+            </div>
+            <div class="container d-flex flex-column flex-md-row justify-content-center">
+              <div class="container col-md-5 my-3 pressre" style="position:relative; left: 0px; top: 4px;box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                <div class="m-3">
+                  <div class="added">
+                    <h1>Images</h1>
+                  </div>
+                  <h4 class="headerit"><b>Press release 2</b></h4>
+                  <h6 class="headerit">Description about press 2</h6>
+                </div>
+              </div>
+            </div>
+            <div class="container d-flex flex-column flex-md-row justify-content-center">
+              <div class="container col-md-5 my-3 pressre" style="position:absolute; left: 66%; top:90px;box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                <div class="m-3">
+                  <div class="added">
+                    <h1>Images</h1>
+                  </div>
+                  <h4 class="headerit"><b>Press release 3</b></h4>
+                  <h6 class="headerit">Description about press 3</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+        <!-- GRAPH -->
+        <div class="container my-5" style="position: relative;">
           <div class="main-container">
             <div class="row">
               <div class="col-md-12">
