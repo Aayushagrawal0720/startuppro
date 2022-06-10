@@ -272,7 +272,7 @@
 
         <!-- TIMELINE -->
         <div class="container my-5 mt-2">
-          <div class="main-container">
+          <div class="main-container carousel1">
             <div class="mt-2 d-flex justify-content-around">
               <h2 class="text-center">Timeline</h2>
               <% if(isLogin) {%> 
@@ -347,7 +347,7 @@
                  </div>
                 </div>
               </div>
-              <div class="container my-1 text-right">
+              <div class="container my-4 text-right">
                 <a href="<%= `/getdata/timeline/${startupData.uid}` %> "><h6>View More</h6></a>
               </div>
             <% } %>
@@ -355,7 +355,7 @@
         </div>
         <!--Carousel-->   
         <div class="container my-5">
-          <div class="main-container">
+          <div class="main-container carousel">
             <div class="row">
               <div class="col-md-12">
                 <h1 style="text-align: center; padding-top: 10px;">Product details</h1>
@@ -375,42 +375,58 @@
               <hr>
             </div>
             <div class="container d-flex flex-column flex-md-row justify-content-center ">
-              <div class="container col-md-5 my-3 pressre" style="position:absolute; left: 20px; top:90px;box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                <div class="m-3">
-                  <div class="added">
-                    <h1>Images</h1>
+              <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b>First</b></h4>
+                      <h6 class="it">Second</h6>
+                      <h6 class="it">Description of the job posted</h6>
+                     
+                      
+                      
+                    </div>
                   </div>
-                  <h4 class="headerit"><b>Press release 1</b></h4>
-                  <h6 class="headerit">Description</h6>
-                </div>
-              </div>
-            </div>
-            <div class="container d-flex flex-column flex-md-row justify-content-center">
-              <div class="container col-md-5 my-3 pressre" style="position:relative; left: 0px; top: 4px;box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                <div class="m-3">
-                  <div class="added">
-                    <h1>Images</h1>
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b>First</b></h4>
+                      <h6 class="it">Second</h6>
+                      <h6 class="it">Description of the job posted</h6>
+                     
+                      
+                      
+                    </div>
                   </div>
-                  <h4 class="headerit"><b>Press release 2</b></h4>
-                  <h6 class="headerit">Description about press 2</h6>
-                </div>
-              </div>
-            </div>
-            <div class="container d-flex flex-column flex-md-row justify-content-center">
-              <div class="container col-md-5 my-3 pressre" style="position:absolute; left: 66%; top:90px;box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                <div class="m-3">
-                  <div class="added">
-                    <h1>Images</h1>
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b>First</b></h4>
+                      <h6 class="it">Second</h6>
+                      <h6 class="it">Description of the job posted</h6>
+                     
+                      
+                      
+                    </div>
                   </div>
-                  <h4 class="headerit"><b>Press release 3</b></h4>
-                  <h6 class="headerit">Description about press 3</h6>
-                </div>
-              </div>
+              
             </div>
+            
+            
           </div>
           </div>
-      </div>
-        <!-- GRAPH -->
+          <!-- GRAPH -->
         <div class="container my-5" style="position: relative;">
           <div class="main-container">
             <div class="row">
@@ -517,6 +533,8 @@
         </div>
 
       </div>
+      </div>
+        
     </div>
 
   </div>

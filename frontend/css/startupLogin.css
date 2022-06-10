@@ -377,7 +377,7 @@ ul li {
   text-decoration: none;
   background-color: navy;
   color: #eee;
-  padding: 10px;
+  padding: 7px;
   margin-top: 40px;
   border-radius: 10px;
 }
@@ -447,11 +447,20 @@ ul li {
 }
 /* -------------------End------------------- */
 /* added by mohit */
+
+.carousel1{
+  height: 325px;
+}
+
+.carousel{
+  height: 550px;
+}
+
 .hi-slide {
   position: relative;
   width: 754px;
   height: 292px;
-  margin: 80px auto 0;
+  margin: 5px auto 0;
 }
 
 .hi-slide .hi-next,
