@@ -5,7 +5,11 @@
   box-sizing: border-box;
   font-family: "Raleway";
 }
-
+.dropdown-menu{
+  position: absolute;
+  top: 100px;
+  
+}
 .border-light {
   border-radius: 10px;
 }
@@ -159,17 +163,19 @@ ul li {
 }
 .main-container {
   position: relative;
-  background: linear-gradient(90deg, rgba(229, 242, 249, 0.662) 0%, #d5eaf9 50%, rgb(229, 242, 249) 100%);}
+  background-color: #DAEAF1;
+  /* background: linear-gradient(90deg, rgba(229, 242, 249, 0.662) 0%, #d5eaf9 50%, rgb(229, 242, 249) 100%); */
+}
 .background-box {
   height: 150px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background: #15114b;
+  
 }
 .inside {
   /* border: 1px solid grey; */
-  border-radius: 10px;
-  box-shadow: 0px 0px 9px 0.5px rgb(165, 157, 157);
+  /* border-radius: 10px; 
+  box-shadow: 0px 0px 9px 0.5px rgb(165, 157, 157); */
 }
 /* ############################footer  */
 .footer ul li {
@@ -525,4 +531,57 @@ ul li {
   transform: scale(1.05);
   box-shadow: 0px 0px 1px 1px grey;
 }
+/* added by yogita on 12 june */
+.first{
+  border-radius: 10px 5px ;
+}
 /* -------------end--------------- */
+/* added by Mohit  */
+.imageadd1{
+  /* background-color: green; */
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 70%;
+  width: 100%;
+  padding: 20px;
+  /* margin-bottom: 00px; */
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid grey;
+}
+/* added by yogita */
+.team{
+  display: flex;
+  padding: 30px;
+  margin: 10px;
+  max-width: 270px;
+  height: 290px;
+  background: #F6F6F6;
+  margin: 80px;
+}
+/* done */
+.circle{
+  position: absolute;
+  border-radius:50%;
+  
+}
+.call-up .it{
+  position: relative;
+  top: 200px;
+  left:70%;
+}
+
+.imageadd2{
+  /* background-color: green; */
+  position: relative;
+  top: 2px;
+  left: 9px;
+  height: 97%;
+  width: 90%; 
+  
+  padding: 2px;
+  /* margin-bottom: 00px; */
+  /* border-radius: 0px 0px 0px 0px;  */
+  border: 2px solid grey;
+}
+/* end */

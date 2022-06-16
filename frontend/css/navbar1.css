@@ -1,4 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&family=Open+Sans&family=Raleway:wght@200;400&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&family=Open+Sans&family=Raleway:wght@200;400&display=swap");
 
 * {
   padding: 0px;
@@ -47,17 +47,17 @@ nav .sticky li a{
   z-index: 999;
   /*DONE*/
   /* background: white; */
-  box-shadow: 1px 1px 4px 1px rgb(152, 152, 152);
+  box-shadow: 1px 1px 20px 1px rgb(152, 152, 152);
   /* border-radius: 0px 0px 5px 5px; */
   margin-bottom: 40px;
   padding: 7px 0px;
   /* width: 80%; */
 }
 /*Added*/
-a.active{
+/* a .active{
   text-decoration: 1px solid goldenrod;
   color: aquamarine;
-}
+} */
 .new__logo {
   width: 30%;/*changes*/
   display: flex;
@@ -119,6 +119,26 @@ a.active{
 .new__nav-list li a:hover::after {
   width: 100%;
 }
+/* added by yogita */
+.new__nav-list li a:active{
+  content: "";
+  /* border-bottom: 5px solid #fcd600; */
+}
+.new__nav-list li a:active::after{
+  text-shadow: 1px 1px 2px navy;
+  font-weight: 70px;
+   content: ""; 
+  animation: appear 1s linear; */
+}
+@keyframes appear{
+	from {
+		width: 0;
+	}
+	
+	to{
+		width: 100%;
+	}
+  }
 #search {
   padding: 5px;
   font-size: 17px;
@@ -222,4 +242,18 @@ a.active{
   text-shadow: 1px 2px 3px grey;
   /* transform: scale(1.05); */
 }
+
+/* added on 13th june */
+.active{
+  color: white;
+  background-color: #fcd600;
+  width: 100%;
+  border-radius: 10px;
+
+}  
+/* a:active.active{
+  white;
+  background-color: #fcd600;
+  width: 100%;
+} */
 /* ---------------------end --------- */

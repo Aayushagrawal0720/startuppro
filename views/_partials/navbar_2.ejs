@@ -8,18 +8,18 @@
 
   <div class="new__navbar h-nav">
     <ul class="new__nav-list v-class mb-0">
-      <h4 class="mb-0">
-        <li class="mb-0"><a href="/getdata/startups">HOME</a></li>
+      <h4 class="mb-0" id="myDiv">
+        <li class="mb-0"><a href="/getdata/startups" class="btn">HOME</a></li>
       </h4>
       <h4 class="mb-0">
-        <li class="mb-0"><a href="/about">ABOUT</a></li>
+        <li class="mb-0"><a href="/about" class="btn ">ABOUT</a></li>
       </h4>
       <h4 class="mb-0">
-        <li class="mb-0"><a href="/contact">CONTACT US</a></li>
+        <li class="mb-0"><a href="/contact" class="btn">CONTACT US</a></li>
       </h4>
       
       <h4 class="mb-0">
-        <li class="mb-0"><a href="/getdata/jobalerts">JOBS</a></li>
+        <li class="mb-0"><a href="/getdata/jobalerts" class="btn">JOBS</a></li>
       </h4>
       <!-- <h4 class="mb-0">
         <li class="mb-0"><a href="/login/startup" class="login-nav"> LOGIN</a></li>
@@ -43,7 +43,7 @@
     <div class="new__line"></div>
   </div>
 </nav>
-
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 <script>
   burger = document.querySelector(".new__burger");
   navbar = document.querySelector(".new__navbar");
@@ -63,6 +63,12 @@
       let header = document.querySelector("nav");
       header.classList.toggle("sticky", window.scrollY > 0);
     });
-
+  const activePage=window.location.pathname;
+  const navLinks = document.querySelectorAll('li a').forEach(link=>{
+    if (link.href.includes(`${activePage}`)){
+      console.log(`${activePage}`)
+      link.classList.add('active');
+    }
+  }) 
     /* -------------------------------  End  */
 </script>

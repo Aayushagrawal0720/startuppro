@@ -142,10 +142,7 @@
                 <!-- background -->
               </div>
               <div class="image-box">
-                <img
-                  src=<%= startupData.pic_url %> 
-                  class="img-fluid"
-                />
+                <img src=<%= startupData.pic_url %> class="img-fluid"/>
               </div>
               <div class="col-md-12 py-3">
                 <div class="row">
@@ -319,34 +316,37 @@
             <% if(foundData.length==0) { %>
             <h3 class="text-center">No Timeline</h3>
             <% } else{ %>
-      
               <div class="timeline-container" id="timeline-container">
-                <div class="timeline" >
+                <div class="timeline">
                   <ul>
-                    <% foundData.forEach((item,index)=> {%> <% const d=item.date;const ye=new Intl.DateTimeFormat('en', { year: 'numeric'}).format(d); const mo=new Intl.DateTimeFormat('en', { month:'short' }).format(d); const da=new Intl.DateTimeFormat('en', {day:'2-digit' }).format(d); %>
+                    <% foundData.forEach((item,index)=> {%> <% const d=item.date;
+                    const ye=new Intl.DateTimeFormat('en', { year: 'numeric'
+                    }).format(d); const mo=new Intl.DateTimeFormat('en', { month:
+                    'short' }).format(d); const da=new Intl.DateTimeFormat('en', {
+                    day:'2-digit' }).format(d); %>
                     <li>
                       <div class="timeline-content">
                         <!-- <h3 class="date">20th may, 2010</h3> -->
-                        <div class="date">
-                        <h5><%= `${da}-${mo}-${ye}` %></h5>
-                        </div>
-                        <div id="pcs">
-                          <div class="sc s1 active" >
+                        <h1><%= `${da}-${mo}-${ye}` %></h1>
                         <p><%= item.event_title %></p>
-                        </div>
-                        </div>
                         <% if(item.picUrl){ %> 
                         <div>
-                          <img style="max-height: 200px; width: auto;" class="timeline-img" src=<%= item.picUrl %> alt="timeline-img"/>
+                          <img
+                            style="max-height: 200px; width: auto;"
+                            class="timeline-img"
+                            src=<%= item.picUrl %> 
+                            alt="timeline-img"
+                          />
                         </div>
                         <% } %> 
                       </div>
-                    </li><% }); %>
+                    </li>
+                    <% }); %>
                   </ul>
-                  <div id="line">
-                 </div>
                 </div>
               </div>
+              
+          
               <div class="container my-1 text-right">
                 <a href="<%= `/getdata/timeline/${startupData.uid}` %> "><h6>View More</h6></a>
               </div>
@@ -411,11 +411,11 @@
           </div>
       </div>
         <!-- GRAPH -->
-        <div class="container my-5" style="position: relative;">
+        <div class="container my-5" style="max-width:100%; position:relative; left: 200px; ">
           <div class="main-container">
             <div class="row">
               <div class="col-md-12">
-                <h2 class="text-center my-3">Analytics</h2>
+                <h2 class="text-center my-3" >Analytics</h2>
                 <% if(resArray.length==0) {%>
                 <h3 class="text-center">No data present</h3>
                 <% } %>
@@ -515,8 +515,46 @@
             </script>
           </div>
         </div>
-
       </div>
+      <!-- team count :: Added by Mohit -->
+      <!--Team Intro-->
+      <div class="container my-5 " style="max-width: 80%;position: relative; left: 100px;">
+        <div class="main-container p-3 d-flex flex-column">
+          <div class="col-md-12">
+            <h2 class="text-center">Team Intro by <%= startupData.startup_name %> </h2>
+          </div>
+          <div class="container d-flex flex-column flex-md-row justify-content-center">
+                <div class="container col-md-5 my-3 team" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                  <div class="m-3">
+                    <div class="imageadd1"><img src="https://images.unsplash.com/photo-1637611331620-51149c7ceb94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGFlc3RoZXRpYyUyMGltYWdlc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" class="imageadd2 circle">
+                    </div>
+                    <div class="call-up">
+                      <h4 class="it"><b> Name 1 </b></h4>
+                    <h6 class="it"> Designation </h6>
+                      </div>
+                  </div>
+                </div>
+                <div class="container col-md-5 my-3 team" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                  <div class="m-3">
+                    <div class="imageadd1">
+                      <img src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8YWVzdGhldGljJTIwaW1hZ2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" class="imageadd2 circle">
+                    </div>
+                    <div class="call-up">
+                      <h4 class="it"><b> Name 1 </b></h4>
+                      <h6 class="it"> Designation </h6>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+          <div class="col-md-12">
+          
+          </div>
+        </div>
+      </div>
+      <!-- done -->
     </div>
 
   </div>
