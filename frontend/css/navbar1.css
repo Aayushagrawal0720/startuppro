@@ -12,7 +12,7 @@ body {
   /* font-family:'Roboto Slab', serif; */
 }
 /* --------------------------------   Rachit Gupta */
- /* .new__parent-navbar {
+/* .new__parent-navbar {
   display: flex;
   position: fixed;
   width: 100%;
@@ -23,27 +23,27 @@ body {
 
 nav.sticky {
   top: 0%;
-  background: #FBFBFB;
-  
+  background: #fbfbfb;
+
   /* color:; */
   /* text-decoration: ; */
 }
-nav .sticky li a{
+nav .sticky li a {
   text-decoration: none;
   color: white;
   /* background: rgb(27, 26, 90); */
   position: relative;
-  font-size: 1.1rem; 
-} 
+  font-size: 1.1rem;
+}
 
 /* -------------------------------  End  */
 .new__parent-navbar {
   display: flex;
   /*START of added code*/
-  position: fixed; 
-  top: 0; 
+  position: fixed;
+  top: 0;
   left: 0;
-  right:0;
+  right: 0;
   z-index: 999;
   /*DONE*/
   /* background: white; */
@@ -54,12 +54,12 @@ nav .sticky li a{
   /* width: 80%; */
 }
 /*Added*/
-a.active{
+a.active {
   text-decoration: 1px solid goldenrod;
   color: aquamarine;
 }
 .new__logo {
-  width: 30%;/*changes*/
+  width: 30%; /*changes*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,7 +100,7 @@ a.active{
   font-size: 1rem; /**/
 }
 .new__nav-list li a:hover {
-  color: #2A528A;
+  color: #2a528a;
 }
 
 .new__nav-list li a::after {
@@ -146,7 +146,7 @@ a.active{
   color: rgb(23, 27, 135);
   text-decoration: none;
   position: absolute;
-  left: 80px; /*made a change : 80px, No change*/ 
+  left: 80px; /*made a change : 80px, No change*/
   text-shadow: 1px 1px 1px grey; /* added */
 }
 .logo-link:hover {
@@ -199,7 +199,7 @@ a.active{
   }
 }
 /*My code  yogita*/
-.login-nav{
+.login-nav {
   height: auto;
   width: 100px;
   position: relative;
@@ -215,7 +215,7 @@ a.active{
   border: 2px solid navy;
   box-shadow: 1px 1px 5px 1px grey;
 }
-.login-nav:hover{
+.login-nav:hover {
   box-shadow: 1px 2px 3px 1px grey;
   text-decoration: none;
   color: white;
