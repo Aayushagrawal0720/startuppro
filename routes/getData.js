@@ -61,8 +61,8 @@ router.get("/startups", async (req, res) => {
     // console.log(founderArray);
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
-    if(founderArray && founderArray[0] && founderArray[0].mid){
-      
+    if (founderArray && founderArray[0] && founderArray[0].mid) {
+
       var jobDetailData = await jobDetailModel.findOne({
         mid: founderArray[0].mid,
       });
@@ -93,7 +93,7 @@ router.get("/startups", async (req, res) => {
     }
 
     if (req.session.isAuthCA) {
-      return res.redirect("/ca/profile");
+      return res.redirect("/cadetails/:uid");
     }
 
     if (req.session.isAuthMentor) {
@@ -186,7 +186,7 @@ router.get("/startups/:industry", async (req, res) => {
     var logoutLink = "/";
     var isEmployed = false;
 
-    if(req.session.isAuth){
+    if (req.session.isAuth) {
       isLogin = true;
       return res.status(200).render("startupLoginPosts", {
         startups,
@@ -223,7 +223,7 @@ router.get("/startups/:industry", async (req, res) => {
       isLogin = true;
       logoutLink = "/logout/ca";
 
-      return res.status(200).render("caLogin", {
+      return res.status(200).render("caPage", {
         caData,
         startups,
         founderArray,
@@ -678,7 +678,7 @@ router.get("/startup/jobalerts/:uid", isAuth, async (req, res) => {
 
     resArray = await Promise.all(resArray);
     res.status(200).render("jobAlertsPageStartup", { resArray, noAlerts });
-  } catch (e) {}
+  } catch (e) { }
 });
 
 // SEE JOB ALERTS SET BY COMPANY (FOR USERS)
@@ -724,7 +724,7 @@ router.get("/startup/jobalerts/public/:uid", async (req, res) => {
     res
       .status(200)
       .render("jobAlertsPageStartupPublic", { resArray, noAlerts });
-  } catch (e) {}
+  } catch (e) { }
 });
 
 // SEE JOB ALERTS APPLIED CANDIDATES (FOR STARTUPS)
@@ -911,5 +911,8 @@ router.get("/startup/teammembers/:uid", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+
+
 
 module.exports = router;
