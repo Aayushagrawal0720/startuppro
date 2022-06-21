@@ -7,6 +7,20 @@
 body{
     font-family:'Raleway', serif;
 }
+/* --------------rachit gupta---------- */
+.edit{
+    padding-top: 6%;
+}
+.fluid-container{
+    padding-top: 6%;
+}
+.edit_job_page{
+    padding-top: 6%;
+}
+.edit_job_alerts_pages{
+    padding-top: 6%;
+}
+/* --------------------end-----------    */
 ul li{
     list-style: none;
     color: black;
@@ -55,9 +69,10 @@ ul li{
     border: 2px solid blue;
 }
 .borderlight{
-    border: 1px solid rgb(163, 155, 155);
+    border: 1.5px solid #eee;
+    background-color: #A7C5EB;/*#8FBDD3;/*#87A8D0;/*added , upper-line: commented*/
     border-radius: 10px;
-    box-shadow: 1px 1px 7px 0px rgb(172, 179, 185);
+    box-shadow: 1px 1px 5px 0px rgb(172, 179, 185);
 }
 .diary p{
     margin-bottom: 0px;
@@ -65,12 +80,13 @@ ul li{
 .startup{
     margin-bottom: -9px;
     font-size: 28px;
+    /* padding-left: 20px;  -- added by yogita */
 }
 
 .image-box{
     /* border: 2px solid red; */
-    height: 170px;
-    width: 170px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
 }
 .image-box .logo{
@@ -90,6 +106,7 @@ ul li{
 }
 .section{
     margin-top: 40px;
+    padding: 10px 20px; /*added by yogita*/
 }
 .section1{
     margin-top: 50px;
@@ -98,6 +115,9 @@ ul li{
     height: 120px;
     width: 120px;
     border-radius: 50%;
+    /* position: relative; */
+    /* left: 20%; */
+    /* align-items: center; */
 }
 img{
     background-position: center;
@@ -109,7 +129,7 @@ img{
 }
 .navbar2 a{
     /* border: 1px solid rgba(128, 128, 128, 0.712); */
-    border: 0.2px  rgb(194, 200, 206);
+    border: 0.2px rgb(194, 200, 206);
     /* padding: 0px 4px; */
     border-radius: 15px;
     /* background: rgba(235, 233, 226, 0.822); */
@@ -118,8 +138,12 @@ img{
 }
 .shadow-border{
     box-shadow: 1px 1px 7px 0px rgb(172, 179, 185);
-    border: 1px  lightslategrey;
+    background-color: #F3F8FF;/* This is added by yogita*/
+    /* border: 1px  lightslategrey;  This line is commented by yogita */
     border-radius: 5px;
+}
+.shadow-border:hover{
+    box-shadow: 1px 1px 5px 0px #232323;
 }
 .line{
     background: rgb(80, 72, 72);
@@ -354,4 +378,22 @@ opacity: 0;
         box-shadow: none;
     }
 }
-
+/* below code Added by yogita */
+.my-2 a{
+  background-color: navy;
+  color: white;
+  text-shadow: 1px 0.5px 1px #eee;
+  border-radius: 20px;
+  border: 2px solid navy;
+  box-shadow: 1px 1px 5px 1px grey;
+  padding: 5px 10px;
+  position: relative;
+  top: auto;
+  /* left: 5px; */
+  /* margin: 20px 10px; */
+}
+/* added code by yogita */
+#logo-img{
+    position: absolute;
+    left: 20%;
+}

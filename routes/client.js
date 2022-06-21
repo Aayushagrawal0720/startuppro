@@ -644,7 +644,7 @@ router.post(
 
       req.session.isAuthCA = true;
       req.session.ca_id = caData.ca_id;
-      res.redirect(`/getdata/cadetail/${caData.ca_id}`);
+      res.redirect("/ca/profile");
     } catch (e) {
       console.log(e);
       res.status(400).send("Error");
@@ -653,7 +653,7 @@ router.post(
 );
 
 // CA Profile
-router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
+router.get("/ca/profile", isCAAuth, async (req, res) => {
   try {
     const ca_id = req.session.ca_id;
     const caData = await caModel.findOne({ ca_id: ca_id });
@@ -704,7 +704,7 @@ router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
     filterArray = [...new Set(filterArray)];
     // console.log(filterArray)
 
-    res.status(200).render("caPage", {
+    res.status(200).render("caLogin", {
       caData,
       startups,
       founderArray,

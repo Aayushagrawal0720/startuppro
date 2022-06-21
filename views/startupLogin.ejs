@@ -7,7 +7,16 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+<!-- added by mohit -->
+<link rel="stylesheet" href="css/carousel.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+/>
 
+<!-- end -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -35,6 +44,7 @@
     <link rel="stylesheet" href="/css/startupLogin.css" />
     <link rel="stylesheet" href="/css/timeline.css" />
     <link rel="stylesheet" href="/css/graphs.css" />
+    <script src="css/script.js" defer></script>
   </head>
 
   <body>
@@ -44,6 +54,8 @@
       <script>
         document.querySelector('.login-nav').innerText = "PROFILE";
       </script>
+
+        <div class="edit_login">              <!--  ----------------- rachit Gupta-------------- -->
 
       <div class="container mt-2 d-flex justify-content-center justify-content-lg-end">
 
@@ -204,7 +216,7 @@
         <% } %> 
 
         <!-- JOB ALERTS DETAILS -->
-        <div class="container my-5">
+        <div class="container my-5 ">
           <div class="main-container p-3 d-flex flex-column">
             <div class="col-md-12">
               <h2 class="text-center">Jobs by <%= startupData.startup_name %> </h2>
@@ -214,15 +226,43 @@
                 <h3 class="text-center">No Jobs Posted</h3>
               <% } else{%>
                 <% jobAlerts.forEach((item) => { %>
-                  <div class="container col-md-5 my-2" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px;">
-                    <div class="m-2">
-                      <h5><%= item.title %></h5>
-                      <h6><%= item.employment_type %> </h6>
-                      <a href="<%= `/getdata/jobalert/${item.jid}` %>"><h6>View Details</h6></a>
+
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      <h4 class="it"><b><%= item.title %></b></h4>
+                      <h6 class="it"><%= item.employment_type %> </h6>
+                      <h6 class="it">Description of the job posted</h6>
+                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
                     </div>
                   </div>
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b><%= item.title %></b></h4>
+                      <h6 class="it"><%= item.employment_type %> </h6>
+                      <h6 class="it">Description of the job posted</h6>
+                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
+                    </div>
+                  </div>
+                
+                <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
                 <% }) %>
               <% } %>
+              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
             <div class="col-md-12">
               <a href="<%= `/getdata/startup/jobalerts/public/${startupData.uid}` %> "><h6 class="text-right">View More</h6></a>
@@ -232,7 +272,7 @@
 
         <!-- TIMELINE -->
         <div class="container my-5 mt-2">
-          <div class="main-container">
+          <div class="main-container carousel1">
             <div class="mt-2 d-flex justify-content-around">
               <h2 class="text-center">Timeline</h2>
               <% if(isLogin) {%> 
@@ -279,45 +319,115 @@
             <% if(foundData.length==0) { %>
             <h3 class="text-center">No Timeline</h3>
             <% } else{ %>
+      
               <div class="timeline-container" id="timeline-container">
-                <div class="timeline">
+                <div class="timeline" >
                   <ul>
-                    <% foundData.forEach((item,index)=> {%> <% const d=item.date;
-                    const ye=new Intl.DateTimeFormat('en', { year: 'numeric'
-                    }).format(d); const mo=new Intl.DateTimeFormat('en', { month:
-                    'short' }).format(d); const da=new Intl.DateTimeFormat('en', {
-                    day:'2-digit' }).format(d); %>
+                    <% foundData.forEach((item,index)=> {%> <% const d=item.date;const ye=new Intl.DateTimeFormat('en', { year: 'numeric'}).format(d); const mo=new Intl.DateTimeFormat('en', { month:'short' }).format(d); const da=new Intl.DateTimeFormat('en', {day:'2-digit' }).format(d); %>
                     <li>
                       <div class="timeline-content">
                         <!-- <h3 class="date">20th may, 2010</h3> -->
-                        <h1><%= `${da}-${mo}-${ye}` %></h1>
+                        <div class="date">
+                        <h5><%= `${da}-${mo}-${ye}` %></h5>
+                        </div>
+                        <div id="pcs">
+                          <div class="sc s1 active" >
                         <p><%= item.event_title %></p>
+                        </div>
+                        </div>
                         <% if(item.picUrl){ %> 
                         <div>
-                          <img
-                            style="max-height: 200px; width: auto;"
-                            class="timeline-img"
-                            src=<%= item.picUrl %> 
-                            alt="timeline-img"
-                          />
+                          <img style="max-height: 200px; width: auto;" class="timeline-img" src=<%= item.picUrl %> alt="timeline-img"/>
                         </div>
                         <% } %> 
                       </div>
-                    </li>
-
-                    <% }); %>
+                    </li><% }); %>
                   </ul>
+                  <div id="line">
+                 </div>
                 </div>
               </div>
-              <div class="container my-1 text-right">
+              <div class="container my-4 text-right">
                 <a href="<%= `/getdata/timeline/${startupData.uid}` %> "><h6>View More</h6></a>
               </div>
             <% } %>
           </div>
         </div>
-
-        <!-- GRAPH -->
+        <!--Carousel-->   
         <div class="container my-5">
+          <div class="main-container carousel">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 style="text-align: center; padding-top: 10px;">Product details</h1>
+                <hr>
+                
+                <%- include('./mohit/carousel') %>
+              
+              </div>
+        </div>
+        </div>
+        </div>
+        <!-- PRESS RELEASE-->
+        <div class="container my-5 ">
+          <div class="main-container p-3 d-flex flex-column">
+            <div class="col-md-12">
+              <h2 class="text-center">Press Releases of <%= startupData.startup_name %> </h2>
+              <hr>
+            </div>
+            <div class="container d-flex flex-column flex-md-row justify-content-center ">
+              <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b>First</b></h4>
+                      <h6 class="it">Second</h6>
+                      <h6 class="it">Description of the job posted</h6>
+                     
+                      
+                      
+                    </div>
+                  </div>
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b>First</b></h4>
+                      <h6 class="it">Second</h6>
+                      <h6 class="it">Description of the job posted</h6>
+                     
+                      
+                      
+                    </div>
+                  </div>
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                    <div class="m-3">
+                      <div class="imageadd">
+                        <h1>Job title</h1>
+                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                      </div>
+                      
+                      <h4 class="it"><b>First</b></h4>
+                      <h6 class="it">Second</h6>
+                      <h6 class="it">Description of the job posted</h6>
+                     
+                      
+                      
+                    </div>
+                  </div>
+              
+            </div>
+            
+            
+          </div>
+          </div>
+          <!-- GRAPH -->
+        <div class="container my-5" style="position: relative;">
           <div class="main-container">
             <div class="row">
               <div class="col-md-12">
@@ -423,8 +533,11 @@
         </div>
 
       </div>
+      </div>
+        
     </div>
 
+  </div>
     <!-- #################################### footer -->
     <%- include('./_partials/footer') %>
 

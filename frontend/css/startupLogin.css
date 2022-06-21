@@ -12,10 +12,16 @@
 body {
   font-family: "Roboto Slab";
   background: #ffffff;
+  /* margin-top: 20px;added */
 }
-/* .parent-container {
-  min-height: 70vh;
-} */
+.parent-container {/*added complete container*/
+  padding-top: -60px;
+}
+
+.edit_login{
+  padding-top: 3%;
+}
+
 ul li {
   list-style: none;
   color: black;
@@ -90,7 +96,7 @@ ul li {
   transform: translateX(-100%);
   padding-top: 100px;
   transition: transform 0.5s ease-in-out;
-  max-width: 400px;
+  max-width: 300px;/* changed from 400px*/
   /* border: 2px solid green; */
   background: #232323;
   padding-left: 18px;
@@ -153,8 +159,7 @@ ul li {
 }
 .main-container {
   position: relative;
-  /* background: rgb(233, 233, 225); */
-}
+  background: linear-gradient(90deg, rgba(229, 242, 249, 0.662) 0%, #d5eaf9 50%, rgb(229, 242, 249) 100%);}
 .background-box {
   height: 150px;
   border-top-left-radius: 8px;
@@ -334,3 +339,199 @@ ul li {
     margin: 10px auto;
   }
 }
+/*-----added code by yogita------*/
+.jobbox{
+  display: flex;
+  padding: 0px;
+  margin: 10px;
+  max-width: 200px;
+  height: 290px;
+  background: #F6F6F6;
+}
+.jobbox:hover{
+  transform: scale(1.05);
+  
+}
+
+.imageadd{
+  /* background-color: green; */
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 30%;
+  width: 100%;
+  padding: 10px;
+  /* margin-bottom: 00px; */
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid grey;
+}
+.it{
+  position: relative; 
+  top:100px;
+  padding: 3px 5px;
+}
+.button{
+  position: relative; 
+  top:110px;
+  left:60px;
+  text-decoration: none;
+  background-color: navy;
+  color: #eee;
+  padding: 7px;
+  margin-top: 40px;
+  border-radius: 10px;
+}
+.button:hover{
+  text-decoration: none;
+  color: white;
+  transform: scale(1.05);
+}
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+.prev{
+  left: 0;
+  border-radius: 0 3px 3px 0;
+}
+/* added for press release */
+.container .pressre{
+  display: inline-flex;
+  padding: 0px;
+  margin: 10px;
+  max-width: 290px;
+  height: 290px;
+  background: #F6F6F6;
+  display: inline-flex;
+}
+.m-3 .added{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 70%;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid grey;
+}
+.added h1{
+  background-color: green;
+  height: 100%;
+  opacity: 0.8;
+}
+.headerit{
+  position: relative; 
+  top:190px;
+  padding: 3px 5px;
+}
+/* -------------------End------------------- */
+/* added by mohit */
+
+.carousel1{
+  height: 325px;
+}
+
+.carousel{
+  height: 550px;
+}
+
+.hi-slide {
+  position: relative;
+  width: 754px;
+  height: 292px;
+  margin: 5px auto 0;
+}
+
+.hi-slide .hi-next,
+.hi-slide .hi-prev {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  border-radius: 50px;
+
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #fff;
+  color: black;
+  transition: all 0.6s;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.hi-slide .hi-next:hover,
+.hi-slide .hi-prev:hover {
+  opacity: 1;
+  background-color: #fff;
+}
+
+.hi-slide .hi-prev {
+  left: -60px;
+}
+
+.hi-slide .hi-prev::before {
+  content: "<";
+}
+
+.hi-slide .hi-next {
+  right: -60px;
+}
+
+.hi-slide .hi-next::before {
+  content: ">";
+}
+
+.hi-slide > ul {
+  list-style: none;
+  position: relative;
+  width: 754px;
+  height: 292px;
+  margin: 0;
+  padding: 0;
+}
+
+.hi-slide > ul > li {
+  overflow: hidden;
+  position: absolute;
+  z-index: 0;
+  left: 377px;
+  top: 146px;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  
+  border: 1px solid black;
+  background-color: #333;
+  cursor: pointer;
+  border-radius: 10px;
+}
+/* <<<added by yogita>>> */
+.hi-slide>ul>li:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 1px 1px grey;
+}
+/* -------------end--------------- */
