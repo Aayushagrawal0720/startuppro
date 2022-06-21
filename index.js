@@ -5,13 +5,19 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-const port = 3000;
+// const port = 3000;
 
 //    *************
 //    Connect to db
 //    **************
 
-mongoose.connect(mongo.database, {
+const port = process.env.PORT || 3000;
+
+//    *************
+//    Connect to db
+//    **************
+
+mongoose.connect("mongodb+srv://Ayush-startuppro:Ayush-startuppro@cluster0.bgawn.mongodb.net/Coreexpert_dev?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -70,12 +76,12 @@ app.use(
     secret: "somerandonstuffs",
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: mongo.database,
-      collectionName: "clientsessions",
-      ttl: 2 * 24 * 60 * 60,
-      autoRemove: "native",
-    }),
+    // store: MongoStore.create({
+    //   mongoUrl: mongo.database,
+    //   collectionName: "clientsessions",
+    //   ttl: 2 * 24 * 60 * 60,
+    //   autoRemove: "native",
+    // }),
   })
 );
 
