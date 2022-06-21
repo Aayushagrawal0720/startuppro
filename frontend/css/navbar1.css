@@ -47,7 +47,7 @@ nav .sticky li a{
   z-index: 999;
   /*DONE*/
   /* background: white; */
-  box-shadow: 1px 1px 20px 1px rgb(152, 152, 152);
+  box-shadow: 1px 1px 5px 1px rgb(152, 152, 152);
   /* border-radius: 0px 0px 5px 5px; */
   margin-bottom: 40px;
   padding: 7px 0px;

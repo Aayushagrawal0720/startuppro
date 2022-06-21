@@ -6,6 +6,7 @@
 }
 body{
     font-family:'Raleway', serif;
+    
 }
 /* --------------rachit gupta---------- */
 .edit{
@@ -69,10 +70,15 @@ ul li{
     border: 2px solid blue;
 }
 .borderlight{
-    border: 1.5px solid #eee;
-    background-color: #A7C5EB;/*#8FBDD3;/*#87A8D0;/*added , upper-line: commented*/
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px 0px rgb(172, 179, 185);
+    position: absolute;
+    top:-35px;
+    right: 40px;
+    max-width: 180%;
+    /* border: 2px solid #eee; */
+    background-color: #29539b;
+    background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
+    border-radius: 0px 0px 20px 20px;
+    /* box-shadow: 1px 1px 5px 0px rgb(172, 179, 185); */
 }
 .diary p{
     margin-bottom: 0px;
@@ -106,7 +112,7 @@ ul li{
 }
 .section{
     margin-top: 40px;
-    padding: 10px 20px; /*added by yogita*/
+    padding: 10px 20px; /* added by yogita*/
 }
 .section1{
     margin-top: 50px;
@@ -115,8 +121,8 @@ ul li{
     height: 120px;
     width: 120px;
     border-radius: 50%;
-    /* position: relative; */
-    /* left: 20%; */
+    /* position: relative;  */
+    /* left: 20%;           */
     /* align-items: center; */
 }
 img{
@@ -130,20 +136,23 @@ img{
 .navbar2 a{
     /* border: 1px solid rgba(128, 128, 128, 0.712); */
     border: 0.2px rgb(194, 200, 206);
-    /* padding: 0px 4px; */
+    /* padding: 0px 4px;                          */
     border-radius: 15px;
     /* background: rgba(235, 233, 226, 0.822); */
     background:  rgb(215, 219, 223);
     box-shadow: 0px 0px 5px 0px rgb(95, 99, 102);
 }
 .shadow-border{
-    box-shadow: 1px 1px 7px 0px rgb(172, 179, 185);
-    background-color: #F3F8FF;/* This is added by yogita*/
+    /* box-shadow: 1px 1px 7px 1px grey;  */
+    background: #DAEAF1;
+    z-index: 5;
+    border: 2px solid #1687A7;
     /* border: 1px  lightslategrey;  This line is commented by yogita */
-    border-radius: 5px;
+    border-radius: 30px 0px;
+    animation: fade-right 1s ease;
 }
 .shadow-border:hover{
-    box-shadow: 1px 1px 5px 0px #232323;
+    box-shadow: 1px 1px 5px 1px #232323;
 }
 .line{
     background: rgb(80, 72, 72);
@@ -379,12 +388,20 @@ opacity: 0;
     }
 }
 /* below code Added by yogita */
+.port{
+    position: absolute;
+    right: 0px;
+    height:100%;
+    width: 200px;
+}
 .my-2 a{
-  background-color: navy;
+  /* background-color: ; */
+  background-color: #29539b;
+  background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
   color: white;
   text-shadow: 1px 0.5px 1px #eee;
   border-radius: 20px;
-  border: 2px solid navy;
+  border: 2px solid #29539b;
   box-shadow: 1px 1px 5px 1px grey;
   padding: 5px 10px;
   position: relative;
@@ -397,3 +414,44 @@ opacity: 0;
     position: absolute;
     left: 20%;
 }
+/* ----------added---------- */
+.startup{
+    /* background: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); */
+    background-color: #29539b;
+    background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);
+    border: 1px solid white;
+    text-shadow: 0.5px 0.5px 1px #eee;
+    color: white;
+    position: relative;
+    left: -50px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 20px 0px;
+    animation: fade-left 1s ease-in;
+}
+.startup:hover{
+    transform: scale(1.05);
+}
+/* added by yogita */
+@keyframes fade-right {
+    0% {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  @keyframes fade-left {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
