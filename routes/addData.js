@@ -15,6 +15,7 @@ const timelineEventSchema = require("../models/timelineEventSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 
+
 // Middlewares
 const {
   isAuth,
@@ -226,7 +227,7 @@ router.post(
 
       console.log(setData);
       // res.status(201).send("Uploaded");
-      res.redirect("/ca/profile");
+      res.redirect(`/getdata/cadetail/${ca_id}`);
     } catch (err) {
       console.log(err);
       res.status(400).send("Error");
@@ -562,5 +563,30 @@ router.post(
     }
   }
 );
+
+//#################################################
+//CA Details page where experience data is posted.
+router.post("/cadetail/:uid", (req, res) => {
+  const uid = req.params.uid;
+
+  const experience = req.body.experience;
+  console.log(uid, req.body);
+  if (!uid || !experience) {
+    console.log(uid, experience);
+    return res.status(422).json({ error: "values feed missing" });
+
+  }
+  const addExp = new experieneSchema({ uid, experience });
+  addExp.save().then(() => {
+    res.status(200).json({ message: "Added experience" });
+    res.redirect("/ca/profile");
+  }
+  ).catch(err => {
+    res.status(400).json({ message: "Error" });
+  }
+  );
+}
+);
+//#################################################
 
 module.exports = router;
