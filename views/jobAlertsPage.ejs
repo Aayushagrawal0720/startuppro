@@ -48,7 +48,7 @@
       }
     </script>
 
-    <%- include('./_partials/navbar_2') %>
+<%- include('./_partials/navbar_2') %>
 
     <div class="edit_job_alerts_pages">
 
@@ -56,6 +56,7 @@
         <% if(noAlerts) {%>
             <h1>No Jobs</h1>
         <% } else{%>
+          
             <% resArray.forEach((item)=>{ %>
 
                 <div class="card my-2">
@@ -73,6 +74,7 @@
                         <div class="col-md-9">
                           <h5 class="card-title"><%= item.jobAlert.title %> </h5>
                           <p class="card-text"><%= item.startupData.startup_name %></p>
+                     
                           <p><%= `${item.startupData.city}, ${item.startupData.state}` %></p>
                           <a href=<%= `/getData/jobAlert/${item.jobAlert.jid}/${mid}` %>  class="btn btn-warning">View Details</a>
                         </div>
