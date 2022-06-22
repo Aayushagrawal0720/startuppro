@@ -18,7 +18,8 @@
 }
 
 button {
-  width: 60%;
+  width: 30%;
+  margin-top: 1rem;
   background-color: white;
   border: dashed 1px black;
   border-radius: 10px;

@@ -50,107 +50,106 @@
             </div>
             <% } %>
 
-                <div id="parent-row">
+                <div class="fluid-container">
+                    <div id="parent-row">
 
-                    <% if(isLogin) {%>
-                        <link rel="stylesheet" href="/css/sidebar.css">
-                        <div class="container sidebar-container ">
-                            <ul>
-                                <li><a href=<%=`/editdata/ca/${caData.ca_id}` %> ><button class="my-2">Edit
-                                            Profile</button></a></li>
-                                <li><a href=<%=`/adddata/profile/ca/${caData.ca_id}` %> ><button class="my-2">Edit
-                                            Profile Pic</button></a></li>
-                                <% if(caData.linkedin_url){ %>
-                                    <li><a href=<%=`https://${caData.linkedin_url}` %> ><button class="my-2">View
-                                                LinkedIn Profile</button></a></li>
-                                    <% } %>
-                                        <li>
-                                            <button class="logout-btn my-2 px-2 py-1 mt-2">Logout</button>
-                                        </li>
-                            </ul>
-                        </div>
+                        <% if(isLogin) {%>
+                            <link rel="stylesheet" href="/css/sidebar.css">
+                            <div class="fluid-container sidebar-container ">
+                                <ul>
+                                    <li><a href=<%=`/editdata/ca/${caData.ca_id}` %> ><button class="my-2">Edit
+                                                Profile</button></a></li>
+                                    <li><a href=<%=`/adddata/profile/ca/${caData.ca_id}` %> ><button class="my-2">Edit
+                                                Profile Pic</button></a></li>
+                                    <% if(caData.linkedin_url){ %>
+                                        <li><a href=<%=`https://${caData.linkedin_url}` %> ><button class="my-2">View
+                                                    LinkedIn Profile</button></a></li>
+                                        <% } %>
+                                            <li>
+                                                <button class="logout-btn my-2 px-2 py-1 mt-2">Logout</button>
+                                            </li>
+                                </ul>
+                            </div>
 
-                        <!-- Logout button script -->
-                        <script>
-                            const logoutBtn = document.querySelectorAll(".logout-btn");
+                            <!-- Logout button script -->
+                            <script>
+                                const logoutBtn = document.querySelectorAll(".logout-btn");
 
-                            logoutBtn.forEach((item) => {
-                                item.addEventListener('click', () => {
-                                    fetch("<%-logoutLink%>", { method: "DELETE" })
-                                        .then((res) => {
-                                            if (res.redirected) window.location.href = res.url;
-                                        });
-                                });
-                            })
-                        </script>
-                        <% } %>
+                                logoutBtn.forEach((item) => {
+                                    item.addEventListener('click', () => {
+                                        fetch("<%-logoutLink%>", { method: "DELETE" })
+                                            .then((res) => {
+                                                if (res.redirected) window.location.href = res.url;
+                                            });
+                                    });
+                                })
+                            </script>
+                            <% } %>
 
 
-                            <div class="container my-auto mx-auto flex-row justify-content-center align-items-center">
-                                <div class="card  pe-3 my-2">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-7 pe-3 mt-3">
-                                                <h5 class="card-title">CA Details:
-                                                </h5>
-                                                <p class="card-text">
-                                                    <strong>Name:</strong>
-                                                    <%= caData.ca_name %>
-                                                </p>
-                                                <p class="card-text">
-                                                    <strong>Certificate No.:</strong>
-                                                    <%= caData.certificate_no %>
-                                                </p>
-                                                <p class="card-text">
-                                                    <strong>Phone:</strong>
-                                                    <%= caData.mobile_no %>
-                                                </p>
-                                                <p class="card-text">
-                                                    <strong>LinkedIn URL:</strong>
-                                                    <%= caData.linkedin_url %>
-                                                </p>
+                                <div class="container mx-auto flex-row justify-content-center align-items-center">
+                                    <div class="card  pe-3 my-2">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-7 pe-3 mt-3">
+                                                    <h5 class="card-title">CA Details:
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        <strong>Name:</strong>
+                                                        <%= caData.ca_name %>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <strong>Certificate No.:</strong>
+                                                        <%= caData.certificate_no %>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <strong>Phone:</strong>
+                                                        <%= caData.mobile_no %>
+                                                    </p>
+                                                    <p class="card-text">
+                                                        <strong>LinkedIn URL:</strong>
+                                                        <%= caData.linkedin_url %>
+                                                    </p>
 
-                                            </div>
-                                            <div class="col-md-3 ms-3">
-                                                <a href=<%=`/adddata/profile/ca/${caData.ca_id}` %> id="messagehover">
-                                                    <img src=<%=caData.pic_url %> alt="CA_image" class =" img-thumbnail
+                                                </div>
+                                                <div class="col-md-3 ms-3">
+                                                    <img src=<%=caData.pic_url %> alt="CA_image" class ="
+                                                    img-thumbnail
                                                     "/>
-                                                </a>
-                                            </div>
+                                                    </a>
+                                                </div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                    </div>
+                    <div class="experience my-3 mx-2 justify-content-center align-items-center ">
+                        <div class="row ms-3 justify-content-center align-items-center">
+                            <div class="contents rounded border my-3" id="contents">
+                                <h5 class="title my-2 text-center font-weight-bold">Experience
+                                </h5>
+                                <form method="post" id="experience-submit"
+                                    action=<%=`/adddata/cadetail/${caData.ca_id}`%> >
+                                    <div class="form-group m-2">
+                                        <label for="certificate_no">Certificate No:</label>
+                                        <input class="form-control" id="certificate_no" type="number"
+                                            name="experience" />
+                                    </div>
+                                    <div class="form-group m-2 py-2">
+                                        <label for="certificate_upload">Upload Certificate</label>
+                                        <input class="form-control" id="certificate_upload" type="file"
+                                            name="certificate_upload" />
+                                    </div>
+                                    <div class="form-group m-2 py-2">
+                                        <textarea class="form-control" placeholder="Tells us about your experience "
+                                            rows="6" col="10"></textarea>
+                                    </div>
+                                    <div class="text-center my-2">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
                             </div>
-                </div>
-                <div class="experience my-3 col-md-12 justify-content-center align-items-center ">
-                    <div class="row ms-3 justify-content-center align-items-center">
-                        <div class="contents rounded border my-3" id="contents">
-                            <h5 class="title my-2 text-center font-weight-bold">Experience
-                            </h5>
-                            <form method="post" id="experience-submit" action=<%=`/adddata/cadetail/${caData.ca_id}`%> >
-                                <div class="form-group m-2">
-                                    <label for="certificate_no">certificate_no</label>
-                                    <input class="form-control" id="certificate_no" type="number" name="experience" />
-                                </div>
-                                <div class="form-group m-2 ">
-                                    <label for="certificate_upload">Upload Certificate</label>
-                                    <input class="form-control" id="certificate_upload" type="file"
-                                        name="certificate_upload" />
-                                </div>
-                                <div class="form-group m-2">
-                                    <textarea class="form-control" id="experience"
-                                        placeholder="Tells us about your experience " rows="6">
-                            </textarea>
-                                </div>
-                                <div class="text-center my-2">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
-                            <!-- <div class="button-container text-center align-items-center justify-content-center">
-                                <a href="/"><button type="submit" class="p-5 my-3"><i
-                                            class="fas fa-plus"></i></button></a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
