@@ -12,7 +12,7 @@ body{
     padding-top: 6%;
 }
 .fluid-container{
-    padding-top: 6%;
+    padding-top: 8px;
 }
 .edit_job_page{
     padding-top: 6%;
@@ -70,7 +70,7 @@ ul li{
 }
 .borderlight{
     border: 1.5px solid #eee;
-    background-color: #A7C5EB;/*#8FBDD3;/*#87A8D0;/*added , upper-line: commented*/
+    background-color: #D3E0EA;/*#8FBDD3;/*#87A8D0;/*added , upper-line: commented*/
     border-radius: 10px;
     box-shadow: 1px 1px 5px 0px rgb(172, 179, 185);
 }
@@ -138,7 +138,7 @@ img{
 }
 .shadow-border{
     box-shadow: 1px 1px 7px 0px rgb(172, 179, 185);
-    background-color: #F3F8FF;/* This is added by yogita*/
+    background-color: ##F6F5F5;/* This is added by yogita*/
     /* border: 1px  lightslategrey;  This line is commented by yogita */
     border-radius: 5px;
 }
@@ -380,11 +380,11 @@ opacity: 0;
 }
 /* below code Added by yogita */
 .my-2 a{
-  background-color: navy;
+  background-color: #1687A7;
   color: white;
   text-shadow: 1px 0.5px 1px #eee;
   border-radius: 20px;
-  border: 2px solid navy;
+  border: 2px solid #1687A7;
   box-shadow: 1px 1px 5px 1px grey;
   padding: 5px 10px;
   position: relative;

@@ -136,10 +136,10 @@
   left: 65px;
 }
 .timeline li:hover:after{
-  background: navy;
+  background: #1687A7;
 }
 .timeline li.active:after{
-  background: navy;
+  background: #1687A7;
 }
 .timeline #line{
   width: 90%;
