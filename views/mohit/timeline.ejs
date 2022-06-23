@@ -3,78 +3,37 @@
     <ul>
       <li class="step step01 active">
         <div class="step-inner">
-          <img
-            src="https://picsum.photos/201"
-            alt=""
-            checked
-            class="img-class"
+          <img src=<%=foundData[0].picUrl %>
+          alt=""
+          checked
+          class="img-class"
           />
           <br />
           <br />
           <br />
-          <br />
-          dummy1
+          <%= foundData[0].event_title %>
         </div>
       </li>
-      <li class="step step02">
-        <div class="step-inner">
-          <img
-            src="https://picsum.photos/202"
-            alt=""
-            checked
-            class="img-class"
-          />
-          <br />
-          <br />
-          <br />
-          <br />dummy2
-        </div>
-      </li>
-      <li class="step step03">
-        <div class="step-inner">
-          <img
-            src="https://picsum.photos/300"
-            alt=""
-            checked
-            class="img-class"
-          />
-          <br />
-          <br />
-          <br />
-          <br />
-          dummy3
-        </div>
-      </li>
-      <li class="step step04">
-        <div class="step-inner">
-          <img
-            src="https://picsum.photos/204"
-            alt=""
-            checked
-            class="img-class"
-          />
-          <br />
-          <br />
-          <br />
-          <br />
-          dummy4
-        </div>
-      </li>
-      <li class="step step05">
-        <div class="step-inner">
-          <img
-            src="https://picsum.photos/205"
-            alt=""
-            checked
-            class="img-class"
-          />
-          <br />
-          <br />
-          <br />
-          <br />
-          dummy5
-        </div>
-      </li>
+
+      <% foundData.forEach(function(item, index) { %>
+        <% if (index> 0 && index < 5) { %>
+            <li class="step step0<%= index + 1 %>">
+              <div class="step-inner">
+                <img src=<%=foundData[index].picUrl %>
+                alt=""
+                checked
+                class="img-class"
+                />
+                <br />
+                <br />
+                <br />
+                <%= foundData[index].event_title %>
+              </div>
+            </li>
+            <% } %>
+              <% }); %>
+
+
     </ul>
 
     <div id="line">

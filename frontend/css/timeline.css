@@ -83,11 +83,13 @@ ol {
 .timeline::before {
   content: "";
   position: absolute;
-  height: 80%;
+  height: 76%;
   width: 4px;
-  background-color: #1687a7;
+  background-color: #276678;
   left: 50%;
   top: 10%;
+  /* bottom: 20%; */
+  /* bottom: 100%; */
 }
 
 .timeline ul li:nth-child(odd) {
@@ -119,13 +121,14 @@ ol {
 .timeline ul li:nth-child(odd)::before {
   content: "";
   position: absolute;
-  height: 100px;
-  width: 100px;
-  background-color: #f6f5f5;
+  height: 20px;
+  width: 20px;
+  background-color: #1687a7;
   border-radius: 50%;
-  right: -50px;
+
+  right: -13px;
   /* this left is the negative of total width of this width of timline ::before */
-  top: 50%;
+  top: 27%;
   transform: translate(0%, -50%);
   border: 4px solid #d3e0ea;
 }
@@ -133,11 +136,11 @@ ol {
 .timeline ul li:nth-child(even)::before {
   content: "";
   position: absolute;
-  height: 100px;
-  width: 100px;
-  background-color: #f6f5f5;
+  height: 20px;
+  width: 20px;
+  background-color: #1687a7;
   border-radius: 50%;
-  left: -47px;
+  left: -7px;
   /* this left is the negative of total width of this width of timline ::before  */
   top: 50%;
   transform: translate(0%, -50%);
@@ -163,47 +166,36 @@ ol {
   font-weight: 600;
 }
 
-.content .bottom {
+.content .center {
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* padding-left: 10px; */
 }
 
-button {
+.content .bottom {
+  padding-top: 10px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+
+.content .bottom button {
   text-decoration: none;
-  background-color: 1687A7;
-  color: black;
+  background-color: #1687a7;
+  color: white;
   padding: 7px 15px;
   border-radius: 5px;
 }
 
-.timeline ul li:nth-child(1)::before {
-  background-image: url(https://picsum.photos/200);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+<<<<<<< HEAD .content .center img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  /* padding-right: 10px; */
 }
-.timeline ul li:nth-child(2)::before {
-  background-image: url(https://picsum.photos/201);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.timeline ul li:nth-child(3)::before {
-  background-image: url(https://picsum.photos/203);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.timeline ul li:nth-child(4)::before {
-  background-image: url(https://picsum.photos/204);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.timeline ul li:nth-child(5)::before {
-  background-image: url(https://picsum.photos/205);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
+.content .center p {
+  padding-left: 10px;
 }

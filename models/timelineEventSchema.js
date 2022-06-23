@@ -7,6 +7,7 @@ const timelineEventSchema = new mongoose.Schema({
   },
   picUrl: {
     type: String,
+    default: "/default_profile.png",
   },
   date: {
     type: Date,
