@@ -1,119 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap");
-
-.timeline-container {
-  /* height: 50px; */
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 50px 0;
-  background-color: #ffffff;
-  padding-top:50px;
-  border-top: 1px solid black;
-  text-shadow: 1px 1px 1px #557571;
-  /* padding-left: 30px; */
-}
-.timeline {
-  width: 80%;
-  height: auto;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 3;
-  /* padding-top: 10px; */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.timeline ul {
-  padding: 10px;
-    margin: 0;
-    padding-top: 15px;
-    z-index: 999;
-    position: absolute;
-    width: 100%;
-    margin-top: -40px;
-    /* padding-bottom: 20px; */
-}
-/* .timeline ul li {
-  padding: 30px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  color: white;
-  background: linear-gradient(90deg, rgba(171,49,229,1) 0%, rgba(89,10,247,1) 100%); 
-  position: relative;
-  display: inline-flex;
-  top: 40px;
-  left: 20px;
-} */
-.timeline li:before{
-  content:"";
-    display: block;
-    margin: auto;
-    width:30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid #aaa;
-    transition: all ease 0.3s;
-    display: relative;
-    top: 30px;
-}
-.timeline li.active:before,
-.timeline li:hover:before{
-    background: #79B4B7;
-}
-
-/* .timeline ul li:last-child {
-  margin-bottom: 0;
-} */
-/* .timeline-content h1 {
-  font-weight: 500;
-  font-size: 1.5rem;
-  line-height: 30px;
-  margin-bottom: 10px;
-}
-/* .timeline-content p {
-  font-size: 1rem;
-  line-height: 30px;
-  font-weight: 300;
-} */
-.timeline-content {
-  font-size: 12px;
-  font-weight: 500;
-  margin-bottom: 5px;
-  letter-spacing: 1px;
-  padding-left: 20px;
-  padding-bottom: 30px;
-}
-
-/* .timeline:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: rotate();
-  width: 2px;
-  height: 100%;
-  background-color: gray;
-} */ 
-.timeline li{
+ul,
+ol {
   list-style: none;
-  float: left;
-  width:20%;
-  text-align: center;
-  color: #557571;
-  text-transform: uppercase;
-  font-size: 11px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: all ease 0.2s;
-  vertical-align: bottom;
-  height: 59px;
-  position: relative;
 }
-.timeline li .f-inner{
-  position: absolute;
+
+.background-time {
+  background-color: #f6f5f5;
+}
+
+.timeline {
+  padding: 0px 100px;
+  position: relative;
   width: 100%;
-  bottom: 0;
-  font-size: 14px;
 }
 .timeline li.active,
 .timeline li:hover{
@@ -166,76 +69,141 @@
   padding-bottom: 20px;
 } */
 
-
-
-/* .timeline ul li {
-  width: 50%;
+.timeline {
+  padding: 0px 100px;
   position: relative;
-  margin-bottom: 50px;
-  box-shadow: 0px 0px 9px 1px rgb(139, 139, 139);
+  width: 100%;
 }
-.timeline ul li:nth-child(odd) {
-  float: left;
-  clear: right;
-  transform: translateX(-30px);
-  border-radius: 20px 0px 20px 20px;
+
+.timeline ul li {
+  position: relative;
+  width: 50%;
 }
-.timeline ul li:nth-child(even) {
-  float: right;
-  clear: left;
-  transform: translateX(30px);
-  border-radius: 0px 20px 20px 20px;
-}
-.timeline ul li::before {
+
+.timeline::before {
   content: "";
   position: absolute;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: #ab31e5;
-  top: 0px;
+  height: 80%;
+  width: 4px;
+  background-color: #1687a7;
+  left: 50%;
+  top: 10%;
 }
+
+.timeline ul li:nth-child(odd) {
+  float: left;
+  /* text-align: right; */
+  clear: both;
+}
+
+.timeline ul li:nth-child(even) {
+  float: right;
+  /* text-align: left; */
+  clear: both;
+}
+
+.timeline ul li:nth-child(odd) .content {
+  margin-right: 100px;
+}
+
+.timeline ul li:nth-child(even) .content {
+  margin-left: 100px;
+}
+
+.timeline ul::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .timeline ul li:nth-child(odd)::before {
-  transform: translate(50%, -50%);
-  right: -30px;
-}
-.timeline ul li:nth-child(even)::before {
-  transform: translate(-50%, -50%);
-  left: -30px;
-/* }
-.timeline-content .date {
+  content: "";
   position: absolute;
-  top: -30px;
-} */
-.timeline ul li:hover::before {
-  background-color: #FFE0AC;
-}
-.timeline #pcs .sc{
-  position: relative;
-  top: 50px;
-}
-.timeline-content .date{
-  position: relative;
-  top: 10px;
+  height: 100px;
+  width: 100px;
+  background-color: #f6f5f5;
+  border-radius: 50%;
+  right: -50px;
+  /* this left is the negative of total width of this width of timline ::before */
+  top: 50%;
+  transform: translate(0%, -50%);
+  border: 4px solid #d3e0ea;
 }
 
-/* .timeline-img{
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-} */ */
-
-@media only screen and (max-width:585px){
-  .timeline-content h1{
-    font-size: 1rem;
-  }
-  .timeline-content p{
-    font-size: 0.8rem;
-  }
+.timeline ul li:nth-child(even)::before {
+  content: "";
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background-color: #f6f5f5;
+  border-radius: 50%;
+  left: -47px;
+  /* this left is the negative of total width of this width of timline ::before  */
+  top: 50%;
+  transform: translate(0%, -50%);
+  border: 4px solid #d3e0ea;
 }
 
-#timeline-container{
-  height:220px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+.content {
+  padding: 60px 0px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 4px #276678;
+}
+
+.content .detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content .detail .title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.content .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  text-decoration: none;
+  background-color: 1687A7;
+  color: black;
+  padding: 7px 15px;
+  border-radius: 5px;
+}
+
+.timeline ul li:nth-child(1)::before {
+  background-image: url(https://picsum.photos/200);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(2)::before {
+  background-image: url(https://picsum.photos/201);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(3)::before {
+  background-image: url(https://picsum.photos/203);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(4)::before {
+  background-image: url(https://picsum.photos/204);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(5)::before {
+  background-image: url(https://picsum.photos/205);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }

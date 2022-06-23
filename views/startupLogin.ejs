@@ -49,6 +49,7 @@
 
   <body>
     <%- include('./_partials/navbar_2') %>
+    <br>
 
     <% if(isLogin){ %>
       <script>
@@ -227,7 +228,7 @@
               <% } else{%>
                 <% jobAlerts.forEach((item) => { %>
 
-                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; ">
                     <div class="m-3">
                       <div class="imageadd">
                         <h1>Job title</h1>
@@ -270,22 +271,25 @@
           </div>
         </div>
 
-        <!-- TIMELINE -->
-        <div class="container my-5 mt-2">
-          <div class="main-container carousel1">
+        <!--Timeline-->
+        <div class="container my-5">
+          <div class="main-container carousel4">
             <div class="mt-2 d-flex justify-content-around">
-              <h2 class="text-center">Timeline</h2>
+              
+              <h2 style="text-align: center; padding-top: 10px;" class="text-center">Timeline</h2>
               <% if(isLogin) {%> 
                 <h3><button class="btn btn-warning mt-1" id="add-btn">Add</button></h3>
               <% } %> 
             </div>
+            <br>
+            <br>
             <div>
               <!-- TIMELINE EVENT ADD -->
               <% if(isLogin){ %> 
                 <style>.dis-class{display: none;}</style>
 
                 <div class="container p-2 my-1 timeline-add-container">
-                  <div class="main-container">
+                  <div class="main-container carousel2">
                       <div class="row">
                       <div class="col-md-12">
                           <form class="col-md-12 d-flex flex-column align-items-stretch" enctype="multipart/form-data" method="POST" action=<%= `/adddata/timeline/${startupData.uid}/timelineevent` %> >
@@ -319,40 +323,17 @@
             <% if(foundData.length==0) { %>
             <h3 class="text-center">No Timeline</h3>
             <% } else{ %>
-      
-              <div class="timeline-container" id="timeline-container">
-                <div class="timeline" >
-                  <ul>
-                    <% foundData.forEach((item,index)=> {%> <% const d=item.date;const ye=new Intl.DateTimeFormat('en', { year: 'numeric'}).format(d); const mo=new Intl.DateTimeFormat('en', { month:'short' }).format(d); const da=new Intl.DateTimeFormat('en', {day:'2-digit' }).format(d); %>
-                    <li>
-                      <div class="timeline-content">
-                        <!-- <h3 class="date">20th may, 2010</h3> -->
-                        <div class="date">
-                        <h5><%= `${da}-${mo}-${ye}` %></h5>
-                        </div>
-                        <div id="pcs">
-                          <div class="sc s1 active" >
-                        <p><%= item.event_title %></p>
-                        </div>
-                        </div>
-                        <% if(item.picUrl){ %> 
-                        <div>
-                          <img style="max-height: 200px; width: auto;" class="timeline-img" src=<%= item.picUrl %> alt="timeline-img"/>
-                        </div>
-                        <% } %> 
-                      </div>
-                    </li><% }); %>
-                  </ul>
-                  <div id="line">
-                 </div>
-                </div>
-              </div>
+              <div class="carousel2">
+              <%- include('./mohit/timeline') %>
               <div class="container my-4 text-right">
                 <a href="<%= `/getdata/timeline/${startupData.uid}` %> "><h6>View More</h6></a>
               </div>
-            <% } %>
+            <% } %>`
           </div>
-        </div>
+          
+          </div>
+      
+            
         <!--Carousel-->   
         <div class="container my-5">
           <div class="main-container carousel">
