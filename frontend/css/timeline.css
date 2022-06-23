@@ -139,6 +139,7 @@ ol {
   border-radius: 5px;
 }
 
+<<<<<<< HEAD
 .content .center img {
   height: 100px;
   width: 100px;
@@ -149,3 +150,36 @@ ol {
 .content .center p {
   padding-left: 10px;
 }
+=======
+/* .timeline ul li:nth-child(1)::before {
+  background-image: url(https://picsum.photos/200);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(2)::before {
+  background-image: url(https://picsum.photos/201);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(3)::before {
+  background-image: url(https://picsum.photos/203);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(4)::before {
+  background-image: url(https://picsum.photos/204);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.timeline ul li:nth-child(5)::before {
+  background-image: url(https://picsum.photos/205);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+} */
+
+>>>>>>> e2afa30030e78431bcf3a38af68df063e8ab8f3f
