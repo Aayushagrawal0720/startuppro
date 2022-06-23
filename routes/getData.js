@@ -278,8 +278,8 @@ router.get("/startup/:uid", async (req, res) => {
     `${uid}_timeline_collection`,
     timelineEventSchema
   );
-  const foundData = await timelineModel.find().sort({ date: -1 }).limit(2);
-  // console.log(foundData);
+  const foundData = await timelineModel.find().sort({ date: -1 });
+  console.log(foundData[0]._id);
 
   // FETCHING GRAPH DATA
   let resArray = [];

@@ -1,140 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://kit.fontawesome.com/af3eeee1f8.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Timeline - <%= startupData.startup_name %></title>
-    <link rel="stylesheet" href="/css/timeline.css" />
-    <style>
-      body {
-        position: relative;
-        top: 70px;
-      }
-    </style>
-  </head>
 
-  <body>
-    <%- include('./_partials/navbar_2') %>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+  <title>Timeline - <%= startupData.startup_name %>
+  </title>
+  <link rel="stylesheet" href="/css/timeline.css" />
+  <style>
+    body {
+      position: relative;
+      top: 70px;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
 
     <div class="fluid-container my-2">
       <h1 class="text-center my-2">
         <%= startupData.startup_name %> - Timeline
       </h1>
-      <div
-        class="timeline-container"
-        id="timeline-container"
-        style="min-height: 100vh"
-      >
+      <div class="timeline-container" id="timeline-container" style="min-height: 100vh">
         <div class="background-time">
+
           <div class="timeline">
             <br /><br />
             <ul>
-              <li>
-                <div class="content">
-                  <div class="detail">
-                    <span class="title">Dummy1</span>
-                    <span>DATE - abcd</span>
-                  </div>
 
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
-                    nulla eligendi iste minima nobis neque officiis soluta,
-                    explicabo enim maxime modi a necessitatibus!
-                  </p>
-                  <div class="bottom">
-                    <i>Read more </i>
-                    <button>click here</button>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="content">
-                  <div class="detail">
-                    <span class="title">Dummy1</span>
-                    <span>DATE - abcd</span>
-                  </div>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
-                    nulla eligendi iste minima nobis neque officiis soluta,
-                    explicabo enim maxime modi a necessitatibus!
-                  </p>
-                  <div class="bottom">
-                    <i>Read more </i>
-                    <button>click here</button>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="content">
-                  <div class="detail">
-                    <span class="title">Dummy1</span>
-                    <span>DATE - abcd</span>
-                  </div>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
-                    nulla eligendi iste minima nobis neque officiis soluta,
-                    explicabo enim maxime modi a necessitatibus!
-                  </p>
-                  <div class="bottom">
-                    <i>Read more </i>
-                    <button>click here</button>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="content">
-                  <div class="detail">
-                    <span class="title">Dummy1</span>
-                    <span>DATE - abcd</span>
-                  </div>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
-                    nulla eligendi iste minima nobis neque officiis soluta,
-                    explicabo enim maxime modi a necessitatibus!
-                  </p>
-                  <div class="bottom">
-                    <i>Read more </i>
-                    <button>click here</button>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="content">
-                  <div class="detail">
-                    <span class="title">Dummy1</span>
-                    <span>DATE - abcd</span>
-                  </div>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
-                    nulla eligendi iste minima nobis neque officiis soluta,
-                    explicabo enim maxime modi a necessitatibus!
-                  </p>
-                  <div class="bottom">
-                    <i>Read more </i>
-                    <button>click here</button>
-                  </div>
-                </div>
-              </li>
+              <% foundData.forEach(function(item, index) { %>
+                <% if (index>= 0){ %>
+                  <li>
+                    <div class="content">
+                      <div class="detail">
+                        <span class="title">
+                          <%= foundData[index].event_title %>
+                        </span>
+                        <span>DATE - <%= foundData[index].date.toLocaleDateString() %></span>
+                      </div>
+                      <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
+                        nulla eligendi iste minima nobis neque officiis soluta,
+                        explicabo enim maxime modi a necessitatibus!
+                      </p>
+                      <div class="bottom">
+                        <i>Read more </i>
+                        <button>click here</button>
+                      </div>
+                    </div>
+                  </li>
+                  <% } %>
+                    <% }); %>
             </ul>
           </div>
           <br />
@@ -144,5 +67,7 @@
     </div>
 
     <%- include('./_partials/footer') %>
-  </body>
+
+</body>
+
 </html>

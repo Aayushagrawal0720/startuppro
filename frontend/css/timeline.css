@@ -127,7 +127,7 @@ button {
   border-radius: 5px;
 }
 
-.timeline ul li:nth-child(1)::before {
+/* .timeline ul li:nth-child(1)::before {
   background-image: url(https://picsum.photos/200);
   background-repeat: no-repeat;
   background-size: cover;
@@ -156,4 +156,5 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
+} */
+
