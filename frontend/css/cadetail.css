@@ -1,15 +1,11 @@
-
-
 #contents {
   margin-right: 1rem;
   width: 100% !important;
   align-items: center;
 }
 
-button {
+#experience-submit {
   width: 30%;
   margin-top: 1rem;
-  background-color: white;
-  border: dashed 1px black;
   border-radius: 10px;
 }

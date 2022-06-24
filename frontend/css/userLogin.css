@@ -457,3 +457,15 @@ li {
 .wrapper .right .projects-data .data h4 {
   margin-bottom: 5px;
 }
+
+#contents {
+  margin-right: 1rem;
+  width: 100% !important;
+  align-items: center;
+}
+
+form div #experience-submit {
+  width: 30%;
+  margin-top: 1rem;
+  border-radius: 10px;
+}
