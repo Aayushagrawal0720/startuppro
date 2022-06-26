@@ -23,7 +23,6 @@ ol {
   color: dodgerblue;
 }
 .timeline li:after{
-  content:"";
   display: block;
   width: 5px;
   height: 5px;
@@ -83,11 +82,11 @@ ol {
 .timeline::before {
   content: "";
   position: absolute;
-  height: 76%;
+  height: 51%;
   width: 4px;
   background-color: #276678;
   left: 50%;
-  top: 10%;
+  top: 25%;
   /* bottom: 20%; */
   /* bottom: 100%; */
 }
@@ -199,3 +198,5 @@ ol {
 .content .center p {
   padding-left: 10px;
 }
+
+
