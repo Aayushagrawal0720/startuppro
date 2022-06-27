@@ -27,46 +27,41 @@
       <h1 class="text-center my-2">
         <%= startupData.startup_name %> - Timeline
       </h1>
-      <div class="timeline-container" id="timeline-container" style="min-height: 100vh">
-        <div class="background-time">
-          <div class="timeline">
-            <br />
-            <br />
-            <br />
-            <ul>
-              <% foundData.forEach(function(item, index) { %>
-                <% if (index>= 0){ %>
-                  <li>
-                    <div class="content">
-                      <div class="detail">
-                        <span class="title">
-                          <%= foundData[index].event_title %>
-                        </span>
-                        <span>DATE - <%= foundData[index].date.toLocaleDateString() %></span>
-                      </div>
-                      <div class="center">
-                        <img src=<%=foundData[index].picUrl %> alt="">
-                        <p>
-                          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                          Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
-                          nulla eligendi iste minima nobis neque officiis soluta,
-                          explicabo enim maxime modi a necessitatibus!
-                        </p>
-                      </div>
-                      <div class="bottom">
-                        <i>Read more </i>
-                        <button>click here</button>
-                      </div>
+      <!-- new code -->
+      <div class="container-1">
+        <div class="timeline-1">
+          <ul>
+            <% foundData.forEach(function(item, index) { %>
+              <% if (index>= 0){ %>
+                <li>
+                  <div class="timeline-content">
+                    <h2 class="date">
+                      <%= foundData[index].date.toLocaleDateString() %>
+                    </h2>
+                    <div class="top">
+                      <h1>
+                        <%= foundData[index].event_title %>
+                      </h1>
                     </div>
+                    <div class="mid">
+                      <img src=<%=foundData[index].picUrl %> alt="">
+                      <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
+                        nulla eligendi iste minima nobis neque officiis soluta,
+                        explicabo enim maxime modi a necessitatibus!
+                      </p>
+                    </div>
+                    <div class="bottom">
+                      <i>Read more </i>
+                      <button>click here</button>
+                    </div>
+                  </div>
+                </li>
+                <% } %>
+                  <% }); %>
 
-                  </li>
-                  <% } %>
-                    <% }); %>
-
-            </ul>
-          </div>
-          <br />
-          <br />
+          </ul>
         </div>
       </div>
     </div>
