@@ -279,7 +279,7 @@ router.get("/startup/:uid", async (req, res) => {
     timelineEventSchema
   );
   const foundData = await timelineModel.find().sort({ date: -1 });
-  console.log(foundData[0]._id);
+  // console.log(foundData[0]._id);
 
   // FETCHING GRAPH DATA
   let resArray = [];
@@ -331,6 +331,11 @@ router.get("/startup/:uid", async (req, res) => {
     jobDetailData = { job_title: "Founder" };
   }
 
+  const jobDetailArray = await jobDetailModel.find({ "from_date": { $exists: true }, "to_date": { $exists: true } }).sort({ date: -1 });
+  console.log(jobDetailArray[0].from_date);
+
+
+  // console.log(jobDetailData);
   // FETCHING JOB ALERTS
   const jobAlerts = await jobPostModel
     .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
@@ -379,6 +384,7 @@ router.get("/startup/:uid", async (req, res) => {
     isLogin,
     founderData,
     jobDetailData,
+    jobDetailArray,
     jobAlerts,
     finalTeamArray,
   });

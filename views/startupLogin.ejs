@@ -408,51 +408,36 @@
                               <hr>
                             </div>
                             <div class="container d-flex flex-column flex-md-row justify-content-center ">
-                              <div class="container col-md-5 my-3 jobbox"
-                                style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                                <div class="m-3">
-                                  <div class="imageadd">
-                                    <h1>Job title</h1>
-                                    <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                              <% for(let i=0 ; i<3; i++){%>
+                                <div class="container col-md-5 my-3 jobbox"
+                                  style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                                  <div class="m-3">
+                                    <div class="imageadd">
+                                      <h1>
+                                        <%= jobDetailArray[i].job_title %>
+                                      </h1>
+                                      <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                    </div>
+                                    <h6 class="it"><b>From: </b>
+                                      <%= jobDetailArray[i].from_date.toLocaleDateString() %>
+                                    </h6>
+                                    <h6 class="it"><b>To: </b>
+                                      <% if(jobDetailArray[i].to_date==null){ %>
+                                        <%= "Present" %>
+                                          <% } else{ %>
+                                            <%= jobDetailArray[i].to_date.toLocaleDateString() %>
+                                              <% } %>
+                                    </h6>
+                                    <h6 class="it"><b>Status:</b>
+                                      <%= jobDetailArray[i].status %>
+                                    </h6>
+                                    <h6 class="it"><b>Type:</b>
+                                      <%= jobDetailArray[i].type %>
+                                    </h6>
                                   </div>
-
-                                  <h4 class="it"><b>First</b></h4>
-                                  <h6 class="it">Second</h6>
-                                  <h6 class="it">Description of the job posted</h6>
-
-
-
                                 </div>
-                              </div>
-                              <div class="container col-md-5 my-3 jobbox"
-                                style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                                <div class="m-3">
-                                  <div class="imageadd">
-                                    <h1>Job title</h1>
-                                    <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                                  </div>
+                                <% } %>
 
-                                  <h4 class="it"><b>First</b></h4>
-                                  <h6 class="it">Second</h6>
-                                  <h6 class="it">Description of the job posted</h6>
-
-
-
-                                </div>
-                              </div>
-                              <div class="container col-md-5 my-3 jobbox"
-                                style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                                <div class="m-3">
-                                  <div class="imageadd">
-                                    <h1>Job title</h1>
-                                    <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                                  </div>
-
-                                  <h4 class="it"><b>First</b></h4>
-                                  <h6 class="it">Second</h6>
-                                  <h6 class="it">Description of the job posted</h6>
-                                </div>
-                              </div>
                             </div>
 
 
