@@ -291,7 +291,7 @@ router.get("/startup/profile/posts", isAuth, async (req, res) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    console.log(filterArray)
 
     const isLogin = true;
 

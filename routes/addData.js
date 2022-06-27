@@ -96,7 +96,7 @@ router.post("/startup/teammember", async (req, res) => {
     // const newData = new pendingMemberModel(dataToBeAdded);
     const savedData = await newData.save();
 
-    console.log(savedData);
+    // console.log(savedData);
     // res.status(201).json(savedData);
     var redirectMsg =
       "Successfully Registered.\n You're now being redirected to the Login Page";

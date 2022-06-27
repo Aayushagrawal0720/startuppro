@@ -116,7 +116,6 @@
                                                 <img src=<%=caData.pic_url %> alt="CA_image" class ="
                                                 img-thumbnail
                                                 "/>
-                                                </a>
                                             </div>
 
                                         </div>
@@ -129,7 +128,7 @@
                         <div class="contents rounded border my-3" id="contents">
                             <h5 class="title my-2 text-center font-weight-bold">Experience
                             </h5>
-                            <form method="post" id="experience-submit" action=<%=`/adddata/cadetail/${caData.ca_id}`%> >
+                            <form method="post" id="experience-form" action=<%=`/adddata/cadetail/${caData.ca_id}`%> >
                                 <div class="form-group m-2">
                                     <label for="certificate_no">Certificate No:</label>
                                     <input class="form-control" id="certificate_no" type="number" name="experience" />

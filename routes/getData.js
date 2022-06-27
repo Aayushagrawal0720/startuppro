@@ -77,7 +77,7 @@ router.get("/startups", async (req, res) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    console.log(filterArray)
 
     var memberData = null;
     const isLogin = false;
@@ -100,7 +100,7 @@ router.get("/startups", async (req, res) => {
       return res.redirect("/mentor/profile");
     }
 
-    return res.status(200).render("userLogin", {
+    return res.status(200).render("startupLoginPosts", {
       memberData,
       startups,
       founderArray,
@@ -421,7 +421,7 @@ router.get("/graph/:uid", async (req, res) => {
     );
 
     const foundTypes = await dynamicTypeModel.find();
-    console.log(foundTypes);
+    // console.log(foundTypes);
 
     foundTypes.forEach((item, index) => {
       resArray.push(
