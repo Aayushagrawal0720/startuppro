@@ -6,6 +6,11 @@
   font-family: "Raleway";
 }
 
+.profile-menu {
+  background: #D3E0EA;
+  box-shadow: 0px 0px 9px 0.5px rgb(165 157 157);
+}
+
 .border-light {
   border-radius: 10px;
 }
@@ -160,18 +165,12 @@ ul li {
 }
 .main-container {
   position: relative;
-  background: linear-gradient(
-    90deg,
-    rgba(229, 242, 249, 0.662) 0%,
-    #d5eaf9 50%,
-    rgb(229, 242, 249) 100%
-  );
-}
+  background: #F6F5F5;}
 .background-box {
   height: 150px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background: #15114b;
+  background: #1687A7;
 }
 .inside {
   /* border: 1px solid grey; */
@@ -381,7 +380,7 @@ ul li {
   top: 110px;
   left: 60px;
   text-decoration: none;
-  background-color: navy;
+  background-color: #1687A7;
   color: #eee;
   padding: 7px;
   margin-top: 40px;

@@ -15,7 +15,6 @@
   <style>
     body {
       position: relative;
-      top: 70px;
     }
   </style>
 </head>
@@ -23,48 +22,51 @@
 <body>
   <%- include('./_partials/navbar_2') %>
 
-    <div class="fluid-container my-2">
-      <h1 class="text-center my-2">
-        <%= startupData.startup_name %> - Timeline
-      </h1>
-      <!-- new code -->
-      <div class="container-1">
-        <div class="timeline-1">
-          <ul>
-            <% foundData.forEach(function(item, index) { %>
-              <% if (index>= 0){ %>
-                <li>
-                  <div class="timeline-content">
-                    <h2 class="date">
-                      <%= foundData[index].date.toLocaleDateString() %>
-                    </h2>
-                    <div class="top">
-                      <h1>
-                        <%= foundData[index].event_title %>
-                      </h1>
+    <div class="fluid-container py-2 timeline-container">   
+      
+          <div><h1 class="text-center my-2">
+            <%= startupData.startup_name %> - Timeline
+          </h1>
+            <div class="container-1">
+              
+              <div class="timeline-1">
+                <ul>
+                  <% foundData.forEach(function(item, index) { %>
+                    <% if (index>= 0){ %>
+                  <li>
+                    <div class="timeline-content">
+                      <h2 class="date"><span>DATE - <%= foundData[index].date.toLocaleDateString() %></span></h2>
+                      <div class="top">
+                        <h1><%= foundData[index].event_title %></h1>
+                      </div>
+                      <div class="mid">
+                        <img src=<%=foundData[index].picUrl %> alt="" />
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
+                          mollitia illum voluptas aut id dignissimos aspernatur
+                          architecto porro at ipsam, ea quam delectus, laboriosam
+                          voluptatem! Quia quam eligendi molestias quo!
+                        </p>
+                      </div>
+                      <div class="bottom">
+                        <h6>read more</h6>
+                        <button>Click Here</button>
+                      </div>
                     </div>
-                    <div class="mid">
-                      <img src=<%=foundData[index].picUrl %> alt="">
-                      <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Ipsam quaerat vel, placeat ut aperiam corrupti temporibus
-                        nulla eligendi iste minima nobis neque officiis soluta,
-                        explicabo enim maxime modi a necessitatibus!
-                      </p>
-                    </div>
-                    <div class="bottom">
-                      <i>Read more </i>
-                      <button>click here</button>
-                    </div>
-                  </div>
-                </li>
-                <% } %>
-                  <% }); %>
-
-          </ul>
-        </div>
-      </div>
+                  </li>
+                  <% } %>
+                            <% }); %>
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
     </div>
+
+
+   
 
     <%- include('./_partials/footer') %>
 </body>

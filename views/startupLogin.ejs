@@ -65,8 +65,46 @@
                     class="btn btn-warning mt-2 px-2 py-1">See Job Posts/Alerts</button></a></li>
               <li><button class="logout-btn btn btn-warning mt-2 px-2 py-1">Logout</button></li>
 
-            </ul>
-          </div>
+          </ul>
+        </div>
+      </div>
+       
+    <% } %> 
+
+    
+
+    <div id="parent-row">
+
+      <% if(isLogin){ %>
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <div class="container sidebar-container">
+          <ul class="bg-none" style="background-color: transparent;">
+            <% if(resArray.length!=0) {%> 
+            <li><div class="container bg-light mb-3" style="border: 2px solid black; border-radius: 10px;">
+              <h4>Analytics</h4>
+              <ul class="bg-light">
+                <% for(var i = 0; i < resArray.length; i++) {
+                  if(resArray[i].length!=0){
+                  var num = resArray[i][resArray[i].length-1].diff;
+                  var title = resArray[i][resArray[i].length-1].type_title;
+                  var isLess = resArray[i][resArray[i].length-1].isLess %>
+                  <li> <%= title %>: <b style="<%= `color: ${isLess?"red":"green"}` %>"> <%= `${isLess?"-":"+"}${num}` %> </b> </li>
+                  <% } %>  
+                <% } %>  
+              </ul>
+            </div></li>
+            <% } %> 
+            <div class="p-2 profile-menu" style="border: 0.5px solid grey; border-radius: 10px;">
+              <li><h4><%= startupData.startup_name %> </h4></li>
+              <li><a href=<%= `/editData/startup/${startupData.uid}/basicdetails` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile</button></a></li>
+              <li><a href=<%= `/adddata/profile/startup/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile Pic</button></a></li>
+              <li><a href=<%= `/adddata/timelinegraph/${startupData.uid}` %>  ><button class="new--sidebar-btn mt-2 px-2 py-1">Add Update</button></a></li>
+              <li><a href=<%= `/getdata/startup/jobdetails/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">See Job Details</button></a></li>
+              <li><a href=<%= `/adddata/jobposts/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">Add Job Post/Alert</button></a></li>
+              <li><a href=<%= `/getdata/startup/jobalerts/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">See Job Posts/Alerts</button></a></li>
+              <li><button class="new--sidebar-btn mt-2 px-2 py-1 logout-btn">Logout</button></li>
+            </div>
+          </ul>
         </div>
 
         <% } %>

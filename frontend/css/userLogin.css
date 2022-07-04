@@ -11,8 +11,8 @@ body {
 .edit {
   padding-top: 6%;
 }
-.fluid-container {
-  padding-top: 6%;
+.fluid-container{
+    padding-top: 8px;
 }
 .edit_job_page {
   padding-top: 6%;
@@ -67,11 +67,11 @@ ul li {
 .border4 {
   border: 2px solid blue;
 }
-.borderlight {
-  border: 1.5px solid #eee;
-  background-color: #a7c5eb; /*#8FBDD3;/*#87A8D0;/*added , upper-line: commented*/
-  border-radius: 10px;
-  box-shadow: 1px 1px 5px 0px rgb(172, 179, 185);
+.borderlight{
+    border: 1.5px solid #eee;
+    background-color: #D3E0EA;/*#8FBDD3;/*#87A8D0;/*added , upper-line: commented*/
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 0px rgb(172, 179, 185);
 }
 .diary p {
   margin-bottom: 0px;
@@ -135,11 +135,11 @@ img {
   background: rgb(215, 219, 223);
   box-shadow: 0px 0px 5px 0px rgb(95, 99, 102);
 }
-.shadow-border {
-  box-shadow: 1px 1px 7px 0px rgb(172, 179, 185);
-  background-color: #f3f8ff; /* This is added by yogita*/
-  /* border: 1px  lightslategrey;  This line is commented by yogita */
-  border-radius: 5px;
+.shadow-border{
+    box-shadow: 1px 1px 7px 0px rgb(172, 179, 185);
+    background-color: ##F6F5F5;/* This is added by yogita*/
+    /* border: 1px  lightslategrey;  This line is commented by yogita */
+    border-radius: 5px;
 }
 .shadow-border:hover {
   box-shadow: 1px 1px 5px 0px #232323;
@@ -369,12 +369,12 @@ li {
   }
 }
 /* below code Added by yogita */
-.my-2 a {
-  background-color: navy;
+.my-2 a{
+  background-color: #1687A7;
   color: white;
   text-shadow: 1px 0.5px 1px #eee;
   border-radius: 20px;
-  border: 2px solid navy;
+  border: 2px solid #1687A7;
   box-shadow: 1px 1px 5px 1px grey;
   padding: 5px 10px;
   position: relative;
