@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const mongoose = require("mongoose");
 
@@ -313,7 +313,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
   try {
     const uid = req.session.uid;
     const startupData = await startUpScheme.findOne({ uid: uid });
-
+console.log('startupData',startupData)
     // GETTING TIMELINE DATA
     const timelineModel = new mongoose.model(
       `${uid}_timeline_collection`,
@@ -334,7 +334,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     );
 
     const foundTypes = await dynamicTypeModel.find();
-    // console.log(foundTypes);
+    console.log('foundtypes',foundTypes);
 
     if (foundTypes.length != 0) {
       foundTypes.forEach((item, index) => {
@@ -357,6 +357,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
         );
       });
       resArray = await Promise.all(resArray);
+      console.log('resArray',resArray)
     }
 
     // Checking resArray
@@ -371,9 +372,11 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     // FETCHING FOUNDER DATA
     const mid = startupData.founders[0];
     const founderData = await memberModel.findOne({ mid: mid });
-
+console.log('founderData',founderData)
     // FETCHING FOUNDER'S JOB DATA
     var jobDetailData = await jobDetailModel.findOne({ mid: mid });
+    console.log('jobDetailData',jobDetailData)
+
     if (!jobDetailData) {
       jobDetailData = { job_title: "Founder" };
     }
@@ -383,7 +386,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
       .select({ title: 1, jid: 1, employment_type: 1 })
       .limit(2);
-    // console.log(jobAlerts)
+    console.log('jobAlerts',jobAlerts)
 
     // FETCHING TEAM MEMBERS AND THEIR JOBS
     let finalTeamArray = [];
@@ -398,6 +401,8 @@ router.get("/startup/profile", isAuth, async (req, res) => {
         mobile_no: 0,
       })
       .limit(2);
+
+      console.log('team',team)
 
     if (team.length != 0) {
       team.forEach((item) => {
@@ -420,6 +425,8 @@ router.get("/startup/profile", isAuth, async (req, res) => {
 
     finalTeamArray = await Promise.all(finalTeamArray);
 
+    console.log('finalTeamArray',finalTeamArray)
+
     return res.status(200).render("startupLogin", {
       foundData,
       startupData,
@@ -428,11 +435,11 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       founderData,
       jobDetailData,
       jobAlerts,
-      finalTeamArray,
+      finalTeamArray
     });
   } catch (err) {
-    console.log(err);
-    return res.status(500).send("Server Error");
+    console.log('error inside try',err);
+    // return res.status(500).send("Server Error");
   }
 });
 

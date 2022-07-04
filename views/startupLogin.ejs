@@ -84,7 +84,7 @@
                   var num = resArray[i][resArray[i].length-1].diff;
                   var title = resArray[i][resArray[i].length-1].type_title;
                   var isLess = resArray[i][resArray[i].length-1].isLess %>
-                  <li> <%= title %>: <b style="<%= `color: ${isLess?"red":"green"}` %>"> <%= `${isLess?"-":"+"}${num}` %> </b> </li>
+                  <li> <%= title %>: <b > <%= `${isLess?"-":"+"}${num}` %> </b> </li>
                   <% } %>  
                 <% } %>  
               </ul>
@@ -382,7 +382,7 @@
             </script>
 
             <script>
-              let graphArr = <%- JSON.stringify(resArray) %>;
+              let graphArr = JSON.parse('<%- JSON.stringify(resArray) %>');
               // console.log(graphArr);
               if (graphArr.length != 0) {
 

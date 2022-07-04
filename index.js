@@ -27,7 +27,7 @@ db.once("open", () => {
 //    Initializing app
 //    ****************
 const app = express();
-const path = require("path");
+const path = require("node:path");
 
 //setting paths for public,views & partials
 const publicDirPath = path.join(__dirname, "/public");
@@ -80,11 +80,12 @@ app.use(
 );
 
 //Routes Setup
-const routePath = require("./routes/client.js");
+const routePath = require("./routes/client");
 const editRoute = require("./routes/editData");
 const addDataRoute = require("./routes/addData");
 const deleteDataRoute = require("./routes/deleteData");
 const getDataRoute = require("./routes/getData");
+
 const { isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn } = require("./middleware/authFuncs");
 
 app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, (req, res) => {
