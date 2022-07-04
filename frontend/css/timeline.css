@@ -184,12 +184,13 @@ ol {
   justify-content: space-between;
 }
 
-.content .bottom button {
+.timeline-content .bottom button {
   text-decoration: none;
   background-color: #1687a7;
   color: white;
   padding: 7px 15px;
   border-radius: 5px;
+
 }
 
 <<<<<<< HEAD .content .center img {
