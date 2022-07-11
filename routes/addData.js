@@ -12,6 +12,7 @@ const jobPostModel = require("../models/jobPostModel");
 const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
+const productDetailSchema = require("../models/productDetailSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 
@@ -562,5 +563,38 @@ router.post(
     }
   }
 );
+
+router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
+  async (req, res) => {
+    try {
+      const uid = req.params.uid;
+      const dynamicProductModel = new mongoose.model(
+        `${uid}_products_collections`,
+        productDetailSchema
+      );
+
+      let picUrl;
+      if (req.file) {
+        if (req.file.filename) picUrl = `/${req.file.filename}`;
+        else picUrl = null;
+      } else {
+        picUrl = null;
+      }
+
+      const dataToBeAdded = new dynamicProductModel({
+        date: req.body.date ? req.body.date : Date.now(),
+        product_title: req.body.product_title,
+        picUrl: picUrl,
+      });
+      const savedData = await dataToBeAdded.save();
+      // console.log(savedData);
+      // res.status(201).json("Posted press back");
+      res.redirect("/startup/profile");
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  });
+
 
 module.exports = router;

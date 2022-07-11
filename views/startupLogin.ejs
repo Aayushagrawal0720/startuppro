@@ -1,54 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= startupData.startup_name %>&nbsp-&nbspHome</title>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-<!-- added by mohit -->
-<link rel="stylesheet" href="css/carousel.css">
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-  crossorigin="anonymous"
-/>
 
-<!-- end -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
-      integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://kit.fontawesome.com/af3eeee1f8.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="/css/startupLogin.css" />
-    <link rel="stylesheet" href="/css/timeline.css" />
-    <link rel="stylesheet" href="/css/graphs.css" />
-    <script src="css/script.js" defer></script>
-  </head>
+<head>
+  <title>
+    <%= startupData.startup_name %>&nbsp-&nbspHome
+  </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- added by mohit -->
+  <link rel="stylesheet" href="css/carousel.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
-  <body>
-    <%- include('./_partials/navbar_2') %>
+  <!-- end -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+    integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/startupLogin.css" />
+  <link rel="stylesheet" href="/css/timeline.css" />
+  <link rel="stylesheet" href="/css/graphs.css" />
+  <script src="/js/script.js" defer></script>
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
     <br>
 
     <% if(isLogin){ %>
@@ -56,562 +38,655 @@
         document.querySelector('.login-nav').innerText = "PROFILE";
       </script>
 
-        <div class="edit_login">              <!--  ----------------- rachit Gupta-------------- -->
+      <div class="edit_login">
+        <!--  ----------------- rachit Gupta-------------- -->
 
-      <div class="container mt-2 d-flex justify-content-center justify-content-lg-end">
+        <div class="container mt-2 d-flex justify-content-center justify-content-lg-end">
 
-        <div class="dropdown">
-          <button class="btn btn-warning dropdown-toggle d-lg-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Profile Options
-          </button>
-          <ul class="dropdown-menu" style="border-radius:10px; box-shadow: 0px 0px 9px 1px rgb(190, 190, 190);" aria-labelledby="dropdownMenuButton1">
+          <div class="dropdown">
+            <button class="btn btn-warning dropdown-toggle d-lg-none" type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Profile Options
+            </button>
+            <ul class="dropdown-menu" style="border-radius:10px; box-shadow: 0px 0px 9px 1px rgb(190, 190, 190);"
+              aria-labelledby="dropdownMenuButton1">
 
-            <li><a href=<%= `/editData/startup/${startupData.uid}/basicdetails` %> ><button class="btn btn-warning mt-2 px-2 py-1">Edit Details</button></a></li>
-            <li><a href=<%= `/adddata/profile/startup/${startupData.uid}` %> ><button class="btn btn-warning mt-2 px-2 py-1">Edit Profile</button></a></li>
-            <li><a href=<%= `/adddata/timelinegraph/${startupData.uid}` %>  ><button class="btn btn-warning mt-2 px-2 py-1">Add Update</button></a></li>
-            <li><a href=<%= `/getdata/startup/jobdetails/${startupData.uid}` %> ><button class="btn btn-warning mt-2 px-2 py-1">See Job Details</button></a></li>
-            <li><a href=<%= `/adddata/jobposts/${startupData.uid}` %> ><button class="btn btn-warning mt-2 px-2 py-1">Add Job Post/Alert</button></a></li>
-            <li><a href=<%= `/getdata/startup/jobalerts/${startupData.uid}` %> ><button class="btn btn-warning mt-2 px-2 py-1">See Job Posts/Alerts</button></a></li>
-            <li><button class="logout-btn btn btn-warning mt-2 px-2 py-1">Logout</button></li>
+              <li><a href=<%=`/editData/startup/${startupData.uid}/basicdetails` %> ><button
+                    class="btn btn-warning mt-2 px-2 py-1">Edit Details</button></a></li>
+              <li><a href=<%=`/adddata/profile/startup/${startupData.uid}` %> ><button
+                    class="btn btn-warning mt-2 px-2 py-1">Edit Profile</button></a></li>
+              <li><a href=<%=`/adddata/timelinegraph/${startupData.uid}` %> ><button
+                    class="btn btn-warning mt-2 px-2 py-1">Add Update</button></a></li>
+              <li><a href=<%=`/getdata/startup/jobdetails/${startupData.uid}` %> ><button
+                    class="btn btn-warning mt-2 px-2 py-1">See Job Details</button></a></li>
+              <li><a href=<%=`/adddata/jobposts/${startupData.uid}` %> ><button
+                    class="btn btn-warning mt-2 px-2 py-1">Add Job Post/Alert</button></a></li>
+              <li><a href=<%=`/getdata/startup/jobalerts/${startupData.uid}` %> ><button
+                    class="btn btn-warning mt-2 px-2 py-1">See Job Posts/Alerts</button></a></li>
+              <li><button class="logout-btn btn btn-warning mt-2 px-2 py-1">Logout</button></li>
 
-          </ul>
-        </div>
-      </div>
-       
-    <% } %> 
-
-    
-
-    <div id="parent-row">
-
-      <% if(isLogin){ %>
-        <link rel="stylesheet" href="/css/sidebar.css">
-        <div class="container sidebar-container">
-          <ul class="bg-none" style="background-color: transparent;">
-            <% if(resArray.length!=0) {%> 
-            <li><div class="container bg-light mb-3" style="border: 2px solid black; border-radius: 10px;">
-              <h4>Analytics</h4>
-              <ul class="bg-light">
-                <% for(var i = 0; i < resArray.length; i++) {
-                  if(resArray[i].length!=0){
-                  var num = resArray[i][resArray[i].length-1].diff;
-                  var title = resArray[i][resArray[i].length-1].type_title;
-                  var isLess = resArray[i][resArray[i].length-1].isLess %>
-                  <li> <%= title %>: <b style="<%= `color: ${isLess?"red":"green"}` %>"> <%= `${isLess?"-":"+"}${num}` %> </b> </li>
-                  <% } %>  
-                <% } %>  
-              </ul>
-            </div></li>
-            <% } %> 
-            <div class="p-2 profile-menu" style="border: 0.5px solid grey; border-radius: 10px;">
-              <li><h4><%= startupData.startup_name %> </h4></li>
-              <li><a href=<%= `/editData/startup/${startupData.uid}/basicdetails` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile</button></a></li>
-              <li><a href=<%= `/adddata/profile/startup/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile Pic</button></a></li>
-              <li><a href=<%= `/adddata/timelinegraph/${startupData.uid}` %>  ><button class="new--sidebar-btn mt-2 px-2 py-1">Add Update</button></a></li>
-              <li><a href=<%= `/getdata/startup/jobdetails/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">See Job Details</button></a></li>
-              <li><a href=<%= `/adddata/jobposts/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">Add Job Post/Alert</button></a></li>
-              <li><a href=<%= `/getdata/startup/jobalerts/${startupData.uid}` %> ><button class="new--sidebar-btn mt-2 px-2 py-1">See Job Posts/Alerts</button></a></li>
-              <li><button class="new--sidebar-btn mt-2 px-2 py-1 logout-btn">Logout</button></li>
-            </div>
-          </ul>
-        </div>
-
-        <!-- Logout button script -->
-        <script>
-          const logoutBtn = document.querySelectorAll(".logout-btn");
-          
-          logoutBtn.forEach((item)=>{
-            item.addEventListener('click',()=>{
-            fetch('/logout/startup',{
-              method:"DELETE",
-              redirect: "follow"
-            }).then((res)=>{
-              if(res.redirected) window.location.href = res.url;
-            })
-          })
-          })
-        </script>
-      <% } %> 
-    
-      <div class="fluid-container px-4">
-
-        <!-- PROFILE DETAILS -->
-        <div class="container parent-container px-2">
-          <div class="container main-container mt-5">
-            <div class="row inside">
-              <div class="col-md-12 background-box mb-4">
-                <!-- background -->
-              </div>
-              <div class="image-box">
-                <img
-                  src=<%= startupData.pic_url %> 
-                  class="img-fluid"
-                />
-              </div>
-              <div class="col-md-12 py-3">
-                <div class="row">
-                  <div class="mt-4 col-md-4">
-                    <h2><%= startupData.startup_name %></h2>
-                    <h6><%= startupData.Industry %></h6>
-                    <h6><%= startupData.email_official %></h6>
-                    <h6>About Company: &nbsp <%= startupData.about_company %> </h6>
-                    <h6>Website: &nbsp <a href="<%= `https://${startupData.website_link}` %>" ><%= startupData.website_link %></a> </h6>
-                  </div>
-                  <div class="mt-4 col-md-4">
-                    <h6><%= `Phone: ${startupData.mobile_no}` %></h6>
-                    <h6><%= `${startupData.city}, ${startupData.zip_code}` %></h6>
-                    <h6><%= startupData.state %></h6>
-                    <% let d = new Date(startupData.start_date);
-                    let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                    let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                    let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-                    %> 
-                    <h6> Started on: &nbsp <%= `${da}-${mo}-${ye}` %> </h6>
-                  </div>
-                  <div class="col-md-4 px-lg-5 mb-3">
-                    <div class="portfolio d-flex flex-column justify-content-center align-items-center py-2" >
-                      <div class="image-box-2 my-4">
-                        <img src=<%= founderData.pic_url %> alt="founder_img" class="img-float">
-                      </div>
-                      <div class="text-center">
-                        <p>Name:&nbsp <%= founderData.member_name %>  </p>
-                        <p>Designation:&nbsp <%= jobDetailData.job_title %> </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </ul>
           </div>
         </div>
 
-        <!-- TEAM MEMBERS DETAILS -->
-        <% if (finalTeamArray.length!=0){ %> 
-        <div class="container my-5">
-          <div class="main-container p-3 d-flex flex-column">
-            <div class="col-md-12">
-              <h2 class="text-center">Team</h2>
-            </div>
-            <div class="container d-flex flex-column flex-md-row justify-content-center">
-              <% if(finalTeamArray.length==0) {%>
-                <h3 class="text-center">No Team Members</h3>
-              <% } else{%>
-                <% finalTeamArray.forEach((item) => { %>
-                  <div class="container col-md-5 my-2" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px;">
-                    <div class="m-2 d-flex ">
-                      <img src="<%= item.memberData.pic_url %>" alt="member-profile" class="img-fluid mx-auto" style="height: 50px; width: 50px;">
-                      <div class="mx-auto">
-                        <h5><%= item.memberData.member_name %></h5>
-                        <h6><%= item.jobData.job_title %> </h6>
+        <% } %>
+
+
+
+          <div id="parent-row">
+
+            <% if(isLogin){ %>
+              <link rel="stylesheet" href="/css/sidebar.css">
+              <div class="container sidebar-container">
+                <ul class="bg-none" style="background-color: transparent;">
+                  <% if(resArray.length!=0) {%>
+                    <li>
+                      <div class="container bg-light mb-3" style="border: 2px solid black; border-radius: 10px;">
+                        <h4>Analytics</h4>
+                        <ul class="bg-light">
+                          <% for(var i=0; i < resArray.length; i++) { if(resArray[i].length!=0){ var
+                            num=resArray[i][resArray[i].length-1].diff; var
+                            title=resArray[i][resArray[i].length-1].type_title; var
+                            isLess=resArray[i][resArray[i].length-1].isLess %>
+                            <li>
+                              <%= title %>: <b style="<%= `color: ${isLess?" red":"green"}` %>"> <%=
+                                    `${isLess?"-":"+"}${num}` %> </b>
+                            </li>
+                            <% } %>
+                              <% } %>
+                        </ul>
                       </div>
-                    </div>
-                  </div>
-                <% }) %>
-              <% } %>
-            </div>
-            <div class="col-md-12">
-              <a href="<%= `/getdata/startup/teammembers/${startupData.uid}` %> "><h6 class="text-right">View More</h6></a>
-            </div>
-          </div>
-        </div>
-        <% } %> 
-
-        <!-- JOB ALERTS DETAILS -->
-        <div class="container my-5 ">
-          <div class="main-container p-3 d-flex flex-column">
-            <div class="col-md-12">
-              <h2 class="text-center">Jobs by <%= startupData.startup_name %> </h2>
-            </div>
-            <div class="container d-flex flex-column flex-md-row justify-content-center">
-              <% if(jobAlerts.length==0) {%>
-                <h3 class="text-center">No Jobs Posted</h3>
-              <% } else{%>
-                <% jobAlerts.forEach((item) => { %>
-
-                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; ">
-                    <div class="m-3">
-                      <div class="imageadd">
-                        <h1>Job title</h1>
-                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                    </li>
+                    <% } %>
+                      <div class="p-2 profile-menu" style="border: 0.5px solid grey; border-radius: 10px;">
+                        <li>
+                          <h4>
+                            <%= startupData.startup_name %>
+                          </h4>
+                        </li>
+                        <li><a href=<%=`/editData/startup/${startupData.uid}/basicdetails` %> ><button
+                              class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile</button></a></li>
+                        <li><a href=<%=`/adddata/profile/startup/${startupData.uid}` %> ><button
+                              class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile Pic</button></a></li>
+                        <li><a href=<%=`/adddata/timelinegraph/${startupData.uid}` %> ><button
+                              class="new--sidebar-btn mt-2 px-2 py-1">Add Update</button></a></li>
+                        <li><a href=<%=`/getdata/startup/jobdetails/${startupData.uid}` %> ><button
+                              class="new--sidebar-btn mt-2 px-2 py-1">See Job Details</button></a></li>
+                        <li><a href=<%=`/adddata/jobposts/${startupData.uid}` %> ><button
+                              class="new--sidebar-btn mt-2 px-2 py-1">Add Job Post/Alert</button></a></li>
+                        <li><a href=<%=`/getdata/startup/jobalerts/${startupData.uid}` %> ><button
+                              class="new--sidebar-btn mt-2 px-2 py-1">See Job Posts/Alerts</button></a></li>
+                        <li><button class="new--sidebar-btn mt-2 px-2 py-1 logout-btn">Logout</button></li>
                       </div>
-                      <h4 class="it"><b><%= item.title %></b></h4>
-                      <h6 class="it"><%= item.employment_type %> </h6>
-                      <h6 class="it">Description of the job posted</h6>
-                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
-                    </div>
-                  </div>
-                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                    <div class="m-3">
-                      <div class="imageadd">
-                        <h1>Job title</h1>
-                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                      </div>
-                      
-                      <h4 class="it"><b><%= item.title %></b></h4>
-                      <h6 class="it"><%= item.employment_type %> </h6>
-                      <h6 class="it">Description of the job posted</h6>
-                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
-                    </div>
-                  </div>
-                
-                <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-                <% }) %>
-              <% } %>
-              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            <div class="col-md-12">
-              <a href="<%= `/getdata/startup/jobalerts/public/${startupData.uid}` %> "><h6 class="text-right">View More</h6></a>
-            </div>
-          </div>
-        </div>
-
-        <!--Timeline-->
-        <div class="container my-5">
-          <div class="main-container carousel4">
-            <div class="mt-2 d-flex justify-content-around">
-              
-              <h2 style="text-align: center; padding-top: 10px;" class="text-center">Timeline</h2>
-              <% if(isLogin) {%> 
-                <h3><button class="btn btn-warning mt-1" id="add-btn">Add</button></h3>
-              <% } %> 
-            </div>
-            <br>
-            <br>
-            <div>
-              <!-- TIMELINE EVENT ADD -->
-              <% if(isLogin){ %> 
-                <style>.dis-class{display: none;}</style>
-
-                <div class="container p-2 my-1 timeline-add-container">
-                  <div class="main-container carousel2">
-                      <div class="row">
-                      <div class="col-md-12">
-                          <form class="col-md-12 d-flex flex-column align-items-stretch" enctype="multipart/form-data" method="POST" action=<%= `/adddata/timeline/${startupData.uid}/timelineevent` %> >
-                          <!-- <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?"> -->
-                          <h2><input name="event_title" id="post-input" type="text" class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's On Your Mind?"></h2>
-                          <input name="event_pic" type="file" class="mx-2 d-block" placeholder="Select"><br>
-                          </div>
-                          </div>
-                          <row>
-                          <div class="col-md-12 text-sm-right text-center">
-                              <input type="submit" class="btn my-4 btn-warning" value="Post">            
-                          </div>
-                          </form>
-                      </row>
-                  </div>
-                </div>
-
-                <script>
-                  var addBtn = document.getElementById('add-btn');
-                  var addContainer = document.querySelector('.timeline-add-container');
-
-                  addContainer.classList.add('dis-class');
-                  addBtn.addEventListener('click',()=>{
-                    addContainer = document.querySelector('.timeline-add-container');
-                    addContainer.classList.toggle('dis-class');
-                  })
-                </script>
-
-              <% } %>
-            </div>
-            <% if(foundData.length==0) { %>
-            <h3 class="text-center">No Timeline</h3>
-            <% } else{ %>
-              <div class="carousel2">
-              <%- include('./mohit/timeline') %>
-              <div class="container my-4 text-right">
-                <a href="<%= `/getdata/timeline/${startupData.uid}` %> "><h6>View More</h6></a>
+                </ul>
               </div>
-            <% } %>`
-          </div>
-          
-          </div>
-      
-            
-          <!--Timeline-->
-        <div class="container my-5">
-          <div class="main-container carousel4">
-            <div class="mt-2 d-flex justify-content-around">
-              
-              <h2 style="text-align: center; padding-top: 10px;" class="text-center">Product Details</h2>
-              <% if(isLogin) {%> 
-                <h3><button class="btn btn-warning mt-1" id="prod-btn">Add</button></h3>
-              <% } %> 
-            </div>
-            <br>
-            <br>
-            <div>
-              <!-- TIMELINE EVENT ADD -->
-              <% if(isLogin){ %> 
-                <style>.dis-class{display: none;}</style>
 
-                <div class="container p-2 my-1 product-add-container">
-                  <div class="main-container carousel2">
-                      <div class="row">
-                      <div class="col-md-12">
-                          <form class="col-md-12 d-flex flex-column align-items-stretch" enctype="multipart/form-data" method="POST" action=<%= `/adddata/timeline/${startupData.uid}/timelineevent` %> >
-                          <!-- <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?"> -->
-                          <h2><input name="event_title" id="post-input" type="text" class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's the Title"></h2>
-                          <input name="event_pic" type="file" class="mx-2 d-block" placeholder="Select"><br>
-                          </div>
-                          </div>
-                          <row>
-                          <div class="col-md-12 text-sm-right text-center">
-                              <input type="submit" class="btn my-4 btn-warning" value="Post">            
-                          </div>
-                          </form>
-                      </row>
-                  </div>
-                </div>
+              <!-- Logout button script -->
+              <script>
+                const logoutBtn = document.querySelectorAll(".logout-btn");
 
-                <script>
-                  var addBtn = document.getElementById('prod-btn');
-                  var addContainer = document.querySelector('.product-add-container');
-
-                  addContainer.classList.add('dis-class');
-                  addBtn.addEventListener('click',()=>{
-                    addContainer = document.querySelector('.product-add-container');
-                    addContainer.classList.toggle('dis-class');
-                  })
-                </script>
-
-              <% } %>
-            </div>
-            <% if(foundData.length==0) { %>
-            <h3 class="text-center">No Timeline</h3>
-            <% } else{ %>
-              <div class="carousel2">
-              <%- include('./mohit/carousel') %>
-              
-            <% } %>`
-          </div>
-          
-          </div>
-      
-      
-
-
-        <!-- PRESS RELEASE-->
-        <div class="container my-5 ">
-          <div class="main-container p-3 d-flex flex-column">
-            <div class="col-md-12">
-              <h2 class="text-center">Press Releases of <%= startupData.startup_name %> </h2>
-              
-              <hr>
-            </div>
-            <div class="container d-flex flex-column flex-md-row justify-content-center ">
-              <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                    <div class="m-3">
-                      <div class="imageadd">
-                        <h1>Job title</h1>
-                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                      </div>
-                      
-                      <h4 class="it"><b>First</b></h4>
-                      <h6 class="it">Second</h6>
-                      <h6 class="it">Description of the job posted</h6>
-                     
-                      
-                      
-                    </div>
-                  </div>
-                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                    <div class="m-3">
-                      <div class="imageadd">
-                        <h1>Job title</h1>
-                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                      </div>
-                      
-                      <h4 class="it"><b>First</b></h4>
-                      <h6 class="it">Second</h6>
-                      <h6 class="it">Description of the job posted</h6>
-                     
-                      
-                      
-                    </div>
-                  </div>
-                  <div class="container col-md-5 my-3 jobbox" style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                    <div class="m-3">
-                      <div class="imageadd">
-                        <h1>Job title</h1>
-                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                      </div>
-                      
-                      <h4 class="it"><b>First</b></h4>
-                      <h6 class="it">Second</h6>
-                      <h6 class="it">Description of the job posted</h6>
-                     
-                      
-                      
-                    </div>
-                  </div>
-              
-            </div>
-            <% if(isLogin) {%> 
-              <h3><button class="btn btn-warning mt-1" id="press-add-btn">Add</button></h3>
-            <% } %>
-
-            <div>
-              <!-- PRESS EVENT ADD -->
-              <% if(isLogin){ %> 
-                <style>.display-class{display: none;}</style>
-
-                <div class="container p-2 my-1 press-add-container">
-                  <div class="main-container carousel2">
-                      <div class="row">
-                      <div class="col-md-12">
-                          <form class="col-md-12 d-flex flex-column align-items-stretch" enctype="multipart/form-data" method="POST" action=<%= `/adddata/timeline/${startupData.uid}/timelineevent` %> >
-                          <!-- <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?"> -->
-                          <h2><input name="event_title" id="post-input" type="text" class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's On Your Mind?"></h2>
-                          <input name="event_pic" type="file" class="mx-2 d-block" placeholder="Select"><br>
-                          </div>
-                          </div>
-                          <row>
-                          <div class="col-md-12 text-sm-right text-center">
-                              <input type="submit" class="btn my-4 btn-warning" value="Post">            
-                          </div>
-                          </form>
-                      </row>
-                  </div>
-                </div>
-
-                <script>
-                  var addBtn = document.getElementById('press-add-btn');
-                  var addContainer = document.querySelector('.press-add-container');
-
-                  addContainer.classList.add('display-class');
-                  addBtn.addEventListener('click',()=>{
-                    addContainer = document.querySelector('.press-add-container');
-                    addContainer.classList.toggle('display-class');
-                  })
-                </script>
-
-              <% } %>
-            </div>
-            
-          </div>
-          </div>
-          <!-- GRAPH -->
-        <div class="container my-5" style="position: relative;">
-          <div class="main-container">
-            <div class="row">
-              <div class="col-md-12">
-                <h2 class="text-center my-3">Analytics</h2>
-                <% if(resArray.length==0) {%>
-                <h3 class="text-center">No data present</h3>
-                <% } %>
-              </div>
-            </div>
-            <div class="outer-graph-container row p-3 px-5"></div>
-            <script>
-              function createChart(id, labelArr, valArr, type_title) {
-                const colors = [
-                  "green",
-                  "blue",
-                  "red",
-                  "yellow",
-                  "pink",
-                  "orange",
-                  "purple",
-                  "#00ffd9",
-                  "#ff003c",
-                  "#6aff00",
-                  "#ffaa00",
-                ];
-                let myChart = document.getElementById(id);
-
-                let newChart = new Chart(myChart, {
-                  type: "line",
-                  data: {
-                    labels: labelArr,
-                    datasets: [
-                      {
-                        label: type_title,
-                        data: valArr,
-                        backgroundColor: "rgba(0,0,0,0)",
-                        borderColor:
-                          colors[Math.floor(Math.random() * colors.length)],
-                      },
-                    ],
-                  },
-                  options: {
-                    scales: {
-                      xAxes: [
-                        {
-                          gridLines: {
-                            display: false,
-                          },
-                        },
-                      ],
-                      yAxes: [
-                        {
-                          gridLines: {
-                            display: false,
-                          },
-                        },
-                      ],
-                    },
-                  },
-                });
-              }
-            </script>
-
-            <script>
-              let graphArr = <%- JSON.stringify(resArray) %>;
-              // console.log(graphArr);
-              if (graphArr.length != 0) {
-
-                graphArr.forEach((item, index) => {
-                  // if(index==3) throw new Error('x');
-                  if (item.length != 0) {
-                    const outerContainer = document.querySelector('.outer-graph-container');
-
-                    let valArr = [];
-                    let labelArr = [];
-
-                    item.forEach((subItem) => {
-                      valArr.push(subItem.total);
-
-                      const d = new Date(subItem.date);
-                      const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                      const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                      const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-
-                      labelArr.push(`${da}-${mo}-${ye}`);
+                logoutBtn.forEach((item) => {
+                  item.addEventListener('click', () => {
+                    fetch('/logout/startup', {
+                      method: "DELETE",
+                      redirect: "follow"
+                    }).then((res) => {
+                      if (res.redirected) window.location.href = res.url;
                     })
-                    // console.log(valArr);
-                    // console.log(labelArr);
-
-                    // outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
-                    canvasEl = document.createElement('div');
-                    canvasEl.classList.add('col-lg-5');
-                    canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                    outerContainer.append(canvasEl);
-                    canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
-
-                    createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
-                  }
+                  })
                 })
-              }
-            </script>
+              </script>
+              <% } %>
+
+                <div class="fluid-container px-4">
+
+                  <!-- PROFILE DETAILS -->
+                  <div class="container parent-container px-2">
+                    <div class="container main-container mt-5">
+                      <div class="row inside">
+                        <div class="col-md-12 background-box mb-4">
+                          <!-- background -->
+                        </div>
+                        <div class="image-box">
+                          <img src=<%=startupData.pic_url %> class="img-fluid" />
+                        </div>
+                        <div class="col-md-12 py-3">
+                          <div class="row">
+                            <div class="mt-4 col-md-4">
+                              <h2>
+                                <%= startupData.startup_name %>
+                              </h2>
+                              <h6>
+                                <%= startupData.Industry %>
+                              </h6>
+                              <h6>
+                                <%= startupData.email_official %>
+                              </h6>
+                              <h6>About Company: &nbsp <%= startupData.about_company %>
+                              </h6>
+                              <h6>Website: &nbsp <a href="<%= `https://${startupData.website_link}` %>">
+                                  <%= startupData.website_link %>
+                                </a> </h6>
+                            </div>
+                            <div class="mt-4 col-md-4">
+                              <h6>
+                                <%= `Phone: ${startupData.mobile_no}` %>
+                              </h6>
+                              <h6>
+                                <%= `${startupData.city}, ${startupData.zip_code}` %>
+                              </h6>
+                              <h6>
+                                <%= startupData.state %>
+                              </h6>
+                              <% let d=new Date(startupData.start_date); let ye=new Intl.DateTimeFormat('en', {
+                                year: 'numeric' }).format(d); let mo=new Intl.DateTimeFormat('en', { month: 'short'
+                                }).format(d); let da=new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d); %>
+                                <h6> Started on: &nbsp <%= `${da}-${mo}-${ye}` %>
+                                </h6>
+                            </div>
+                            <div class="col-md-4 px-lg-5 mb-3">
+                              <div class="portfolio d-flex flex-column justify-content-center align-items-center py-2">
+                                <div class="image-box-2 my-4">
+                                  <img src=<%=founderData.pic_url %> alt="founder_img" class="img-float">
+                                </div>
+                                <div class="text-center">
+                                  <p>Name:&nbsp <%= founderData.member_name %>
+                                  </p>
+                                  <p>Designation:&nbsp <%= jobDetailData.job_title %>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- TEAM MEMBERS DETAILS -->
+                  <% if (finalTeamArray.length!=0){ %>
+                    <div class="container my-5">
+                      <div class="main-container p-3 d-flex flex-column">
+                        <div class="col-md-12">
+                          <h2 class="text-center">Team</h2>
+                        </div>
+                        <div class="container d-flex flex-column flex-md-row justify-content-center">
+                          <% if(finalTeamArray.length==0) {%>
+                            <h3 class="text-center">No Team Members</h3>
+                            <% } else{%>
+                              <% finalTeamArray.forEach((item)=> { %>
+                                <div class="container col-md-5 my-2"
+                                  style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px;">
+                                  <div class="m-2 d-flex ">
+                                    <img src="<%= item.memberData.pic_url %>" alt="member-profile"
+                                      class="img-fluid mx-auto" style="height: 50px; width: 50px;">
+                                    <div class="mx-auto">
+                                      <h5>
+                                        <%= item.memberData.member_name %>
+                                      </h5>
+                                      <h6>
+                                        <%= item.jobData.job_title %>
+                                      </h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <% }) %>
+                                  <% } %>
+                        </div>
+                        <div class="col-md-12">
+                          <a href="<%= `/getdata/startup/teammembers/${startupData.uid}` %> ">
+                            <h6 class="text-right">View More</h6>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <% } %>
+
+                      <!-- JOB ALERTS DETAILS -->
+                      <div class="container my-5 ">
+                        <div class="main-container p-3 d-flex flex-column">
+                          <div class="col-md-12">
+                            <h2 class="text-center">Jobs by <%= startupData.startup_name %>
+                            </h2>
+                          </div>
+                          <div class="container d-flex flex-column flex-md-row justify-content-center">
+                            <% if(jobAlerts.length==0) {%>
+                              <h3 class="text-center">No Jobs Posted</h3>
+                              <% } else{%>
+                                <% jobAlerts.forEach((item)=> { %>
+
+                                  <div class="container col-md-5 my-3 jobbox"
+                                    style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; ">
+                                    <div class="m-3">
+                                      <div class="imageadd">
+                                        <h1>Job title</h1>
+                                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                      </div>
+                                      <h4 class="it"><b>
+                                          <%= item.title %>
+                                        </b></h4>
+                                      <h6 class="it">
+                                        <%= item.employment_type %>
+                                      </h6>
+                                      <h6 class="it">Description of the job posted</h6>
+                                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+                                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
+                                    </div>
+                                  </div>
+                                  <div class="container col-md-5 my-3 jobbox"
+                                    style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                                    <div class="m-3">
+                                      <div class="imageadd">
+                                        <h1>Job title</h1>
+                                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                      </div>
+
+                                      <h4 class="it"><b>
+                                          <%= item.title %>
+                                        </b></h4>
+                                      <h6 class="it">
+                                        <%= item.employment_type %>
+                                      </h6>
+                                      <h6 class="it">Description of the job posted</h6>
+                                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+                                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
+                                    </div>
+                                  </div>
+
+                                  <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+                                  <% }) %>
+                                    <% } %>
+                                      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                          </div>
+                          <div class="col-md-12">
+                            <a href="<%= `/getdata/startup/jobalerts/public/${startupData.uid}` %> ">
+                              <h6 class="text-right">View More</h6>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!--Timeline-->
+                      <div class="container my-5">
+                        <div class="main-container carousel4">
+                          <div class="mt-2 d-flex justify-content-around">
+
+                            <h2 style="text-align: center; padding-top: 10px;" class="text-center">Timeline</h2>
+                            <% if(isLogin) {%>
+                              <h3><button class="btn btn-warning mt-1" id="add-btn">Add</button></h3>
+                              <% } %>
+                          </div>
+                          <br>
+                          <br>
+                          <div>
+                            <!-- TIMELINE EVENT ADD -->
+                            <% if(isLogin){ %>
+                              <style>
+                                .dis-class {
+                                  display: none;
+                                }
+                              </style>
+
+                              <div class="container p-2 my-1 timeline-add-container">
+                                <div class="main-container carousel2">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <form class="col-md-12 d-flex flex-column align-items-stretch"
+                                        enctype="multipart/form-data" method="POST"
+                                        action=<%=`/adddata/timeline/${startupData.uid}/timelineevent` %> >
+                                        <!-- <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?"> -->
+                                        <h2><input name="event_title" id="post-input" type="text"
+                                            class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's On Your Mind?"></h2>
+                                        <input name="event_pic" type="file" class="mx-2 d-block"
+                                          placeholder="Select"><br>
+                                    </div>
+                                  </div>
+                                  <row>
+                                    <div class="col-md-12 text-sm-right text-center">
+                                      <input type="submit" class="btn my-4 btn-warning" value="Post">
+                                    </div>
+                                    </form>
+                                  </row>
+                                </div>
+                              </div>
+
+                              <script>
+                                var addBtn = document.getElementById('add-btn');
+                                var addContainer = document.querySelector('.timeline-add-container');
+
+                                addContainer.classList.add('dis-class');
+                                addBtn.addEventListener('click', () => {
+                                  addContainer = document.querySelector('.timeline-add-container');
+                                  addContainer.classList.toggle('dis-class');
+                                })
+                              </script>
+
+                              <% } %>
+                          </div>
+                          <% if(foundData.length==0) { %>
+                            <h3 class="text-center">No Timeline</h3>
+                            <% } else{ %>
+                              <div class="carousel2">
+                                <%- include('./mohit/timeline') %>
+                                  <div class="container my-4 text-right">
+                                    <a href="<%= `/getdata/timeline/${startupData.uid}` %> ">
+                                      <h6>View More</h6>
+                                    </a>
+                                  </div>
+                                  <% } %>
+                              </div>
+
+                        </div>
+
+
+                        <!--Timeline-->
+                        <div class="container my-5">
+                          <div class="main-container carousel4">
+                            <div class="mt-2 d-flex justify-content-around">
+
+                              <h2 style="text-align: center; padding-top: 10px;" class="text-center">Product Details
+                              </h2>
+                              <% if(isLogin) {%>
+                                <h3><button class="btn btn-warning mt-1" id="prod-btn">Add</button></h3>
+                                <% } %>
+                            </div>
+                            <br>
+                            <br>
+                            <div>
+                              <!-- TIMELINE EVENT ADD -->
+                              <% if(isLogin){ %>
+                                <style>
+                                  .dis-class {
+                                    display: none;
+                                  }
+                                </style>
+
+                                <div class="container p-2 my-1 product-add-container">
+                                  <div class="main-container carousel2">
+                                    <div class="row">
+                                      <div class="col-md-12">
+                                        <form class="col-md-12 d-flex flex-column align-items-stretch"
+                                          enctype="multipart/form-data" method="POST"
+                                          action=<%=`/adddata/product/${startupData.uid}/addproduct` %> >
+                                          <!-- <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?"> -->
+                                          <h2><input name="product_title" id="post-input" type="text"
+                                              class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's the Title"></h2>
+                                          <input name="event_pic" type="file" class="mx-2 d-block"
+                                            placeholder="Select"><br>
+                                      </div>
+                                    </div>
+                                    <row>
+                                      <div class="col-md-12 text-sm-right text-center">
+                                        <input type="submit" class="btn my-4 btn-warning" value="Post">
+                                      </div>
+                                      </form>
+                                    </row>
+                                  </div>
+                                </div>
+
+                                <script>
+                                  var addBtn = document.getElementById('prod-btn');
+                                  var addContainer = document.querySelector('.product-add-container');
+
+                                  addContainer.classList.add('dis-class');
+                                  addBtn.addEventListener('click', () => {
+                                    addContainer = document.querySelector('.product-add-container');
+                                    addContainer.classList.toggle('dis-class');
+                                  })
+                                </script>
+
+                                <% } %>
+                            </div>
+                            <% if(foundData.length==0) { %>
+                              <h3 class="text-center">No Timeline</h3>
+                              <% } else{ %>
+                                <div class="carousel2">
+                                  <%- include('./mohit/carousel') %>
+
+                                    <% } %>
+                                </div>
+
+                          </div>
+
+
+
+
+                          <!-- PRESS RELEASE-->
+                          <div class="container my-5 ">
+                            <div class="main-container p-3 d-flex flex-column">
+                              <div class="col-md-12">
+                                <h2 class="text-center">Press Releases of <%= startupData.startup_name %>
+                                </h2>
+
+                                <hr>
+                              </div>
+                              <div class="container d-flex flex-column flex-md-row justify-content-center ">
+                                <div class="container col-md-5 my-3 jobbox"
+                                  style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                                  <div class="m-3">
+                                    <div class="imageadd">
+                                      <h1>Job title</h1>
+                                      <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                    </div>
+
+                                    <h4 class="it"><b>First</b></h4>
+                                    <h6 class="it">Second</h6>
+                                    <h6 class="it">Description of the job posted</h6>
+
+
+
+                                  </div>
+                                </div>
+                                <div class="container col-md-5 my-3 jobbox"
+                                  style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                                  <div class="m-3">
+                                    <div class="imageadd">
+                                      <h1>Job title</h1>
+                                      <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                    </div>
+
+                                    <h4 class="it"><b>First</b></h4>
+                                    <h6 class="it">Second</h6>
+                                    <h6 class="it">Description of the job posted</h6>
+
+
+
+                                  </div>
+                                </div>
+                                <div class="container col-md-5 my-3 jobbox"
+                                  style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                                  <div class="m-3">
+                                    <div class="imageadd">
+                                      <h1>Job title</h1>
+                                      <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                    </div>
+
+                                    <h4 class="it"><b>First</b></h4>
+                                    <h6 class="it">Second</h6>
+                                    <h6 class="it">Description of the job posted</h6>
+
+
+
+                                  </div>
+                                </div>
+
+                              </div>
+                              <% if(isLogin) {%>
+                                <h3><button class="btn btn-warning mt-1" id="press-add-btn">Add</button></h3>
+                                <% } %>
+
+                                  <div>
+                                    <!-- PRESS EVENT ADD -->
+                                    <% if(isLogin){ %>
+                                      <style>
+                                        .display-class {
+                                          display: none;
+                                        }
+                                      </style>
+
+                                      <div class="container p-2 my-1 press-add-container">
+                                        <div class="main-container carousel2">
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <form class="col-md-12 d-flex flex-column align-items-stretch"
+                                                enctype="multipart/form-data" method="POST"
+                                                action=<%=`/adddata/timeline/${startupData.uid}/timelineevent` %> >
+                                                <!-- <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?"> -->
+                                                <h2><input name="event_title" id="post-input" type="text"
+                                                    class="col-md-12 my-4 mx-sm-2 p-2"
+                                                    placeholder="What's On Your Mind?"></h2>
+                                                <input name="event_pic" type="file" class="mx-2 d-block"
+                                                  placeholder="Select"><br>
+                                            </div>
+                                          </div>
+                                          <row>
+                                            <div class="col-md-12 text-sm-right text-center">
+                                              <input type="submit" class="btn my-4 btn-warning" value="Post">
+                                            </div>
+                                            </form>
+                                          </row>
+                                        </div>
+                                      </div>
+
+                                      <script>
+                                        var addBtn = document.getElementById('press-add-btn');
+                                        var addContainer = document.querySelector('.press-add-container');
+
+                                        addContainer.classList.add('display-class');
+                                        addBtn.addEventListener('click', () => {
+                                          addContainer = document.querySelector('.press-add-container');
+                                          addContainer.classList.toggle('display-class');
+                                        })
+                                      </script>
+
+                                      <% } %>
+                                  </div>
+
+                            </div>
+                          </div>
+                          <!-- GRAPH -->
+                          <div class="container my-5" style="position: relative;">
+                            <div class="main-container">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <h2 class="text-center my-3">Analytics</h2>
+                                  <% if(resArray.length==0) {%>
+                                    <h3 class="text-center">No data present</h3>
+                                    <% } %>
+                                </div>
+                              </div>
+                              <div class="outer-graph-container row p-3 px-5"></div>
+                              <script>
+                                function createChart(id, labelArr, valArr, type_title) {
+                                  const colors = [
+                                    "green",
+                                    "blue",
+                                    "red",
+                                    "yellow",
+                                    "pink",
+                                    "orange",
+                                    "purple",
+                                    "#00ffd9",
+                                    "#ff003c",
+                                    "#6aff00",
+                                    "#ffaa00",
+                                  ];
+                                  let myChart = document.getElementById(id);
+
+                                  let newChart = new Chart(myChart, {
+                                    type: "line",
+                                    data: {
+                                      labels: labelArr,
+                                      datasets: [
+                                        {
+                                          label: type_title,
+                                          data: valArr,
+                                          backgroundColor: "rgba(0,0,0,0)",
+                                          borderColor:
+                                            colors[Math.floor(Math.random() * colors.length)],
+                                        },
+                                      ],
+                                    },
+                                    options: {
+                                      scales: {
+                                        xAxes: [
+                                          {
+                                            gridLines: {
+                                              display: false,
+                                            },
+                                          },
+                                        ],
+                                        yAxes: [
+                                          {
+                                            gridLines: {
+                                              display: false,
+                                            },
+                                          },
+                                        ],
+                                      },
+                                    },
+                                  });
+                                }
+                              </script>
+
+                              <script>
+                                let graphArr = <% - JSON.stringify(resArray) %>;
+                                // console.log(graphArr);
+                                if (graphArr.length != 0) {
+
+                                  graphArr.forEach((item, index) => {
+                                    // if(index==3) throw new Error('x');
+                                    console.log(item);
+                                    if (item.length != 0) {
+                                      const outerContainer = document.querySelector('.outer-graph-container');
+
+                                      let valArr = [];
+                                      let labelArr = [];
+
+                                      item.forEach((subItem) => {
+                                        valArr.push(subItem.total);
+
+                                        const d = new Date(subItem.date);
+                                        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+                                        labelArr.push(`${da}-${mo}-${ye}`);
+                                      })
+                                      // console.log(valArr);
+                                      // console.log(labelArr);
+
+                                      // outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                      canvasEl = document.createElement('div');
+                                      canvasEl.classList.add('col-lg-5');
+                                      canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                      outerContainer.append(canvasEl);
+                                      canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
+
+                                      createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
+                                    }
+                                  })
+                                }
+                              </script>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                </div>
+
           </div>
-        </div>
+          <!-- #################################### footer -->
+          <%- include('./_partials/footer') %>
 
-      </div>
-      </div>
-        
-    </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+              integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+              crossorigin="anonymous"></script>
+</body>
 
-  </div>
-    <!-- #################################### footer -->
-    <%- include('./_partials/footer') %>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-  </body>
 </html>

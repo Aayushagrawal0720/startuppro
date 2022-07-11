@@ -12,6 +12,7 @@ const memberModel = require("../models/teamMemberModel");
 const jobDetailModel = require("../models/jobDetailModel");
 const timelineEventSchema = require("../models/timelineEventSchema");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const productDetailSchema = require("../models/productDetailSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 const contactModel = require("../models/contactUsModel");
@@ -238,8 +239,8 @@ router.post(
 
       req.session.isAuth = true;
       req.session.uid = startupData.uid;
-      // res.redirect("/startup/profile");
-      res.redirect("/startup/profile/posts");
+      res.redirect("/startup/profile");
+      // res.redirect("/startup/profile/posts");
     } catch (e) {
       console.log(e);
       res.status(400).send(e);
@@ -319,8 +320,18 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       `${uid}_timeline_collection`,
       timelineEventSchema
     );
-    const foundData = await timelineModel.find().sort({ date: -1 }).limit(2);
+    const foundData = await timelineModel.find().sort({ date: -1 });
     // console.log(foundData);
+
+    //Fetching PRODUCT DETAILS DATA
+    const productModel = new mongoose.model(
+      `${uid}_products_collection`,
+      productDetailSchema
+    );
+
+    const productData = await productModel.find();
+    // console.log(productData);
+
 
     // FETCHING GRAPH DATA
     let resArray = [];
@@ -382,7 +393,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     var jobAlerts = await jobPostModel
       .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
       .select({ title: 1, jid: 1, employment_type: 1 })
-      .limit(2);
+      .limit(5);
     // console.log(jobAlerts)
 
     // FETCHING TEAM MEMBERS AND THEIR JOBS
@@ -422,6 +433,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
 
     return res.status(200).render("startupLogin", {
       foundData,
+      productData,
       startupData,
       resArray,
       isLogin,
