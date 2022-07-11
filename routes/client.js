@@ -13,6 +13,7 @@ const jobDetailModel = require("../models/jobDetailModel");
 const timelineEventSchema = require("../models/timelineEventSchema");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
 const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 const contactModel = require("../models/contactUsModel");
@@ -332,6 +333,13 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     const productData = await productModel.find();
     // console.log(productData);
 
+    //FETCHING PRESS RELEASE DATA
+    const pressReleaseModel = new mongoose.model(
+      `${uid}_press_collection`,
+      pressReleaseSchema
+    );
+
+    const pressReleaseData = await pressReleaseModel.find();
 
     // FETCHING GRAPH DATA
     let resArray = [];
@@ -434,6 +442,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     return res.status(200).render("startupLogin", {
       foundData,
       productData,
+      pressReleaseData,
       startupData,
       resArray,
       isLogin,

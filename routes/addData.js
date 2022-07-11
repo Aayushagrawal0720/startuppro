@@ -13,6 +13,7 @@ const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
 const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 
@@ -595,6 +596,31 @@ router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
       res.status(400).send(err);
     }
   });
+
+router.post("/press/:uid/addpress", isAuth, async (req, res) => {
+  try {
+    const uid = req.params.uid;
+    const dynamicPressModel = new mongoose.model(
+      `${uid}_press_collections`,
+      pressReleaseSchema
+    );
+
+    const dataToBeAdded = new dynamicPressModel({
+      job_title: req.body.job_title,
+      first: req.body.first,
+      second: req.body.second,
+      description: req.body.description,
+    });
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted press back");
+    res.redirect("/startup/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
 
 
 module.exports = router;
