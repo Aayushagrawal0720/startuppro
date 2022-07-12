@@ -159,46 +159,46 @@
       $.extend(true, setting, options);
       var states = [
         {
-          $zIndex: 1,
+          zIndex: 1,
           width: 120,
           height: 150,
           top: 69,
           left: 134,
-          $opacity: 1,
+          opacity: 1,
         },
-        { $zIndex: 2, width: 130, height: 170, top: 59, left: 0, $opacity: 0.1 },
+        { zIndex: 2, width: 130, height: 170, top: 59, left: 0, opacity: 0.1 },
         {
-          $zIndex: 3,
+          zIndex: 3,
           width: 170,
           height: 218,
           top: 35,
           left: 110,
-          $opacity: 1,
+          opacity: 1,
         },
-        { $zIndex: 4, width: 250, height: 300, top: 0, left: 263, $opacity: 1 },
+        { zIndex: 4, width: 250, height: 300, top: 0, left: 263, opacity: 1 },
         {
-          $zIndex: 3,
+          zIndex: 3,
           width: 170,
           height: 218,
           top: 35,
           left: 470,
-          $opacity: 1,
+          opacity: 1,
         },
         {
-          $zIndex: 2,
+          zIndex: 2,
           width: 130,
           height: 170,
           top: 59,
           left: 620,
-          $opacity: 1,
+          opacity: 1,
         },
         {
-          $zIndex: 1,
+          zIndex: 1,
           width: 120,
           height: 150,
           top: 69,
           left: 500,
-          $opacity: 1,
+          opacity: 1,
         },
       ];
       var $lis = $ele.find("li");
@@ -224,11 +224,11 @@
         $lis.each(function (index, element) {
           var state = states[index];
           $(element)
-            .css("zIndex", state.$zIndex)
+            .css("zIndex", states.zIndex)
             .finish()
             .animate(state, setting.speed)
             .find("img")
-            .css("opacity", state.$opacity);
+            .css("opacity", states.opacity);
         });
       }
       function next() {

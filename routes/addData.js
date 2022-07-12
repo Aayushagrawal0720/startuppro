@@ -600,10 +600,13 @@ router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
 router.post("/press/:uid/addpress", isAuth, async (req, res) => {
   try {
     const uid = req.params.uid;
+    console.log(req.body);
     const dynamicPressModel = new mongoose.model(
       `${uid}_press_collections`,
       pressReleaseSchema
     );
+
+
 
     const dataToBeAdded = new dynamicPressModel({
       job_title: req.body.job_title,

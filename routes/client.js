@@ -340,6 +340,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     );
 
     const pressReleaseData = await pressReleaseModel.find();
+    // console.log(pressReleaseData);
 
     // FETCHING GRAPH DATA
     let resArray = [];
