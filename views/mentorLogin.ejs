@@ -102,7 +102,7 @@
                           <%= mentorData.linkedin_url %>
                         </p>
                         <p class="card-text">
-                          <strong>Email ID:</strong>
+                          <strong>Email ID: </strong>
                           <%= mentorData.men_email %>
                         </p>
 
@@ -119,28 +119,73 @@
 
               </div>
         </div>
-        <div class="container my-3 ms-4 justify-content-center align-items-center ">
-          <div class="row ms-3 px-2 justify-content-center align-items-center">
-            <div class="contents rounded border my-3" id="contents">
-              <h5 class="title my-2 text-center font-weight-bold">Experience
-              </h5>
-              <form method="post" id="experience-submit" action="">
-                <div class="form-group m-2 py-2">
-                  <label for="resume_upload">Upload Resume</label>
-                  <input class="form-control" id="resume_upload" type="file" name="resume_upload" />
-                </div>
-                <div class="form-group m-2 py-2">
-                  <textarea class="form-control" placeholder="Tells us about your experience in Mentoring" rows="6"
-                    col="10"></textarea>
-                </div>
-                <div class="text-center my-2">
-                  <button type="submit" class="btn btn-primary" id="experience-submit">Submit</button>
-                </div>
-              </form>
-            </div>
-          </div>
+        <div class="container mx-auto flex-row justify-content-center align-items-center">
+          <div class="row ms-3 justify-content-center align-items-center">
+              <div class="contents rounded border my-3" id="contents">
+                <h3><button class="btn btn-warning mt-1" id="mentor-btn">Add</button></h3>
 
-        </div>
+                <h5 class="title my-2 text-center font-weight-bold">Details 
+                  </h5>
+                <!-- ADD PRODUCT -->
+                
+                  <style>
+                    .dis-class {
+                      display: none;
+                    }
+                  </style>
+
+                  <div class="container p-2 my-1 mentor-add-container">
+                    <div class="main-container carousel2">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <form class="col-md-12 d-flex flex-column align-items-stretch">
+                            
+                            
+                            <h3><input name="product_title" id="post-input" type="text"
+                                class="col-md-12 my-4 mx-sm-2 p-2" placeholder="Certificate Number - "></h3>
+                            <input name="event_pic" type="file" class="mx-2 d-block"
+                              placeholder="Select"><br>
+                              <h3><input name="product_title" id="post-input" type="text"
+                                class="col-md-12 my-4 mx-sm-2 p-2" placeholder="Description"></h3>
+                        </div>
+                      </div>
+                      <row>
+                        <div class="col-md-12 text-sm-right text-center">
+                          <input type="submit" class="btn my-4 btn-warning" value="Post">
+                        </div>
+                        </form>
+                      </row>
+                    </div>
+                  </div>
+
+                  <script>
+                    var addBtn = document.getElementById('mentor-btn');
+                    var addContainer = document.querySelector('.mentor-add-container');
+
+                    addContainer.classList.add('dis-class');
+                    addBtn.addEventListener('click', () => {
+                      addContainer = document.querySelector('.mentor-add-container');
+                      addContainer.classList.toggle('dis-class');
+                    })
+                  </script>
+
+                  
+                
+                      <div class="form-group m-2">
+                          1 Certificate No - 
+                      </div>
+                      <div class="form-group m-2 py-2">
+                          <img src="https://picsum.photos/200/" alt="">
+                      </div>
+                      <div class="form-group m-2 py-2">
+                          Experience
+                      </div>
+                      
+                
+              </div>
+          </div>
+      </div>
+
 
         <%- include('./_partials/footer') %>
 

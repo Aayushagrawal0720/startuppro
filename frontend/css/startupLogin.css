@@ -7,7 +7,7 @@
 }
 
 .profile-menu {
-  background: #D3E0EA;
+  background: #d3e0ea;
   box-shadow: 0px 0px 9px 0.5px rgb(165 157 157);
 }
 
@@ -165,12 +165,13 @@ ul li {
 }
 .main-container {
   position: relative;
-  background: #F6F5F5;}
+  background: #f6f5f5;
+}
 .background-box {
   height: 150px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  background: #1687A7;
+  background: #1687a7;
 }
 .inside {
   /* border: 1px solid grey; */
@@ -380,7 +381,7 @@ ul li {
   top: 110px;
   left: 60px;
   text-decoration: none;
-  background-color: #1687A7;
+  background-color: #1687a7;
   color: #eee;
   padding: 7px;
   margin-top: 40px;
@@ -715,7 +716,9 @@ ul li {
 }
 
 .img-class {
-  width: 80px;
+  width: 300px;
+  object-fit: cover;
+  justify-content: center;
 }
 
 /* -------------end--------------- */
