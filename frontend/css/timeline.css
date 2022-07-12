@@ -23,10 +23,10 @@ ol {
   width: 100%;
 }
 .timeline li.active,
-.timeline li:hover{
+.timeline li:hover {
   color: dodgerblue;
 }
-.timeline li:after{
+.timeline li:after {
   display: block;
   width: 5px;
   height: 5px;
@@ -41,13 +41,13 @@ ol {
   top: 85px;
   left: 65px;
 }
-.timeline li:hover:after{
-  background: #1687A7;
+.timeline li:hover:after {
+  background: #1687a7;
 }
-.timeline li.active:after{
-  background: #1687A7;
+.timeline li.active:after {
+  background: #1687a7;
 }
-.timeline #line{
+.timeline #line {
   width: 90%;
   margin: auto;
   background: #eee;
@@ -267,9 +267,6 @@ ol {
   }
 }
 
-
-
-
 * {
   margin: 0;
   padding: 0;
@@ -410,7 +407,12 @@ ol {
   }
   .timeline-content .bottom {
     /* top: 100px; */
-    padding-top: ;
+    /* padding-top: ; */
+  }
+
+  .img-cla {
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
   }
 }
-
