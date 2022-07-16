@@ -9,6 +9,7 @@ const jobDetailModel = require("../models/jobDetailModel");
 const jobPostModel = require("../models/jobPostModel");
 const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
@@ -93,7 +94,7 @@ router.get("/startups", async (req, res) => {
     }
 
     if (req.session.isAuthCA) {
-      return res.redirect("/cadetails/:uid");
+      return res.redirect("/ca/profile");
     }
 
     if (req.session.isAuthMentor) {
@@ -205,8 +206,19 @@ router.get("/startups/:industry", async (req, res) => {
       const jobDetailDataUser = await jobDetailModel.findOne({ mid: mid });
       if (!jobDetailDataUser) isEmployed = false;
       else isEmployed = true;
+
+      // Fetching Experience Data of the user
+      const userExpModel = new mongoose.model(
+        `${user_id}_user_experience_collections`,
+        dynamicExperienceSchema.userExperienceSchema
+      );
+
+      const userExpData = await userExpModel.find();
+      // console.log(mentorExpData);
+
       return res.status(200).render("userLogin", {
         memberData,
+        userExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -223,8 +235,17 @@ router.get("/startups/:industry", async (req, res) => {
       isLogin = true;
       logoutLink = "/logout/ca";
 
+      //FETCHING EXP DATA OF CA
+      const caExpModel = new mongoose.model(
+        `${ca_id}_ca_experience_collections`,
+        dynamicExperienceSchema.caExperienceSchema
+      );
+
+      const caExpData = await caExpModel.find();
+
       return res.status(200).render("caPage", {
         caData,
+        caExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -240,8 +261,18 @@ router.get("/startups/:industry", async (req, res) => {
       isLogin = true;
       logoutLink = "/logout/mentor";
 
+      // FETCHING MENTOR EXP DATA
+      const mentorExpModel = new mongoose.model(
+        `${mentor_id}_mentor_experience_collections`,
+        dynamicExperienceSchema.mentorExperienceSchema
+      );
+
+      const mentorExpData = await mentorExpModel.find();
+      // console.log(mentorExpData);
+
       return res.status(200).render("mentorLogin", {
         mentorData,
+        mentorExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -291,6 +322,8 @@ router.get("/startup/:uid", async (req, res) => {
     `${uid}_graph_eventcollections`,
     dynamicColSchemas.typeEventSchema
   );
+
+
 
   const foundTypes = await dynamicTypeModel.find();
   // console.log(foundTypes);

@@ -11,6 +11,7 @@ const jobDetailModel = require("../models/jobDetailModel");
 const jobPostModel = require("../models/jobPostModel");
 const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
 const productDetailSchema = require("../models/productDetailSchema");
 const pressReleaseSchema = require("../models/pressReleaseSchema");
@@ -625,5 +626,81 @@ router.post("/press/:uid/addpress", isAuth, async (req, res) => {
 }
 );
 
+router.post("/ca/:ca_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const ca_id = req.params.ca_id;
+    const caExperienceModel = new mongoose.model(
+      `${ca_id}_ca_experience_collections`,
+      dynamicExperienceSchema.caExperienceSchema
+    );
+
+    const dataToBeAdded = new caExperienceModel({
+      certificate_no: req.body.certificate_no,
+      certificate: req.body.certificate,
+      experience: req.body.experience,
+
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted ca experience");
+    res.redirect("/ca/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
+
+router.post("/mentor/:mentor_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const mentor_id = req.params.mentor_id;
+    const mentorExperienceModel = new mongoose.model(
+      `${mentor_id}_mentor_experience_collections`,
+      dynamicExperienceSchema.mentorExperienceSchema
+    );
+
+    const dataToBeAdded = new mentorExperienceModel({
+      resume: req.body.resume_upload,
+      experience: req.body.experience,
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted mentor experience");
+    res.redirect("/mentor/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
+
+router.post("user/:user_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const user_id = req.params.user_id;
+    const userExperienceModel = new mongoose.model(
+      `${user_id}_user_experience_collections`,
+      dynamicExperienceSchema.userExperienceSchema
+    );
+
+    const dataToBeAdded = new userExperienceModel({
+      resume: req.body.resume_upload,
+      experience: req.body.experience,
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted user experience");
+    res.redirect("/user/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
 
 module.exports = router;
