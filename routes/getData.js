@@ -11,6 +11,8 @@ const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
 const dynamicExperienceSchema = require("../models/experienceSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
+const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 
@@ -304,13 +306,31 @@ router.get("/startup/:uid", async (req, res) => {
   const startupData = await startUpScheme.findOne({ uid: uid });
 
   // GETTING TIMELINE DATA
-  var name = startupData.startup_name;
+  var name = startupData?.startup_name;
   const timelineModel = new mongoose.model(
     `${uid}_timeline_collection`,
     timelineEventSchema
   );
   const foundData = await timelineModel.find().sort({ date: -1 });
   // console.log(foundData[0]._id);
+
+  //Fetching PRODUCT DETAILS DATA
+  const productModel = new mongoose.model(
+    `${uid}_products_collection`,
+    productDetailSchema
+  );
+
+  const productData = await productModel.find();
+  // console.log(productData);
+
+  //FETCHING PRESS RELEASE DATA
+  const pressReleaseModel = new mongoose.model(
+    `${uid}_press_collection`,
+    pressReleaseSchema
+  );
+
+  const pressReleaseData = await pressReleaseModel.find();
+  // console.log(pressReleaseData);
 
   // FETCHING GRAPH DATA
   let resArray = [];
@@ -355,8 +375,10 @@ router.get("/startup/:uid", async (req, res) => {
   const isLogin = false;
 
   // FETCHING FOUNDER DATA
-  const mid = startupData.founders[0];
+  const mid = startupData?.founders[0];
+  // console.log(mid);
   const founderData = await teamMemberModel.findOne({ mid: mid });
+  // console.log(founderData);
 
   // FETCHING FOUNDER'S JOB DATA
   var jobDetailData = await jobDetailModel.findOne({ mid: mid });
@@ -412,6 +434,8 @@ router.get("/startup/:uid", async (req, res) => {
 
   res.render("startupLogin", {
     foundData,
+    productData,
+    pressReleaseData,
     startupData,
     resArray,
     isLogin,
