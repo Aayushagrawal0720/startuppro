@@ -13,6 +13,11 @@ const timelineEventSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  description: {
+    type: String,
+    required: true,
+    default: "",
+  },
 });
 
 module.exports = timelineEventSchema;

@@ -554,6 +554,7 @@ router.post(
         date: req.body.date ? req.body.date : Date.now(),
         event_title: req.body.event_title,
         picUrl: picUrl,
+        description: req.body.description,
       });
       const savedData = await dataToBeAdded.save();
       // console.log(savedData);

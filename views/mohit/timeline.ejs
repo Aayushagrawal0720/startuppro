@@ -39,19 +39,30 @@
 
   <div id="progress-content-section">
     <div class="section-content discovery active">
-      <h2>dummy1</h2>
+      <h2>
+        <%= foundData[0].event_title %>
+      </h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
-        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
-        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
-        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
-        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
-        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
-        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+        <%= foundData[0].description %>
       </p>
     </div>
 
-    <div class="section-content strategy">
+    <% foundData.forEach(function(item, index) { %>
+      <% if (index> 0 && index < 5) { %>
+          <div class="section-content desc0<%= index + 1 %>">
+            <h2>
+              <%= foundData[index].event_title %>
+            </h2>
+            <p>
+              <%= foundData[index].description %>
+            </p>
+          </div>
+          <% } %>
+            <% }); %>
+  </div>
+</div>
+
+<!-- <div class="section-content strategy">
       <h2>dumm2</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
@@ -102,8 +113,8 @@
         malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
       </p>
     </div>
-  </div>
-</div>
+  </div> -->
+<!-- </div> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
@@ -114,26 +125,26 @@
 
   $(".step01").click(function () {
     $("#line-progress").css("width", "3%");
-    $(".discovery").addClass("active").siblings().removeClass("active");
+    $(".desc01").addClass("active").siblings().removeClass("active");
   });
 
   $(".step02").click(function () {
     $("#line-progress").css("width", "25%");
-    $(".strategy").addClass("active").siblings().removeClass("active");
+    $(".desc02").addClass("active").siblings().removeClass("active");
   });
 
   $(".step03").click(function () {
     $("#line-progress").css("width", "50%");
-    $(".creative").addClass("active").siblings().removeClass("active");
+    $(".desc03").addClass("active").siblings().removeClass("active");
   });
 
   $(".step04").click(function () {
     $("#line-progress").css("width", "75%");
-    $(".production").addClass("active").siblings().removeClass("active");
+    $(".desc04").addClass("active").siblings().removeClass("active");
   });
 
   $(".step05").click(function () {
     $("#line-progress").css("width", "100%");
-    $(".analysis").addClass("active").siblings().removeClass("active");
+    $(".desc05").addClass("active").siblings().removeClass("active");
   });
 </script>
