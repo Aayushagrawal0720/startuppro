@@ -1,58 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= p_name %> - Add Resume</title>
-    <meta charset="UTF8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="/css/memberRegister.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/css/startupRegister.css"
-    />
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <!-- <link rel="stylesheet" href="website.css"> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/af3eeee1f8.js"
-      crossorigin="anonymous"
-    ></script>
 
-    <style>
-      .image-box img{
-        width: 200px;
-        height: 200px;
-        border-radius: 100%;
-        box-shadow: 0 0 9px 1px rgb(156, 156, 156);
-        border: 2px solid #fff;
-      }
-    </style>
+<head>
+  <title>
+    <%= p_name %> - Add Resume
+  </title>
+  <meta charset="UTF8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/memberRegister.css" />
+  <link rel="stylesheet" href="/css/startupRegister.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <!-- <link rel="stylesheet" href="website.css"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
 
-  </head>
-  <body>
-    <%- include('./_partials/navbar_2') %>
+  <style>
+    .image-box img {
+      width: 200px;
+      height: 200px;
+      border-radius: 100%;
+      box-shadow: 0 0 9px 1px rgb(156, 156, 156);
+      border: 2px solid #fff;
+    }
+  </style>
+
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
 
     <!-- ################################### HEADING  -->
-    <div class="container py-2">
+    <div class="container mt-5 py-4">
       <div class="row">
         <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
           <h3>Add Resume</h3>
@@ -62,10 +45,10 @@
 
     <!-- ############################################## form -->
     <div class="container cont-height">
-      
+
       <div class="row shadow">
         <div class="col-md-12">
-          <form class="ml-3 my-3" id="resume-add-form" method="POST" enctype="multipart/form-data" action=<%= url %> >
+          <form class="ml-3 my-3" id="resume-add-form" method="POST" enctype="multipart/form-data" action=<%=url %> >
             <div class="row">
               <label style="font-size: 1.2rem;" for="resume">Add Resume (PDF) &nbsp</label><br />
               <input type="file" name="resume" id="'resume" />
@@ -74,11 +57,7 @@
 
             <div class="row">
               <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
-                <input
-                  type="submit"
-                  class="btn btn-warning py-2 px-5"
-                  value="Update"
-                />
+                <input type="submit" class="btn btn-warning py-2 px-5" value="Update" />
               </div>
             </div>
           </form>
@@ -87,5 +66,6 @@
     </div>
 
     <%- include('./_partials/footer') %>
-  </body>
+</body>
+
 </html>

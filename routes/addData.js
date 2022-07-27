@@ -11,10 +11,12 @@ const jobDetailModel = require("../models/jobDetailModel");
 const jobPostModel = require("../models/jobPostModel");
 const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
+const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
-
 
 // Middlewares
 const {
@@ -97,7 +99,7 @@ router.post("/startup/teammember", async (req, res) => {
     // const newData = new pendingMemberModel(dataToBeAdded);
     const savedData = await newData.save();
 
-    console.log(savedData);
+    // console.log(savedData);
     // res.status(201).json(savedData);
     var redirectMsg =
       "Successfully Registered.\n You're now being redirected to the Login Page";
@@ -227,7 +229,7 @@ router.post(
 
       console.log(setData);
       // res.status(201).send("Uploaded");
-      res.redirect(`/getdata/cadetail/${ca_id}`);
+      res.redirect("/ca/profile");
     } catch (err) {
       console.log(err);
       res.status(400).send("Error");
@@ -552,6 +554,7 @@ router.post(
         date: req.body.date ? req.body.date : Date.now(),
         event_title: req.body.event_title,
         picUrl: picUrl,
+        description: req.body.description,
       });
       const savedData = await dataToBeAdded.save();
       // console.log(savedData);
@@ -564,29 +567,141 @@ router.post(
   }
 );
 
-//#################################################
-//CA Details page where experience data is posted.
-router.post("/cadetail/:uid", (req, res) => {
-  const uid = req.params.uid;
+router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
+  async (req, res) => {
+    try {
+      const uid = req.params.uid;
+      const dynamicProductModel = new mongoose.model(
+        `${uid}_products_collections`,
+        productDetailSchema
+      );
 
-  const experience = req.body.experience;
-  console.log(uid, req.body);
-  if (!uid || !experience) {
-    console.log(uid, experience);
-    return res.status(422).json({ error: "values feed missing" });
+      let picUrl;
+      if (req.file) {
+        if (req.file.filename) picUrl = `/${req.file.filename}`;
+        else picUrl = null;
+      } else {
+        picUrl = null;
+      }
 
+      const dataToBeAdded = new dynamicProductModel({
+        date: req.body.date ? req.body.date : Date.now(),
+        product_title: req.body.product_title,
+        picUrl: picUrl,
+      });
+      const savedData = await dataToBeAdded.save();
+      // console.log(savedData);
+      // res.status(201).json("Posted press back");
+      res.redirect("/startup/profile");
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  });
+
+router.post("/press/:uid/addpress", isAuth, async (req, res) => {
+  try {
+    const uid = req.params.uid;
+    console.log(req.body);
+    const dynamicPressModel = new mongoose.model(
+      `${uid}_press_collections`,
+      pressReleaseSchema
+    );
+
+
+
+    const dataToBeAdded = new dynamicPressModel({
+      job_title: req.body.job_title,
+      first: req.body.first,
+      second: req.body.second,
+      description: req.body.description,
+    });
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted press back");
+    res.redirect("/startup/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
   }
-  const addExp = new experieneSchema({ uid, experience });
-  addExp.save().then(() => {
-    res.status(200).json({ message: "Added experience" });
-    res.redirect("/ca/profile");
-  }
-  ).catch(err => {
-    res.status(400).json({ message: "Error" });
-  }
-  );
 }
 );
-//#################################################
+
+router.post("/ca/:ca_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const ca_id = req.params.ca_id;
+    const caExperienceModel = new mongoose.model(
+      `${ca_id}_ca_experience_collections`,
+      dynamicExperienceSchema.caExperienceSchema
+    );
+
+    const dataToBeAdded = new caExperienceModel({
+      certificate_no: req.body.certificate_no,
+      certificate: req.body.certificate,
+      experience: req.body.experience,
+
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted ca experience");
+    res.redirect("/ca/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
+
+router.post("/mentor/:mentor_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const mentor_id = req.params.mentor_id;
+    const mentorExperienceModel = new mongoose.model(
+      `${mentor_id}_mentor_experience_collections`,
+      dynamicExperienceSchema.mentorExperienceSchema
+    );
+
+    const dataToBeAdded = new mentorExperienceModel({
+      resume: req.body.resume_upload,
+      experience: req.body.experience,
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted mentor experience");
+    res.redirect("/mentor/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
+
+router.post("user/:user_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const user_id = req.params.user_id;
+    const userExperienceModel = new mongoose.model(
+      `${user_id}_user_experience_collections`,
+      dynamicExperienceSchema.userExperienceSchema
+    );
+
+    const dataToBeAdded = new userExperienceModel({
+      resume: req.body.resume_upload,
+      experience: req.body.experience,
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted user experience");
+    res.redirect("/user/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
 
 module.exports = router;

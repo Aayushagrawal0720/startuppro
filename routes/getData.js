@@ -9,7 +9,10 @@ const jobDetailModel = require("../models/jobDetailModel");
 const jobPostModel = require("../models/jobPostModel");
 const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
+const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 
@@ -77,7 +80,7 @@ router.get("/startups", async (req, res) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    console.log(filterArray)
 
     var memberData = null;
     const isLogin = false;
@@ -93,14 +96,14 @@ router.get("/startups", async (req, res) => {
     }
 
     if (req.session.isAuthCA) {
-      return res.redirect("/cadetails/:uid");
+      return res.redirect("/ca/profile");
     }
 
     if (req.session.isAuthMentor) {
       return res.redirect("/mentor/profile");
     }
 
-    return res.status(200).render("userLogin", {
+    return res.status(200).render("startupLoginPosts", {
       memberData,
       startups,
       founderArray,
@@ -205,8 +208,19 @@ router.get("/startups/:industry", async (req, res) => {
       const jobDetailDataUser = await jobDetailModel.findOne({ mid: mid });
       if (!jobDetailDataUser) isEmployed = false;
       else isEmployed = true;
+
+      // Fetching Experience Data of the user
+      const userExpModel = new mongoose.model(
+        `${user_id}_user_experience_collections`,
+        dynamicExperienceSchema.userExperienceSchema
+      );
+
+      const userExpData = await userExpModel.find();
+      // console.log(mentorExpData);
+
       return res.status(200).render("userLogin", {
         memberData,
+        userExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -223,8 +237,17 @@ router.get("/startups/:industry", async (req, res) => {
       isLogin = true;
       logoutLink = "/logout/ca";
 
+      //FETCHING EXP DATA OF CA
+      const caExpModel = new mongoose.model(
+        `${ca_id}_ca_experience_collections`,
+        dynamicExperienceSchema.caExperienceSchema
+      );
+
+      const caExpData = await caExpModel.find();
+
       return res.status(200).render("caPage", {
         caData,
+        caExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -240,8 +263,18 @@ router.get("/startups/:industry", async (req, res) => {
       isLogin = true;
       logoutLink = "/logout/mentor";
 
+      // FETCHING MENTOR EXP DATA
+      const mentorExpModel = new mongoose.model(
+        `${mentor_id}_mentor_experience_collections`,
+        dynamicExperienceSchema.mentorExperienceSchema
+      );
+
+      const mentorExpData = await mentorExpModel.find();
+      // console.log(mentorExpData);
+
       return res.status(200).render("mentorLogin", {
         mentorData,
+        mentorExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -273,13 +306,31 @@ router.get("/startup/:uid", async (req, res) => {
   const startupData = await startUpScheme.findOne({ uid: uid });
 
   // GETTING TIMELINE DATA
-  var name = startupData.startup_name;
+  var name = startupData?.startup_name;
   const timelineModel = new mongoose.model(
     `${uid}_timeline_collection`,
     timelineEventSchema
   );
-  const foundData = await timelineModel.find().sort({ date: -1 }).limit(2);
-  // console.log(foundData);
+  const foundData = await timelineModel.find().sort({ date: -1 });
+  // console.log(foundData[0]._id);
+
+  //Fetching PRODUCT DETAILS DATA
+  const productModel = new mongoose.model(
+    `${uid}_products_collection`,
+    productDetailSchema
+  );
+
+  const productData = await productModel.find();
+  // console.log(productData);
+
+  //FETCHING PRESS RELEASE DATA
+  const pressReleaseModel = new mongoose.model(
+    `${uid}_press_collection`,
+    pressReleaseSchema
+  );
+
+  const pressReleaseData = await pressReleaseModel.find();
+  // console.log(pressReleaseData);
 
   // FETCHING GRAPH DATA
   let resArray = [];
@@ -291,6 +342,8 @@ router.get("/startup/:uid", async (req, res) => {
     `${uid}_graph_eventcollections`,
     dynamicColSchemas.typeEventSchema
   );
+
+
 
   const foundTypes = await dynamicTypeModel.find();
   // console.log(foundTypes);
@@ -322,8 +375,10 @@ router.get("/startup/:uid", async (req, res) => {
   const isLogin = false;
 
   // FETCHING FOUNDER DATA
-  const mid = startupData.founders[0];
+  const mid = startupData?.founders[0];
+  // console.log(mid);
   const founderData = await teamMemberModel.findOne({ mid: mid });
+  // console.log(founderData);
 
   // FETCHING FOUNDER'S JOB DATA
   var jobDetailData = await jobDetailModel.findOne({ mid: mid });
@@ -331,6 +386,11 @@ router.get("/startup/:uid", async (req, res) => {
     jobDetailData = { job_title: "Founder" };
   }
 
+  const jobDetailArray = await jobDetailModel.find({ "from_date": { $exists: true }, "to_date": { $exists: true } }).sort({ date: -1 });
+  console.log(jobDetailArray[0].from_date);
+
+
+  // console.log(jobDetailData);
   // FETCHING JOB ALERTS
   const jobAlerts = await jobPostModel
     .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
@@ -374,11 +434,14 @@ router.get("/startup/:uid", async (req, res) => {
 
   res.render("startupLogin", {
     foundData,
+    productData,
+    pressReleaseData,
     startupData,
     resArray,
     isLogin,
     founderData,
     jobDetailData,
+    jobDetailArray,
     jobAlerts,
     finalTeamArray,
   });
@@ -421,7 +484,7 @@ router.get("/graph/:uid", async (req, res) => {
     );
 
     const foundTypes = await dynamicTypeModel.find();
-    console.log(foundTypes);
+    // console.log(foundTypes);
 
     foundTypes.forEach((item, index) => {
       resArray.push(

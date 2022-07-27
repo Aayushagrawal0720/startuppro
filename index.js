@@ -5,6 +5,12 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
+// const port = 3000;
+
+//    *************
+//    Connect to db
+//    **************
+
 const port = process.env.PORT || 3000;
 
 //    *************
@@ -12,7 +18,7 @@ const port = process.env.PORT || 3000;
 //    **************
 
 mongoose.connect("mongodb+srv://Ayush-startuppro:Ayush-startuppro@cluster0.bgawn.mongodb.net/Coreexpert_dev?retryWrites=true&w=majority", {
-useNewUrlParser: true,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,

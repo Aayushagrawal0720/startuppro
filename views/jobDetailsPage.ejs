@@ -49,6 +49,9 @@
     </script>
     <%- include('./_partials/navbar_2') %>
 
+      <div class="edit_job_page">
+
+
     <% if(finalArray.length==0){ %>
       <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
         <h1>No Job Details</h1>
@@ -56,6 +59,7 @@
     <%} else{%> 
 
     <div class="fluid-container d-flex justify-content-center align-items-center flex-wrap p-2">
+     
         <% finalArray.forEach((item,index)=>{ %>
                 <div class="card shadow mb-5 bg-white p-4 mx-2" style="min-width: 250px">
                 <div class="row">
@@ -81,6 +85,7 @@
     <% } %> 
     </div>
 
+      </div>
     <%- include('./_partials/footer') %>
 
     <script>

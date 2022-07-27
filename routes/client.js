@@ -12,6 +12,9 @@ const memberModel = require("../models/teamMemberModel");
 const jobDetailModel = require("../models/jobDetailModel");
 const timelineEventSchema = require("../models/timelineEventSchema");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
+const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 const contactModel = require("../models/contactUsModel");
@@ -238,8 +241,8 @@ router.post(
 
       req.session.isAuth = true;
       req.session.uid = startupData.uid;
-      // res.redirect("/startup/profile");
-      res.redirect("/startup/profile/posts");
+      res.redirect("/startup/profile");
+      // res.redirect("/startup/profile/posts");
     } catch (e) {
       console.log(e);
       res.status(400).send(e);
@@ -291,7 +294,7 @@ router.get("/startup/profile/posts", isAuth, async (req, res) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    console.log(filterArray)
 
     const isLogin = true;
 
@@ -319,8 +322,26 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       `${uid}_timeline_collection`,
       timelineEventSchema
     );
-    const foundData = await timelineModel.find().sort({ date: -1 }).limit(2);
+    const foundData = await timelineModel.find().sort({ date: -1 });
     // console.log(foundData);
+
+    //Fetching PRODUCT DETAILS DATA
+    const productModel = new mongoose.model(
+      `${uid}_products_collection`,
+      productDetailSchema
+    );
+
+    const productData = await productModel.find();
+    // console.log(productData);
+
+    //FETCHING PRESS RELEASE DATA
+    const pressReleaseModel = new mongoose.model(
+      `${uid}_press_collection`,
+      pressReleaseSchema
+    );
+
+    const pressReleaseData = await pressReleaseModel.find();
+    // console.log(pressReleaseData);
 
     // FETCHING GRAPH DATA
     let resArray = [];
@@ -366,6 +387,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     });
     if (emptyEls == resArray.length) resArray = [];
 
+    // console.log(JSON.stringify(resArray));
     const isLogin = true;
 
     // FETCHING FOUNDER DATA
@@ -382,7 +404,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     var jobAlerts = await jobPostModel
       .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
       .select({ title: 1, jid: 1, employment_type: 1 })
-      .limit(2);
+      .limit(5);
     // console.log(jobAlerts)
 
     // FETCHING TEAM MEMBERS AND THEIR JOBS
@@ -422,6 +444,8 @@ router.get("/startup/profile", isAuth, async (req, res) => {
 
     return res.status(200).render("startupLogin", {
       foundData,
+      productData,
+      pressReleaseData,
       startupData,
       resArray,
       isLogin,
@@ -558,6 +582,15 @@ router.get("/member/profile", isUserAuth, async (req, res) => {
     }
     // console.log(jobDetailData);
 
+    // Fetching Experience Data of the user
+    const userExpModel = new mongoose.model(
+      `${user_id}_user_experience_collections`,
+      dynamicExperienceSchema.userExperienceSchema
+    );
+
+    const userExpData = await userExpModel.find();
+    // console.log(mentorExpData);
+
     const isLogin = true;
     const logoutLink = "/logout/member";
 
@@ -570,6 +603,7 @@ router.get("/member/profile", isUserAuth, async (req, res) => {
 
     res.status(200).render("userLogin", {
       memberData,
+      userExpData,
       startups,
       founderArray,
       jobDetailData,
@@ -644,7 +678,7 @@ router.post(
 
       req.session.isAuthCA = true;
       req.session.ca_id = caData.ca_id;
-      res.redirect(`/getdata/cadetail/${caData.ca_id}`);
+      res.redirect(`/ca/profile`);
     } catch (e) {
       console.log(e);
       res.status(400).send("Error");
@@ -653,13 +687,14 @@ router.post(
 );
 
 // CA Profile
-router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
+router.get("/ca/profile", isCAAuth, async (req, res) => {
   try {
     const ca_id = req.session.ca_id;
     const caData = await caModel.findOne({ ca_id: ca_id });
 
     let founderArray = [];
     let startupFoundersArray = [];
+
 
     // GETTING STARTUP DATAs AND THEIR FOUNDER DATAs
     const startups = await startUpScheme.find();
@@ -694,6 +729,16 @@ router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
     }
     // console.log(jobDetailData);
 
+    //FETCHING EXP DATA OF CA
+    const caExpModel = new mongoose.model(
+      `${ca_id}_ca_experience_collections`,
+      dynamicExperienceSchema.caExperienceSchema
+    );
+
+    const caExpData = await caExpModel.find();
+    console.log(caExpData);
+
+
     const isLogin = true;
     const logoutLink = "/logout/ca";
 
@@ -706,6 +751,7 @@ router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
 
     res.status(200).render("caPage", {
       caData,
+      caExpData,
       startups,
       founderArray,
       jobDetailData,
@@ -827,6 +873,16 @@ router.get("/mentor/profile", isMentorAuth, async (req, res) => {
     founderArray = await Promise.all(founderArray);
     // console.log(founderArray);
 
+    // FETCHING MENTOR EXP DATA
+    const mentorExpModel = new mongoose.model(
+      `${mentor_id}_mentor_experience_collections`,
+      dynamicExperienceSchema.mentorExperienceSchema
+    );
+
+    const mentorExpData = await mentorExpModel.find();
+    // console.log(mentorExpData);
+
+
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
     var jobDetailData = await jobDetailModel.findOne({
       mid: founderArray[0].mid,
@@ -848,6 +904,7 @@ router.get("/mentor/profile", isMentorAuth, async (req, res) => {
 
     res.status(200).render("mentorLogin", {
       mentorData,
+      mentorExpData,
       startups,
       founderArray,
       jobDetailData,

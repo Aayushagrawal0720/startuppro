@@ -31,7 +31,9 @@
   <body>
     <%- include('./_partials/navbar_2') %>
 
-    <div class="container py-5 px-3 my-5 shadow-border" style="border-radius: 8px;">
+
+    <br><br>
+    <div class="container py-5 px-3 my-5 shadow-border" style="border-radius: 8px; ">
         <div class="row px-3">
             <div class="col-md-3">
                 <img src=<%= startupData.pic_url %> class="img-fluid">
@@ -68,6 +70,57 @@
             </div>
         </div>
     </div>
+
+    <div class="wrapper" style="border-radius: 20px;">
+      <div class="left">
+        <img src=<%= startupData.pic_url %> class="img-fluid"  style="min-height: 150px; min-width: 150px;  box-shadow: 0px 3px 5px #276678; border-radius: 50%">
+        <h4 style="margin-bottom: 10px; text-transform: uppercase; font-weight: 500;"><%= jobAlert.title %></h4>
+        <h6 style="font-size:19px"><%= startupData.startup_name %></h6>
+        <p><%= jobAlert.employment_type %> </p>
+      </div>
+      <div class="right">
+        <div class="info">
+          <h3>About</h3>
+          <div class="info-data">
+            <div class="data">
+              <h4>Information</h4>
+              <p><%= jobAlert.basic_info %></p>
+            </div>
+              <div class="data">
+              <h4>Requirements</h4>
+              <p><%= jobAlert.job_req %></p>
+            </div>
+          </div>
+        </div>
+        <div class="projects">
+          <h3>Needs</h3>
+          <div class="projects-data">
+            <div class="data">
+              <h4>Skills</h4>
+              <p><ul class="ml-3">
+                <% jobAlert.skills.forEach((item) =>{ %>
+                  <li style="list-style: disc;"><%= item %> </li>
+              <% }) %> 
+              </ul></p>
+            </div>
+              <div class="data">
+              <h4 >Shift</h4>
+              <p> <ul class="ml-3">
+                <% jobAlert.shift.forEach((item) =>{ %>
+                    <li style="list-style: disc;"><%= item %> </li>
+                <% }) %> 
+            </ul></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="social_media">
+          <a href="/login/member"><button class="btn btn-warning" id="apply-btn" style="text-align: right;">Apply</button></a>
+        </div>
+      </div>
+    
+  </div>
+  <br><br><br>
 
     <%- include('./_partials/footer') %>
 

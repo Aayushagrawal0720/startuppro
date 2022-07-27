@@ -1,41 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Edit Details</title>
-    <meta charset="UTF8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/memberRegister.css" />
-    <link rel="stylesheet" href="/css/startupRegister.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <!-- <link rel="stylesheet" href="website.css"> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/af3eeee1f8.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <%- include('./_partials/navbar_2') %>
+
+<head>
+  <title>Edit Details</title>
+  <meta charset="UTF8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/memberRegister.css" />
+  <link rel="stylesheet" href="/css/startupRegister.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <!-- <link rel="stylesheet" href="website.css"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
 
     <!-- ################################### HEADING  -->
-    <div class="container py-2">
+    <div class="container mt-5 pt-5">
       <div class="row">
         <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
           <h3>User Details</h3>
@@ -51,40 +38,18 @@
             <div class="row">
               <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star">Name</label><br />
-                <input
-                  type="text"
-                  name="member_name"
-                  placeholder="Name"
-                  class="p-1 outline"
-                  required
-                /><br /><br />
+                <input type="text" name="member_name" placeholder="Name" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0 star">Phone Number</label><br />
-                <input
-                  type="number"
-                  name="mobile_no"
-                  placeholder="Phone Number"
-                  class="p-1 outline"
-                  required
-                /><br /><br />
+                <input type="number" name="mobile_no" placeholder="Phone Number" class="p-1 outline"
+                  required /><br /><br />
               </div>
               <div class="col-md-6">
                 <label class="mb-0 ml-0 star">Email</label><br />
-                <input
-                  type="email"
-                  name="member_Email"
-                  placeholder="Email"
-                  class="p-1 outline"
-                  required
-                /><br /><br />
+                <input type="email" name="member_Email" placeholder="Email" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0">LinkedIn Url</label><br />
-                <input
-                  type="text"
-                  name="linkedin_url"
-                  placeholder="LinkedIn Url"
-                  class="p-1 outline"
-                /><br /><br />
+                <input type="text" name="linkedin_url" placeholder="LinkedIn Url" class="p-1 outline" /><br /><br />
 
                 <!-- <label class="mb-0 ml-0 star">Job Title</label><br />
                 <input
@@ -107,11 +72,7 @@
             </div>
             <div class="row">
               <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
-                <input
-                  type="submit"
-                  class="btn btn-warning py-2 px-5"
-                  value="Update"
-                />
+                <input type="submit" class="btn btn-warning py-2 px-5" value="Update" />
               </div>
             </div>
           </form>
@@ -121,19 +82,19 @@
 
     <%- include('./_partials/footer') %>
 
-    <script src="/js/apiAddresses.js"></script>
-    <script>
-      const memberData = <%- JSON.stringify(memberData) %>;
-      // console.log(memberData)
-      const form = document.getElementById('founder-edit-form');
+      <script src="/js/apiAddresses.js"></script>
+      <script>
+        const memberData = <% - JSON.stringify(memberData) %>;
+        // console.log(memberData)
+        const form = document.getElementById('founder-edit-form');
 
-      // console.log(form.elements)
-      form.elements.member_name.value = memberData.member_name;
-      form.elements.mobile_no.value = memberData.mobile_no;
-      form.elements.member_Email.value = memberData.member_Email;
-      form.elements.linkedin_url.value = memberData.linkedin_url?memberData.linkedin_url:null;
+        // console.log(form.elements)
+        form.elements.member_name.value = memberData.member_name;
+        form.elements.mobile_no.value = memberData.mobile_no;
+        form.elements.member_Email.value = memberData.member_Email;
+        form.elements.linkedin_url.value = memberData.linkedin_url ? memberData.linkedin_url : null;
 
-      form.addEventListener('submit',(e)=>{
+        form.addEventListener('submit', (e) => {
           e.preventDefault();
 
           var dataToSubmit = {};
@@ -142,17 +103,18 @@
           dataToSubmit.member_Email = form.elements.member_Email.value;
           dataToSubmit.linkedin_url = form.elements.linkedin_url.value;
 
-          fetch(api_founderDetailsEdit,{
-          headers:{'Content-Type': 'application/json', mid: memberData.mid},
-          method:'post',
-          body: JSON.stringify(dataToSubmit),
-        }).then(res=>{
-          res.text();
-          if(res.redirected) window.location.href = res.url;
-          else if(res.status==400) alert("Could not save data");
-        });
+          fetch(api_founderDetailsEdit, {
+            headers: { 'Content-Type': 'application/json', mid: memberData.mid },
+            method: 'post',
+            body: JSON.stringify(dataToSubmit),
+          }).then(res => {
+            res.text();
+            if (res.redirected) window.location.href = res.url;
+            else if (res.status == 400) alert("Could not save data");
+          });
 
-      })
-    </script>
-  </body>
+        })
+      </script>
+</body>
+
 </html>

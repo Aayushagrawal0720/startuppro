@@ -7,12 +7,19 @@
 }
 .border3 {
   /* border: 1px solid rgba(204, 204, 7, 0.884); */
-  border: 2px solid #15114b;
+  border: 2px solid #1687A7;
 }
 
 body {
   font-family: "Raleway", serif;
 }
+/* ------------------rachit gupta ----- */
+.container{
+  padding-top: 3%;
+}
+
+/* ------------------end ---------------- */
+
 .fluid-container {
   background: rgba(47, 52, 78, 0.822);
 }

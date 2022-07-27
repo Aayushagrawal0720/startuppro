@@ -61,13 +61,13 @@ body {
 }
 
 .footer__container {
-  background-color: #15114b;
+  background-color: #1687A7;
 }
 
 .btn-warning {
   border: initial;
   color: #fff;
-  background-color: #15114b;
+  background-color: #1687A7;
 }
 
 .btn-warning:hover{
