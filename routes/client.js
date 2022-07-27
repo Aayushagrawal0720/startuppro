@@ -387,6 +387,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     });
     if (emptyEls == resArray.length) resArray = [];
 
+    // console.log(JSON.stringify(resArray));
     const isLogin = true;
 
     // FETCHING FOUNDER DATA
