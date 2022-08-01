@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Home</title>
+  <title>Mentor Details</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -46,13 +46,14 @@
           </ul>
         </div>
       </div>
+
       <% } %>
 
         <div id="parent-row">
 
           <% if(isLogin) {%>
             <link rel="stylesheet" href="/css/sidebar.css">
-            <div class="container sidebar-container ">
+            <div class="fluid-container mx-2 py-2 sidebar-container ">
               <ul>
                 <li><a href=<%=`/editdata/mentor/${mentorData.men_id}` %> ><button class="my-2">Edit
                       Profile</button></a></li>
@@ -60,10 +61,14 @@
                       Pic</button></a></li>
                 <% if(mentorData.linkedin_url){ %>
                   <li><a href=<%=`https://${mentorData.linkedin_url}` %> ><button class="my-2">View LinkedIn
-                        Profile</button></a></li>
-                  <li>
-                    <button class="logout-btn my-2 px-2 py-1 mt-2">Logout</button>
+                        Profile</button></a>
                   </li>
+
+
+                  <% } %>
+                    <li>
+                      <button class="logout-btn my-2 px-2 py-1 mt-2">Logout</button>
+                    </li>
               </ul>
             </div>
 
@@ -80,45 +85,44 @@
                 });
               })
             </script>
-            <% } %>
 
-              <div class="container mx-auto flex-row justify-content-center align-items-center">
-                <div class="card  pe-3 my-2">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-7 pe-3 mt-3">
-                        <h5 class="card-title">Mentor Details:
-                        </h5>
-                        <p class="card-text">
-                          <strong>Name:</strong>
-                          <%= mentorData.men_name %>
-                        </p>
-                        <p class="card-text">
-                          <strong>Phone:</strong>
-                          <%= mentorData.mobile_no %>
-                        </p>
-                        <p class="card-text">
-                          <strong>LinkedIn URL:</strong>
-                          <%= mentorData.linkedin_url %>
-                        </p>
-                        <p class="card-text">
-                          <strong>Email ID: </strong>
-                          <%= mentorData.men_email %>
-                        </p>
 
-                      </div>
-                      <div class="col-md-3 ms-3">
-                        <img src=<%=mentorData.pic_url %> alt="CA_image" class ="
-                        img-thumbnail
-                        "/>
-                      </div>
+            <div class="fluid-container mx-auto flex-row justify-content-center align-items-center">
+              <div class="card  pe-3 my-2">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-7 pe-3 mt-3">
+                      <h5 class="card-title">Mentor Details:
+                      </h5>
+                      <p class="card-text">
+                        <strong>Name:</strong>
+                        <%= mentorData.men_name %>
+                      </p>
+                      <p class="card-text">
+                        <strong>Phone:</strong>
+                        <%= mentorData.mobile_no %>
+                      </p>
+                      <p class="card-text">
+                        <strong>LinkedIn URL:</strong>
+                        <%= mentorData.linkedin_url %>
+                      </p>
+                      <p class="card-text">
+                        <strong>Email ID: </strong>
+                        <%= mentorData.men_email %>
+                      </p>
 
                     </div>
+                    <div class="col-md-3 ms-3">
+                      <img src=<%=mentorData.pic_url %> alt="CA_image" class ="img-thumbnail"/>
+                    </div>
+
                   </div>
                 </div>
-
               </div>
+
+            </div>
         </div>
+
 
 
         <!-- Experience Container  -->

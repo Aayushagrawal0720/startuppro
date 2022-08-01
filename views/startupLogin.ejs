@@ -108,7 +108,7 @@
                               class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile</button></a></li>
                         <li><a href=<%=`/adddata/profile/startup/${startupData?.uid}` %> ><button
                               class="new--sidebar-btn mt-2 px-2 py-1">Edit Profile Pic</button></a></li>
-                        <li><a href=<%=`/adddata/profile/startup/${startupData?.uid}` %> ><button
+                        <li><a href=<%=`/adddata/profile/founder/${founderData?.mid}` %> ><button
                               class="new--sidebar-btn mt-2 px-2 py-1">Edit Founder Image</button></a></li>
                         <li><a href=<%=`/adddata/timelinegraph/${startupData?.uid}` %> ><button
                               class="new--sidebar-btn mt-2 px-2 py-1">Add Update</button></a></li>
@@ -580,7 +580,9 @@
                                     <% } %>
                                 </div>
                               </div>
-                              <div class="outer-graph-container row p-3 px-5"></div>
+                              <div class="outer-graph-container row p-3 px-5">
+
+                              </div>
                               <script>
                                 function createChart(id, labelArr, valArr, type_title) {
                                   const colors = [
@@ -596,7 +598,7 @@
                                     "#6aff00",
                                     "#ffaa00",
                                   ];
-                                  let myChart = document.getElementById(id);
+                                  let myChart = document.getElementById(id).getContext('2d');
 
                                   let newChart = new Chart(myChart, {
                                     type: "line",
@@ -633,46 +635,46 @@
                                   });
                                 }
                               </script>
+                              <% console.log(resArray) %>
+                                <script>
+                                  let graphArr = <% - JSON.stringify(resArray); %>
+                                    console.log(graphArr);
+                                  if (graphArr.length != 0) {
 
-                              <script>
-                                let graphArr = <% - JSON.stringify(resArray); %>
-                                  console.log(graphArr);
-                                if (graphArr.length != 0) {
+                                    graphArr.forEach((item, index) => {
+                                      // if(index==3) throw new Error('x');
+                                      console.log(item);
+                                      if (item.length != 0) {
+                                        const outerContainer = document.querySelector('.outer-graph-container');
 
-                                  graphArr.forEach((item, index) => {
-                                    // if(index==3) throw new Error('x');
-                                    console.log(item);
-                                    if (item.length != 0) {
-                                      const outerContainer = document.querySelector('.outer-graph-container');
+                                        let valArr = [];
+                                        let labelArr = [];
 
-                                      let valArr = [];
-                                      let labelArr = [];
+                                        item.forEach((subItem) => {
+                                          valArr.push(subItem.total);
 
-                                      item.forEach((subItem) => {
-                                        valArr.push(subItem.total);
+                                          const d = new Date(subItem.date);
+                                          const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                          const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                          const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
-                                        const d = new Date(subItem.date);
-                                        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                                        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                                        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+                                          labelArr.push(`${da}-${mo}-${ye}`);
+                                        })
+                                        console.log(valArr);
+                                        // console.log(labelArr);
 
-                                        labelArr.push(`${da}-${mo}-${ye}`);
-                                      })
-                                      // console.log(valArr);
-                                      // console.log(labelArr);
+                                        //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                        var canvasEl = document.createElement('div');
+                                        canvasEl.classList.add('col-lg-5');
+                                        canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                        outerContainer.append(canvasEl);
+                                        canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
 
-                                      // outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
-                                      let canvasEl = document.createElement('div');
-                                      canvasEl.classList.add('col-lg-5');
-                                      canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                                      outerContainer.append(canvasEl);
-                                      canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
-
-                                      createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
-                                    }
-                                  })
-                                }
-                              </script>
+                                        createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
+                                      }
+                                    })
+                                  }
+                                </script>
                             </div>
                           </div>
 

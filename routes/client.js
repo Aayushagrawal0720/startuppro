@@ -362,7 +362,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
         resArray.push(
           new Promise((resolve, reject) => {
             graphModel
-              .find({ type_id: item.type_id })
+              .find({ type_id: item.type_id }, { _id: 0, date: 0, })
               .sort({ date: 1 })
               .select({
                 date: 1,
@@ -393,6 +393,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     // FETCHING FOUNDER DATA
     const mid = startupData.founders[0];
     const founderData = await memberModel.findOne({ mid: mid });
+    // console.log(founderData);
 
     // FETCHING FOUNDER'S JOB DATA
     var jobDetailData = await jobDetailModel.findOne({ mid: mid });
@@ -875,12 +876,13 @@ router.get("/mentor/profile", isMentorAuth, async (req, res) => {
 
     // FETCHING MENTOR EXP DATA
     const mentorExpModel = new mongoose.model(
-      `${mentor_id}_mentor_experience_collections`,
+      `${men_id}_mentor_experience_collections`,
       dynamicExperienceSchema.mentorExperienceSchema
     );
 
     const mentorExpData = await mentorExpModel.find();
     // console.log(mentorExpData);
+    // console.log(mentorData);
 
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW

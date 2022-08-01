@@ -153,6 +153,50 @@ router.post(
   }
 );
 
+// ADD Profile Pic Founder Render Page
+router.get("/profile/founder/:mid", isAuth, async (req, res) => {
+  try {
+    const mid = req.params.mid;
+    const founderData = await teamMemberModel.findOne({ mid: mid });
+
+    var p_name = founderData.member_name;
+    var p_id = founderData.mid;
+    var p_picUrl = founderData.pic_url;
+
+    var url = `/adddata/profile/founder/${p_id}`;
+
+    res.status(200).render("founderPicAdd", { p_id, p_name, p_picUrl, url });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error");
+  }
+}
+);
+
+//ADD Profile Pic Founder Route
+router.post(
+  "/profile/founder/:mid",
+  isAuth,
+  upload.single("founder_pic"),
+  async (req, res) => {
+    try {
+      const mid = req.params.mid;
+      const setData = await teamMemberModel.findOneAndUpdate(
+        { mid: req.params.mid },
+        { $set: { pic_url: `/${req.file.filename}` } },
+        { new: true }
+      );
+
+      // console.log(setData);
+      // res.status(201).send("Uploaded");
+      res.redirect("/startup/profile");
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Error");
+    }
+  }
+);
+
 // ADD Profile Pic Member/User Render Page (FOR USERS)
 router.get("/profile/member/:mid", isUserAuth, async (req, res) => {
   try {
@@ -185,7 +229,7 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      // console.log(setData);
       // res.status(201).send("Uploaded");
       res.redirect("/member/profile");
     } catch (err) {
