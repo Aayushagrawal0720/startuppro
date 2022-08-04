@@ -611,7 +611,7 @@ router.post(
   }
 );
 
-/*router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
+router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
   async (req, res) => {
     try {
       const uid = req.params.uid;
@@ -748,4 +748,4 @@ router.post("user/:user_id/addexperience", async (req, res) => {
 }
 );
 
-module.exports = router;*/
+module.exports = router;
