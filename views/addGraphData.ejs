@@ -159,7 +159,7 @@
 
     <!--############################# Form Submission Handler -->
     <script>
-        const typesArr = '<%- JSON.stringify(typesData) %>';
+        const typesArr = <%- JSON.stringify(typesData) %>
 
         typesArr.forEach((item)=>{
             document.getElementById(`${item.type_id}-form`).addEventListener('submit',(e)=>{
