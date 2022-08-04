@@ -1,74 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="process-wrapper">
+  <div id="progress-bar-container">
+    <ul>
+      <li class="step step01 active">
+        <div class="step-inner">
+          <img src=<%=foundData[0].picUrl %> alt="" checked class="img-cla" >
+          <br >
+          <br >
+          <br >
+          <%= foundData[0].event_title %>
+        </div>
+      </li>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
-  <title>Timeline - <%= startupData.startup_name %>
-  </title>
-  <link rel="stylesheet" href="/css/timeline.css" />
-  <style>
-    body {
-      position: relative;
-    }
-  </style>
-</head>
-
-<body>
-  <%- include('./_partials/navbar_2') %>
-
-    <div class="fluid-container py-2 timeline-container">   
-      
-          <div><h1 class="text-center my-2">
-            <%= startupData.startup_name %> - Timeline
-          </h1>
-            <div class="container-1">
-              
-              <div class="timeline-1">
-                <ul>
-                  <% foundData.forEach(function(item, index) { %>
-                    <% if (index>= 0){ %>
-                  <li>
-                    <div class="timeline-content">
-                      <h2 class="date"><span>DATE - <%= foundData[index].date.toLocaleDateString() %></span></h2>
-                      <div class="top">
-                        <h1><%= foundData[index].event_title %></h1>
-                      </div>
-                      <div class="mid">
-                        <img src=<%=foundData[index].picUrl %> alt="" />
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim
-                          mollitia illum voluptas aut id dignissimos aspernatur
-                          architecto porro at ipsam, ea quam delectus, laboriosam
-                          voluptatem! Quia quam eligendi molestias quo!
-                        </p>
-                      </div>
-                      <div class="bottom">
-                        <h6>read more</h6>
-                        <button>Click Here</button>
-                      </div>
-                    </div>
-                  </li>
-                  <% } %>
-                            <% }); %>
-                  
-                </ul>
+      <% foundData.forEach(function(item, index) { %>
+        <% if (index> 0 && index < 5) { %>
+            <li class="step step0<%= index + 1 %>">
+              <div class="step-inner">
+                <img src=<%=foundData[index].picUrl %>
+                alt=""
+                checked
+                class="img-cla"
+                >
+                <br>
+                <br>
+                <br>
+                <%= foundData[index].event_title %>
               </div>
-            </div>
-          </div>
-          <br />
-          <br />
+            </li>
+            <% } %>
+              <% }); %>
+
+
+    </ul>
+
+    <div id="line">
+      <div id="line-progress"></div>
+    </div>
+  </div>
+
+  <div id="progress-content-section">
+    <div class="section-content discovery active">
+      <h2>
+        <%= foundData[0].event_title %>
+      </h2>
+      <p>
+        <%= foundData[0].description %>
+      </p>
     </div>
 
+    <% foundData.forEach(function(item, index) { %>
+      <% if (index> 0 && index < 5) { %>
+          <div class="section-content desc0<%= index + 1 %>">
+            <h2>
+              <%= foundData[index].event_title %>
+            </h2>
+            <p>
+              <%= foundData[index].description %>
+            </p>
+          </div>
+          <% } %>
+            <% }); %>
+  </div>
+</div>
 
-   
+<!-- <div class="section-content strategy">
+      <h2>dumm2</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
 
-    <%- include('./_partials/footer') %>
-</body>
+    <div class="section-content creative">
+      <h2>dummy3</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
 
-</html>
+    <div class="section-content production">
+      <h2>dummy4</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
+
+    <div class="section-content analysis">
+      <h2>dummy5</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
+  </div> -->
+<!-- </div> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+  $(".step").click(function () {
+    $(this).addClass("active").prevAll().addClass("active");
+    $(this).nextAll().removeClass("active");
+  });
+
+  $(".step01").click(function () {
+    $("#line-progress").css("width", "3%");
+    $(".desc01").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step02").click(function () {
+    $("#line-progress").css("width", "25%");
+    $(".desc02").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step03").click(function () {
+    $("#line-progress").css("width", "50%");
+    $(".desc03").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step04").click(function () {
+    $("#line-progress").css("width", "75%");
+    $(".desc04").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step05").click(function () {
+    $("#line-progress").css("width", "100%");
+    $(".desc05").addClass("active").siblings().removeClass("active");
+  });
+</script>
