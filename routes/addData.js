@@ -598,7 +598,7 @@ router.post(
         date: req.body.date ? req.body.date : Date.now(),
         event_title: req.body.event_title,
         picUrl: picUrl,
-        description: req.body.description,
+        //description: req.body.description,
       });
       const savedData = await dataToBeAdded.save();
       // console.log(savedData);
@@ -611,7 +611,7 @@ router.post(
   }
 );
 
-router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
+/*router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
   async (req, res) => {
     try {
       const uid = req.params.uid;
@@ -748,4 +748,4 @@ router.post("user/:user_id/addexperience", async (req, res) => {
 }
 );
 
-module.exports = router;
+module.exports = router;*/
