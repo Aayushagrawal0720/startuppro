@@ -67,7 +67,7 @@
                 }
             }).then((res)=>{
                 if(res.redirected) window.location.href = res.url;
-                else if(res.status==400) alert('could not add data');
+                else if(res.status===400) alert('could not add data');
             })
           }
       </script>
