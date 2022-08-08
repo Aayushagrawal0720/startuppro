@@ -499,6 +499,11 @@ router.get("/graph/:uid", async (req, res) => {
       );
     });
     resArray = await Promise.all(resArray);
+    console.log();
+    console.log("adfadfadf");
+    console.log(resArray);
+    console.log();
+    console.log();
     // let finalArray = [];
     // resArray.forEach((item) => {
     //   if (item.length != 0) {
