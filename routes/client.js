@@ -586,7 +586,7 @@ router.get("/member/profile", isUserAuth, async (req, res) => {
 
     // Fetching Experience Data of the user
     const userExpModel = new mongoose.model(
-      `${user_id}_user_experience_collections`,
+      `${mid}_user_experience_collections`,
       dynamicExperienceSchema.userExperienceSchema
     );
 
