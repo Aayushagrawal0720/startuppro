@@ -723,7 +723,7 @@ router.post("/mentor/:mentor_id/addexperience", async (req, res) => {
 }
 );
 
-router.post("user/:user_id/addexperience", async (req, res) => {
+router.post("/user/:user_id/addexperience", async (req, res) => {
   try {
     // console.log("passing parameters");
     const user_id = req.params.user_id;
@@ -738,9 +738,9 @@ router.post("user/:user_id/addexperience", async (req, res) => {
     });
 
     const savedData = await dataToBeAdded.save();
-    // console.log(savedData);
+    console.log(savedData);
     // res.status(201).json("Posted user experience");
-    res.redirect("/user/profile");
+    res.status(201).redirect("/member/profile");
   } catch (err) {
     console.log(err);
     res.status(400).send(err);

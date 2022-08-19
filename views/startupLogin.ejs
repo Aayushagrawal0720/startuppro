@@ -35,7 +35,7 @@
 
     <% if(isLogin){ %>
       <script>
-        document.querySelector('.login-nav').innerText = "PROFILE";
+        document.querySelector('.login-nav').innerText = "DASHBOARD";
       </script>
 
       <div class="edit_login">
@@ -83,17 +83,7 @@
                     <li>
                       <div class="container bg-light mb-3" style="border: 2px solid black; border-radius: 10px;">
                         <h4>Analytics</h4>
-                        <ul class="bg-light">
-                          <% for(var i=0; i < resArray.length; i++) { if(resArray[i].length!=0){ var
-                            num=resArray[i][resArray[i].length-1].diff; var
-                            title=resArray[i][resArray[i].length-1].type_title; var
-                            isLess=resArray[i][resArray[i].length-1].isLess %>
-                            <li>
-                              <%= title %>: <b style="<%= `color: ${isLess?" red":"green"}` %>"> <%=
-                                    `${isLess?"-":"+"}${num}` %> </b>
-                            </li>
-                            <% } %>
-                              <% } %>
+                        <ul class="bg-light" id="analyticsList">
                         </ul>
                       </div>
                     </li>
@@ -575,6 +565,9 @@
                               <div class="row">
                                 <div class="col-md-12">
                                   <h2 class="text-center my-3">Analytics</h2>
+                                  <span hidden id="dataSpan">
+                                    <%= resArray %>
+                                  </span>
                                   <% if(resArray.length==0) {%>
                                     <h3 class="text-center">No data present</h3>
                                     <% } %>
@@ -635,33 +628,32 @@
                                   });
                                 }
                               </script>
-                              <% console.log(resArray) %>
-                                <script>
-                                  let graphArr = <% - JSON.stringify(resArray); %>
-                                    console.log(graphArr);
-                                  if (graphArr.length != 0) {
+                              <script>
+                                let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
+                                // console.log(graphArr);
+                                if (graphArr.length != 0) {
 
-                                    graphArr.forEach((item, index) => {
-                                      // if(index==3) throw new Error('x');
-                                      console.log(item);
-                                      if (item.length != 0) {
-                                        const outerContainer = document.querySelector('.outer-graph-container');
+                                  graphArr.forEach((item, index) => {
+                                    // if(index==3) throw new Error('x');
+                                    // console.log(item);
+                                    if (item.length != 0) {
+                                      const outerContainer = document.querySelector('.outer-graph-container');
 
-                                        let valArr = [];
-                                        let labelArr = [];
+                                      let valArr = [];
+                                      let labelArr = [];
 
-                                        item.forEach((subItem) => {
-                                          valArr.push(subItem.total);
+                                      item.forEach((subItem) => {
+                                        valArr.push(subItem.total);
 
-                                          const d = new Date(subItem.date);
-                                          const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                                          const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                                          const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+                                        const d = new Date(subItem.date);
+                                        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
                                           labelArr.push(`${da}-${mo}-${ye}`);
                                         })
-                                        console.log(valArr);
-                                        // console.log(labelArr);
+                                      // console.log(valArr);
+                                      // console.log(labelArr);
 
                                         //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
                                         var canvasEl = document.createElement('div');
@@ -670,11 +662,23 @@
                                         outerContainer.append(canvasEl);
                                         canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
 
-                                        createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
-                                      }
-                                    })
-                                  }
-                                </script>
+                                      createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
+                                    }
+                                  })
+                                }
+                              </script>
+                              <script>
+                                let text = ``;
+                                const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
+                                for(let item in graphData) {
+                                  const element = graphData[item][graphData[item].length-1];
+                                  text += `<li>
+                                  ${element.type_title}: <b style="color: ${element.isLess?" red":"green"}">${element.isLess?"-":"+"}${element.diff}  </b>
+                                  </li>`;
+                            
+                                }
+                                document.getElementById("analyticsList").innerHTML = text;
+                              </script>
                             </div>
                           </div>
 

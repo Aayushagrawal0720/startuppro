@@ -4,6 +4,7 @@ const mongo = require("./config/database");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const {isAuthenticated} = require("./middleware/authFuncs");
 
 // const port = 3000;
 
@@ -104,7 +105,9 @@ app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, 
 //get request for the contact route
 app.get("/contact", (req, res) => {
   try {
-    res.status(200).render("contact");
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("contact", {isAuthenticated});
   } catch (e) {//look for an error and if it exists, log the error
     console.log(e);
     res.status(500).send("Server Error");
@@ -114,7 +117,10 @@ app.get("/contact", (req, res) => {
 //get request for the about route
 app.get("/about", (req, res) => {
   try {
-    res.status(200).render("about");
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("about", {isAuthenticated});
   } catch (e) {
     console.log(e);
     res.status(500).send("Server Error");

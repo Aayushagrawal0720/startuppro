@@ -14,6 +14,11 @@
     <body>
 
         <%- include('./_partials/navbar_2') %> 
+        <% if(isAuthenticated){ %>
+            <script>
+              document.querySelector('.login-nav').innerText = "DASHBOARD";
+            </script>
+            <% } %>
         <div class="edit_about">
         <div class="container py-5">
             <div class="box">

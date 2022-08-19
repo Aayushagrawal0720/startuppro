@@ -14,6 +14,11 @@
     <body>
 
         <%- include('./_partials/navbar_2') %> 
+        <% if(isAuthenticated){ %>
+            <script>
+              document.querySelector('.login-nav').innerText = "DASHBOARD";
+            </script>
+            <% } %>
 
         <!-- ######################################### CONTACT FORM ################################## -->
         <div class="container   mt-5 mb-5">
