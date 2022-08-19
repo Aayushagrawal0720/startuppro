@@ -173,9 +173,9 @@ startupForm.addEventListener("submit", (e) => {
           window.location.href = res.url;
           // },3000)
         }
-        if (res.status == 400) {
+        if (res.status === 400) {
           res.json().then((data) => {
-            alert(`${JSON.stringify(data)}`);
+            alert(`${JSON.stringify(data)}`)
           })
         }
       })

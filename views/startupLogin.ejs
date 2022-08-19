@@ -565,9 +565,13 @@
                               <div class="row">
                                 <div class="col-md-12">
                                   <h2 class="text-center my-3">Analytics</h2>
+<<<<<<< HEAD
                                   <span hidden id="dataSpan">
                                     <%= resArray %>
                                   </span>
+=======
+                                  <span hidden id="dataSpan"><%= resArray %></span>
+>>>>>>> 8bf5584e00ad0729b0d3713537d3f5f10363b1ba
                                   <% if(resArray.length==0) {%>
                                     <h3 class="text-center">No data present</h3>
                                     <% } %>
@@ -630,8 +634,7 @@
                               </script>
                               <script>
                                 let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
-                                // console.log(graphArr);
-                                if (graphArr.length != 0) {
+                                  if (graphArr.length != 0) {
 
                                   graphArr.forEach((item, index) => {
                                     // if(index==3) throw new Error('x');

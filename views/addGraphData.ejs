@@ -59,7 +59,7 @@
                 type_type: type_type,
                 isLess: isLess
             };
-          fetch(api_addGraphData,{
+          fetch('/adddata/timelinegraph/graphevent',{
                 method:'POST',
                 body:JSON.stringify(formBody),
                 headers:{
@@ -67,7 +67,7 @@
                 }
             }).then((res)=>{
                 if(res.redirected) window.location.href = res.url;
-                else if(res.status==400) alert('could not add data');
+                //else if(res.status===400) alert('could not add data')
             })
           }
       </script>
@@ -159,7 +159,7 @@
 
     <!--############################# Form Submission Handler -->
     <script>
-        const typesArr = <%- JSON.stringify(typesData) %>;
+        const typesArr = <%- JSON.stringify(typesData) %>
 
         typesArr.forEach((item)=>{
             document.getElementById(`${item.type_id}-form`).addEventListener('submit',(e)=>{
