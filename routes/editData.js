@@ -88,7 +88,7 @@ router.get("/member/:mid", isUserAuth, async (req, res) => {
 // Team Member Details Edit Route
 router.post("/startup/teammember", isUserAuth, async (req, res) => {
   try {
-    const mid = req.headers.mid;
+    const mid = req.params.mid;
     const values = Object.keys(req.body);
 
     // UPDATING DATA IN teamMembers COLLECTION
