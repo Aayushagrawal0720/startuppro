@@ -241,7 +241,7 @@
                             <h2 class="text-center">Jobs by <%= startupData?.startup_name %>
                             </h2>
                           </div>
-                          <div class="container d-flex flex-column flex-md-row justify-content-center">
+                          <div class="container d-flex flex-column flex-md-row justify-content-center wrapper  ">
                             <% if(jobAlerts.length==0) {%>
                               <h3 class="text-center">No Jobs Posted</h3>
                               <% } else{%>
@@ -253,10 +253,11 @@
                                       <div class="imageadd">
                                         <h1>Job title</h1>
                                         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                                      </div>
-                                      <h4 class="it"><b>
+                                        <h4 class="it1"><b>
                                           <%= item.title %>
                                         </b></h4>
+                                      </div>
+                                       <div class="box-desc">
                                       <h6 class="it">
                                         <%= item.employment_type %>
                                       </h6>
@@ -265,35 +266,20 @@
                       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
                                       <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
                                     </div>
-                                  </div>
-                                  <div class="container col-md-5 my-3 jobbox"
-                                    style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                                    <div class="m-3">
-                                      <div class="imageadd">
-                                        <h1>Job title</h1>
-                                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                                      </div>
-
-                                      <h4 class="it"><b>
-                                          <%= item.title %>
-                                        </b></h4>
-                                      <h6 class="it">
-                                        <%= item.employment_type %>
-                                      </h6>
-                                      <h6 class="it">Description of the job posted</h6>
-                                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-                                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
                                     </div>
                                   </div>
+                                  
 
                                   <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
                                   <% }) %>
                                     <% } %>
-                                      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                      <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
+                                     
                           </div>
+                             
+                          
                           <div class="col-md-12">
                             <a href="<%= `/getdata/startup/jobalerts/public/${startupData?.uid}` %> ">
                               <h6 class="text-right">View More</h6>
@@ -457,19 +443,25 @@
 
                                 <hr>
                               </div>
-                              <div class="container d-flex flex-column flex-md-row justify-content-center ">
-                                <div class="container col-md-5 my-3 jobbox"
+                              <div class="container d-flex flex-column flex-md-row justify-content-center">
+                                <div class="container col-md-5 my-3 jobbox "
                                   style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                   <div class="m-3">
+                                    
                                     <div class="imageadd">
+                                      
                                       <h1>Job title</h1>
                                       <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                     </div>
-
+                                  
+                                  
+                                     <div class="box-desc">
+                                     
                                     <h4 class="it"><b>First</b></h4>
                                     <h6 class="it">Second</h6>
                                     <h6 class="it">Description of the job posted</h6>
-
+                                      
+                                  </div>
 
 
                                   </div>
@@ -481,13 +473,14 @@
                                   <div class="container col-md-5 my-3 jobbox"
                                     style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                     <div class="m-3">
-                                      <div class="imageadd">
+                                    <div class="imageadd">
                                         <h1>
                                           <%= item.job_title %>
                                         </h1>
                                         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                       </div>
-
+                                   
+                                       <div class="box-desc">
                                       <h4 class="it"><b>
                                           <%= item.first %>
                                         </b></h4>
@@ -497,6 +490,7 @@
                                       <h6 class="it">
                                         <%= item.description %>
                                       </h6>
+                                    </div>
                                     </div>
                                   </div>
                                   <% }); %>
