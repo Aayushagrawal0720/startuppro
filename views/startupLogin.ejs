@@ -254,21 +254,21 @@
                                         <h1>Job title</h1>
                                         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                         <h4 class="it1"><b>
-                                          <%= item.title %>
-                                        </b></h4>
+                                            <%= item.title %>
+                                          </b></h4>
                                       </div>
-                                       <div class="box-desc">
-                                      <h6 class="it">
-                                        <%= item.employment_type %>
-                                      </h6>
-                                      <h6 class="it">Description of the job posted</h6>
-                                      <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                      <div class="box-desc">
+                                        <h6 class="it">
+                                          <%= item.employment_type %>
+                                        </h6>
+                                        <h6 class="it">Description of the job posted</h6>
+                                        <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-                                      <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
-                                    </div>
+                                        <a href="<%= `/getdata/jobalert/${item.jid}` %>" class="button">View Details</a>
+                                      </div>
                                     </div>
                                   </div>
-                                  
+
 
                                   <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
@@ -276,10 +276,10 @@
                                     <% } %>
                                       <!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                                       <a class="next" onclick="plusSlides(1)">&#10095;</a> -->
-                                     
+
                           </div>
-                             
-                          
+
+
                           <div class="col-md-12">
                             <a href="<%= `/getdata/startup/jobalerts/public/${startupData?.uid}` %> ">
                               <h6 class="text-right">View More</h6>
@@ -420,8 +420,8 @@
 
                                 <% } %>
                             </div>
-                            <% if(foundData.length==0) { %>
-                              <h3 class="text-center">No Timeline</h3>
+                            <% if(productData.length==0) { %>
+                              <h3 class="text-center">No Product</h3>
                               <% } else{ %>
                                 <div class="carousel2">
                                   <%- include('./mohit/carousel') %>
@@ -447,21 +447,21 @@
                                 <div class="container col-md-5 my-3 jobbox "
                                   style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                   <div class="m-3">
-                                    
+
                                     <div class="imageadd">
-                                      
+
                                       <h1>Job title</h1>
                                       <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                     </div>
-                                  
-                                  
-                                     <div class="box-desc">
-                                     
-                                    <h4 class="it"><b>First</b></h4>
-                                    <h6 class="it">Second</h6>
-                                    <h6 class="it">Description of the job posted</h6>
-                                      
-                                  </div>
+
+
+                                    <div class="box-desc">
+
+                                      <h4 class="it"><b>First</b></h4>
+                                      <h6 class="it">Second</h6>
+                                      <h6 class="it">Description of the job posted</h6>
+
+                                    </div>
 
 
                                   </div>
@@ -473,24 +473,24 @@
                                   <div class="container col-md-5 my-3 jobbox"
                                     style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                     <div class="m-3">
-                                    <div class="imageadd">
+                                      <div class="imageadd">
                                         <h1>
                                           <%= item.job_title %>
                                         </h1>
                                         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                       </div>
-                                   
-                                       <div class="box-desc">
-                                      <h4 class="it"><b>
-                                          <%= item.first %>
-                                        </b></h4>
-                                      <h6 class="it">
-                                        <%= item.second %>
-                                      </h6>
-                                      <h6 class="it">
-                                        <%= item.description %>
-                                      </h6>
-                                    </div>
+
+                                      <div class="box-desc">
+                                        <h4 class="it"><b>
+                                            <%= item.first %>
+                                          </b></h4>
+                                        <h6 class="it">
+                                          <%= item.second %>
+                                        </h6>
+                                        <h6 class="it">
+                                          <%= item.description %>
+                                        </h6>
+                                      </div>
                                     </div>
                                   </div>
                                   <% }); %>
@@ -558,17 +558,18 @@
                             <div class="main-container">
                               <div class="row">
                                 <div class="col-md-12">
-                                  <h2 class="text-center my-3">Analytics</h2>
-<<<<<<< HEAD
-                                  <span hidden id="dataSpan">
+                                  <h2 class="text-center my-3">9</h2>
+                                  <<<<<<< HEAD <span hidden id="dataSpan">
                                     <%= resArray %>
-                                  </span>
-=======
-                                  <span hidden id="dataSpan"><%= resArray %></span>
->>>>>>> 8bf5584e00ad0729b0d3713537d3f5f10363b1ba
-                                  <% if(resArray.length==0) {%>
-                                    <h3 class="text-center">No data present</h3>
-                                    <% } %>
+                                      </span>
+                                      =======
+                                      <span hidden id="dataSpan">
+                                        <%= resArray %>
+                                      </span>
+                                      >>>>>>> 8bf5584e00ad0729b0d3713537d3f5f10363b1ba
+                                      <% if(resArray.length==0) {%>
+                                        <h3 class="text-center">No data present</h3>
+                                        <% } %>
                                 </div>
                               </div>
                               <div class="outer-graph-container row p-3 px-5">
@@ -628,7 +629,7 @@
                               </script>
                               <script>
                                 let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
-                                  if (graphArr.length != 0) {
+                                if (graphArr.length != 0) {
 
                                   graphArr.forEach((item, index) => {
                                     // if(index==3) throw new Error('x');
@@ -647,17 +648,17 @@
                                         const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
                                         const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
-                                          labelArr.push(`${da}-${mo}-${ye}`);
-                                        })
+                                        labelArr.push(`${da}-${mo}-${ye}`);
+                                      })
                                       // console.log(valArr);
                                       // console.log(labelArr);
 
-                                        //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
-                                        var canvasEl = document.createElement('div');
-                                        canvasEl.classList.add('col-lg-5');
-                                        canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                                        outerContainer.append(canvasEl);
-                                        canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                      //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                      var canvasEl = document.createElement('div');
+                                      canvasEl.classList.add('col-lg-5');
+                                      canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                      outerContainer.append(canvasEl);
+                                      canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
 
                                       createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
                                     }
@@ -667,12 +668,12 @@
                               <script>
                                 let text = ``;
                                 const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
-                                for(let item in graphData) {
-                                  const element = graphData[item][graphData[item].length-1];
+                                for (let item in graphData) {
+                                  const element = graphData[item][graphData[item].length - 1];
                                   text += `<li>
-                                  ${element.type_title}: <b style="color: ${element.isLess?" red":"green"}">${element.isLess?"-":"+"}${element.diff}  </b>
+                                  ${element.type_title}: <b style="color: ${element.isLess ? " red" : "green"}">${element.isLess ? "-" : "+"}${element.diff}  </b>
                                   </li>`;
-                            
+
                                 }
                                 document.getElementById("analyticsList").innerHTML = text;
                               </script>
