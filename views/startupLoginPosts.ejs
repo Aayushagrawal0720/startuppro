@@ -92,12 +92,12 @@
                       <div
                         class="portfolio col-md-4 text-center px-0 pl-3 pr-3 pl-md-5 mt-4 mb-4 d-flex flex-column justify-content-end">
                         <div class="col-md-12 borderlight">
-                          <img src=<%=founderArray[index].pic_url %> class="img-fluid mt-3 mb-lg-4"
+                          <img src=<%= %> class="img-fluid mt-3 mb-lg-4"
                           alt="founder-img" />
                           <div class="my-3">
-                            <p class="text-secondary">Name:&nbsp <%= founderArray[index].member_name %>
+                            <p class="text-secondary">Name:&nbsp <%=  %>
                             </p>
-                            <p class="text-secondary">Designation:&nbsp <%=
+                            <p class="text-secondary">Designation:&nbsp <%= 
                                 jobDetailData.job_title?jobDetailData.job_title:"Founder" %>
                             </p>
                           </div>
