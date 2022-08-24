@@ -1011,7 +1011,6 @@ router.get("/startup/financials/:uid", async (req, res) => {
   }
 })
 
-
 // FINANCIAL PAGE --> RENDERING PREPARE PAGE
 router.get("/startup/financials/:uid/prepare", async (req, res) => {
   try{
@@ -1030,6 +1029,7 @@ router.get("/startup/financials/:uid/prepare", async (req, res) => {
   }
 })
 
+// FINANCIAL PAGE --> RENDERING PITCH DECK PAGE
 router.get("/startup/financials/:uid/pitchDeck", async (req, res) => {
   try{
     const uid = req.params.uid;
@@ -1046,6 +1046,44 @@ router.get("/startup/financials/:uid/pitchDeck", async (req, res) => {
     res.status(500).send("Server Error");
   }
 })
+
+// FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
+router.get("/startup/financials/:uid/projections", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    console.log(uid);
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+
+// FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
+router.get("/startup/financials/:uid/appManual", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    console.log(uid);
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
 
 
 module.exports = router;
