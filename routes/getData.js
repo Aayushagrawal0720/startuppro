@@ -1065,7 +1065,6 @@ router.get("/startup/financials/:uid/projections", async (req, res) => {
   }
 })
 
-
 // FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
 router.get("/startup/financials/:uid/appManual", async (req, res) => {
   try{
