@@ -982,7 +982,7 @@ router.get("/startup/teammembers/:uid", async (req, res) => {
 
 
 // FINANCIAL PAGE --> RENDERING FINANCIAL PAGE
-router.get("/startup/financials/:uid", async (req, res) => {
+router.get("/startup/:uid/financials", async (req, res) => {
   /*
       This page will displayed for everyone
       
@@ -1012,7 +1012,7 @@ router.get("/startup/financials/:uid", async (req, res) => {
 })
 
 // FINANCIAL PAGE --> RENDERING PREPARE PAGE
-router.get("/startup/financials/:uid/prepare", async (req, res) => {
+router.get("/startup/:uid/financials/prepare", async (req, res) => {
   try{
     const uid = req.params.uid;
     
@@ -1030,7 +1030,7 @@ router.get("/startup/financials/:uid/prepare", async (req, res) => {
 })
 
 // FINANCIAL PAGE --> RENDERING PITCH DECK PAGE
-router.get("/startup/financials/:uid/pitchDeck", async (req, res) => {
+router.get("/startup/:uid/financials/pitchDeck", async (req, res) => {
   try{
     const uid = req.params.uid;
     
@@ -1048,7 +1048,7 @@ router.get("/startup/financials/:uid/pitchDeck", async (req, res) => {
 })
 
 // FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
-router.get("/startup/financials/:uid/projections", async (req, res) => {
+router.get("/startup/:uid/financials/projections", async (req, res) => {
   try{
     const uid = req.params.uid;
     
@@ -1059,14 +1059,14 @@ router.get("/startup/financials/:uid/projections", async (req, res) => {
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("startupFinancialsProjectionsData", {isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
     res.status(500).send("Server Error");
   }
 })
 
 // FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
-router.get("/startup/financials/:uid/appManual", async (req, res) => {
+router.get("/startup/:uid/financials/appManual", async (req, res) => {
   try{
     const uid = req.params.uid;
     
@@ -1077,7 +1077,7 @@ router.get("/startup/financials/:uid/appManual", async (req, res) => {
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("startupFinancialsAppManualData", {isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
     res.status(500).send("Server Error");
   }

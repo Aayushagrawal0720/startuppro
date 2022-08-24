@@ -746,4 +746,41 @@ router.post("/user/:user_id/addexperience", async (req, res) => {
 }
 );
 
+
+// FINANCIALS ---> RENDERING PROJECTIONS FORM
+router.get("/startup/:uid/financials/projectionsForm", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    console.log(uid);
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIALS ---> RENDERING APPLICATION MANUAL FORM
+router.get("/startup/:uid/financials/appManualForm", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    console.log(uid);
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
 module.exports = router;
