@@ -80,7 +80,7 @@ router.get("/startups", async (req, res) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    console.log(filterArray)
 
     var memberData = null;
     const isLogin = false;
@@ -102,42 +102,6 @@ router.get("/startups", async (req, res) => {
     if (req.session.isAuthMentor) {
       return res.redirect("/mentor/profile");
     }
-    
-    // console.log(startups.length)
-    // console.log(founderArray.length)
-    // console.log(startups[0])
-    // console.log(founderArray[28])
-    
-    // startups.forEach( (startup, index) => {
-    //   process.stdout.write(index.toString()+ "   --->   " + startup.founders + "   --->   ");
-    //   if(founderArray[index] !== null)
-    //     process.stdout.write(founderArray[index].mid + "\n");
-    //   else
-    //     process.stdout.write("\n");
-    // })
-    
-    // console.log(startups[28]);
-    // console.log(startups[27]);
-    // console.log(founderArray[27]);
-    
-    // TEMPORARY
-    // const mid = "29ff4f3e-d812-401b-bd9e-c6d59458e893";
-    // const dataToBeAdded = {
-    //   mid: mid,
-    //   member_name: "Rahul",
-    //   mobile_no: 7891452678,
-    //   member_Email: "rahul1@gmail.com",
-    //   startupAdmin: startups[28].uid,
-    //   password: "Rahul@1234",
-    //   isFounder: true,
-    // };
-    // const newData = new teamMemberModel(dataToBeAdded);
-    // // const newData = new pendingMemberModel(dataToBeAdded);
-    // const savedData = await newData.save();
-    
-    // TEMPORARY
-    
-    
 
     return res.status(200).render("startupLoginPosts", {
       memberData,
