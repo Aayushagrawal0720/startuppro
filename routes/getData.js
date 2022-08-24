@@ -1005,7 +1005,7 @@ router.get("/startup/financials/:uid", async (req, res) => {
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("financials", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("financials", {isAuthenticated, isStartUpLoggedIn, uid});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1064,7 +1064,6 @@ router.get("/startup/financials/:uid/projections", async (req, res) => {
     res.status(500).send("Server Error");
   }
 })
-
 
 // FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
 router.get("/startup/financials/:uid/appManual", async (req, res) => {
