@@ -45,5 +45,8 @@ th, td{
   text-align: center;
   top: 125%;
   right: 30%;
-  transition:transform .2s;
 }
+#demo{
+  padding-left: 63%;
+  padding-top: 5%;
+  }

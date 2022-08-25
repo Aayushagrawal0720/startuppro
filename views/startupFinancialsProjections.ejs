@@ -192,9 +192,15 @@
                       </table>
                 </form>
                 <div>
-                  <input id="button" type="button" value="Submit">
+                  <p id="demo"></p>
+                  <input id="button" type="button" value="Submit" onclick="sub()">
                 </div>
-              </div>  
+              </div>
+              <script>
+                function sub() {
+                  document.getElementById("demo").innerHTML = "Submitted suscessfully";
+                }
+                </script>  
 
 
                 <%- include('./_partials/footer') %>
