@@ -27,7 +27,7 @@
             <% } %>
 
             <div class="financials">
-                <form action="">
+                <form action="" id="fin-form">
                     <table style="width:50%" id="collapsee">
                         <tr>
                           <th>Key Financials (in INR Lakhs)
@@ -190,17 +190,18 @@
                         </tr>
                        
                       </table>
-                </form>
+                
                 <div>
-                  <p id="demo"></p>
                   <input id="button" type="button" value="Submit" onclick="sub()">
                 </div>
               </div>
               <script>
                 function sub() {
-                  document.getElementById("demo").innerHTML = "Submitted suscessfully";
+                  alert("Submitted Suscessfully")
+                  document.getElementById("fin-form").submit();
                 }
                 </script>  
+                </form>
 
 
                 <%- include('./_partials/footer') %>
