@@ -19,16 +19,18 @@
 
 <body>
 
-    <%- include('./_partials/navbar_2') %>
-        <% if(isAuthenticated){ %>
-            <script>
-                document.querySelector('.login-nav').innerText = "DASHBOARD";
-            </script>
-            <% } %>
+  <%- include('./_partials/navbar_2') %>
+  <% if(isAuthenticated){ %>
+    <script>
+      document.querySelector('.login-nav').innerText = "DASHBOARD";
+    </script>
+  <% } %>
 
-            <div class="financials">
-                <form action="" id="fin-form">
-                    <table style="width:50%" id="collapsee">
+  <div class="financials">
+      
+    <form action="" id="fin-form">
+        
+      <table style="width:50%" id="collapsee">
                         <tr>
                           <th>Key Financials (in INR Lakhs)
                         </th>
@@ -189,22 +191,26 @@
                           <td class="txt"><input type="text"></td>
                         </tr>
                        
-                      </table>
+      </table>
                 
-                <div>
-                  <input id="button" type="button" value="Submit" onclick="sub()">
-                </div>
-              </div>
-              <script>
-                function sub() {
-                  alert("Submitted Suscessfully")
-                  document.getElementById("fin-form").submit();
-                }
-                </script>  
-                </form>
+      <div style="width: 100%; text-align: center;">
+        <input id="button" type="button" value="Submit" onclick="sub()">
+      </div>
+                
+    </form>
+      
+  </div>
+            
+            
+  <script>
+    function sub() {
+      alert("Submitted Suscessfully")
+      document.getElementById("fin-form").submit();
+    }
+  </script>  
 
 
-                <%- include('./_partials/footer') %>
+  <%- include('./_partials/footer') %>
 
 </body>
 
