@@ -43,7 +43,7 @@ th, td{
   cursor: pointer;
   border-radius: 9px;
   text-align: center;
-  top: 102%;
+  top: 125%;
   right: 30%;
   transition:transform .2s;
 }
