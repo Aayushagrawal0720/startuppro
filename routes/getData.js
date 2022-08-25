@@ -83,24 +83,28 @@ router.get("/startups", async (req, res) => {
     console.log(filterArray)
 
     var memberData = null;
-    const isLogin = false;
+    var isLogin = false;
     const logoutLink = "/";
     var isEmployed = false;
 
     if (req.session.isAuth) {
-      return res.redirect("/startup/profile/posts");
+      isLogin = true;
+      // return res.redirect("/startup/profile/posts");
     }
 
     if (req.session.isAuthUser) {
-      return res.redirect("/member/profile");
+      isLogin = true;
+      // return res.redirect("/member/profile");
     }
 
     if (req.session.isAuthCA) {
-      return res.redirect("/ca/profile");
+      isLogin = true;
+      // return res.redirect("/ca/profile");
     }
 
     if (req.session.isAuthMentor) {
-      return res.redirect("/mentor/profile");
+      isLogin = true;
+      // return res.redirect("/mentor/profile");
     }
 
     return res.status(200).render("startupLoginPosts", {
