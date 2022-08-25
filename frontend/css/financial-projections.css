@@ -33,3 +33,17 @@ th, td{
   padding-right: 2%;
   padding-top: 1%;
 }
+#button{
+  position: absolute;
+  background-color:rgb(2 145 186);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 9px;
+  text-align: center;
+  top: 102%;
+  right: 30%;
+  transition:transform .2s;
+}
