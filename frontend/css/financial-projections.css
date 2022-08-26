@@ -8,7 +8,7 @@
   padding: .5%;
 }
 .financials{
-  height:1100px;
+  height:auto;
   width: 100%;
 }
 table, th, td {
@@ -52,4 +52,17 @@ th, td{
 #demo{
   padding-left: 63%;
   padding-top: 5%;
+  }
+  @media (max-width: 775px){
+    table{
+      margin-top: 10%;
+      margin-left: 10%;
+    }
+  }
+  @media (max-width: 500px){
+    table{
+      margin-top: 10%;
+      margin-left: 0;
+      width: 50%;
+    }
   }
