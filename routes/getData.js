@@ -215,14 +215,14 @@ router.get("/startups/:industry", async (req, res) => {
 
       // Fetching Experience Data of the user
       const userExpModel = new mongoose.model(
-        `${user_id}_user_experience_collections`,
+        `${mid}_user_experience_collections`,
         dynamicExperienceSchema.userExperienceSchema
       );
 
       const userExpData = await userExpModel.find();
       // console.log(mentorExpData);
 
-      return res.status(200).render("userLogin", {
+      return res.status(200).render("startupLoginPosts", {
         memberData,
         userExpData,
         startups,
@@ -249,7 +249,7 @@ router.get("/startups/:industry", async (req, res) => {
 
       const caExpData = await caExpModel.find();
 
-      return res.status(200).render("caPage", {
+      return res.status(200).render("startupLoginPosts", {
         caData,
         caExpData,
         startups,
@@ -269,14 +269,14 @@ router.get("/startups/:industry", async (req, res) => {
 
       // FETCHING MENTOR EXP DATA
       const mentorExpModel = new mongoose.model(
-        `${mentor_id}_mentor_experience_collections`,
+        `${men_id}_mentor_experience_collections`,
         dynamicExperienceSchema.mentorExperienceSchema
       );
 
       const mentorExpData = await mentorExpModel.find();
       // console.log(mentorExpData);
 
-      return res.status(200).render("mentorLogin", {
+      return res.status(200).render("startupLoginPosts", {
         mentorData,
         mentorExpData,
         startups,
@@ -288,7 +288,7 @@ router.get("/startups/:industry", async (req, res) => {
       });
     }
 
-    return res.status(200).render("userLogin", {
+    return res.status(200).render("startupLoginPosts", {
       memberData,
       startups,
       founderArray,
