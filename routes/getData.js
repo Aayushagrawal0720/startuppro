@@ -83,24 +83,28 @@ router.get("/startups", async (req, res) => {
     console.log(filterArray)
 
     var memberData = null;
-    const isLogin = false;
+    var isLogin = false;
     const logoutLink = "/";
     var isEmployed = false;
 
     if (req.session.isAuth) {
-      return res.redirect("/startup/profile/posts");
+      isLogin = true;
+      // return res.redirect("/startup/profile/posts");
     }
 
     if (req.session.isAuthUser) {
-      return res.redirect("/member/profile");
+      isLogin = true;
+      // return res.redirect("/member/profile");
     }
 
     if (req.session.isAuthCA) {
-      return res.redirect("/ca/profile");
+      isLogin = true;
+      // return res.redirect("/ca/profile");
     }
 
     if (req.session.isAuthMentor) {
-      return res.redirect("/mentor/profile");
+      isLogin = true;
+      // return res.redirect("/mentor/profile");
     }
 
     return res.status(200).render("startupLoginPosts", {
@@ -211,14 +215,14 @@ router.get("/startups/:industry", async (req, res) => {
 
       // Fetching Experience Data of the user
       const userExpModel = new mongoose.model(
-        `${user_id}_user_experience_collections`,
+        `${mid}_user_experience_collections`,
         dynamicExperienceSchema.userExperienceSchema
       );
 
       const userExpData = await userExpModel.find();
-      // console.log(mentorExpData);
+      console.log(userExpData);
 
-      return res.status(200).render("userLogin", {
+      return res.status(200).render("startupLoginPosts", {
         memberData,
         userExpData,
         startups,
@@ -245,7 +249,7 @@ router.get("/startups/:industry", async (req, res) => {
 
       const caExpData = await caExpModel.find();
 
-      return res.status(200).render("caPage", {
+      return res.status(200).render("startupLoginPosts", {
         caData,
         caExpData,
         startups,
@@ -265,14 +269,14 @@ router.get("/startups/:industry", async (req, res) => {
 
       // FETCHING MENTOR EXP DATA
       const mentorExpModel = new mongoose.model(
-        `${mentor_id}_mentor_experience_collections`,
+        `${men_id}_mentor_experience_collections`,
         dynamicExperienceSchema.mentorExperienceSchema
       );
 
       const mentorExpData = await mentorExpModel.find();
-      // console.log(mentorExpData);
+      console.log(mentorExpData);
 
-      return res.status(200).render("mentorLogin", {
+      return res.status(200).render("startupLoginPosts", {
         mentorData,
         mentorExpData,
         startups,
@@ -284,7 +288,7 @@ router.get("/startups/:industry", async (req, res) => {
       });
     }
 
-    return res.status(200).render("userLogin", {
+    return res.status(200).render("startupLoginPosts", {
       memberData,
       startups,
       founderArray,
