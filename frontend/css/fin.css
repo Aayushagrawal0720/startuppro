@@ -103,3 +103,110 @@
     border: 1px solid rgb(17, 255, 0);
 
 }
+@media (max-width: 775px){
+  .rowe p{
+    font-size: 17px;
+    padding-top: 15px;
+}
+.hed p{
+  font-size: large;
+}
+.rowe input{
+  width: 658px;
+  padding-bottom: 62px;
+  padding-left: 0.2%;
+}
+.rowe2 input{
+  width: 658px;
+}
+.main3 .las{
+  width: 613px;
+}
+
+}
+@media (max-width: 675px){
+  .rowe p{
+    font-size: 17px;
+    padding-top: 10px;
+}
+.hed{
+  height: 149px;
+}
+.hed p{
+  font-size: large;
+}
+.rowe input{
+  width: 552px;
+  padding-bottom: 37px;
+  padding-left: 0.2%;
+}
+.rowe2 input{
+  width: 552px;
+}
+.main3 .las{
+  width: 523px;
+}
+#button{
+  margin-bottom: 10px;
+}
+
+}
+
+@media (max-width: 500px){
+  .rowe p{
+    font-size: 12px;
+    padding-top: 10px;
+}
+.hed{
+  height: 217px;
+}
+.hed p{
+  font-size: large;
+}
+.rowe input{
+  width: 400px;
+  padding-bottom: 37px;
+  padding-left: 0.2%;
+}
+.rowe2 input{
+  width: 400px;
+}
+.main3 .las{
+  width: 380px;
+}
+
+}
+@media (max-width: 380px){
+  .rowe p{
+    font-size: 10px;
+    padding-top: 10px;
+}
+.hed{
+  height: 251px;
+}
+.hed p{
+  font-size: large;
+}
+.rowe input{
+  width: 328px;
+  padding-bottom: 37px;
+  padding-left: 0.2%;
+}
+.rowe2 input{
+  width: 328px;
+}
+.main3 .las{
+  width: 298px;
+}
+#currency{
+  margin-top: 10px;
+  width: 298px;
+}
+.main3 input{
+  width: 298px;
+}
+#button{
+  margin-bottom: 10px;
+}
+
+}
