@@ -356,6 +356,9 @@ ul li {
   background: #f6f6f6;
  
 }
+.overf{
+  overflow: scroll;
+}
 .jobbox:hover {
   transform: scale(1.08);
 }
