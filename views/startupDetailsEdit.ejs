@@ -36,16 +36,16 @@
       <div class="container mb-5 mt-1">
         <div class="row shadow">
           <div class="col-md-12" id="form-container">
-            <form id="startup-edit-form">
+            <form id="startup-edit-form" action="basicdetails" method="post">
               <div class="row pt-2 py-0">
                 <div class="col-md-4">
                   <label for="startup-form" class="mb-0 ml-0 star">Startup Name</label><br />
-                  <input type="text" id="startup-name" name="startup_name" placeholder="Startup Name"
-                    class="p-1 outline" required /><br /><br />
+                  <input type="text" id="startup-name" name="startup_name" placeholder="Startup Name" value="<%= startupData.startup_name %>"
+                    class="p-1 outline" required ><br /><br />
 
                   <label for="contact" class="mb-0 ml-0 star">Phone Number</label><br />
-                  <input type="number" id="contact" name="mobile_no" placeholder="Phone Number" class="p-1 outline"
-                    required /><br /><br />
+                  <input type="number" id="contact" name="mobile_no" placeholder="Phone Number" class="p-1 outline"  value="<%= startupData.mobile_no %>"
+                    required ><br /><br />
 
                   <!-- <label for="password" class="mb-0 ml-0 star">Password</label
                 ><br />
@@ -72,47 +72,48 @@
 
                   <label for="email" class="mb-0 ml-0 star">Email Official</label><br />
                   <input type="email" id="email" name="email_official" placeholder="Email Official"
-                    class="p-1 outline star" required /><br /><br />
+                    class="p-1 outline star" required  value="<%= startupData.email_official %>" ><br /><br />
                   <label for="email" class="mb-0 ml-0 star">Email Personal</label><br />
                   <input type="email" id="email" name="email_personal" placeholder="Email Personal"
-                    class="p-1 outline star" required /><br /><br />
+                    class="p-1 outline star" required  value="<%= startupData.email_personal %>" ><br /><br />
 
                   <label for="state" class="mb-0 ml-0 star">State</label><br />
                   <input type="text" id="state" name="state" placeholder="State" class="p-1 outline"
-                    required /><br /><br />
+                    required  value="<%= startupData.state %>" ><br /><br />
                 </div>
 
                 <div class="col-md-4 pt-1">
 
                   <label for="city" class="mb-0 ml-0 star">City</label><br />
                   <input type="text" id="city" name="city" placeholder="City" class="p-1 outline"
-                    required /><br /><br />
+                    required  value="<%= startupData.city %>" ><br /><br />
 
                   <label for="zip-code" class="mb-0 ml-0 star">Zip Code</label><br />
-                  <input type="number" id="zipcode" name="zip_code" placeholder="Zip-code" class="p-1 outline"
-                    required />
+                  <input type="number" id="zipcode" name="zip_code" placeholder="Zip-code" class="p-1 outline"  value="<%= startupData.zip_code %>"
+                    required >
                   <br /><br />
                   <label for="message" class="mb-0 ml-0 star">Description Of Idea</label><br />
-                  <input type="text" id="message" name="description_of_idea" placeholder="Description Of Idea"
-                    class="p-1 outline" required />
+                  <input type="text" id="message" name="description_of_idea" placeholder="Description Of Idea"  value="<%= startupData.description_of_idea %>"
+                    class="p-1 outline" required >
                   <br /><br />
 
                   <label for="about-company" class="mb-0 ml-0 star">About Company</label><br />
-                  <input type="text" id="about-company" name="about_company" placeholder="About Company"
-                    class="p-1 outline" required />
+                  <input type="text" id="about-company" name="about_company" placeholder="About Company"  value= "<%= startupData.about_company %>"
+                    class="p-1 outline" required >
                   <br /><br />
                 </div>
 
                 <div class="col-md-4 pt-1">
                   <label for="website" class="mb-0 ml-0 star">Website</label><br />
-                  <input type="text" id="website" name="website_link" placeholder="Website" class="p-1 outline"
-                    required /><br /><br />
+                  <input type="text" id="website" name="website_link" placeholder="Website" class="p-1 outline"  value="<%= startupData.website_link %>"
+                    required ><br /><br />
 
                   <label for="start_date" class="mb-0 ml-0 star">Start Date</label><br />
-                  <input type="date" id="start_date" name="start_date" class="p-1 outline" required /><br /><br />
+                  <input type="date" id="start_date" name="start_date" class="p-1 outline" required  value="<%= startupData.start_date %>" ><br /><br />
 
                   <label for="industry-type" class="mb-0 ml-0 star">Industry-Type</label>
                   <select name="Industry" id="industry-type">
+                    <option value=<%= startupData.Industry %> selected > <%= startupData.Industry %> </option>
                     <option value="Healthcare">Healthcare</option>
                     <option value="Agriculture">Agriculture</option>
                     <option value="Information Technology">Information Technology</option>
@@ -194,7 +195,7 @@
           dataToSubmit.website_link = form.elements.website_link.value
           dataToSubmit.start_date = form.elements.start_date.value
 
-          fetch(api_startupDetailsEdit, {
+          fetch("/editData/startup/<%= startupData.uid %>/basicdetails", {
             headers: { 'Content-Type': 'application/json', uid: startupData.uid },
             method: 'post',
             body: JSON.stringify(dataToSubmit),
