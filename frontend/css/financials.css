@@ -34,7 +34,7 @@ body {
 
 .finance-list div a {
     text-decoration: none;
-    color: #fff;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     margin-top: 20px;
     display: inline-block;
