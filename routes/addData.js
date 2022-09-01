@@ -17,6 +17,8 @@ const productDetailSchema = require("../models/productDetailSchema");
 const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
+const ApplicationManualModel = require("../models/financialApplicationManual");
+const ProjectionModel = require("../models/financialProjection");
 
 // Middlewares
 const {
@@ -765,6 +767,114 @@ router.get("/startup/:uid/financials/projectionsForm", async (req, res) => {
   }
 })
 
+router.post("startup/:uid/financials/projectionsForm", async(req, res) => {
+  try{
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/starup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    
+    const projectionData = new ProjectionModel({
+      uid: req.params.uid,
+      net_revenue_1: req.body.net_revenue_1,
+      net_revenue_2: req.body.net_revenue_2,
+      net_revenue_3: req.body.net_revenue_3,
+      
+      CAC_1: req.body.CAC_1,
+      CAC_2: req.body.CAC_2,
+      CAC_3: req.body.CAC_3,
+      
+      total_revenue_1: req.body.total_revenue_1,
+      total_revenue_2: req.body.total_revenue_2,
+      total_revenue_3: req.body.total_revenue_3,
+      
+      growth_percent_1: req.body.growth_percent_1,
+      growth_percent_2: req.body.growth_percent_2,
+      growth_percent_3: req.body.growth_percent_3,
+      
+      direct_cost_breakup_1: req.body.direct_cost_breakup_1,
+      direct_cost_breakup_2: req.body.direct_cost_breakup_2,
+      direct_cost_breakup_3: req.body.direct_cost_breakup_3,
+      
+      gross_margin_1: req.body.gross_margin_1,
+      gross_margin_2: req.body.gross_margin_2,
+      gross_margin_3: req.body.gross_margin_3,
+      
+      revenue_percent_1: req.body.revenue_percent_1,
+      revenue_percent_2: req.body.revenue_percent_2,
+      revenue_percent_3: req.body.revenue_percent_3,
+      
+      salaries_1: req.body.salaries_1,
+      salaries_2: req.body.salaries_2,
+      salaries_3: req.body.salaries_3,
+      
+      founders_1: req.body.founders_1,
+      founders_2: req.body.founders_2,
+      founders_3: req.body.founders_3,
+      
+      tech_team_1: req.body.tech_team_1,
+      tech_team_2: req.body.tech_team_2,
+      tech_team_3: req.body.tech_team_3,
+      
+      sales_1: req.body.sales_1,
+      sales_2: req.body.sales_2,
+      sales_3: req.body.sales_3,
+      
+      senior_management_1: req.body.senior_management_1,
+      senior_management_2: req.body.senior_management_2,
+      senior_management_3: req.body.senior_management_3,
+      
+      OPS_1: req.body.OPS_1,
+      OPS_2: req.body.OPS_2,
+      OPS_3: req.body.OPS_3,
+      
+      finance_1: req.body.finance_1,
+      finance_2: req.body.finance_2,
+      finance_3: req.body.finance_3,
+      
+      credit_1: req.body.credit_1,
+      credit_2: req.body.credit_2,
+      credit_3: req.body.credit_3,
+      
+      outsourced_1: req.body.outsourced_1,
+      outsourced_2: req.body.outsourced_2,
+      outsourced_3: req.body.outsourced_3,
+      
+      marketing_1: req.body.marketing_1,
+      marketing_2: req.body.marketing_2,
+      marketing_3: req.body.marketing_3,
+      
+      office_tech_infra_1: req.body.office_tech_infra_1,
+      office_tech_infra_2: req.body.office_tech_infra_2,
+      office_tech_infra_3: req.body.office_tech_infra_3,
+      
+      rentals_travel_other_expenses_1: req.body.rentals_travel_other_expenses_1,
+      rentals_travel_other_expenses_2: req.body.rentals_travel_other_expenses_2,
+      rentals_travel_other_expenses_3: req.body.rentals_travel_other_expenses_3,
+      
+      total_expenses_1: req.body.total_expenses_1,
+      total_expenses_2: req.body.total_expenses_2,
+      total_expenses_3: req.body.total_expenses_3,
+      
+      EBIDTA_1: req.body.EBIDTA_1,
+      EBIDTA_2: req.body.EBIDTA_2,
+      EBIDTA_3: req.body.EBIDTA_3
+    })
+    
+    
+    console.log(projectionData);
+    
+    res.send("startup Financials Projection data has been added.");
+    
+  }catch(e){
+    res.status(500).send("Server Error");
+  }
+})
+
+
 // FINANCIALS ---> RENDERING APPLICATION MANUAL FORM
 router.get("/startup/:uid/financials/appManualForm", async (req, res) => {
   try{
@@ -782,5 +892,44 @@ router.get("/startup/:uid/financials/appManualForm", async (req, res) => {
     res.status(500).send("Server Error");
   }
 })
+
+router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
+  try{
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/starup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    
+    const appManualData = new ApplicationManualModel({
+      uid: req.params.uid,
+      description: req.body.description,
+      problem: req.body.problem,
+      solution: req.body.solution,
+      customer_and_adoption: req.body.customer_and_adoption,
+      money_making: req.body.money_making,
+      company_name: req.body.company_name,
+      brand_name: req.body.brand_name,
+      role: req.body.role,
+      investment_currecy: req.body.investment_currecy,
+      investment_amount: req.body.investment_amount,
+      required_funding_currecy: req.body.required_funding_currecy,
+      required_funding_amount: req.body.required_funding_amount,
+      written_commitments_currecy: req.body.written_commitments_currecy,
+      written_commitments_amount: req.body.written_commitments_amount,
+      challenges: req.body.challenges
+    })
+    
+    console.log(appManualData);
+    
+    res.send("startup Financials AppManual data has been added.");
+    
+  }catch(e){
+    res.status(500).send("Server Error");
+  }
+})
+
 
 module.exports = router;
