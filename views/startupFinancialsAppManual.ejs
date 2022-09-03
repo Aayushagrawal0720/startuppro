@@ -39,29 +39,29 @@
                     <p>
                         Please describe your start-up in your own words. Please describe your start-up in your own words. 
                     </p>
-                    <input type="text" maxlength="250">
+                    <input type="text" name="description" maxlength="250">
         
                     <p>
                         1.	Describe the problem you have identified and are solving. 
                     </p>
-                    <input type="text" maxlength="250">
+                    <input type="text" name="problem" maxlength="250">
         
                     <p>
                         2.	The value of your solution to the customers targeted by you. Identify if possible the basis of your assessment. <br>Share preliminarily information of any trial conducted. 
                     </p>
-                    <input type="text" maxlength="250">
+                    <input type="text" name="solution" maxlength="250">
         
                     <p>
                        
                     3.	Identify the first segment of customers you have targeted to gain early adoption.<br> How did you decide on the early adopter segment?
         
                     </p>
-                    <input type="text" maxlength="250">
+                    <input type="text" name="customer_and_adoption" maxlength="250">
         
                     <p>
                         4.	Describe how you make money based on your pricing and costs. And how you create demand<br> and acquire customers.  
                     </p>
-                    <input type="text" maxlength="250">
+                    <input type="text" name="money_making" maxlength="250">
         
                 </div>
                 <input id="button" type="button" value="Submit" onclick="sub()">
@@ -79,48 +79,48 @@
                         <p>
                             1.	Name of your company (as registered). If not registered, name identified. 
                         </p>
-                        <input type="text" maxlength="100">
+                        <input type="text" name="company_name" maxlength="100">
         
                         <p>
                             2.	The brand name of your product or service. If a brand name is not used<br>
                              please tell us the name that you have identified. 
                         </p>
-                        <input type="text" maxlength="100">
+                        <input type="text" name="brand_name" maxlength="100">
             
         
                         <p>
                             3.	Please describe your role in the start-up.
                         </p>
-                        <input type="text" maxlength="100">
+                        <input type="text" name="role" maxlength="100">
                     </div>
                         <div class="main3">
                         <h2>Startup-details</h2>
                         <h3>A few questions about funding</h3>
                         <p>1.	Total investment in your startup.</p>
         
-                        <select name="currency" id="currency">
+                        <select name="currency" name="investment_currecy" id="currency">
                             <option value="dollar"> dollar</option>
                             <option value="INR"> INR</option>
                         </select>
-                        <input type="text" maxlength="20" class="cur" placeholder="Amount">
+                        <input type="text" name="investment_amount" maxlength="20" class="cur" placeholder="Amount">
                         <p>2.	What is your funding requirement? </p>
         
-                        <select name="currency" id="currency">
+                        <select name="currency" name="required_funding_currecy" id="currency">
                             <option value="dollar"> dollar</option>
                             <option value="INR"> INR</option>
                         </select>
-                        <input type="text" maxlength="20" class="cur" placeholder="Amount">
+                        <input type="text" maxlength="20" name="required_funding_amount" class="cur" placeholder="Amount">
                         <p>3.	Any written commitments for any portion of this funding on date of application? </p>
         
-                        <select name="currency" id="currency">
+                        <select name="currency" name="written_commitments_currecy" id="currency">
                             <option value="dollar"> dollar</option>
                             <option value="INR"> INR</option>
                         </select>
-                        <input type="text" maxlength="20" class="cur" placeholder="Amount">
+                        <input type="text" name="written_commitments_amount" maxlength="20" class="cur" placeholder="Amount">
                         <p>
                             3.	Please describe your role in the start-up.
                         </p>
-                        <input type="text" maxlength="250" class="las">
+                        <input type="text" name="challenges" maxlength="250" class="las">
             
             
                     </div>
