@@ -887,14 +887,14 @@ router.get("/startup/:uid/financials/appManualForm", async (req, res) => {
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn, uid});
   } catch(e) {
     res.status(500).send("Server Error");
   }
 })
 
 router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
-  try{
+  try{  
     if( !req.session?.isAuth)
     {
       var redirectMsg = "You have to login as startup.";
@@ -922,12 +922,15 @@ router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
       challenges: req.body.challenges
     })
     
-    console.log(appManualData);
+    // console.log(appManualData);
+    var data = await appManualData.save();
+    // console.log(data);
     
     res.send("startup Financials AppManual data has been added.");
     
   }catch(e){
-    res.status(500).send("Server Error");
+    console.log(e);
+    res.status(500).send(e.message);
   }
 })
 

@@ -15,6 +15,8 @@ const productDetailSchema = require("../models/productDetailSchema");
 const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
+const ApplicationManualModel = require("../models/financialApplicationManual");
+const ProjectionModel = require("../models/financialProjection");
 
 // Middlewares
 const {
@@ -1081,7 +1083,9 @@ router.get("/startup/:uid/financials/appManual", async (req, res) => {
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsAppManualData", {isAuthenticated, isStartUpLoggedIn});
+    var appManualData = await ApplicationManualModel.findOne({uid: uid});
+    
+    res.status(200).render("startupFinancialsAppManualData", {isAuthenticated, isStartUpLoggedIn, appManualData});
   } catch(e) {
     res.status(500).send("Server Error");
   }
