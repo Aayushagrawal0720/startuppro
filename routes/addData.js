@@ -754,8 +754,6 @@ router.get("/startup/:uid/financials/projectionsForm", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    console.log(uid);
-    console.log(req.session);
     const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
     const isAuthenticated = isAuth?true:false;
     
@@ -880,14 +878,25 @@ router.get("/startup/:uid/financials/appManualForm", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    console.log(uid);
-    console.log(req.session);
     const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn, uid});
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/startup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    var appManualData = await ApplicationManualModel.findOne({uid: uid});
+    
+    if(appManualData)
+      res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn, uid, appManualData});
+    else
+      res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn, uid});
+
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -898,13 +907,14 @@ router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
     if( !req.session?.isAuth)
     {
       var redirectMsg = "You have to login as startup.";
-      var redirectUrl = "/login/starup";
+      var redirectUrl = "/login/startup";
       return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     }
     
+    const uid = req.params.uid;
     
     const appManualData = new ApplicationManualModel({
-      uid: req.params.uid,
+      uid: uid,
       description: req.body.description,
       problem: req.body.problem,
       solution: req.body.solution,
@@ -922,11 +932,28 @@ router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
       challenges: req.body.challenges
     })
     
-    // console.log(appManualData);
-    var data = await appManualData.save();
-    // console.log(data);
+    var data = await ApplicationManualModel.findOne({uid: uid});
+    // console.log(data._id);
     
-    res.send("startup Financials AppManual data has been added.");
+    if(data)
+    {
+      appManualData._id = data._id;
+      var updated_data = await ApplicationManualModel.findOneAndUpdate(
+        {uid: uid},
+        {$set: appManualData},
+        {new: true}
+      );
+      
+      // console.log(updated_data._id);
+    }
+    else{
+      var data = await appManualData.save();
+    }
+    
+    // res.send("startup Financials AppManual data has been added.");
+    var redirectMsg = "startup Financials AppManual data has been added.";
+    var redirectUrl = `/getdata/startup/${uid}/financials/appManual`;
+    return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     
   }catch(e){
     console.log(e);

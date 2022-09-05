@@ -1004,8 +1004,6 @@ router.get("/startup/:uid/financials", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    console.log(uid);
-    console.log(req.session);
     const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
     const isAuthenticated = isAuth?true:false;
     
@@ -1022,8 +1020,6 @@ router.get("/startup/:uid/financials/prepare", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    console.log(uid);
-    console.log(req.session);
     const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
     const isAuthenticated = isAuth?true:false;
     
@@ -1040,8 +1036,6 @@ router.get("/startup/:uid/financials/pitchDeck", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    console.log(uid);
-    console.log(req.session);
     const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
     const isAuthenticated = isAuth?true:false;
     
@@ -1058,8 +1052,6 @@ router.get("/startup/:uid/financials/projections", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    console.log(uid);
-    console.log(req.session);
     const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
     const isAuthenticated = isAuth?true:false;
     
@@ -1076,8 +1068,6 @@ router.get("/startup/:uid/financials/appManual", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    console.log(uid);
-    console.log(req.session);
     const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
     const isAuthenticated = isAuth?true:false;
     
