@@ -759,13 +759,28 @@ router.get("/startup/:uid/financials/projectionsForm", async (req, res) => {
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn});
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/startup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    var projectionData = await ProjectionModel.findOne({uid: uid});
+    
+    if(projectionData)
+      res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn, uid, projectionData});
+    else
+      res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn, uid});
+    
+    
   } catch(e) {
+    console.log(e);
     res.status(500).send("Server Error");
   }
 })
 
-router.post("startup/:uid/financials/projectionsForm", async(req, res) => {
+router.post("/startup/:uid/financials/projectionsForm", async(req, res) => {
   try{
     if( !req.session?.isAuth)
     {
@@ -774,6 +789,7 @@ router.post("startup/:uid/financials/projectionsForm", async(req, res) => {
       return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     }
     
+    const uid = req.params.uid;
     
     const projectionData = new ProjectionModel({
       uid: req.params.uid,
@@ -863,11 +879,31 @@ router.post("startup/:uid/financials/projectionsForm", async(req, res) => {
     })
     
     
-    console.log(projectionData);
+    var data = await ProjectionModel.findOne({uid: uid});
     
-    res.send("startup Financials Projection data has been added.");
+    if(data)
+    {
+      // console.log(data._id);
+      projectionData._id = data._id;
+      var updated_data = await ProjectionModel.findOneAndUpdate(
+        {uid: uid},
+        {$set: projectionData},
+        {new: true}
+      );
+      
+      // console.log(updated_data._id);
+    }
+    else{
+      var data = await projectionData.save();
+    }
+    
+    // res.send("startup Financials AppManual data has been added.");
+    var redirectMsg = "startup Financials Projection data has been added.";
+    var redirectUrl = `/getdata/startup/${uid}/financials/projections`;
+    return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     
   }catch(e){
+    console.log(e);
     res.status(500).send("Server Error");
   }
 })

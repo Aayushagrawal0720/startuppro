@@ -1057,7 +1057,9 @@ router.get("/startup/:uid/financials/projections", async (req, res) => {
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsProjectionsData", {isAuthenticated, isStartUpLoggedIn});
+    var projectionData = await ProjectionModel.findOne({uid: uid});
+    
+    res.status(200).render("startupFinancialsProjectionsData", {isAuthenticated, isStartUpLoggedIn, projectionData});
   } catch(e) {
     res.status(500).send("Server Error");
   }
