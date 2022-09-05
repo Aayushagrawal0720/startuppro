@@ -42,7 +42,7 @@
                 <p>
                     Please describe your start-up in your own words. Please describe your start-up in your own words. 
                 </p>
-                <input type="text" name="description" maxlength="250" 
+                <input type="text" name="description" minlength="250" required
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.description %>"
                 <% } %> />
@@ -50,7 +50,7 @@
                 <p>
                     1.	Describe the problem you have identified and are solving. 
                 </p>
-                <input type="text" name="problem" maxlength="250" 
+                <input type="text" name="problem" minlength="250" required 
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.problem %>"
                 <% } %> />
@@ -58,7 +58,7 @@
                 <p>
                     2.	The value of your solution to the customers targeted by you. Identify if possible the basis of your assessment. <br>Share preliminarily information of any trial conducted. 
                 </p>
-                <input type="text" name="solution" maxlength="250"
+                <input type="text" name="solution" minlength="250" required
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.solution %>"
                 <% } %> />
@@ -68,7 +68,7 @@
                 3.	Identify the first segment of customers you have targeted to gain early adoption.<br> How did you decide on the early adopter segment?
 
                 </p>
-                <input type="text" name="customer_and_adoption" maxlength="250"
+                <input type="text" name="customer_and_adoption" minlength="250" required
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.customer_and_adoption %>"
                 <% } %> />
@@ -76,7 +76,7 @@
                 <p>
                     4.	Describe how you make money based on your pricing and costs. And how you create demand<br> and acquire customers.  
                 </p>
-                <input type="text" name="money_making" maxlength="250"
+                <input type="text" name="money_making" minlength="250" required
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.money_making %>"
                 <% } %> />
@@ -94,7 +94,7 @@
                 <p>
                     1.	Name of your company (as registered). If not registered, name identified. 
                 </p>
-                <input type="text" name="company_name" maxlength="100"
+                <input type="text" name="company_name" maxlength="100" required
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.company_name %>"
                 <% } %> />
@@ -103,7 +103,7 @@
                     2.	The brand name of your product or service. If a brand name is not used<br>
                         please tell us the name that you have identified. 
                 </p>
-                <input type="text" name="brand_name" maxlength="100"
+                <input type="text" name="brand_name" maxlength="100" required
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.brand_name %>"
                 <% } %> />
@@ -112,7 +112,7 @@
                 <p>
                     3.	Please describe your role in the start-up.
                 </p>
-                <input type="text" name="role" maxlength="100"
+                <input type="text" name="role" maxlength="100" required
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.role %>"
                 <% } %> />
@@ -123,7 +123,7 @@
                 <h3>A few questions about funding</h3>
                 <p>1.	Total investment in your startup.</p>
 
-                <select name="investment_currecy" id="currency">
+                <select name="investment_currecy" required id="currency">
                     <% if(locals.appManualData) { %>
                         <option value="dollar" 
                         <% if(appManualData.investment_currecy == "dollar") {%>
@@ -138,7 +138,7 @@
                         <option value="INR"> INR</option>
                     <% } %> />
                 </select>
-                <input type="number" name="investment_amount" class="cur" placeholder="Amount"
+                <input type="number" name="investment_amount" required class="cur" placeholder="Amount"
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.investment_amount %>"
                 <% } %> />
@@ -146,7 +146,7 @@
                 
                 <p>2.	What is your funding requirement? </p>
 
-                <select name="required_funding_currecy" id="currency">
+                <select name="required_funding_currecy" required id="currency">
                     <% if(locals.appManualData) { %>
                         <option value="dollar" 
                         <% if(appManualData.required_funding_currecy == "dollar") {%>
@@ -161,7 +161,7 @@
                         <option value="INR"> INR</option>
                     <% } %> />
                 </select>
-                <input type="number" name="required_funding_amount" class="cur" placeholder="Amount"
+                <input type="number" name="required_funding_amount" required class="cur" placeholder="Amount"
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.required_funding_amount %>"
                 <% } %> />
@@ -169,7 +169,7 @@
                 
                 <p>3.	Any written commitments for any portion of this funding on date of application? </p>
 
-                <select name="written_commitments_currecy" id="currency">
+                <select name="written_commitments_currecy"  required id="currency">
                     <% if(locals.appManualData) { %>
                         <option value="dollar" 
                         <% if(appManualData.written_commitments_currecy == "dollar") {%>
@@ -184,14 +184,14 @@
                         <option value="INR"> INR</option>
                     <% } %> />
                 </select>
-                <input type="number" name="written_commitments_amount" class="cur" placeholder="Amount"
+                <input type="number" name="written_commitments_amount" required class="cur" placeholder="Amount"
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.written_commitments_amount %>"
                 <% } %> />
                 
                 
                 <p>4.	What challenges does your business face in the coming three months?  </p>
-                <input type="text" name="challenges" maxlength="250" class="las"
+                <input type="text" name="challenges" minlength="250" required class="las"
                 <% if(locals.appManualData) { %>
                     value="<%= appManualData.challenges %>"
                 <% } %> />
