@@ -248,7 +248,7 @@
                                 <% jobAlerts.forEach((item)=> { %>
 
                                   <div class="container col-md-5 my-3 jobbox"
-                                    style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; ">
+                                    style="box-shadow: 0px 0px 9px 1px rgb(221, 216, 216); border-radius: 10px; padding: 0px; ">
                                     <div class="m-3">
                                       <div class="imageadd">
                                         <h1>Job title</h1>
@@ -390,12 +390,12 @@
                                       <div class="col-md-12">
                                         <form class="col-md-12 d-flex flex-column align-items-stretch"
                                           enctype="multipart/form-data" method="POST"
-                                          action=<%=`/adddata/product/${startupData?.uid}/addproduct` %> >
-                                          <!-- <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?"> -->
+                                          action=<%=`/adddata/product/${startupData?.uid}/addproduct` %>>
+                                           <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?">
                                           <h2><input name="product_title" id="post-input" type="text"
                                               class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's the Title"></h2>
                                           <input name="event_pic" type="file" class="mx-2 d-block"
-                                            placeholder="Select"><br>
+                                            placeholder="Select"><br> 
                                       </div>
                                     </div>
                                     <row>
@@ -448,18 +448,18 @@
                                   style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                   <div class="m-3">
 
-                                    <div class="imageadd">
+                                    <div class="imageadd " >
 
-                                      <h1>Job title</h1>
+                                      <h1 class="head1">press Releases</h1>
                                       <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                     </div>
 
 
                                     <div class="box-desc">
 
-                                      <h4 class="it"><b>First</b></h4>
-                                      <h6 class="it">Second</h6>
-                                      <h6 class="it">Description of the job posted</h6>
+                                      <h4 class="it it1"><b>First</b></h4>
+                                      <h6 class="it it1" >Second</h6>
+                                      <h6 class="it " style="font-size: .7rem;">Description of the job posted</h6>
 
                                     </div>
 
@@ -474,20 +474,20 @@
                                     style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                     <div class="m-3">
                                       <div class="imageadd">
-                                        <h1>
+                                        <h1 class="head1">
                                           <%= item.job_title %>
                                         </h1>
                                         <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                       </div>
 
                                       <div class="box-desc">
-                                        <h4 class="it"><b>
+                                        <h4 class="it it1"><b>
                                             <%= item.first %>
                                           </b></h4>
-                                        <h6 class="it">
+                                        <h6 class="it it1">
                                           <%= item.second %>
                                         </h6>
-                                        <h6 class="it">
+                                        <h6 class="it" style="font-size: .7rem;">
                                           <%= item.description %>
                                         </h6>
                                       </div>
