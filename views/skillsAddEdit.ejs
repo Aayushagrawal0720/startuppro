@@ -96,9 +96,13 @@
               mid: '<%- mid %>'
             }
           }).then((res) => {
-            if (res.redirected) {
+            if (res.redirected) window.location.href = res.url; {
               alert("Details updated successfully.\nYou're now being redirected to your profile.\nClick Ok to continue")
-              window.location.href = res.url;
+              console.log(userData);
+
+              // res.redirect("..");
+              res.redirect('/member/profile');
+              //window.location.href = res.url;
             }
             if (res.status === 400) {
               alert("Error\nCould not save details");

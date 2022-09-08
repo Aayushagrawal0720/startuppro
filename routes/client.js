@@ -197,7 +197,19 @@ router.get(
   async (req, res) => {
     const type = "Startup";
     const loginLink = "/login/startup";
-    res.render("homePage", { type, loginLink });
+    const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+    res.render("homePage", { type, loginLink,number_of_startups,number_of_caExpData, number_of_mentorExpData });
   }
 );
 
@@ -476,11 +488,23 @@ router.get(
   isUserLoggedIn,
   isCALoggedIn,
   isMentorLoggedIn,
-  (req, res) => {
+  async(req, res) => {
     try {
       const type = "User";
       const loginLink = "/login/member";
-      res.render("homePage", { type, loginLink });
+      const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+    res.render("homePage", { type, loginLink,number_of_startups,number_of_caExpData, number_of_mentorExpData });
     } catch (err) {
       console.log(err);
       res.status(500).send(err);
@@ -638,7 +662,19 @@ router.get(
     try {
       const type = "CA";
       const loginLink = "/login/ca";
-      res.render("homePage", { type, loginLink });
+      const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+      res.render("homePage", { type, loginLink, number_of_startups, number_of_caExpData, number_of_mentorExpData });
     } catch (e) {
       console.log(e);
       res.status(500).send("Server Error");
@@ -790,7 +826,19 @@ router.get(
     try {
       const type = "Mentor";
       const loginLink = "/login/mentor";
-      res.render("homePage", { type, loginLink });
+      const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+      res.render("homePage", { type, loginLink, number_of_startups, number_of_caExpData, number_of_mentorExpData });
     } catch (e) {
       console.log(e);
       res.status(500).send("Server Error");
