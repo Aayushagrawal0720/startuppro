@@ -20,6 +20,8 @@
     border: 1px solid rgb(48, 48, 179);
     background-color: rgb(48 48 179 / 50%);
     border-radius: 18px;
+    display: flex;
+    align-items: center;
   }
   .hed p{
     font-size: larger;
