@@ -32,6 +32,8 @@ th, td{
   padding-left: 2%;
   padding-right: 2%;
   padding-top: 1%;
+  height: 56px;
+  width: 124px;
 }
 #button{
   /* position: absolute; */
