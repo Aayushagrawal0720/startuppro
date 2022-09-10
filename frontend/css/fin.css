@@ -33,7 +33,7 @@
     font-size: 26px;
     padding-top: 20px;
 }
-.rowe input{
+.rowe textarea{
     width: 1012px;
     padding-bottom: 62px;
     padding-left: 0.2%;
@@ -85,17 +85,22 @@
     border-radius: 9px;
     border: 1px solid rgb(17, 255, 0);
 }
+.cur{
+  margin-top: 10px;
+  width: 350px;
+  height: 50px;
+  border-radius: 9px;
+  border: 1px solid rgb(17, 255, 0);
+}
 .main3 p{
     font-size: 26px;
     padding-top: 20px
 }
-.main3 input{
-    margin-top: 10px;
-    width: 350px;
-    height: 50px;
-    padding-left: 00.2%;
-    border-radius: 9px;
-    border: 1px solid rgb(17, 255, 0);
+.main3 textarea{
+  width: 1012px;
+  padding-bottom: 62px;
+  padding-left: 0.2%;
+  border: 1px solid rgb(17, 255, 0);
 }
 .main3 .las{
     width: 1012px;
@@ -113,7 +118,7 @@
 .hed p{
   font-size: large;
 }
-.rowe input{
+.rowe textarea{
   width: 658px;
   padding-bottom: 62px;
   padding-left: 0.2%;
@@ -137,7 +142,7 @@
 .hed p{
   font-size: large;
 }
-.rowe input{
+.rowe textarea{
   width: 552px;
   padding-bottom: 37px;
   padding-left: 0.2%;
@@ -165,7 +170,7 @@
 .hed p{
   font-size: large;
 }
-.rowe input{
+.rowe textarea{
   width: 400px;
   padding-bottom: 37px;
   padding-left: 0.2%;
@@ -189,7 +194,7 @@
 .hed p{
   font-size: large;
 }
-.rowe input{
+.rowe textarea{
   width: 328px;
   padding-bottom: 37px;
   padding-left: 0.2%;
@@ -204,7 +209,7 @@
   margin-top: 10px;
   width: 298px;
 }
-.main3 input{
+.main3 textarea{
   width: 298px;
 }
 #button{
