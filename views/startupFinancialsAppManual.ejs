@@ -186,7 +186,7 @@
                 
                 
                 <p>4.	What challenges does your business face in the coming three months?  </p>
-                <textarea type="text" name="challenges" minlength="250" required class="las"><% if(locals.appManualData) { %>
+                <textarea name="challenges" minlength="250" required class="las"><% if(locals.appManualData) { %>
                     value="<%= appManualData.challenges %>"
                 <% } %></textarea>
     

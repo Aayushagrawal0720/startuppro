@@ -44,3 +44,10 @@ body {
     background: #1687A7;
     transform: translateY(-10px);
 }
+#finance{
+    padding-bottom: 80px;
+}
+.container h1{
+    display: flex;
+    justify-content: center;
+}
