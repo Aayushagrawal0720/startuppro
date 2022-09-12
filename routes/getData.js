@@ -15,6 +15,8 @@ const productDetailSchema = require("../models/productDetailSchema");
 const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
+const ApplicationManualModel = require("../models/financialApplicationManual");
+const ProjectionModel = require("../models/financialProjection");
 
 // Middlewares
 const {
@@ -1005,6 +1007,102 @@ router.get("/startup/teammembers/:uid", async (req, res) => {
   }
 });
 
+
+// FINANCIAL PAGE --> RENDERING FINANCIAL PAGE
+router.get("/startup/:uid/financials", async (req, res) => {
+  /*
+      This page will displayed for everyone
+      
+      But edit and add option will enabled 
+      only for this startup (i.e., it should be logged in)
+      that is decided by the variable `isStartUpLoggedIn` (boolean)   
+      
+      if `isStartUpLoggedIn` is true  add/edit button should be       VISIBLE
+      else add/edit button should be                                INVISIBLE
+  */
+  
+  
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("financials", {isAuthenticated, isStartUpLoggedIn, uid});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PREPARE PAGE
+router.get("/startup/:uid/financials/prepare", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsPrepare", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PITCH DECK PAGE
+router.get("/startup/:uid/financials/pitchDeck", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsPitchDeck", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
+router.get("/startup/:uid/financials/projections", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    var projectionData = await ProjectionModel.findOne({uid: uid});
+    
+    res.status(200).render("startupFinancialsProjectionsData", {isAuthenticated, isStartUpLoggedIn, projectionData});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
+router.get("/startup/:uid/financials/appManual", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    var appManualData = await ApplicationManualModel.findOne({uid: uid});
+    
+    res.status(200).render("startupFinancialsAppManualData", {isAuthenticated, isStartUpLoggedIn, appManualData});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
 
 
 

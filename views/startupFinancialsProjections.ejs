@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Startup Finacials</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/financial-projections.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/financials.css">
+    <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <%- include('./_partials/navbar_2') %>
+  <% if(isAuthenticated){ %>
+    <script>
+      document.querySelector('.login-nav').innerText = "DASHBOARD";
+    </script>
+  <% } %>
+
+  <div class="financials">
+      
+    <form method="post" action="" id="fin-form">
+        
+      <table style="width:50%" id="collapsee">
+        <tr>
+          <th>Key Financials (in INR Lakhs)
+        </th>
+          <th>FYXX     (Proj.)
+        </th>
+          <th>FYXX <br> (Proj.)
+        </th>
+          <th>FYXX <br>(Proj.)
+        </th>
+        </tr>
+        <tr>
+          <td>Net Rev/FPO
+          </td>
+          <td class="txt">
+            <input type="text" name="net_revenue_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.net_revenue_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="net_revenue_2"
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.net_revenue_2 %>"
+            <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="net_revenue_3"
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.net_revenue_3 %>"
+            <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>CAC/Farmer (INR)
+          </td>
+          <td class="txt">
+            <input type="text" name="CAC_1"
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.CAC_1 %>"
+            <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="CAC_2"
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.CAC_2 %>"
+            <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="CAC_3"
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.CAC_3 %>"
+            <% } %> />
+          </td>
+        </tr>
+        <tr>
+          
+          <td>Total Revenue
+          </td>
+          <td class="txt">
+            <input type="text" name="total_revenue_1" 
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.total_revenue_1 %>"
+            <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="total_revenue_2" 
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.total_revenue_2 %>"
+            <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="total_revenue_3" 
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.total_revenue_3 %>"
+            <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>% Growth</td>
+          <td class="txt">
+            <input type="text" name="growth_percent_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.growth_percent_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="growth_percent_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.growth_percent_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="growth_percent_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.growth_percent_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>Direct Cost Breakup
+          </td>
+          <td class="txt">
+            <input type="text" name="direct_cost_breakup_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.direct_cost_breakup_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="direct_cost_breakup_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.direct_cost_breakup_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="direct_cost_breakup_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.direct_cost_breakup_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>Gross Margin
+          </td>
+          <td class="txt">
+            <input type="text" name="gross_margin_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.gross_margin_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="gross_margin_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.gross_margin_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="gross_margin_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.gross_margin_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>% of Revenue
+          </td>
+          <td class="txt">
+            <input type="text" name="revenue_percent_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.revenue_percent_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="revenue_percent_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.revenue_percent_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="revenue_percent_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.revenue_percent_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>Salaries
+          </td>
+          <td class="txt">
+            <input type="text" name="salaries_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.salaries_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="salaries_2" 
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.salaries_2 %>"
+            <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="salaries_3" 
+            <% if(locals.projectionData) { %>
+                value="<%= projectionData.salaries_3 %>"
+            <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Founders
+          </td>
+          <td class="txt">
+            <input type="text" name="founders_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.founders_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="founders_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.founders_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="founders_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.founders_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Tech Team
+          </td>
+          <td class="txt">
+            <input type="text" name="tech_team_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.tech_team_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="tech_team_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.tech_team_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="tech_team_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.tech_team_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Sales
+          </td>
+          <td class="txt">
+            <input type="text" name="sales_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.sales_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="sales_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.sales_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="sales_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.sales_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">Sr Mgt
+          </td>
+          <td class="txt">
+            <input type="text" name="senior_management_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.senior_management_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="senior_management_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.senior_management_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="senior_management_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.senior_management_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">OPS
+          </td>
+          <td class="txt">
+            <input type="text" name="OPS_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.OPS_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="OPS_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.OPS_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="OPS_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.OPS_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">FINANCE
+
+          </td>
+          <td>
+            <input type="text" name="finance_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.finance_1 %>"
+              <% } %> />
+          </td>
+          <td>
+            <input type="text" name="finance_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.finance_2 %>"
+              <% } %> />
+          </td>
+          <td>
+            <input type="text" name="finance_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.finance_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">CREDIT
+          </td>
+          <td class="txt">
+            <input type="text" name="credit_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.credit_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="credit_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.credit_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="credit_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.credit_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td align="right">OUTSOURCED
+          </td>
+          <td class="txt">
+            <input type="text" name="outsourced_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.outsourced_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="outsourced_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.outsourced_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="outsourced_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.outsourced_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>Marketing
+          </td>
+          <td class="txt">
+            <input type="text" name="marketing_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.marketing_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="marketing_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.marketing_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="marketing_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.marketing_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>Office & Tech infra
+          </td>
+          <td class="txt">
+            <input type="text" name="office_tech_infra_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.office_tech_infra_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="office_tech_infra_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.office_tech_infra_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="office_tech_infra_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.office_tech_infra_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>Rentals, Travel & Other expenses
+          </td>
+          <td class="txt">
+            <input type="text" name="rentals_travel_other_expenses_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.rentals_travel_other_expenses_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="rentals_travel_other_expenses_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.rentals_travel_other_expenses_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="rentals_travel_other_expenses_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.rentals_travel_other_expenses_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>Total Expenses
+          </td>
+          <td class="txt">
+            <input type="text"  name="total_expenses_1"
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.total_expenses_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text"  name="total_expenses_2"
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.total_expenses_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text"  name="total_expenses_3"
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.total_expenses_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+        <tr>
+          <td>EBIDTA
+          </td>
+          <td class="txt">
+            <input type="text" name="EBIDTA_1" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.EBIDTA_1 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="EBIDTA_2" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.EBIDTA_2 %>"
+              <% } %> />
+          </td>
+          <td class="txt">
+            <input type="text" name="EBIDTA_3" 
+              <% if(locals.projectionData) { %>
+                  value="<%= projectionData.EBIDTA_3 %>"
+              <% } %> />
+          </td>
+        </tr>
+                       
+      </table>
+                
+      <div style="width: 100%; text-align: center; padding-bottom: 30px; padding-top: 20px;">
+        <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
+        <input  type="button" class="btn btn-warning py-2 px-5" value="Submit" onclick="sub()">
+      </div>
+                
+    </form>
+      
+  </div>
+            
+            
+  <script>
+    function sub() {
+      alert("Submitted Suscessfully")
+      document.getElementById("fin-form").submit();
+    }
+  </script>  
+
+
+  <%- include('./_partials/footer') %>
+
+</body>
+
+</html>

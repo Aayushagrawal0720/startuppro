@@ -137,3 +137,43 @@ app.use("/getData", getDataRoute);
 app.listen(port, () => {
   console.log(`Website is working! Listening on port ${port}`);
 });
+
+
+//get request for the financials route
+app.get("/financials", (req, res) => {
+  try {
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("financials", {isAuthenticated});
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Server Error");
+  }
+});
+
+//get request for the Prepare for investors questions financials route (For Startup)
+app.get("/startupFinancialsPrepare", (req, res) => {
+  try {
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("startupFinancialsPrepare", {isAuthenticated});
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Server Error");
+  }
+});
+
+//get request for the Pitch Deck financials route (For Startup)
+app.get("/startupFinancialsPitchDeck", (req, res) => {
+  try {
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("startupFinancialsPitchDeck", {isAuthenticated});
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Server Error");
+  }
+});

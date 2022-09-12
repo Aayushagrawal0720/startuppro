@@ -1,0 +1,70 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+.txt{
+  padding: .5%;
+}
+.financials{
+  height:auto;
+  width: 100%;
+}
+table, th, td {
+    border:1px solid black;
+    
+  }
+  #collapsee{
+    border-collapse: collapse;
+  }
+  input {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    }
+    table{
+      margin-top: 10%;
+      margin-left: 20%;
+    }
+th, td{
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%;
+  height: 56px;
+  width: 124px;
+}
+#button{
+  /* position: absolute; */
+  background-color:rgb(2 145 186);
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 9px;
+  text-align: center;
+  /* top: 952px; */
+  /* right: 30%; */
+  
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+#demo{
+  padding-left: 63%;
+  padding-top: 5%;
+  }
+  @media (max-width: 775px){
+    table{
+      margin-top: 10%;
+      margin-left: 10%;
+    }
+  }
+  @media (max-width: 500px){
+    table{
+      margin-top: 10%;
+      margin-left: 0;
+      width: 50%;
+    }
+  }
