@@ -19,45 +19,33 @@
 
     <%- include('./_partials/navbar_2') %>
 
-    <% if(locals.ContactData) { %>
 
         <div class="container   mt-5 mb-5">
             <div class="row shadowborder">
                 <div class="col-md-6 box1 ">
                     <div class="box  mx-sm-4 my-4">
-                        <h2 class="mb-5 text-center">Contact Us</h2>
-                        <form action="/contact" method="POST">
-                            <label for="name" class="mb-0 ml-0 star d-block">FULL NAME</label>
-                            <p>
-                                <%= ContactData.p_name %>
-                            </p><br><br>
+                        <h2 class="mb-5 text-center">Admin</h2>
 
-                            <label for="phone" class="mb-0 ml-0 star d-block">CONTACT</label>
-                            <p>
-                                <%= ContactData.p_phone %>
-                            </p><br><br>
+                        <label for="name" class="mb-0 ml-0 star d-block">FULL NAME</label>
+                        <p class="p-1 outline"></p>
+                        <br><br>
 
-                            <label for="email" class="mb-0 ml-0 star d-block">EMAIL ADDRESS</label>
-                            <p>
-                                <%= ContactData.p_email %>
-                            </p><br><br>
+                        <label for="phone" class="mb-0 ml-0 star d-block">CONTACT</label>
+                        <p class="p-1 outline"></p>
+                        <br><br>
+
+                        <label for="email" class="mb-0 ml-0 star d-block">EMAIL ADDRESS</label>
+                        <p class="p-1 outline"></p>
+                        <br><br>
 
 
+                        <label for="message" class="mb-0 ml-0 star">MESSAGE</label><br>
+                        <p class="p-1 outline"></p>
 
-                            <label for="message" class="mb-0 ml-0 star">MESSAGE</label><br>
-                            <p>
-                                <%= ContactData.p_msg %>
-                            </p><br><br>
-                        </form>
                     </div>
 
                 </div>
-                <div class="col-md-6 py-3 pb-0 box2 ">
-                    <p><iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21054.634635704693!2d79.91501185012395!3d23.148012065830525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3981ade412be281d%3A0x7217bac5a6c65211!2sArthGoal!5e0!3m2!1sen!2sin!4v1615878113601!5m2!1sen!2sin"
-                            width="100%" height="590px" style="border:0;" allowfullscreen="" loading="lazy"
-                            class="mapbox"></iframe></p>
-                </div>
+                
             </div>
             <div class="row shadowborder pt-4 mt-5">
                 <div class="col-md-3   text-center">
@@ -79,11 +67,6 @@
                 </div>
             </div>
         </div>
-
-
-        <% } else{ %>
-            <p>You have to submit the form.</p>
-           <% } %> 
 
         <%- include('./_partials/footer') %>
 

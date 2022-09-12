@@ -32,33 +32,20 @@
                                 <h2 class="mb-5 text-center">Contact Us</h2>
                                 <form action="/contact" method="POST">
                                     <label for="name" class="mb-0 ml-0 star d-block">FULL NAME</label>
-                                    <input type="text" name="p_name" id="name" placeholder="Full Name"
-                                        class="p-1 outline" required <% if(locals.ContactData) { %>
-                                    value="<%= ContactData.p_name %>"
-                                        <% } %> />
-                                            <br><br>
+                                    <input type="text" name="p_name" id="name" placeholder="Full Name" class="p-1 outline" required>
+                                    <br><br>
 
                                     <label for="phone" class="mb-0 ml-0 star d-block">CONTACT</label>
-                                    <input type="number" name="p_phone" id="phone" placeholder="Phone"
-                                        class="p-1 outline" required <% if(locals.ContactData) { %>
-                                    value="<%= ContactData.p_phone %>"
-                                        <% } %> />
-                                            <br><br>
+                                    <input type="number" name="p_phone" id="phone" placeholder="Phone" class="p-1 outline" required>
+                                    <br><br>
 
-                                    <label for="email" class="mb-0 ml-0 star d-block">EMAIL
-                                        ADDRESS</label>
-                                    <input type="text" id="email" name="p_email" placeholder="Email"
-                                        class="p-1 outline" required <% if(locals.ContactData) { %>
-                                    value="<%= ContactData.p_email%>"
-                                        <% } %> />
-                                            <br><br>
+                                    <label for="email" class="mb-0 ml-0 star d-block">EMAIL ADDRESS</label>
+                                    <input type="text" id="email" name="p_email" placeholder="Email" class="p-1 outline" required>
+                                    <br><br>
 
-                                            
-                                    <label for="message"
-                                        class="mb-0 ml-0 star">MESSAGE</label><br>
-                                    <textarea id="message" name="p_msg" cols="25" rows="6"
-                                        class="text-area" placeholder="Message"><% if(locals.appManualData) { %><%= appManualData.challenges %>
-                                        <% } %></textarea><br><br>
+
+                                    <label for="message" class="mb-0 ml-0 star">MESSAGE</label><br>
+                                    <textarea id="message" name="p_msg" cols="25" rows="6" class="text-area" placeholder="Message"></textarea><br><br>
 
                                 </form>
                             </div>
