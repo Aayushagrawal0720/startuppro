@@ -222,7 +222,7 @@ router.get("/startups/:industry", async (req, res) => {
       );
 
       const userExpData = await userExpModel.find();
-      // console.log(mentorExpData);
+      console.log(userExpData);
 
       return res.status(200).render("startupLoginPosts", {
         memberData,
@@ -276,7 +276,7 @@ router.get("/startups/:industry", async (req, res) => {
       );
 
       const mentorExpData = await mentorExpModel.find();
-      // console.log(mentorExpData);
+      console.log(mentorExpData);
 
       return res.status(200).render("startupLoginPosts", {
         mentorData,

@@ -137,7 +137,7 @@ img {
 }
 .shadow-border{
     box-shadow: 1px 1px 7px 0px rgb(172, 179, 185);
-    background-color: ##F6F5F5;/* This is added by yogita*/
+    background-color: #F6F5F5;/* This is added by yogita*/
     /* border: 1px  lightslategrey;  This line is commented by yogita */
     border-radius: 5px;
 }

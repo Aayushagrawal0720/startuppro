@@ -350,10 +350,15 @@ ul li {
 .jobbox {
   display: flex;
   padding: 0px;
-  margin: 0px;
+  margin: 4.0px;
  max-width: 180px;
   height: 290px;
   background: #f6f6f6;
+  
+ 
+}
+.overf{
+  overflow: scroll;
 }
 .jobbox:hover {
   transform: scale(1.08);
@@ -364,17 +369,19 @@ ul li {
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 50%;
+  height: 40%;
   width: 100%;
   /* padding: 10px; */
   
   /* margin-bottom: 00px; */
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 5px 5px;
   border: 1px solid grey;
   overflow-wrap: anywhere;
+  text-align: center;
 }
+
 .box-desc{
-  padding: 25px 0px;
+  padding: 20px 0px;
 }
 .it1{
  padding-top: 8px;
@@ -388,8 +395,8 @@ ul li {
 }
 .button {
   position: relative;
-  top: 110px;
-  left: 60px;
+  top: 117px;
+  
   text-decoration: none;
   background-color: #1687a7;
   color: #eee;
@@ -741,7 +748,20 @@ ul li {
 /* -------------end--------------- */
 /*  */
 
-
+/* <<added by shubham agarwal */
 .wrapper{
   overflow: hidden;
 }
+.it1{
+  font-weight: bold;
+}
+.head1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+   font-weight: bold;
+   font-size: 1.1rem; 
+  color: rgb(1, 2, 3);
+  text-shadow: 0 0 3px #06404e;
+  }

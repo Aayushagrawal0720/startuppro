@@ -5,7 +5,144 @@
   <div class="hi-next"></div>
 
   <ul>
-    <% productData.forEach((item,index)=>{ %>
+  
+
+      
+      <% productData.forEach((item,index)=> { %>
+
+
+        <li>
+          <div class="card">
+            <img src=<%=item.picUrl %>
+            alt=""
+            height="150px"
+            class="img-class"
+            />
+            <div class="card-body space">
+              <h5 class="card-title">
+                <%=item.product_title %>
+              </h5>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div> 
+        </li>
+      
+
+      <!-- default cards  -->
+        <!-- <li> 
+        <div class="card">
+          <img src=<%=item.picUrl %>
+          alt=""
+          height="150px"
+          class="img-class"
+          />
+          <div class="card-body space">
+            <h5 class="card-title">
+              <%=item.product_title %>
+            </h5>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <br>
+            <br>
+            <br>
+          </div>
+      </div>
+    </li>
+    <li>
+      <div class="card">
+        <img src=<%=item.picUrl %>
+        alt=""
+        height="150px"
+        class="img-class"
+        />
+        <div class="card-body space">
+          <h5 class="card-title">
+            <%=item.product_title %>
+          </h5>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="card">
+        <img src=<%=item.picUrl %>
+        alt=""
+        height="150px"
+        class="img-class"
+        />
+        <div class="card-body space">
+          <h5 class="card-title">
+            <%=item.product_title %>
+          </h5>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="card">
+        <img src=<%=item.picUrl %>
+        alt=""
+        height="150px"
+        class="img-class"
+        />
+        <div class="card-body space">
+          <h5 class="card-title">
+            <%=item.product_title %>
+          </h5>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="card">
+        <img src=<%=item.picUrl %>
+        alt=""
+        height="150px"
+        class="img-class"
+        />
+        <div class="card-body space">
+          <h5 class="card-title">
+            <%=item.product_title %>
+          </h5>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    </li> 
+    <li>
+      <div class="card">
+        <img src=<%=item.picUrl %>
+        alt=""
+        height="150px"
+        class="img-class"
+        />
+        <div class="card-body space">
+          <h5 class="card-title">
+            <%=item.product_title %>
+          </h5>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <br>
+          <br>
+          <br>
+        </div>
+    </li>  -->
+  
+<% }) %>
+</ul>
+    <!-- <% productData.forEach((item,index)=>{ %>
       <li>
         <div class="card">
           <img src=<%=item.picUrl %>
@@ -22,9 +159,9 @@
             <br>
             <br>
           </div>
-        </div>
-      </li>
-      <% }); %>
+        </div> 
+       </li>
+      <% }); %> -->
         <!-- <li>
           <div class="card">
             <img
@@ -144,7 +281,7 @@
             </div>
           </div>
         </li> -->
-  </ul>
+  
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/js/script.js"></script>

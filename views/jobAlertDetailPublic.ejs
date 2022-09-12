@@ -33,43 +33,6 @@
 
 
     <br><br>
-    <div class="container py-5 px-3 my-5 shadow-border" style="border-radius: 8px; ">
-        <div class="row px-3">
-            <div class="col-md-3">
-                <img src=<%= startupData.pic_url %> class="img-fluid">
-            </div>
-            <div class="col-md-5">
-                <h3><%= jobAlert.title %></h3>
-                <h4><%= startupData.startup_name %> </h4>
-                <h5><%= jobAlert.employment_type %> </h5>
-            </div>
-        </div>
-        <div class="row px-3 my-2 d-flex flex-column justify-content-center">
-            <p><%= jobAlert.basic_info %></p>
-            <p><%= jobAlert.job_req %></p>
-            <p>
-                <p>Skills Required</p>
-                <ul class="ml-3">
-                    <% jobAlert.skills.forEach((item) =>{ %>
-                        <li style="list-style: disc;"><%= item %> </li>
-                    <% }) %> 
-                </ul>
-            </p>
-            <p>
-                <p>Shift</p>
-                <ul class="ml-3">
-                    <% jobAlert.shift.forEach((item) =>{ %>
-                        <li style="list-style: disc;"><%= item %> </li>
-                    <% }) %> 
-                </ul>
-            </p>
-        </div>
-        <div class="row text-right">
-            <div class="col-md-10">
-                <a href="/login/member"><button class="btn btn-warning" id="apply-btn">Apply</button></a>
-            </div>
-        </div>
-    </div>
 
     <div class="wrapper" style="border-radius: 20px;">
       <div class="left">

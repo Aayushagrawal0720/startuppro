@@ -78,13 +78,13 @@
                 <label class="mb-0 ml-0 star" for="Corporate">Corporate</label>
                 <br /><br />
 
-                <input
+                <!--<input
                   type="checkbox"
                   name="timeline"
                   id="timeline-checkbox"
                   
                 />
-                <label class="mb-0 ml-0 star" for="timeline-checkbox">Timeline</label><br><br>
+                <label class="mb-0 ml-0 star" for="timeline-checkbox">Timeline</label><br><br>-->
 
                 </div>
             </div>
@@ -118,7 +118,7 @@
             };
             // console.log(dataToSubmit)
 
-            fetch('/adddata/timelinegraph/graphevent',{
+            fetch(api_addGraphDataType,{
                 method:'POST',
                 body:JSON.stringify(dataToSubmit),
                 headers:{

@@ -40,9 +40,10 @@ router.get("/startup/:uid/basicdetails", isAuth, async (req, res) => {
 });
 
 // Startup Basic Details Route
-router.post("/startup/basicdetails", isAuth, async (req, res) => {
+router.post("/startup/:uid/basicdetails", isAuth, async (req, res) => {
   try {
-    const uid = req.headers.uid;
+    console.log("Hello");
+    const uid = req.params.uid;
     const values = Object.keys(req.body);
 
     // UPDATING IN startups COLLECTION
