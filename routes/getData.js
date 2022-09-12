@@ -472,7 +472,27 @@ router.get("/timeline/:uid", async (req, res) => {
     res.status(500).send(err);
   }
 });
+// GET PRODUCTDETAILS DATA
+router.get("/product/:uid", async (req, res) => {
+  try {
+    const uid = req.params.uid;
+    var startupData = await startUpScheme
+      .findOne({ uid: uid })
+      .select({ startup_name: 1 });
 
+      const productModel = new mongoose.model(
+        `${uid}_products_collection`,
+        productDetailSchema
+      );
+      const productData = await productModel.find().sort({ date: -1 });
+    // console.log(foundData);
+    // res.status(200).json(foundData);
+    res.status(200).render("product", { productData, startupData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
 // GET GRAPH DATA
 router.get("/graph/:uid", async (req, res) => {
   try {
@@ -798,6 +818,7 @@ router.get("/startup/jobalerts/public/:uid", async (req, res) => {
       .render("jobAlertsPageStartupPublic", { resArray, noAlerts });
   } catch (e) { }
 });
+
 
 // SEE JOB ALERTS APPLIED CANDIDATES (FOR STARTUPS)
 router.get(

@@ -420,15 +420,18 @@
 
                                 <% } %>
                             </div>
-                            <% if(productData.length==0) { %>
-                              <h3 class="text-center">No Product</h3>
-                              <% } else{ %>
+                            
+                              
                                 <div class="carousel2">
                                   <%- include('./mohit/carousel') %>
 
-                                    <% } %>
+                                    
                                 </div>
-
+                                <div class="col-md-12">
+                                  <a href="<%= `/getdata/product/${startupData?.uid}` %>">
+                                    <h6 class="text-right">View More</h6>
+                                  </a>
+                                </div>
                           </div>
 
 

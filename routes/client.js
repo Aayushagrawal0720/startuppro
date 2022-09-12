@@ -343,7 +343,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       productDetailSchema
     );
 
-    const productData = await productModel.find();
+    const productData = await productModel.find().sort({ date: -1 });
     // console.log(productData);
 
     //FETCHING PRESS RELEASE DATA
