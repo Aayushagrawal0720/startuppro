@@ -42,22 +42,19 @@
                 <p>
                     Please describe your start-up in your own words. Please describe your start-up in your own words. 
                 </p>
-                <textarea  name="description" minlength="250" required><% if(locals.appManualData) { %>
-                    value="<%= appManualData.description %>"
+                <textarea  name="description" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.description %>
                 <% } %></textarea>
 
                 <p>
                     1.	Describe the problem you have identified and are solving. 
                 </p>
-                <textarea name="problem" minlength="250" required><% if(locals.appManualData) { %>
-                    value="<%= appManualData.problem %>"
+                <textarea name="problem" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.problem %>
                 <% } %></textarea>
 
                 <p>
                     2.	The value of your solution to the customers targeted by you. Identify if possible the basis of your assessment. <br>Share preliminarily information of any trial conducted. 
                 </p>
-                <textarea name="solution" minlength="250" required><% if(locals.appManualData) { %>
-                    value="<%= appManualData.solution %>"
+                <textarea name="solution" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.solution %>
                 <% } %></textarea>
 
                 <p>
@@ -65,15 +62,13 @@
                 3.	Identify the first segment of customers you have targeted to gain early adoption.<br> How did you decide on the early adopter segment?
 
                 </p>
-                <textarea name="customer_and_adoption" minlength="250" required><% if(locals.appManualData) { %>
-                    value="<%= appManualData.customer_and_adoption %>"
+                <textarea name="customer_and_adoption" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.customer_and_adoption %>
                 <% } %></textarea>
 
                 <p>
                     4.	Describe how you make money based on your pricing and costs. And how you create demand<br> and acquire customers.  
                 </p>
-                <textarea name="money_making" minlength="250" required><% if(locals.appManualData) { %>
-                    value="<%= appManualData.money_making %>"
+                <textarea name="money_making" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.money_making %>
                 <% } %></textarea>
 
             </div>
@@ -186,8 +181,7 @@
                 
                 
                 <p>4.	What challenges does your business face in the coming three months?  </p>
-                <textarea name="challenges" minlength="250" required class="las"><% if(locals.appManualData) { %>
-                    value="<%= appManualData.challenges %>"
+                <textarea name="challenges" minlength="250" required class="las"><% if(locals.appManualData) { %><%= appManualData.challenges %>
                 <% } %></textarea>
     
     

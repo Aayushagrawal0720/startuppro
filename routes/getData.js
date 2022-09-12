@@ -1085,4 +1085,14 @@ router.get("/startup/:uid/financials/appManual", async (req, res) => {
 
 
 
+// ADMIN PANEL
+router.get("/admin", async (req, res) => {
+  try{
+    res.render("adminPanel");
+  }catch(e){
+    res.json(e);
+  }
+})
+
+
 module.exports = router;
