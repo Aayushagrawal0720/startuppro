@@ -47,7 +47,7 @@
     <div class="container cont-height">
       <div class="row shadow">
         <div class="col-md-12">
-          <form id="add-type-form" method="POST">
+          <form id="add-type-form" method="post" action="/adddata/timelinegraph/type/<%= startupData.uid %>">
             <div class="row">
               <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star">Title</label><br />
@@ -78,13 +78,13 @@
                 <label class="mb-0 ml-0 star" for="Corporate">Corporate</label>
                 <br /><br />
 
-                <!--<input
+                <input
                   type="checkbox"
                   name="timeline"
                   id="timeline-checkbox"
                   
                 />
-                <label class="mb-0 ml-0 star" for="timeline-checkbox">Timeline</label><br><br>-->
+                <label class="mb-0 ml-0 star" for="timeline-checkbox">Timeline</label><br><br>
 
                 </div>
             </div>
@@ -93,7 +93,6 @@
                 <input
                   type="submit"
                   class="btn btn-warning py-2 px-5"
-                  value="Add"
                 />
                </div>
             </div>
@@ -108,7 +107,7 @@
     <script>
         const uid = '<%=startupData.uid%>';
         const form = document.getElementById('add-type-form');
-        form.addEventListener('submit',(e)=>{
+        // form.addEventListener('submit',(e)=>{
             e.preventDefault();
             var dataToSubmit = {
                 uid: uid,

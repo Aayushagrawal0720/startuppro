@@ -469,10 +469,10 @@ router.get("/timelinegraph/type/:uid", isAuth, async (req, res) => {
 });
 
 // ADDING event type DATA BY CREATING COLLECTIONS DYNAMICALLY
-router.post("/timelinegraph/type", isAuth, async (req, res) => {
+router.post("/timelinegraph/type/:uid", isAuth, async (req, res) => {
   try {
     console.log(req.body);
-    const uid = req.body.uid;
+    const uid = req.params.uid;
     const type_id = uuidv4();
 
     // CREATING COLLECTION DYNAMICALLY
@@ -556,16 +556,19 @@ router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
     // console.log(savedGraphEveData);
 
     // ADDING TIMELINE EVENT
-    const dynamicTEventModel = new mongoose.model(
-      `${uid}_timeline_collection`,
-      timelineEventSchema
-    );
-    const tDataToBeAdded = new dynamicTEventModel({
-      date: Date.now(),
-      event_title: `Now ${req.body.type_title} are ${total}`,
-    });
-    const savedTData = await tDataToBeAdded.save();
-    // console.log(savedTData);
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `Now ${req.body.type_title} are ${total}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
 
     // res.status(201).send(savedGraphEveData);
     res.redirect("/startup/profile");

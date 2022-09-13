@@ -49,7 +49,7 @@
       <!-- ######### SUBMIT FORM FUNCTION -->
       <script src="/js/apiAddresses.js"></script>
       <script>
-          function submitForm(type_id,diff,type_title,type_type,isLess){
+          function submitForm(type_id,diff,type_title,type_type,isLess, timeline){
             const uid = '<%- startupData.uid %>';
             const formBody = {
                 uid:uid,
@@ -57,7 +57,8 @@
                 diff:parseFloat(diff),
                 type_title:type_title,
                 type_type: type_type,
-                isLess: isLess
+                isLess: isLess,
+                timeline: timeline
             };
           fetch('/adddata/timelinegraph/graphevent',{
                 method:'POST',
@@ -111,13 +112,22 @@
                     /><br /><br />
                     <input type="checkbox" name="isLess" id="isLess"> 
                     <label for="isLess">Decreased</label><br><br>
+                    Timeline
                     <input
-                    type="checkbox"
+                    type="radio"
                     name="timeline"
-                    id="timeline-checkbox"
-                  
+                    id="timeline-radio1"
+                    value="true"
                     />
-                <label class="mb-0 ml-0 star" for="timeline-checkbox">Timeline</label><br><br>
+                    <label class="mb-0 ml-0 star" for="timeline-radio1">Yes</label>
+                    <input
+                    type="radio"
+                    name="timeline"
+                    id="timeline-radio2"
+                    value="false"
+                    checked
+                    />
+                <label class="mb-0 ml-0 star" for="timeline-radio2">No</label><br><br>
                 </div>
                 </div>
                 <div class="row">
@@ -174,8 +184,9 @@
                 e.preventDefault();
                 var isLess = document.getElementById(`${item.type_id}-form`).elements.isLess;
                 var diff = document.getElementById(`${item.type_id}-form`).diff.value;
+                var timeline= document.getElementById(`${item.type_id}-form`).timeline.value;
                 
-                submitForm(item.type_id,diff,item.title,item.type,isLess.checked);
+                submitForm(item.type_id,diff,item.title,item.type,isLess.checked, timeline);
 
             })
         })
