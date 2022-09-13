@@ -11,7 +11,7 @@ const FeedbackSchema = new Schema({
         type: Number,
         required: true,
         validate(value){
-            if( !validator.isMobilePhone(value.toString(), "en-IN"));
+            if( !validator.isMobilePhone(value.toString(), "en-IN"))
                 throw new Error("Give a valid Phone number.");
         }
     },
