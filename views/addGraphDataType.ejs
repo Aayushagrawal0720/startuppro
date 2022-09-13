@@ -108,26 +108,26 @@
         const uid = '<%=startupData.uid%>';
         const form = document.getElementById('add-type-form');
         // form.addEventListener('submit',(e)=>{
-            e.preventDefault();
-            var dataToSubmit = {
-                uid: uid,
-                title: form.elements.title.value,
-                type: form.elements.type.value,
-                timeline: form.elements.timeline.checked
-            };
-            // console.log(dataToSubmit)
+        //     e.preventDefault();
+        //     var dataToSubmit = {
+        //         uid: uid,
+        //         title: form.elements.title.value,
+        //         type: form.elements.type.value,
+        //         timeline: form.elements.timeline.checked
+        //     };
+        //     // console.log(dataToSubmit)
 
-            fetch(api_addGraphDataType,{
-                method:'POST',
-                body:JSON.stringify(dataToSubmit),
-                headers:{
-                    'Content-type':'application/json'
-                }
-            }).then(res=>{
-                if(res.redirected) window.location.href = res.url;
-               // else if(res.status===400) alert('Could not add data')
-            })
-        })
+        //     fetch(api_addGraphDataType,{
+        //         method:'POST',
+        //         body:JSON.stringify(dataToSubmit),
+        //         headers:{
+        //             'Content-type':'application/json'
+        //         }
+        //     }).then(res=>{
+        //         if(res.redirected) window.location.href = res.url;
+        //        // else if(res.status===400) alert('Could not add data')
+        //     })
+        // })
     </script>
   </body>
 </html>
