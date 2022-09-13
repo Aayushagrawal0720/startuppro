@@ -64,6 +64,17 @@
                             <p>This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.This is message box.</p>
                         </div>
                     </div>
+                    
+                    <% feedbacks.forEach( (item, index) => { %>
+                        <div class="boxes">
+                            <h4><%= item.full_name %></h4>
+                            <h7><%= item.email %></h7>
+                            <h6><%= item.contact %></h6>
+                            <div class="message">
+                                <p><%= item.message %></p>
+                            </div>
+                        </div>
+                    <% }); %>
 
                 </div>
             </div>

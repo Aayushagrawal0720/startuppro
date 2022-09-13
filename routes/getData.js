@@ -1085,10 +1085,16 @@ router.get("/startup/:uid/financials/appManual", async (req, res) => {
 
 
 
+const FeedbackModel = require("../models/feedback");
+
 // ADMIN PANEL
 router.get("/admin", async (req, res) => {
   try{
-    res.render("adminPanel");
+    
+    const feedbacks = await FeedbackModel.find();
+    // console.log(feedbacks);
+    
+    res.render("adminPanel", {feedbacks});
   }catch(e){
     res.json(e);
   }
