@@ -489,6 +489,22 @@ router.post("/timelinegraph/type/:uid", isAuth, async (req, res) => {
     const savedData = await typeToBeSaved.save();
     // console.log(savedData);
     // res.status(201).send(savedData);
+    
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `added ${req.body.title}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
+    
+    
     res.redirect(`/adddata/timelinegraph/${req.session.uid}`);
   } catch (err) {
     console.log(err);
