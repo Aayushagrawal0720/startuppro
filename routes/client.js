@@ -981,4 +981,86 @@ router.delete("/logout/mentor", async (req, res) => {
   }
 });
 
+
+router.get(
+  "/login/developer",
+  isStartupLoggedIn,
+  isUserLoggedIn,
+  isCALoggedIn,
+  isMentorLoggedIn,
+  async (req, res) => {
+    const type = "Developer";
+    const loginLink = "/login/developer";
+    const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+    res.render("homePage", { type, loginLink,number_of_startups,number_of_caExpData, number_of_mentorExpData });
+  }
+);
+
+
+
+const developerSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String,
+  isDeveloper: Boolean
+}, {strict: false});
+// Developer login
+router.post("/login/developer",
+  isStartupLoggedIn,
+  isUserLoggedIn,
+  isCALoggedIn,
+  isMentorLoggedIn,
+  async (req, res) => {
+    try {
+      console.log(req.body);
+      const email = req.body.email;
+      const pass = req.body.pass;
+      
+      const DeveloperModel = mongoose.model('developers', developerSchema);
+      
+      const developer = await DeveloperModel.findOne({ email: email });
+      if (!developer) {
+        var redirectMsg =
+          "Developer not found. You're being redirected back to Login Page";
+        var redirectUrl = "/login/developer";
+        return res
+          .status(400)
+          .render("redirectPage", { redirectMsg, redirectUrl });
+      }
+
+      // const resultPass = await bcrypt.compare(
+      //   req.body.pass,
+      //   memberData.password
+      // );
+      if (pass !== developer.password)
+      {
+        var redirectMsg =
+          "Wrong Password. You're being redirected back to Login Page";
+        var redirectUrl = "/login/developer";
+        return res
+          .status(400)
+          .render("redirectPage", { redirectMsg, redirectUrl });
+      }
+
+      req.session.isAuthDeveloper = true;
+      req.session.did = developer._id;
+      res.redirect("/getdata/admin");
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err);
+    }
+  }
+);
+
 module.exports = router;
