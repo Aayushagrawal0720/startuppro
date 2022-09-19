@@ -19,27 +19,46 @@
 <body>
 
     <%- include('./_partials/navbar_2') %>
+        <div id="parent-row">
+            <script>
+                document.querySelector('.login-nav').innerText = "PROFILE";
+            </script>
+            <link rel="stylesheet" href="/css/sidebar.css">
+            <div class="container sidebar-container">
+                <ul>
+                    <li>
+                        <button class="logout-btn new--sidebar-btn px-2 py-1 mt-2">Logout</button>
+                    </li>
+                </ul>
+            </div>
 
+            <div id="feedback">
+                <div class="container">
+                    <div class="feedback-list">
 
-        <div id="feedback">
-            <div class="container">
-                <div class="feedback-list"> 
-                    
-                    <% feedbacks.forEach( (item, index) => { %>
-                        <div class="boxes">
-                            <h4><%= item.full_name %></h4>
-                            <h7><%= item.email %></h7>
-                            <h6><%= item.contact %></h6>
-                            <div class="message">
-                                <p><%= item.message %></p>
+                        <% feedbacks.forEach( (item, index)=> { %>
+                            <div class="boxes">
+                                <h4>
+                                    <%= item.full_name %>
+                                </h4>
+                                <h7>
+                                    <%= item.email %>
+                                </h7>
+                                <h6>
+                                    <%= item.contact %>
+                                </h6>
+                                <div class="message">
+                                    <p>
+                                        <%= item.message %>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    <% }); %>
+                            <% }); %>
 
+                    </div>
                 </div>
             </div>
         </div>
-
         <%- include('./_partials/footer') %>
 
 </body>
