@@ -59,6 +59,7 @@
                   required
                 /><br /><br />
 
+                <fieldset id="type">
                 <label class="mb-0 ml-0 star">Type</label><br />
                 <input
                 type="radio"
@@ -77,14 +78,19 @@
                 />
                 <label class="mb-0 ml-0 star" for="Corporate">Corporate</label>
                 <br /><br />
+                </fieldset>
+
+                <fieldset id="graphs">
                 <label class="mb-0 ml-0 star">Graphs</label><br />
                 <!-- ******************************** -->
-                <input type="radio" name="type" required value="Line Graph" id="Financial" />
+                <input type="radio" name="graph" required value="Line Graph" id="line graph" />
                 <label class="mb-0 ml-0 star" for="Line Graph">Line Graph</label><br />
-                <input type="radio" name="type" required value="Bar Graph" id="Corporate" />
+                <input type="radio" name="graph" required value="Bar Graph" id="bar graph" />
                 <label class="mb-0 ml-0 star" for="Bar Graph">Bar Graph</label>
                 <br /><br />
+                </fieldset>
                 <!-- ********************* -->
+
                 <input
                   type="checkbox"
                   name="timeline"
