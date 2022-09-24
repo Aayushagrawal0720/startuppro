@@ -1090,11 +1090,16 @@ const FeedbackModel = require("../models/feedback");
 // ADMIN PANEL
 router.get("/admin", async (req, res) => {
   try{
-    
-    const feedbacks = await FeedbackModel.find();
-    // console.log(feedbacks);
-    
-    res.render("adminPanel", {feedbacks});
+    const isAuth = (req.session?.isAuthDeveloper);
+
+    if(isAuth){
+      const feedbacks = await FeedbackModel.find();
+      // console.log(feedbacks);
+      
+      res.render("adminPanel", {feedbacks});
+    }else{
+      res.redirect("/login/developer");
+    }
   }catch(e){
     res.json(e);
   }

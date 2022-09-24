@@ -105,7 +105,7 @@ app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, 
 //get request for the contact route
 app.get("/contact", (req, res) => {
   try {
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA) || (req.session?.isAuthDeveloper);
     const isAuthenticated = isAuth?true:false;
     res.status(200).render("contact", {isAuthenticated});
   } catch (e) {//look for an error and if it exists, log the error
@@ -119,7 +119,7 @@ const FeedbackModel = require("./models/feedback");
 
 app.post("/contact", async (req, res) => {
   try{
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA) || (req.session?.isAuthDeveloper);
     const isAuthenticated = isAuth?true:false;
     
     
@@ -147,7 +147,7 @@ app.post("/contact", async (req, res) => {
 app.get("/about", (req, res) => {
   try {
     console.log(req.session);
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA) || (req.session?.isAuthDeveloper);
     const isAuthenticated = isAuth?true:false;
     res.status(200).render("about", {isAuthenticated});
   } catch (e) {
@@ -166,4 +166,3 @@ app.use("/getData", getDataRoute);
 app.listen(port, () => {
   console.log(`Website is working! Listening on port ${port}`);
 });
-

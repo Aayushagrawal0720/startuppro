@@ -19,6 +19,8 @@ const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 const contactModel = require("../models/contactUsModel");
 
+const app = express();
+
 // Middlewares
 const {
   isAuth,
@@ -31,6 +33,7 @@ const {
   isMentorLoggedIn,
 } = require("../middleware/authFuncs");
 const jobPostModel = require("../models/jobPostModel");
+const { application } = require("express");
 
 // Contact Page Form Submission Route
 router.post("/contact", async (req, res) => {
@@ -1062,5 +1065,18 @@ router.post("/login/developer",
     }
   }
 );
+//Developer logout
+router.get('/logout/developer',(req, res) => {
+
+  try{
+    req.session.isAuthDeveloper=false;
+    delete req.session.did;
+    res.redirect("/login/developer");
+  }catch(error){
+    console.log(error);
+    res.status(500).send(error);
+  }
+  })
+
 
 module.exports = router;
