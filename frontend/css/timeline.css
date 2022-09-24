@@ -195,6 +195,12 @@ ol {
   margin-bottom: 10px;
   letter-spacing: 2px;
 }
+.img-cla{
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+}
+
 
 @media only screen and (min-width: 768px) {
   .timeline-1::before {
@@ -416,3 +422,4 @@ ol {
     object-fit: contain;
   }
 }
+
