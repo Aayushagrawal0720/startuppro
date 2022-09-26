@@ -609,9 +609,9 @@ router.post(
       let picUrl;
       if (req.file) {
         if (req.file.filename) picUrl = `/${req.file.filename}`;
-        else picUrl = null;
+        else picUrl = "/default_profile.png" ;
       } else {
-        picUrl = null;
+        picUrl = "/default_profile.png";
       }
 
       const dataToBeAdded = new dynamicEventModel({
