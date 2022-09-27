@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
   try {
     res.status(200).send("Here we get data");
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send(err);
   }
 });
@@ -63,7 +63,7 @@ router.get("/startups", async (req, res) => {
     });
 
     founderArray = await Promise.all(founderArray);
-    // console.log(founderArray);
+    // //console.log(founderArray);
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
     if (founderArray && founderArray[0] && founderArray[0].mid) {
@@ -75,14 +75,14 @@ router.get("/startups", async (req, res) => {
     if (!jobDetailData) {
       jobDetailData = { job_title: "Founder" };
     }
-    // console.log(jobDetailData);
+    // //console.log(jobDetailData);
 
     let filterArray = [];
     startups.forEach((item) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    console.log(filterArray)
+    //console.log(filterArray)
 
     var memberData = null;
     var isLogin = false;
@@ -120,7 +120,7 @@ router.get("/startups", async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -136,14 +136,14 @@ router.get("/startups/:industry", async (req, res) => {
     if (req.params.industry == "Marketing") {
       industry = "Marketing and Advertisement";
     }
-    // console.log(industry);
+    // //console.log(industry);
 
     let founderArray = [];
     let startupFoundersArray = [];
 
     // GETTING STARTUP DATAs AND THEIR FOUNDER DATAs
     const startups = await startUpScheme.find({ Industry: industry });
-    // console.log(startups);
+    // //console.log(startups);
 
     if (startups.length === 0) {
       var redirectMsg =
@@ -157,7 +157,7 @@ router.get("/startups/:industry", async (req, res) => {
     startups.forEach((item, index) => {
       startupFoundersArray.push(item.founders);
     });
-    // console.log(startupFoundersArray);
+    // //console.log(startupFoundersArray);
 
     // creatng array of founder data
     startupFoundersArray.forEach((item) => {
@@ -172,7 +172,7 @@ router.get("/startups/:industry", async (req, res) => {
     });
 
     founderArray = await Promise.all(founderArray);
-    // console.log(founderArray);
+    // //console.log(founderArray);
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
     var jobDetailData = await jobDetailModel.findOne({
@@ -181,14 +181,14 @@ router.get("/startups/:industry", async (req, res) => {
     if (!jobDetailData) {
       jobDetailData = { job_title: "Founder" };
     }
-    // console.log(jobDetailData);
+    // //console.log(jobDetailData);
 
     let filterArray = [];
     startups.forEach((item) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    // //console.log(filterArray)
 
     var memberData = null;
     var isLogin = false;
@@ -222,7 +222,7 @@ router.get("/startups/:industry", async (req, res) => {
       );
 
       const userExpData = await userExpModel.find();
-      console.log(userExpData);
+      //console.log(userExpData);
 
       return res.status(200).render("startupLoginPosts", {
         memberData,
@@ -276,7 +276,7 @@ router.get("/startups/:industry", async (req, res) => {
       );
 
       const mentorExpData = await mentorExpModel.find();
-      console.log(mentorExpData);
+      //console.log(mentorExpData);
 
       return res.status(200).render("startupLoginPosts", {
         mentorData,
@@ -301,7 +301,7 @@ router.get("/startups/:industry", async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -318,7 +318,7 @@ router.get("/startup/:uid", async (req, res) => {
     timelineEventSchema
   );
   const foundData = await timelineModel.find().sort({ date: -1 });
-  // console.log(foundData[0]._id);
+  // //console.log(foundData[0]._id);
 
   //Fetching PRODUCT DETAILS DATA
   const productModel = new mongoose.model(
@@ -327,7 +327,7 @@ router.get("/startup/:uid", async (req, res) => {
   );
 
   const productData = await productModel.find();
-  // console.log(productData);
+  // //console.log(productData);
 
   //FETCHING PRESS RELEASE DATA
   const pressReleaseModel = new mongoose.model(
@@ -336,7 +336,7 @@ router.get("/startup/:uid", async (req, res) => {
   );
 
   const pressReleaseData = await pressReleaseModel.find();
-  // console.log(pressReleaseData);
+  // //console.log(pressReleaseData);
 
   // FETCHING GRAPH DATA
   let resArray = [];
@@ -352,7 +352,7 @@ router.get("/startup/:uid", async (req, res) => {
 
 
   const foundTypes = await dynamicTypeModel.find();
-  // console.log(foundTypes);
+  // //console.log(foundTypes);
 
   if (foundTypes.length != 0) {
     foundTypes.forEach((item, index) => {
@@ -368,7 +368,7 @@ router.get("/startup/:uid", async (req, res) => {
       );
     });
     resArray = await Promise.all(resArray);
-    // console.log(resArray);
+    // //console.log(resArray);
   }
 
   // Checking resArray
@@ -382,9 +382,9 @@ router.get("/startup/:uid", async (req, res) => {
 
   // FETCHING FOUNDER DATA
   const mid = startupData?.founders[0];
-  // console.log(mid);
+  // //console.log(mid);
   const founderData = await teamMemberModel.findOne({ mid: mid });
-  // console.log(founderData);
+  // //console.log(founderData);
 
   // FETCHING FOUNDER'S JOB DATA
   var jobDetailData = await jobDetailModel.findOne({ mid: mid });
@@ -393,10 +393,10 @@ router.get("/startup/:uid", async (req, res) => {
   }
 
   const jobDetailArray = await jobDetailModel.find({ "from_date": { $exists: true }, "to_date": { $exists: true } }).sort({ date: -1 });
-  console.log(jobDetailArray[0].from_date);
+  //console.log(jobDetailArray[0].from_date);
 
 
-  // console.log(jobDetailData);
+  // //console.log(jobDetailData);
   // FETCHING JOB ALERTS
   const jobAlerts = await jobPostModel
     .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
@@ -466,11 +466,11 @@ router.get("/timeline/:uid", async (req, res) => {
       timelineEventSchema
     );
     const foundData = await timelineModel.find().sort({ date: -1 });
-    // console.log(foundData);
+    // //console.log(foundData);
     // res.status(200).json(foundData);
     res.status(200).render("timeline", { foundData, startupData });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send(err);
   }
 });
@@ -487,11 +487,11 @@ router.get("/product/:uid", async (req, res) => {
         productDetailSchema
       );
       const productData = await productModel.find().sort({ date: -1 });
-    // console.log(foundData);
+    // //console.log(foundData);
     // res.status(200).json(foundData);
     res.status(200).render("product", { productData, startupData });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send(err);
   }
 });
@@ -510,7 +510,7 @@ router.get("/graph/:uid", async (req, res) => {
     );
 
     const foundTypes = await dynamicTypeModel.find();
-    // console.log(foundTypes);
+    // //console.log(foundTypes);
 
     foundTypes.forEach((item, index) => {
       resArray.push(
@@ -525,11 +525,11 @@ router.get("/graph/:uid", async (req, res) => {
       );
     });
     resArray = await Promise.all(resArray);
-    console.log();
-    console.log("adfadfadf");
-    console.log(resArray);
-    console.log();
-    console.log();
+    //console.log();
+    //console.log("adfadfadf");
+    //console.log(resArray);
+    //console.log();
+    //console.log();
     // let finalArray = [];
     // resArray.forEach((item) => {
     //   if (item.length != 0) {
@@ -544,7 +544,7 @@ router.get("/graph/:uid", async (req, res) => {
     // res.send(foundTypes);
     res.status(200).render("graphs", { resArray });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send(err);
   }
 });
@@ -645,7 +645,7 @@ router.get("/jobalerts", checkUserForJobs, async (req, res) => {
     resArray = await Promise.all(resArray);
     res.status(200).render("jobAlertsPagePublic", { resArray, noAlerts });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -658,7 +658,7 @@ router.get("/jobalert/:jid", checkUserForJobDetail, async (req, res) => {
 
     res.status(200).render("jobAlertDetailPublic", { jobAlert, startupData });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -705,7 +705,7 @@ router.get("/jobalerts/:mid", isUserAuth, async (req, res) => {
     resArray = await Promise.all(resArray);
     res.status(200).render("jobAlertsPage", { mid, resArray, noAlerts });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -726,7 +726,7 @@ router.get("/jobalert/:jid/:mid", isUserAuth, async (req, res) => {
       .status(200)
       .render("jobAlertDetail", { jobAlert, userData, startupData });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -881,7 +881,7 @@ router.get(
       // res.send(finalArray);
       res.status(200).render("appliedCandidatesPage", { finalArray, jobData });
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       res.status(500).send("Server Error");
     }
   }
@@ -950,7 +950,7 @@ router.get(
       // res.send(finalArray);
       res.status(200).render("appliedCandidatesPage", { finalArray, jobData });
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       res.status(500).send("Server Error");
     }
   }

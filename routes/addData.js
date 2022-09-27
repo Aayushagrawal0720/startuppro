@@ -77,7 +77,7 @@ router.get("/startup/teammember", async (req, res) => {
   try {
     res.status(200).render("memberRegister");
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -126,7 +126,7 @@ router.get("/profile/startup/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("profilePicAdd", { p_id, p_name, p_picUrl, url });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -149,7 +149,7 @@ router.post(
       // res.status(201).send("Uploaded");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(500).send("Error");
     }
   }
@@ -169,7 +169,7 @@ router.get("/profile/founder/:mid", isAuth, async (req, res) => {
 
     res.status(200).render("founderPicAdd", { p_id, p_name, p_picUrl, url });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send("Error");
   }
 }
@@ -193,7 +193,7 @@ router.post(
       // res.status(201).send("Uploaded");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(500).send("Error");
     }
   }
@@ -235,7 +235,7 @@ router.post(
       // res.status(201).send("Uploaded");
       res.redirect("/member/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -273,11 +273,11 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      //console.log(setData);
       // res.status(201).send("Uploaded");
       res.redirect("/ca/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -315,11 +315,11 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      //console.log(setData);
       // res.status(201).send("Uploaded");
       res.redirect("/mentor/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -337,7 +337,7 @@ router.get("/resume/member/:mid", isUserAuth, async (req, res) => {
 
     res.render("resumeAdd", { p_name, url });
   } catch (e) {
-    console.log(e);
+   // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -362,7 +362,7 @@ router.post(
 
       res.render("redirectPage", { redirectMsg, redirectUrl });
     } catch (e) {
-      console.log(e);
+     // console.log(e);
       res.status(400).send("Error");
     }
   }
@@ -378,7 +378,7 @@ router.get("/teammember/jobdetails/:mid", isUserAuth, async (req, res) => {
 
     res.render("jobDetailsRegister", { mid, startups });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Server Error");
   }
 });
@@ -390,7 +390,7 @@ router.post("/teammember/jobdetails", isUserAuth, async (req, res) => {
     if (!inData.from_date) inData.from_date = Date.now();
     const dataToAdd = new jobDetailModel(inData);
     const savedData = await dataToAdd.save();
-    console.log(savedData);
+    //console.log(savedData);
     res.status(201).send("Saved");
   } catch (err) {
     res.status(400).send(err);
@@ -403,7 +403,7 @@ router.get("/teammember/skills/:mid", isUserAuth, async (req, res) => {
 
     res.status(200).render("skillsAddEdit", { mid });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -414,7 +414,7 @@ router.get("/jobposts/:uid", isAuth, async (req, res) => {
     const uid = req.params.uid;
     res.status(200).render("jobAlertAdd", { uid });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -428,12 +428,12 @@ router.post("/jobposts", isAuth, async (req, res) => {
 
     const newData = new jobPostModel(dataToBeSaved);
     const savedData = await newData.save();
-    console.log(savedData);
+   // console.log(savedData);
 
     // res.status(201).json(savedData);
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send(err);
   }
 });
@@ -450,7 +450,7 @@ router.post("/jobposts/apply", isUserAuth, async (req, res) => {
 
     res.status(201).json(savedData);
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send(err);
   }
 });
@@ -463,7 +463,7 @@ router.get("/timelinegraph/type/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("addGraphDataType", { startupData });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Server Error");
   }
 });
@@ -471,7 +471,7 @@ router.get("/timelinegraph/type/:uid", isAuth, async (req, res) => {
 // ADDING event type DATA BY CREATING COLLECTIONS DYNAMICALLY
 router.post("/timelinegraph/type/:uid", isAuth, async (req, res) => {
   try {
-    console.log(req.body);
+   // console.log(req.body);
     const uid = req.params.uid;
     const type_id = uuidv4();
 
@@ -507,7 +507,7 @@ router.post("/timelinegraph/type/:uid", isAuth, async (req, res) => {
     
     res.redirect(`/adddata/timelinegraph/${req.session.uid}`);
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(400).send(err);
   }
 });
@@ -525,7 +525,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("addGraphData", { startupData, typesData });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -533,7 +533,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 // ADDING event DATA BY CREATING COLLECTIONS DYNAMICALLY
 router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
   try {
-    console.log(req.body);
+   // console.log(req.body);
     const uid = req.body.uid;
     const type_id = req.body.type_id;
     let total;
@@ -589,7 +589,7 @@ router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
     // res.status(201).send(savedGraphEveData);
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 });
@@ -624,7 +624,7 @@ router.post(
       // res.status(201).json("Posted press back");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(400).send(err);
     }
   }
@@ -657,7 +657,7 @@ router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
       // res.status(201).json("Posted press back");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send(err);
     }
   });
@@ -665,7 +665,7 @@ router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
 router.post("/press/:uid/addpress", isAuth, async (req, res) => {
   try {
     const uid = req.params.uid;
-    console.log(req.body);
+    // console.log(req.body);
     const dynamicPressModel = new mongoose.model(
       `${uid}_press_collections`,
       pressReleaseSchema
@@ -684,7 +684,7 @@ router.post("/press/:uid/addpress", isAuth, async (req, res) => {
     // res.status(201).json("Posted press back");
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -711,7 +711,7 @@ router.post("/ca/:ca_id/addexperience", async (req, res) => {
     // res.status(201).json("Posted ca experience");
     res.redirect("/ca/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -736,7 +736,7 @@ router.post("/mentor/:mentor_id/addexperience", async (req, res) => {
     // res.status(201).json("Posted mentor experience");
     res.redirect("/mentor/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -757,11 +757,11 @@ router.post("/user/:user_id/addexperience", async (req, res) => {
     });
 
     const savedData = await dataToBeAdded.save();
-    console.log(savedData);
+    // console.log(savedData);
     // res.status(201).json("Posted user experience");
     res.status(201).redirect("/member/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -794,7 +794,7 @@ router.get("/startup/:uid/financials/projectionsForm", async (req, res) => {
     
     
   } catch(e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 })
@@ -922,7 +922,7 @@ router.post("/startup/:uid/financials/projectionsForm", async(req, res) => {
     return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     
   }catch(e){
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 })
@@ -1011,7 +1011,7 @@ router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
     return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     
   }catch(e){
-    console.log(e);
+    // console.log(e);
     res.status(500).send(e.message);
   }
 })

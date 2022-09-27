@@ -7,7 +7,7 @@ const productDetailSchema = new mongoose.Schema({
     },
     picUrl: {
         type: String,
-        default: "/default_profile.png",
+        default: "/default_product.jpg",
     },
     date: {
         type: Date,
