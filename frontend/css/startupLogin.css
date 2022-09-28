@@ -361,16 +361,15 @@ position: relative;
 .jobbox {
   display: flex;
   padding: 0px;
-  margin: 4.0px;
+  margin: 1px;
  max-width: 180px;
   height: 290px;
   background: #f6f6f6;
   
  
 }
-.overf{
-  overflow: scroll;
-}
+
+
 .jobbox:hover {
   transform: scale(1.08);
 }
@@ -387,7 +386,7 @@ position: relative;
   /* margin-bottom: 00px; */
   border-radius: 10px 10px 5px 5px;
   border: 1px solid grey;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   text-align: center;
 }
 
@@ -489,7 +488,7 @@ position: relative;
 }
 
 .carousel2 {
-  height: 420px;
+  height: 270px;
 }
 
 .carousel {
@@ -499,7 +498,7 @@ position: relative;
 .hi-slide {
   position: relative;
   width: 754px;
-  height: 292px;
+  height: 441px;
   margin: 5px auto 0;
 }
 
@@ -776,3 +775,45 @@ position: relative;
   color: rgb(1, 2, 3);
   text-shadow: 0 0 3px #06404e;
   }
+  
+  /* added by shubham */
+  
+@media (min-width: 778px) and (max-width: 994px) {
+  .hi-prev{
+    /* margin-right: 10px; */
+   z-index: 12;
+   left: 3px !important;
+  }
+}
+  
+@media (min-width: 778px) and (max-width: 994px) {
+  .hi-next{
+    /* margin-right: 10px; */
+   z-index: 12;
+   right: 61px !important;
+  }
+}
+@media (min-width: 526px) and (max-width: 773px) {
+  .hi-slide{
+    /* margin-right: 10px; */
+  
+   right: 130px !important;
+  }
+}
+
+
+@media (min-width: 540px) and (max-width: 779px) {
+  .hi-prev{
+    /* margin-right: 10px; */
+   z-index: 12;
+   left: 127px !important;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 779px) {
+  .hi-next{
+    /* margin-right: 10px; */
+   z-index: 12;
+   right: 139px !important;
+  }
+}

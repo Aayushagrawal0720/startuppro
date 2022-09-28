@@ -75,6 +75,11 @@ body {
   color: #000;
 }
 
+#add-btn{
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
 .btn-warning:focus{
   border: unset;
   background-color: #fcd600;
