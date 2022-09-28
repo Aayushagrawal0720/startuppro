@@ -19,6 +19,10 @@ const typeSchema = new mongoose.Schema({
     required: true,
     default: true,
   },
+  type_of_graph: {
+    type: String,
+    required: true,
+  },
 });
 
 const typeEventSchema = new mongoose.Schema({

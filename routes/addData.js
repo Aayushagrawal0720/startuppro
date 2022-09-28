@@ -485,6 +485,7 @@ router.post("/timelinegraph/type/:uid", isAuth, async (req, res) => {
       type: req.body.type,
       type_id: type_id,
       timeline: req.body.timeline,
+      type_of_graph: req.body.type_of_graph,
     });
     const savedData = await typeToBeSaved.save();
     // console.log(savedData);
