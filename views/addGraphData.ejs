@@ -45,6 +45,10 @@
           .down-arrow{
               cursor: pointer;
           }
+          .shadow{
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px !important;
+            padding: 10px;
+          }
       </style>
       <!-- ######### SUBMIT FORM FUNCTION -->
       <script src="/js/apiAddresses.js"></script>
@@ -84,7 +88,7 @@
     <% if(typesData.length!=0){ %> 
     <% typesData.forEach((item,index)=>{ %> 
 
-    <div class=" my-5 shadow">
+    <div class="  container my-2 shadow">
         <!-- ################################### HEADING  -->
         <div class="container py-2">
         <div class="row">
@@ -188,19 +192,20 @@
               </div>
           </div>
           </div>
+          </div>
         
 
     <% }) %> 
     <% } %>
 
-    <div class="container text-center">
+    <div class="container text-center" style="margin:2rem ;">
       <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
       <a href=<%= `/adddata/timelinegraph/type/${startupData.uid}` %> ><button class="btn btn-warning my-2">Add New Type for Analysis</button></a>
     </div>
-
-  </div>
+    </div>
+    <div>
     <%- include('./_partials/footer') %>
-
+    </div>
     <script>
         function toggleDisplay(){
             const formContainers = document.querySelectorAll('.form-cont');
