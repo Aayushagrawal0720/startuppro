@@ -240,14 +240,14 @@
              	total:total,
                 timeline: timeline
             };
-          fetch(`/adddata/timelinegraph/`+type_id+`/bargraph`),{
+          fetch(`/adddata/timelinegraph/`+type_id+`/bargraph`,{
 
                 method:'POST',
                 body:JSON.stringify(formBody),
                 headers:{
                     'Content-type':'application/json',
                 }
-            }.then((res)=>{
+            }).then((res)=>{
                 if(res.redirected) window.location.href = res.url;
                 //else if(res.status===400) alert('could not add data')
             })
@@ -261,14 +261,16 @@
                 var isLess = document.getElementById(`${item.type_id}-form`).elements.isLess;
                 var diff = document.getElementById(`${item.type_id}-form`).diff.value;
                 var timeline= document.getElementById(`${item.type_id}-form`).timeline.value;
-                
+                console.log("inside if");
                 submitForm(item.type_id,diff,item.title,item.type,isLess.checked, timeline);
+                
                 }
                 else{
                 var total = document.getElementById(`${item.type_id}-form`).total.value;
                 var timeline= document.getElementById(`${item.type_id}-form`).timeline.value;
+                console.log("inside else");
+                submitFormbar(item.type_id,item.title,item.type,item.type_of_graph,total,timeline);
                 
-                submitFormbar(item.type_id,item.title,item.type,total,timeline);
                 }
             })
         })

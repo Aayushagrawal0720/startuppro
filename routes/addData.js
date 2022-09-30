@@ -1032,8 +1032,8 @@ router.post("/timelinegraph/:type_id/bargraph", isAuth, async (req, res) => {
       dynamicColSchemas.bargGraphEvent
     );
 
-    const graph = await dynamicColSchemas.typeSchema.find({ type_id: type_id });
-    console.log(graph);
+    // const graph = await dynamicEveModel.find({ type_id: type_id });
+    // console.log(graph);
     // Checking previous data
     // const findPrevData = await dynamicEveModel.find({ type_id: type_id });
     // console.log("Previous Data");
@@ -1052,8 +1052,8 @@ router.post("/timelinegraph/:type_id/bargraph", isAuth, async (req, res) => {
     const dataToBeAdded = new dynamicEveModel({
       type_id: type_id,
       total: total,
-      type_title: graph.title,
-      type_type: graph.type,
+      type_title: req.body.type_title,
+      type_type: req.body.type_type,
       date: Date.now(),
     });
     const savedGraphEveData = await dataToBeAdded.save();
@@ -1068,7 +1068,7 @@ router.post("/timelinegraph/:type_id/bargraph", isAuth, async (req, res) => {
       );
       const tDataToBeAdded = new dynamicTEventModel({
         date: Date.now(),
-        event_title: `Now ${graph.type_title} are ${total}`,
+        event_title: `Now ${req.body.type_title} are ${total}`,
       });
       const savedTData = await tDataToBeAdded.save();
       // console.log(savedTData);
