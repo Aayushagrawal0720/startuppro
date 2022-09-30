@@ -104,6 +104,8 @@
         <div class="container form-cont dis-class" id=<%= `${item.type_id}-form-cont` %>>
         <div class="row">
             <div class="col-md-12">
+              <% if(item.type_of_graph=="Line Graph"){%>
+              
             <form id=<%= `${item.type_id}-form` %>  method="POST">
                 <div class="row">
                 <div class="col-md-6 parent">
@@ -145,54 +147,50 @@
                 </div>
                 </div>
             </form>
+          <%}
+          else{%>
+            <form id=<%= `${item.type_id}-form` %>  method="POST">
+              <div class="row">
+              <div class="col-md-6 parent">
+                  <label class="mb-0 ml-0 star">Value</label><br />
+                  <input
+                  type="number"
+                  name="total"
+                  placeholder="Enter the value"
+                  class="p-1 outline"
+                  required
+                  /><br /><br />
+                  Timeline
+                  <input
+                  type="radio"
+                  name="timeline"
+                  id="timeline-radio1"
+                  value="true"
+                  />
+                  <label class="mb-0 ml-0 star" for="timeline-radio1">Yes</label>
+                  <input
+                  type="radio"
+                  name="timeline"
+                  id="timeline-radio2"
+                  value="false"
+                  checked
+                  />
+              <label class="mb-0 ml-0 star" for="timeline-radio2">No</label><br><br>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
+                  <input
+                  type="submit"
+                  class="btn btn-warning py-2 px-5"
+                  value="Add"
+                  />
+              </div>
+              </div>
+          </form>
+          <%}%>
             </div>
         </div>
-        
-          <div class="row">
-              <div class="col-md-12">
-              <form id=<%= `${item.type_id}-form` %>  method="POST">
-                  <div class="row">
-                  <div class="col-md-6 parent">
-                      <label class="mb-0 ml-0 star">Value</label><br />
-                      <input
-                      type="number"
-                      name="total"
-                      placeholder="Enter the value"
-                      class="p-1 outline"
-                      required
-                      /><br /><br />
-                      Timeline
-                      <input
-                      type="radio"
-                      name="timeline"
-                      id="timeline-radio1"
-                      value="true"
-                      />
-                      <label class="mb-0 ml-0 star" for="timeline-radio1">Yes</label>
-                      <input
-                      type="radio"
-                      name="timeline"
-                      id="timeline-radio2"
-                      value="false"
-                      checked
-                      />
-                  <label class="mb-0 ml-0 star" for="timeline-radio2">No</label><br><br>
-                  </div>
-                  </div>
-                  <div class="row">
-                  <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
-                      <input
-                      type="submit"
-                      class="btn btn-warning py-2 px-5"
-                      value="Add"
-                      />
-                  </div>
-                  </div>
-              </form>
-              </div>
-          </div>
-          </div>
-          </div>
         
 
     <% }) %> 
@@ -225,9 +223,8 @@
         })
 
     </script>
-    <!--#bar graph submit form
     
-function submitForm(type_id,type_title,type_type,type_of_graph,total, timeline){
+function submitFormbar(type_id,type_title,type_type,type_of_graph,total, timeline){
             const uid = '<%- startupData.uid %>';
             const formBody = {
                 uid:uid,
@@ -238,7 +235,8 @@ function submitForm(type_id,type_title,type_type,type_of_graph,total, timeline){
              	total:total;
                 timeline: timeline
             };
-          fetch('/adddata/timelinegraph/graphevent',{
+          fetch(`/adddata/timelinegraph/${type_id}/bargraph`,{
+
                 method:'POST',
                 body:JSON.stringify(formBody),
                 headers:{
@@ -249,7 +247,6 @@ function submitForm(type_id,type_title,type_type,type_of_graph,total, timeline){
                 //else if(res.status===400) alert('could not add data')
             })
           }
-    -->
     <!--############################# Form Submission Handler -->
     <script>
         const typesArr = <%- JSON.stringify(typesData) %>
@@ -257,30 +254,21 @@ function submitForm(type_id,type_title,type_type,type_of_graph,total, timeline){
         typesArr.forEach((item)=>{
             document.getElementById(`${item.type_id}-form`).addEventListener('submit',(e)=>{
                 e.preventDefault();
+                if(item.type_of_graph == "Line Graph"){
                 var isLess = document.getElementById(`${item.type_id}-form`).elements.isLess;
                 var diff = document.getElementById(`${item.type_id}-form`).diff.value;
                 var timeline= document.getElementById(`${item.type_id}-form`).timeline.value;
                 
                 submitForm(item.type_id,diff,item.title,item.type,isLess.checked, timeline);
-
-            })
-        })
-    </script>
-    <!--
-      <script>
-        const typesArr = <%- JSON.stringify(typesData) %>
-
-        typesArr.forEach((item)=>{
-            document.getElementById(`${item.type_id}-form`).addEventListener('submit',(e)=>{
-                e.preventDefault();
+                }
+                else{
                 var total = document.getElementById(`${item.type_id}-form`).total.value;
                 var timeline= document.getElementById(`${item.type_id}-form`).timeline.value;
                 
-                submitForm(item.type_id,item.title,item.type,item.total, timeline);
-
+                submitFormbar(item.type_id,item.title,item.type,total,timeline);
+                }
             })
         })
     </script>
-    -->
   </body>
 </html>
