@@ -103,9 +103,10 @@
         <!-- ############################################## form for line graph-->
         <div class="container form-cont dis-class" id=<%= `${item.type_id}-form-cont` %>>
           <div class="row">
-            <% if(item.type_of_graph == "Line Graph") { %>
-                
+            
             <div class="col-md-12">
+              <% if(item.type_of_graph == "Line Graph") { %>
+                
             <form  id=<%= `${item.type_id}-form` %>  method="POST">
                 <div class="row">
                 <div class="col-md-6 parent">
