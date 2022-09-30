@@ -100,7 +100,7 @@
         <div class="container form-cont dis-class" id=<%= `${item.type_id}-form-cont` %>>
         <div class="row">
             <div class="col-md-12">
-            <form id=<%= `${item.type_id}-form` %>  method="POST">
+            <form  id=<%= `${item.type_id}-form` %>  method="POST">
                 <div class="row">
                 <div class="col-md-6 parent">
                     <label class="mb-0 ml-0 star">Difference</label><br />
@@ -146,13 +146,13 @@
         
           <div class="row">
               <div class="col-md-12">
-              <form id=<%= `${item.type_id}-form` %>  method="POST">
+              <form action="/adddata/timelinegraph/<%= `${item.type_id}` %>/bargraph" method="post">
                   <div class="row">
                   <div class="col-md-6 parent">
                       <label class="mb-0 ml-0 star">Value</label><br />
                       <input
                       type="number"
-                      name="diff"
+                      name="total"
                       placeholder="Enter the difference"
                       class="p-1 outline"
                       required
