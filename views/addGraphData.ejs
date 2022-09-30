@@ -152,8 +152,8 @@
                       <label class="mb-0 ml-0 star">Value</label><br />
                       <input
                       type="number"
-                      name="diff"
-                      placeholder="Enter the difference"
+                      name="total"
+                      placeholder="Enter the value"
                       class="p-1 outline"
                       required
                       /><br /><br />
@@ -220,7 +220,31 @@
         })
 
     </script>
-
+    <!--#bar graph submit form
+    
+function submitForm(type_id,type_title,type_type,type_of_graph,total, timeline){
+            const uid = '<%- startupData.uid %>';
+            const formBody = {
+                uid:uid,
+                type_id:type_id,
+                type_title:type_title,
+                type_type: type_type,
+                type_of_graph: type_of_graph,
+             	total:total;
+                timeline: timeline
+            };
+          fetch('/adddata/timelinegraph/graphevent',{
+                method:'POST',
+                body:JSON.stringify(formBody),
+                headers:{
+                    'Content-type':'application/json'
+                }
+            }).then((res)=>{
+                if(res.redirected) window.location.href = res.url;
+                //else if(res.status===400) alert('could not add data')
+            })
+          }
+    -->
     <!--############################# Form Submission Handler -->
     <script>
         const typesArr = <%- JSON.stringify(typesData) %>
@@ -237,5 +261,21 @@
             })
         })
     </script>
+    <!--
+      <script>
+        const typesArr = <%- JSON.stringify(typesData) %>
+
+        typesArr.forEach((item)=>{
+            document.getElementById(`${item.type_id}-form`).addEventListener('submit',(e)=>{
+                e.preventDefault();
+                var total = document.getElementById(`${item.type_id}-form`).total.value;
+                var timeline= document.getElementById(`${item.type_id}-form`).timeline.value;
+                
+                submitForm(item.type_id,item.title,item.type,item.total, timeline);
+
+            })
+        })
+    </script>
+    -->
   </body>
 </html>
