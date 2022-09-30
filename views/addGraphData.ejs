@@ -104,13 +104,7 @@
         <div class="container form-cont dis-class" id=<%= `${item.type_id}-form-cont` %>>
         <div class="row">
             <div class="col-md-12">
-<<<<<<< HEAD
-              <% if(item.type_of_graph=="Line Graph"){%>
-              
-            <form id=<%= `${item.type_id}-form` %>  method="POST">
-=======
             <form  id=<%= `${item.type_id}-form` %>  method="POST">
->>>>>>> 7bac1f244a9e718bb9786a2485cf0f787fd4e94e
                 <div class="row">
                 <div class="col-md-6 parent">
                     <label class="mb-0 ml-0 star">Difference</label><br />
@@ -196,7 +190,7 @@
             </div>
         </div>
         
-<<<<<<< HEAD
+< HEAD
 =======
           <div class="row">
               <div class="col-md-12">
@@ -207,7 +201,7 @@
                       <input
                       type="number"
                       name="total"
-<<<<<<< HEAD
+< HEAD
                       placeholder="Enter the difference"
 =======
                       placeholder="Enter the value"
@@ -281,7 +275,10 @@
 
     </script>
     
-function submitFormbar(type_id,type_title,type_type,type_of_graph,total, timeline){
+
+    <!--############################# Form Submission Handler -->
+    <script>
+      function submitFormbar(type_id,type_title,type_type,type_of_graph,total, timeline){
             const uid = '<%- startupData.uid %>';
             const formBody = {
                 uid:uid,
@@ -304,8 +301,6 @@ function submitFormbar(type_id,type_title,type_type,type_of_graph,total, timelin
                 //else if(res.status===400) alert('could not add data')
             })
           }
-    <!--############################# Form Submission Handler -->
-    <script>
         const typesArr = <%- JSON.stringify(typesData) %>
 
         typesArr.forEach((item)=>{
