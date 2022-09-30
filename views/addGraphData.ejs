@@ -102,7 +102,9 @@
 
         <!-- ############################################## form for line graph-->
         <div class="container form-cont dis-class" id=<%= `${item.type_id}-form-cont` %>>
-        <div class="row">
+          <div class="row">
+            <% if(item.type_of_graph == "Line Graph") { %>
+                
             <div class="col-md-12">
             <form  id=<%= `${item.type_id}-form` %>  method="POST">
                 <div class="row">
@@ -231,17 +233,17 @@
                 uid:uid,
                 type_id:type_id,
                 type_title:type_title,
-                type_type: type_type,
+                type_type:type_type,
                 type_of_graph: type_of_graph,
-             	total:total;
+             	total:total,
                 timeline: timeline
             };
-          fetch(`/adddata/timelinegraph/${type_id}/bargraph`,{
+          fetch(`/adddata/timelinegraph/${type_id}/bargraph`),{
 
                 method:'POST',
                 body:JSON.stringify(formBody),
                 headers:{
-                    'Content-type':'application/json'
+                    'Content-type':'application/json',
                 }
             }).then((res)=>{
                 if(res.redirected) window.location.href = res.url;
