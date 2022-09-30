@@ -12,6 +12,9 @@ const memberModel = require("../models/teamMemberModel");
 const jobDetailModel = require("../models/jobDetailModel");
 const timelineEventSchema = require("../models/timelineEventSchema");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
+const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
 const contactModel = require("../models/contactUsModel");
@@ -36,7 +39,7 @@ router.post("/contact", async (req, res) => {
     const newData = new contactModel(req.body);
     const savedData = await newData.save();
 
-    console.log(savedData);
+    // console.log(savedData);
 
     var redirectMsg =
       "Thankyou for reaching out, your response has been submitted successfully. We'll connect to you shortly.";
@@ -53,7 +56,7 @@ router.get("/register/startup", async (req, res) => {
   try {
     res.render("startupRegister");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -86,7 +89,7 @@ router.post("/register/startup", async (req, res) => {
 
     const startup = await startUpScheme(startupDataToBeSaved);
     const savedStartupData = await startup.save();
-    console.log(savedStartupData);
+    // console.log(savedStartupData);
 
     // PROCESS REGARDING FOUNDER DATA
     const founderDataToBeSaved = founderDetails;
@@ -100,7 +103,7 @@ router.post("/register/startup", async (req, res) => {
 
     const founder = await memberModel(founderDataToBeSaved);
     const savedFounderData = await founder.save();
-    console.log(savedFounderData);
+    // console.log(savedFounderData);
 
     // PROCESS REGARDING SAVING JOB DETAILS DATA
     const jobDataToBeSaved = jobDetails;
@@ -111,7 +114,7 @@ router.post("/register/startup", async (req, res) => {
 
     const newJobData = await jobDetailModel(jobDataToBeSaved);
     const savedJobData = await newJobData.save();
-    console.log(savedJobData);
+    // console.log(savedJobData);
 
     // res.status(201).json({ status: "saved" });
     res.redirect("/login/startup");
@@ -125,7 +128,7 @@ router.get("/register/ca", async (req, res) => {
   try {
     res.status(200).render("caRegister");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -139,7 +142,7 @@ router.post("/register/ca", async (req, res) => {
 
     const dataToBeSaved = new caModel(caData);
     const savedData = await dataToBeSaved.save();
-    console.log(savedData);
+    // console.log(savedData);
 
     const redirectUrl = "/login/ca";
     const redirectMsg =
@@ -147,7 +150,7 @@ router.post("/register/ca", async (req, res) => {
 
     res.status(201).render("redirectPage", { redirectUrl, redirectMsg });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send("Error");
   }
 });
@@ -157,7 +160,7 @@ router.get("/register/mentor", async (req, res) => {
   try {
     res.status(200).render("mentorRegister");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -171,7 +174,7 @@ router.post("/register/mentor", async (req, res) => {
 
     const dataToBeSaved = new mentorModel(menData);
     const savedData = await dataToBeSaved.save();
-    console.log(savedData);
+    // console.log(savedData);
 
     const redirectUrl = "/login/mentor";
     const redirectMsg =
@@ -179,7 +182,7 @@ router.post("/register/mentor", async (req, res) => {
 
     res.status(201).render("redirectPage", { redirectUrl, redirectMsg });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send("Error");
   }
 });
@@ -194,7 +197,19 @@ router.get(
   async (req, res) => {
     const type = "Startup";
     const loginLink = "/login/startup";
-    res.render("homePage", { type, loginLink });
+    const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+    res.render("homePage", { type, loginLink,number_of_startups,number_of_caExpData, number_of_mentorExpData });
   }
 );
 
@@ -207,7 +222,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const startupData = await startUpScheme.findOne({
         email_official: email,
@@ -238,10 +253,10 @@ router.post(
 
       req.session.isAuth = true;
       req.session.uid = startupData.uid;
-      // res.redirect("/startup/profile");
-      res.redirect("/startup/profile/posts");
+      res.redirect("/startup/profile");
+      // res.redirect("/startup/profile/posts");
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send(e);
     }
   }
@@ -303,7 +318,7 @@ router.get("/startup/profile/posts", isAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 })
@@ -319,8 +334,26 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       `${uid}_timeline_collection`,
       timelineEventSchema
     );
-    const foundData = await timelineModel.find().sort({ date: -1 }).limit(2);
+    const foundData = await timelineModel.find().sort({ date: -1 });
     // console.log(foundData);
+
+    //Fetching PRODUCT DETAILS DATA
+    const productModel = new mongoose.model(
+      `${uid}_products_collection`,
+      productDetailSchema
+    );
+
+    const productData = await productModel.find().sort({ date: -1 });
+    // console.log(productData);
+
+    //FETCHING PRESS RELEASE DATA
+    const pressReleaseModel = new mongoose.model(
+      `${uid}_press_collection`,
+      pressReleaseSchema
+    );
+
+    const pressReleaseData = await pressReleaseModel.find();
+    // console.log(pressReleaseData);
 
     // FETCHING GRAPH DATA
     let resArray = [];
@@ -341,7 +374,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
         resArray.push(
           new Promise((resolve, reject) => {
             graphModel
-              .find({ type_id: item.type_id })
+              .find({ type_id: item.type_id }, { _id: 0, date: 0, })
               .sort({ date: 1 })
               .select({
                 date: 1,
@@ -366,11 +399,14 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     });
     if (emptyEls == resArray.length) resArray = [];
 
+    // console.log(JSON.stringify(resArray));
+    resArray = JSON.stringify(resArray);
     const isLogin = true;
 
     // FETCHING FOUNDER DATA
     const mid = startupData.founders[0];
     const founderData = await memberModel.findOne({ mid: mid });
+    // console.log(founderData);
 
     // FETCHING FOUNDER'S JOB DATA
     var jobDetailData = await jobDetailModel.findOne({ mid: mid });
@@ -382,7 +418,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     var jobAlerts = await jobPostModel
       .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
       .select({ title: 1, jid: 1, employment_type: 1 })
-      .limit(2);
+      .limit(5);
     // console.log(jobAlerts)
 
     // FETCHING TEAM MEMBERS AND THEIR JOBS
@@ -422,6 +458,8 @@ router.get("/startup/profile", isAuth, async (req, res) => {
 
     return res.status(200).render("startupLogin", {
       foundData,
+      productData,
+      pressReleaseData,
       startupData,
       resArray,
       isLogin,
@@ -431,7 +469,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       finalTeamArray,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res.status(500).send("Server Error");
   }
 });
@@ -450,13 +488,25 @@ router.get(
   isUserLoggedIn,
   isCALoggedIn,
   isMentorLoggedIn,
-  (req, res) => {
+  async(req, res) => {
     try {
       const type = "User";
       const loginLink = "/login/member";
-      res.render("homePage", { type, loginLink });
+      const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+    res.render("homePage", { type, loginLink,number_of_startups,number_of_caExpData, number_of_mentorExpData });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     }
   }
@@ -471,7 +521,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const memberData = await memberModel.findOne({ member_Email: email });
       if (!memberData) {
@@ -501,7 +551,7 @@ router.post(
       req.session.mid = memberData.mid;
       res.redirect("/member/profile");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       res.status(400).send(err);
     }
   }
@@ -558,6 +608,15 @@ router.get("/member/profile", isUserAuth, async (req, res) => {
     }
     // console.log(jobDetailData);
 
+    // Fetching Experience Data of the user
+    const userExpModel = new mongoose.model(
+      `${mid}_user_experience_collections`,
+      dynamicExperienceSchema.userExperienceSchema
+    );
+
+    const userExpData = await userExpModel.find();
+    // console.log(mentorExpData);
+
     const isLogin = true;
     const logoutLink = "/logout/member";
 
@@ -570,6 +629,7 @@ router.get("/member/profile", isUserAuth, async (req, res) => {
 
     res.status(200).render("userLogin", {
       memberData,
+      userExpData,
       startups,
       founderArray,
       jobDetailData,
@@ -579,7 +639,7 @@ router.get("/member/profile", isUserAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -602,9 +662,21 @@ router.get(
     try {
       const type = "CA";
       const loginLink = "/login/ca";
-      res.render("homePage", { type, loginLink });
+      const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+      res.render("homePage", { type, loginLink, number_of_startups, number_of_caExpData, number_of_mentorExpData });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(500).send("Server Error");
     }
   }
@@ -619,7 +691,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const caData = await caModel.findOne({ ca_email: email });
       if (!caData) {
@@ -644,22 +716,23 @@ router.post(
 
       req.session.isAuthCA = true;
       req.session.ca_id = caData.ca_id;
-      res.redirect(`/getdata/cadetail/${caData.ca_id}`);
+      res.redirect(`/ca/profile`);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send("Error");
     }
   }
 );
 
 // CA Profile
-router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
+router.get("/ca/profile", isCAAuth, async (req, res) => {
   try {
     const ca_id = req.session.ca_id;
     const caData = await caModel.findOne({ ca_id: ca_id });
 
     let founderArray = [];
     let startupFoundersArray = [];
+
 
     // GETTING STARTUP DATAs AND THEIR FOUNDER DATAs
     const startups = await startUpScheme.find();
@@ -694,6 +767,16 @@ router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
     }
     // console.log(jobDetailData);
 
+    //FETCHING EXP DATA OF CA
+    const caExpModel = new mongoose.model(
+      `${ca_id}_ca_experience_collections`,
+      dynamicExperienceSchema.caExperienceSchema
+    );
+
+    const caExpData = await caExpModel.find();
+    // console.log(caExpData);
+
+
     const isLogin = true;
     const logoutLink = "/logout/ca";
 
@@ -706,6 +789,7 @@ router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
 
     res.status(200).render("caPage", {
       caData,
+      caExpData,
       startups,
       founderArray,
       jobDetailData,
@@ -714,7 +798,7 @@ router.get(`/getdata/cadetail/:uid`, isCAAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -726,7 +810,7 @@ router.delete("/logout/ca", async (req, res) => {
     delete req.session.ca_id;
     res.redirect("/login/ca");
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send(Error);
   }
 });
@@ -742,9 +826,21 @@ router.get(
     try {
       const type = "Mentor";
       const loginLink = "/login/mentor";
-      res.render("homePage", { type, loginLink });
+      const startups = await startUpScheme.find()
+                        .select({startup_name: 1});
+                        
+    var number_of_startups = startups.length;
+    const caExpData = await caModel.find()
+                        .select({ca_name: 1});
+                        
+    var number_of_caExpData = caExpData.length;
+    const mentorExpData = await mentorModel.find()
+                        .select({men_name: 1});
+                        
+    var number_of_mentorExpData = mentorExpData.length;
+      res.render("homePage", { type, loginLink, number_of_startups, number_of_caExpData, number_of_mentorExpData });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(500).send("Server Error");
     }
   }
@@ -759,7 +855,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const mentorData = await mentorModel.findOne({ men_email: email });
       if (!mentorData) {
@@ -788,7 +884,7 @@ router.post(
       req.session.men_id = mentorData.men_id;
       res.redirect("/mentor/profile");
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send("Error");
     }
   }
@@ -827,6 +923,17 @@ router.get("/mentor/profile", isMentorAuth, async (req, res) => {
     founderArray = await Promise.all(founderArray);
     // console.log(founderArray);
 
+    // FETCHING MENTOR EXP DATA
+    const mentorExpModel = new mongoose.model(
+      `${men_id}_mentor_experience_collections`,
+      dynamicExperienceSchema.mentorExperienceSchema
+    );
+
+    const mentorExpData = await mentorExpModel.find();
+    // console.log(mentorExpData);
+    // console.log(mentorData);
+
+
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
     var jobDetailData = await jobDetailModel.findOne({
       mid: founderArray[0].mid,
@@ -848,6 +955,7 @@ router.get("/mentor/profile", isMentorAuth, async (req, res) => {
 
     res.status(200).render("mentorLogin", {
       mentorData,
+      mentorExpData,
       startups,
       founderArray,
       jobDetailData,
@@ -856,7 +964,7 @@ router.get("/mentor/profile", isMentorAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -868,7 +976,7 @@ router.delete("/logout/mentor", async (req, res) => {
     delete req.session.men_id;
     res.redirect("/login/mentor");
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send(Error);
   }
 });

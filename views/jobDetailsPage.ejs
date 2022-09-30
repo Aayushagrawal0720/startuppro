@@ -49,6 +49,9 @@
     </script>
     <%- include('./_partials/navbar_2') %>
 
+      <div class="edit_job_page">
+
+
     <% if(finalArray.length==0){ %>
       <div class="container d-flex justify-content-center align-items-center" style="min-height: 70vh;">
         <h1>No Job Details</h1>
@@ -56,6 +59,7 @@
     <%} else{%> 
 
     <div class="fluid-container d-flex justify-content-center align-items-center flex-wrap p-2">
+     
         <% finalArray.forEach((item,index)=>{ %>
                 <div class="card shadow mb-5 bg-white p-4 mx-2" style="min-width: 250px">
                 <div class="row">
@@ -64,8 +68,9 @@
                     <p>Role: <b><%= item.jobData.job_title %></b> </p>
                     <p>Status: <b id=<%=`status-${item.jobData.mid}`%>> <%= item.jobData.status %> </b>  </p>
                     <p>Type: <b><%= item.jobData.type %></b> </p>
-                    <button type="button" class="btn btn-warning my-1 status-btn" onclick=<%= `changeStatus("${item.jobData.mid}","Approved")` %> >Approve</button>
-                    <button type="button" class="btn btn-secondary my-1 status-btn" onclick=<%= `changeStatus("${item.jobData.mid}","Rejected")` %> >Reject</button>
+                  
+                    
+                  
                     </div>
                     <div class="col-5 mt-3 text-right">
                     <img
@@ -81,10 +86,12 @@
     <% } %> 
     </div>
 
+      </div>
     <%- include('./_partials/footer') %>
 
     <script>
       const btns = document.querySelectorAll("status-btn");
+       
 
     </script>
   </body>

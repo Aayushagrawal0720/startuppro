@@ -19,12 +19,12 @@
 
   <%- include('./_partials/navbar_2') %>
 
-  <div class="fluid-container my-2">
+  <div class="fluid-container my-2  display:flex; ">
     <h1 class="text-center my-2">
       <%= startupData.startup_name %> - Timeline
     </h1>
-    <div class="timeline-container" id="timeline-container" style="min-height: 100vh;">
-      <div class="timeline">
+    <div class="timeline-container" id="timeline-container" style="min-height: 100vh;  display:flex; text-align: center; ">
+      <div class="timeline" style="width: 750px;">
         <ul>
           <% foundData.forEach((item,index)=> {%> <% const d=item.date;
           const ye=new Intl.DateTimeFormat('en', { year: 'numeric'

@@ -4,7 +4,7 @@ const api_addGraphData =
 const api_startupDetailsEdit =
   "/editdata/startup/basicdetails";
 const api_founderDetailsEdit =
-  "/editdata/startup/teammember";
+  "/editdata/member/:mid";
 const api_addGraphDataType = "/adddata/timelinegraph/type";
 
 // const api_startupRegister = "http://52.66.154.242:3000/register/startup";

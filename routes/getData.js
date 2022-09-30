@@ -9,9 +9,14 @@ const jobDetailModel = require("../models/jobDetailModel");
 const jobPostModel = require("../models/jobPostModel");
 const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
+const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
+const ApplicationManualModel = require("../models/financialApplicationManual");
+const ProjectionModel = require("../models/financialProjection");
 
 // Middlewares
 const {
@@ -25,7 +30,7 @@ router.get("/", async (req, res) => {
   try {
     res.status(200).send("Here we get data");
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send(err);
   }
 });
@@ -58,7 +63,7 @@ router.get("/startups", async (req, res) => {
     });
 
     founderArray = await Promise.all(founderArray);
-    // console.log(founderArray);
+    // //console.log(founderArray);
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
     if (founderArray && founderArray[0] && founderArray[0].mid) {
@@ -70,37 +75,41 @@ router.get("/startups", async (req, res) => {
     if (!jobDetailData) {
       jobDetailData = { job_title: "Founder" };
     }
-    // console.log(jobDetailData);
+    // //console.log(jobDetailData);
 
     let filterArray = [];
     startups.forEach((item) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    //console.log(filterArray)
 
     var memberData = null;
-    const isLogin = false;
+    var isLogin = false;
     const logoutLink = "/";
     var isEmployed = false;
 
     if (req.session.isAuth) {
-      return res.redirect("/startup/profile/posts");
+      isLogin = true;
+      // return res.redirect("/startup/profile/posts");
     }
 
     if (req.session.isAuthUser) {
-      return res.redirect("/member/profile");
+      isLogin = true;
+      // return res.redirect("/member/profile");
     }
 
     if (req.session.isAuthCA) {
-      return res.redirect("/cadetails/:uid");
+      isLogin = true;
+      // return res.redirect("/ca/profile");
     }
 
     if (req.session.isAuthMentor) {
-      return res.redirect("/mentor/profile");
+      isLogin = true;
+      // return res.redirect("/mentor/profile");
     }
 
-    return res.status(200).render("userLogin", {
+    return res.status(200).render("startupLoginPosts", {
       memberData,
       startups,
       founderArray,
@@ -111,7 +120,7 @@ router.get("/startups", async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -127,14 +136,14 @@ router.get("/startups/:industry", async (req, res) => {
     if (req.params.industry == "Marketing") {
       industry = "Marketing and Advertisement";
     }
-    // console.log(industry);
+    // //console.log(industry);
 
     let founderArray = [];
     let startupFoundersArray = [];
 
     // GETTING STARTUP DATAs AND THEIR FOUNDER DATAs
     const startups = await startUpScheme.find({ Industry: industry });
-    // console.log(startups);
+    // //console.log(startups);
 
     if (startups.length === 0) {
       var redirectMsg =
@@ -148,7 +157,7 @@ router.get("/startups/:industry", async (req, res) => {
     startups.forEach((item, index) => {
       startupFoundersArray.push(item.founders);
     });
-    // console.log(startupFoundersArray);
+    // //console.log(startupFoundersArray);
 
     // creatng array of founder data
     startupFoundersArray.forEach((item) => {
@@ -163,7 +172,7 @@ router.get("/startups/:industry", async (req, res) => {
     });
 
     founderArray = await Promise.all(founderArray);
-    // console.log(founderArray);
+    // //console.log(founderArray);
 
     // FETCHING JOB DETAILS DATA OF ONLY SINGLE FOUNDER RIGHT NOW
     var jobDetailData = await jobDetailModel.findOne({
@@ -172,14 +181,14 @@ router.get("/startups/:industry", async (req, res) => {
     if (!jobDetailData) {
       jobDetailData = { job_title: "Founder" };
     }
-    // console.log(jobDetailData);
+    // //console.log(jobDetailData);
 
     let filterArray = [];
     startups.forEach((item) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    // console.log(filterArray)
+    // //console.log(filterArray)
 
     var memberData = null;
     var isLogin = false;
@@ -205,8 +214,19 @@ router.get("/startups/:industry", async (req, res) => {
       const jobDetailDataUser = await jobDetailModel.findOne({ mid: mid });
       if (!jobDetailDataUser) isEmployed = false;
       else isEmployed = true;
-      return res.status(200).render("userLogin", {
+
+      // Fetching Experience Data of the user
+      const userExpModel = new mongoose.model(
+        `${mid}_user_experience_collections`,
+        dynamicExperienceSchema.userExperienceSchema
+      );
+
+      const userExpData = await userExpModel.find();
+      //console.log(userExpData);
+
+      return res.status(200).render("startupLoginPosts", {
         memberData,
+        userExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -223,8 +243,17 @@ router.get("/startups/:industry", async (req, res) => {
       isLogin = true;
       logoutLink = "/logout/ca";
 
-      return res.status(200).render("caPage", {
+      //FETCHING EXP DATA OF CA
+      const caExpModel = new mongoose.model(
+        `${ca_id}_ca_experience_collections`,
+        dynamicExperienceSchema.caExperienceSchema
+      );
+
+      const caExpData = await caExpModel.find();
+
+      return res.status(200).render("startupLoginPosts", {
         caData,
+        caExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -240,8 +269,18 @@ router.get("/startups/:industry", async (req, res) => {
       isLogin = true;
       logoutLink = "/logout/mentor";
 
-      return res.status(200).render("mentorLogin", {
+      // FETCHING MENTOR EXP DATA
+      const mentorExpModel = new mongoose.model(
+        `${men_id}_mentor_experience_collections`,
+        dynamicExperienceSchema.mentorExperienceSchema
+      );
+
+      const mentorExpData = await mentorExpModel.find();
+      //console.log(mentorExpData);
+
+      return res.status(200).render("startupLoginPosts", {
         mentorData,
+        mentorExpData,
         startups,
         founderArray,
         jobDetailData,
@@ -251,7 +290,7 @@ router.get("/startups/:industry", async (req, res) => {
       });
     }
 
-    return res.status(200).render("userLogin", {
+    return res.status(200).render("startupLoginPosts", {
       memberData,
       startups,
       founderArray,
@@ -262,7 +301,7 @@ router.get("/startups/:industry", async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -273,13 +312,31 @@ router.get("/startup/:uid", async (req, res) => {
   const startupData = await startUpScheme.findOne({ uid: uid });
 
   // GETTING TIMELINE DATA
-  var name = startupData.startup_name;
+  var name = startupData?.startup_name;
   const timelineModel = new mongoose.model(
     `${uid}_timeline_collection`,
     timelineEventSchema
   );
-  const foundData = await timelineModel.find().sort({ date: -1 }).limit(2);
-  // console.log(foundData);
+  const foundData = await timelineModel.find().sort({ date: -1 });
+  // //console.log(foundData[0]._id);
+
+  //Fetching PRODUCT DETAILS DATA
+  const productModel = new mongoose.model(
+    `${uid}_products_collection`,
+    productDetailSchema
+  );
+
+  const productData = await productModel.find();
+  // //console.log(productData);
+
+  //FETCHING PRESS RELEASE DATA
+  const pressReleaseModel = new mongoose.model(
+    `${uid}_press_collection`,
+    pressReleaseSchema
+  );
+
+  const pressReleaseData = await pressReleaseModel.find();
+  // //console.log(pressReleaseData);
 
   // FETCHING GRAPH DATA
   let resArray = [];
@@ -292,8 +349,10 @@ router.get("/startup/:uid", async (req, res) => {
     dynamicColSchemas.typeEventSchema
   );
 
+
+
   const foundTypes = await dynamicTypeModel.find();
-  // console.log(foundTypes);
+  // //console.log(foundTypes);
 
   if (foundTypes.length != 0) {
     foundTypes.forEach((item, index) => {
@@ -309,7 +368,7 @@ router.get("/startup/:uid", async (req, res) => {
       );
     });
     resArray = await Promise.all(resArray);
-    // console.log(resArray);
+    // //console.log(resArray);
   }
 
   // Checking resArray
@@ -322,8 +381,10 @@ router.get("/startup/:uid", async (req, res) => {
   const isLogin = false;
 
   // FETCHING FOUNDER DATA
-  const mid = startupData.founders[0];
+  const mid = startupData?.founders[0];
+  // //console.log(mid);
   const founderData = await teamMemberModel.findOne({ mid: mid });
+  // //console.log(founderData);
 
   // FETCHING FOUNDER'S JOB DATA
   var jobDetailData = await jobDetailModel.findOne({ mid: mid });
@@ -331,6 +392,11 @@ router.get("/startup/:uid", async (req, res) => {
     jobDetailData = { job_title: "Founder" };
   }
 
+  const jobDetailArray = await jobDetailModel.find({ "from_date": { $exists: true }, "to_date": { $exists: true } }).sort({ date: -1 });
+  //console.log(jobDetailArray[0].from_date);
+
+
+  // //console.log(jobDetailData);
   // FETCHING JOB ALERTS
   const jobAlerts = await jobPostModel
     .find({ uid: uid, status: { $in: ["Active", "active", "ACTIVE"] } })
@@ -374,11 +440,14 @@ router.get("/startup/:uid", async (req, res) => {
 
   res.render("startupLogin", {
     foundData,
+    productData,
+    pressReleaseData,
     startupData,
     resArray,
     isLogin,
     founderData,
     jobDetailData,
+    jobDetailArray,
     jobAlerts,
     finalTeamArray,
   });
@@ -397,15 +466,57 @@ router.get("/timeline/:uid", async (req, res) => {
       timelineEventSchema
     );
     const foundData = await timelineModel.find().sort({ date: -1 });
-    // console.log(foundData);
+    // //console.log(foundData);
     // res.status(200).json(foundData);
     res.status(200).render("timeline", { foundData, startupData });
+  } catch (err) {
+    //console.log(err);
+    res.status(500).send(err);
+  }
+});
+// GET PRODUCTDETAILS DATA
+router.get("/product/:uid", async (req, res) => {
+  try {
+    const uid = req.params.uid;
+    var startupData = await startUpScheme
+      .findOne({ uid: uid })
+      .select({ startup_name: 1 });
+
+      const productModel = new mongoose.model(
+        `${uid}_products_collection`,
+        productDetailSchema
+      );
+      const productData = await productModel.find().sort({ date: -1 });
+    // //console.log(foundData);
+    // res.status(200).json(foundData);
+    res.status(200).render("product", { productData, startupData });
+  } catch (err) {
+    //console.log(err);
+    res.status(500).send(err);
+  }
+});
+//GET press release data
+router.get("/pressrelease/:uid", async (req, res) => {
+  try {
+    const uid = req.params.uid;
+    var startupData = await startUpScheme
+      .findOne({ uid: uid })
+      .select({ startup_name: 1 });
+
+      const pressReleaseModel = new mongoose.model(
+        `${uid}_press_collection`,
+        pressReleaseSchema
+      );
+  
+      const pressReleaseData = await pressReleaseModel.find();
+    // console.log(foundData);
+    // res.status(200).json(foundData);
+    res.status(200).render("pressrelease", { pressReleaseData, startupData });
   } catch (err) {
     console.log(err);
     res.status(500).send(err);
   }
 });
-
 // GET GRAPH DATA
 router.get("/graph/:uid", async (req, res) => {
   try {
@@ -421,7 +532,7 @@ router.get("/graph/:uid", async (req, res) => {
     );
 
     const foundTypes = await dynamicTypeModel.find();
-    console.log(foundTypes);
+    // //console.log(foundTypes);
 
     foundTypes.forEach((item, index) => {
       resArray.push(
@@ -436,6 +547,11 @@ router.get("/graph/:uid", async (req, res) => {
       );
     });
     resArray = await Promise.all(resArray);
+    //console.log();
+    //console.log("adfadfadf");
+    //console.log(resArray);
+    //console.log();
+    //console.log();
     // let finalArray = [];
     // resArray.forEach((item) => {
     //   if (item.length != 0) {
@@ -450,7 +566,7 @@ router.get("/graph/:uid", async (req, res) => {
     // res.send(foundTypes);
     res.status(200).render("graphs", { resArray });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send(err);
   }
 });
@@ -551,7 +667,7 @@ router.get("/jobalerts", checkUserForJobs, async (req, res) => {
     resArray = await Promise.all(resArray);
     res.status(200).render("jobAlertsPagePublic", { resArray, noAlerts });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -564,7 +680,7 @@ router.get("/jobalert/:jid", checkUserForJobDetail, async (req, res) => {
 
     res.status(200).render("jobAlertDetailPublic", { jobAlert, startupData });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -611,7 +727,7 @@ router.get("/jobalerts/:mid", isUserAuth, async (req, res) => {
     resArray = await Promise.all(resArray);
     res.status(200).render("jobAlertsPage", { mid, resArray, noAlerts });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -632,7 +748,7 @@ router.get("/jobalert/:jid/:mid", isUserAuth, async (req, res) => {
       .status(200)
       .render("jobAlertDetail", { jobAlert, userData, startupData });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -727,6 +843,7 @@ router.get("/startup/jobalerts/public/:uid", async (req, res) => {
   } catch (e) { }
 });
 
+
 // SEE JOB ALERTS APPLIED CANDIDATES (FOR STARTUPS)
 router.get(
   "/startup/jobalert/appliedcandidates/:jid",
@@ -786,7 +903,7 @@ router.get(
       // res.send(finalArray);
       res.status(200).render("appliedCandidatesPage", { finalArray, jobData });
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       res.status(500).send("Server Error");
     }
   }
@@ -855,7 +972,7 @@ router.get(
       // res.send(finalArray);
       res.status(200).render("appliedCandidatesPage", { finalArray, jobData });
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       res.status(500).send("Server Error");
     }
   }
@@ -912,6 +1029,102 @@ router.get("/startup/teammembers/:uid", async (req, res) => {
   }
 });
 
+
+// FINANCIAL PAGE --> RENDERING FINANCIAL PAGE
+router.get("/startup/:uid/financials", async (req, res) => {
+  /*
+      This page will displayed for everyone
+      
+      But edit and add option will enabled 
+      only for this startup (i.e., it should be logged in)
+      that is decided by the variable `isStartUpLoggedIn` (boolean)   
+      
+      if `isStartUpLoggedIn` is true  add/edit button should be       VISIBLE
+      else add/edit button should be                                INVISIBLE
+  */
+  
+  
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("financials", {isAuthenticated, isStartUpLoggedIn, uid});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PREPARE PAGE
+router.get("/startup/:uid/financials/prepare", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsPrepare", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PITCH DECK PAGE
+router.get("/startup/:uid/financials/pitchDeck", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    res.status(200).render("startupFinancialsPitchDeck", {isAuthenticated, isStartUpLoggedIn});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
+router.get("/startup/:uid/financials/projections", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    var projectionData = await ProjectionModel.findOne({uid: uid});
+    
+    res.status(200).render("startupFinancialsProjectionsData", {isAuthenticated, isStartUpLoggedIn, projectionData});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+// FINANCIAL PAGE --> RENDERING PROJECTIONS PAGE
+router.get("/startup/:uid/financials/appManual", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    var appManualData = await ApplicationManualModel.findOne({uid: uid});
+    
+    res.status(200).render("startupFinancialsAppManualData", {isAuthenticated, isStartUpLoggedIn, appManualData});
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
 
 
 

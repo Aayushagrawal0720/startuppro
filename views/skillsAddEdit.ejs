@@ -1,137 +1,118 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Add Skills</title>
-    <meta charset="UTF8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/memberRegister.css" />
-    <link rel="stylesheet" href="/css/startupRegister.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <!-- <link rel="stylesheet" href="website.css"> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/af3eeee1f8.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <%- include('./_partials/navbar_2') %> 
-    
-       <!-- ################################### HEADING  -->
-       <div class="container py-2">
-        <div class="row">
-          <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
-            <h3>Add Skills</h3>
-          </div>
+
+<head>
+  <title>Add Skills</title>
+  <meta charset="UTF8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/memberRegister.css" />
+  <link rel="stylesheet" href="/css/startupRegister.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <!-- <link rel="stylesheet" href="website.css"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
+
+    <!-- ################################### HEADING  -->
+    <div class="container mt-5 py-4">
+      <div class="row">
+        <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
+          <h3>Add Skills</h3>
         </div>
       </div>
-  
-      <!-- ############################################## form -->
-      <div class="container cont-height">
-        <div class="row shadow">
-          <div class="col-md-12">
-            <form
-              id="job-detail-form"
-              method="POST"
-              action="/adddata/teammember/jobdetails"
-            >
-              <div id="input-container" class="container text-center d-flex flex-column justify-content-canter align-items-start">
-                  <label class="mb-0 ml-0 star">Skill(s)</label><br />
-                  <input
-                    type="text"
-                    placeholder="Skill Name"
-                    class="p-1 outline my-1 skillItem"
-                    required
-                  /><br />
+    </div>
+
+    <!-- ############################################## form -->
+    <div class="container cont-height">
+      <div class="row shadow">
+        <div class="col-md-12">
+          <form id="job-detail-form" method="POST" action="/adddata/teammember/jobdetails">
+            <div id="input-container"
+              class="container text-center d-flex flex-column justify-content-canter align-items-start">
+              <label class="mb-0 ml-0 star">Skill(s)</label><br />
+              <input type="text" placeholder="Skill Name" class="p-1 outline my-1 skillItem" required /><br />
+            </div>
+            <button id="add-btn" class="btn btn-warning text-center my-2">
+              Add <i class="fas fa-plus"></i>
+            </button>
+            <div class="row">
+              <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
+                <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
+                <input type="submit" class="btn btn-warning py-2 px-5" value="Add Skills" />
               </div>
-              <button id="add-btn" class="btn btn-warning text-center my-2">
-                Add <i class="fas fa-plus"></i>
-              </button>
-              <div class="row">
-                <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
-                  <input
-                    type="submit"
-                    class="btn btn-warning py-2 px-5"
-                    value="Add Skills"
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
 
-    <%- include('./_partials/footer') %> 
+    <%- include('./_partials/footer') %>
 
-    <!-- add button funtionality script -->
-    <script>
-      const addBtn = document.querySelector("#add-btn");
-      addBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        var inputEl = document.createElement('input');
-        inputEl.type = "text";
-        inputEl.placeholder = "Skill Name";
-        inputEl.classList.add("p-1", "outline", "skillItem" , "my-1");
+      <!-- add button funtionality script -->
+      <script>
+        const addBtn = document.querySelector("#add-btn");
+        addBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          var inputEl = document.createElement('input');
+          inputEl.type = "text";
+          inputEl.placeholder = "Skill Name";
+          inputEl.classList.add("p-1", "outline", "skillItem", "my-1");
 
-        var brTag = document.createElement('br');
+          var brTag = document.createElement('br');
 
-        document.getElementById("input-container").append(inputEl);
-        document.getElementById("input-container").append(brTag);
+          document.getElementById("input-container").append(inputEl);
+          document.getElementById("input-container").append(brTag);
 
-      });
-    </script>
+        });
+      </script>
 
-    <!-- form submission script -->
-    <script>
-      var form = document.getElementById("job-detail-form");
-      form.addEventListener("submit",(e)=>{
-        e.preventDefault();
+      <!-- form submission script -->
+      <script>
+        var form = document.getElementById("job-detail-form");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
 
-        var skillInputEls = document.querySelectorAll(".skillItem");
-        let skillsArray = [];
-        
-        skillInputEls.forEach((item)=>{
-          if(item.value) skillsArray.push(item.value)
+          var skillInputEls = document.querySelectorAll(".skillItem");
+          let skillsArray = [];
+
+          skillInputEls.forEach((item) => {
+            if (item.value) skillsArray.push(item.value)
+          })
+
+          const formBody = { skills: skillsArray };
+
+          fetch("/editdata/startup/teammember", {
+            method: "POST",
+            body: JSON.stringify(formBody),
+            headers: {
+              "Content-type": "application/json",
+              mid: '<%- mid %>'
+            }
+          }).then((res) => {
+            if (res.redirected) window.location.href = res.url; {
+              alert("Details updated successfully.\nYou're now being redirected to your profile.\nClick Ok to continue")
+              console.log(userData);
+
+              // res.redirect("..");
+              res.redirect('/member/profile');
+              //window.location.href = res.url;
+            }
+            if (res.status === 400) {
+              alert("Error\nCould not save details");
+            }
+          })
         })
+      </script>
 
-        const formBody = {skills: skillsArray};
 
-        fetch("/editdata/startup/teammember",{
-          method:"POST",
-          body:JSON.stringify(formBody),
-          headers:{
-            "Content-type":"application/json",
-            mid: '<%- mid %>'
-          }
-        }).then((res)=>{
-          if(res.redirected){
-            alert("Details updated successfully.\nYou're now being redirected to your profile.\nClick Ok to continue")
-            window.location.href = res.url;
-          }
-          if(res.status === 400){
-            alert("Error\nCould not save details");
-          }
-        })
-      })
-    </script>
+</body>
 
-    
-  </body>
 </html>

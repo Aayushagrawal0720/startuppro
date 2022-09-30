@@ -31,43 +31,60 @@
   <body>
     <%- include('./_partials/navbar_2') %>
 
-    <div class="container py-5 px-3 my-5 shadow-border" style="border-radius: 8px;">
-        <div class="row px-3">
-            <div class="col-md-3">
-                <img src=<%= startupData.pic_url %> class="img-fluid">
+
+    <br><br>
+
+    <div class="wrapper" style="border-radius: 10px;">
+      <div class="left">
+        <img src=<%= startupData.pic_url %> class="img-fluid"  style="min-height: 200px; min-width: 200px;  box-shadow: 10px 10px 15px  #276678; border-radius: 50% ;">
+        <br><br>
+        <h3 style="margin-bottom: 10px; text-transform: uppercase; font-weight: 500;"><b><%= jobAlert.title %></b></h3>
+        <h4 style="font-size:25px"><%= startupData.startup_name %></h4>
+        <h5><%= jobAlert.employment_type %> </h5>
+      </div>
+      <div class="right">
+        <div class="info">
+          <h3 style="color: #1687a7; "><b>About</b></h3>
+          <div class="info-data">
+            <div class="data">
+              <h4 style="font-size:25px">Information</h4>
+              <p style="font-size:18px"><i><%= jobAlert.basic_info %></i></p>
             </div>
-            <div class="col-md-5">
-                <h3><%= jobAlert.title %></h3>
-                <h4><%= startupData.startup_name %> </h4>
-                <h5><%= jobAlert.employment_type %> </h5>
+              <div class="data">
+              <h4 style="font-size:25px">Requirements</h4>
+              <p  style="font-size:18px"><i><%= jobAlert.job_req %></i></p>
             </div>
+          </div>
         </div>
-        <div class="row px-3 my-2 d-flex flex-column justify-content-center">
-            <p><%= jobAlert.basic_info %></p>
-            <p><%= jobAlert.job_req %></p>
-            <p>
-                <p>Skills Required</p>
-                <ul class="ml-3">
-                    <% jobAlert.skills.forEach((item) =>{ %>
-                        <li style="list-style: disc;"><%= item %> </li>
-                    <% }) %> 
-                </ul>
-            </p>
-            <p>
-                <p>Shift</p>
-                <ul class="ml-3">
-                    <% jobAlert.shift.forEach((item) =>{ %>
-                        <li style="list-style: disc;"><%= item %> </li>
-                    <% }) %> 
-                </ul>
-            </p>
-        </div>
-        <div class="row text-right">
-            <div class="col-md-10">
-                <a href="/login/member"><button class="btn btn-warning" id="apply-btn">Apply</button></a>
+        <div class="projects">
+          <h3 style="color: #1687a7;"><b>Needs</b></h3>
+          <div class="projects-data">
+            <div class="data">
+              <h4 style="font-size:25px">Skills</h4>
+              <p  style="font-size:18px"><ul class="ml-3">
+                <% jobAlert.skills.forEach((item) =>{ %>
+                  <li style="list-style: disc; font-size: 18px;"><i><%= item %></i> </li>
+              <% }) %> 
+              </ul></p>
             </div>
+              <div class="data">
+              <h4 style="font-size:25px">Shift</h4>
+              <p  style="font-size:18px"> <ul class="ml-3">
+                <% jobAlert.shift.forEach((item) =>{ %>
+                    <li style="list-style: disc; font-size: 18px;"><i><%= item %></i> </li>
+                <% }) %> 
+            </ul></p>
+            </div>
+          </div>
+
         </div>
-    </div>
+        <div class="social_media">
+          <a href="/login/member"><button class="btn btn-warning" id="apply-btn" style="text-align: right;border-radius: 10px; padding:6px 12px 8px 12px;font-size: 18px;"><b> Apply </b></button></a>
+        </div>
+      </div>
+    
+  </div>
+  <br><br><br>
 
     <%- include('./_partials/footer') %>
 

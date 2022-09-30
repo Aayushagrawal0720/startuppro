@@ -17,180 +17,222 @@
 <body>
   <%- include('./_partials/navbar_2') %>
 
-  <% if(isLogin){ %>
-    <div class="container mt-2 d-flex justify-content-center justify-content-lg-end">
-      <div class="dropdown">
-        <button class="btn btn-warning dropdown-toggle d-lg-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          <%= memberData.member_name %> 
-        </button>
-        <ul class="dropdown-menu text-left" style="border-radius:10px; box-shadow: 0px 0px 9px 1px rgb(190, 190, 190);" aria-labelledby="dropdownMenuButton1">
-          <li><a href=<%= `/editdata/member/${memberData.mid}` %>><button class="btn btn-warning px-2 py-1 mt-2">Edit Profile</button></a></li>
-          <li><a href=<%= `/adddata/profile/member/${memberData.mid}` %> ><button class="btn btn-warning px-2 py-1 mt-2">Edit Profile Pic</button></a></li>
-          <li><a href=<%= `/getdata/jobalerts/${memberData.mid}` %> ><button class="btn btn-warning px-2 py-1 mt-2">See Jobs</button></a></li>
-          <li><a href=<%= `/adddata/resume/member/${memberData.mid}` %> ><button class="btn btn-warning px-2 py-1 mt-2">Add/Edit Resume</button></a></li>
-          <li><a href=<%= `/adddata/teammember/skills/${memberData.mid}` %> ><button class="btn btn-warning px-2 py-1 mt-2">Add/Edit Skills</button></a></li>
+    <% if(isLogin){ %>
+      <div class="fluid-container mt-2 d-flex justify-content-center justify-content-lg-end">
+        <div class="dropdown">
+          <button class="btn btn-warning dropdown-toggle d-lg-none" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <%= memberData.member_name %>
+          </button>
+          <ul class="dropdown-menu text-left"
+            style="border-radius:10px; box-shadow: 0px 0px 9px 1px rgb(190, 190, 190);"
+            aria-labelledby="dropdownMenuButton1">
+            <li><a href=<%=`/editdata/member/${memberData.mid}` %>><button class="btn btn-warning px-2 py-1 mt-2">Edit
+                  Profile</button></a></li>
+            <li><a href=<%=`/adddata/profile/member/${memberData.mid}` %> ><button
+                  class="btn btn-warning px-2 py-1 mt-2">Edit Profile Pic</button></a></li>
+            <li><a href=<%=`/getdata/jobalerts/${memberData.mid}` %> ><button class="btn btn-warning px-2 py-1 mt-2">See
+                  Jobs</button></a></li>
+            <li><a href=<%=`/adddata/resume/member/${memberData.mid}` %> ><button
+                  class="btn btn-warning px-2 py-1 mt-2">Add/Edit Resume</button></a></li>
+            <li><a href=<%=`/adddata/teammember/skills/${memberData.mid}` %> ><button
+                  class="btn btn-warning px-2 py-1 mt-2">Add/Edit Skills</button></a></li>
 
-          <% if(memberData.linkedin_url){ %> 
-            <li><a href=<%= `https://${memberData.linkedin_url}` %> ><button class="my-2 btn btn-warning">View LinkedIn Profile</button></a></li>
-            <% } %> 
+            <% if(memberData.linkedin_url){ %>
+              <li><a href=<%=`https://${memberData.linkedin_url}` %> ><button class="my-2 btn btn-warning">View LinkedIn
+                    Profile</button></a></li>
+              <% } %>
 
-          <% if(memberData.resume_url){ %> 
-            <li><a href=<%= `${memberData.resume_url}` %> ><button class="btn btn-warning px-2 py-1 mt-2">View Resume</button></a></li>
-          <% } %> 
+                <% if(memberData.resume_url){ %>
+                  <li><a href=<%=`${memberData.resume_url}` %> ><button class="btn btn-warning px-2 py-1 mt-2">View
+                        Resume</button></a></li>
+                  <% } %>
 
-          <% if(!isEmployed){ %>
-            <li><a href=<%=`/adddata/teammember/jobdetails/${memberData.mid}`%> ><button class="btn btn-warning px-2 py-1 mt-2">Add Job Details</button></a></li>
-          <% } else{%>
-            <li><a href=<%=`/editdata/teammember/editDetails/${memberData.mid}`%> ><button class="btn btn-warning px-2 py-1 mt-2">Edit Job Details</button></a></li>
-          <% } %> 
+                    <% if(!isEmployed){ %>
+                      <li><a href=<%=`/adddata/teammember/jobdetails/${memberData.mid}`%> ><button
+                            class="btn btn-warning px-2 py-1 mt-2">Add Job Details</button></a></li>
+                      <% } else{%>
+                        <li><a href=<%=`/editdata/teammember/editDetails/${memberData.mid}`%> ><button
+                              class="btn btn-warning px-2 py-1 mt-2">Edit Job Details</button></a></li>
+                        <% } %>
 
-          <li>
-            <button class="logout-btn btn btn-warning px-2 py-1 mt-2">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  <% } %>
-
-    <div id="parent-row">
-
-      <% if(isLogin) {%>
-        <script>
-          document.querySelector('.login-nav').innerText = "PROFILE";
-        </script>
-
-        <link rel="stylesheet" href="/css/sidebar.css">
-        <div class="container sidebar-container ">
-          <ul >
-            <li><a href=<%= `/editdata/member/${memberData.mid}` %>><button class="new--sidebar-btn px-2 py-1 mt-2">Edit Profile</button></a></li>
-            <li><a href=<%= `/adddata/profile/member/${memberData.mid}` %> ><button class="new--sidebar-btn px-2 py-1 mt-2">Edit Profile Pic</button></a></li>
-            <li><a href=<%= `/getdata/jobalerts/${memberData.mid}` %> ><button class="new--sidebar-btn px-2 py-1 mt-2">See Jobs</button></a></li>
-            <li><a href=<%= `/adddata/resume/member/${memberData.mid}` %> ><button class="new--sidebar-btn px-2 py-1 mt-2">Add/Edit Resume</button></a></li>
-            <li><a href=<%= `/adddata/teammember/skills/${memberData.mid}` %> ><button class="new--sidebar-btn px-2 py-1 mt-2">Add/Edit Skills</button></a></li>
-
-            <% if(memberData.linkedin_url){ %> 
-              <li><a href=<%= `https://${memberData.linkedin_url}` %> ><button class="my-2 new--sidebar-btn">View LinkedIn Profile</button></a></li>
-              <% } %> 
-
-            <% if(memberData.resume_url){ %> 
-              <li><a href=<%= `${memberData.resume_url}` %> ><button class="new--sidebar-btn px-2 py-1 mt-2">View Resume</button></a></li>
-            <% } %> 
-
-            <% if(!isEmployed){ %>
-              <li><a href=<%=`/adddata/teammember/jobdetails/${memberData.mid}`%> ><button class="new--sidebar-btn px-2 py-1 mt-2">Add Job Details</button></a></li>
-            <% } else{%>
-              <li><a href=<%=`/editdata/teammember/editDetails/${memberData.mid}`%> ><button class="new--sidebar-btn px-2 py-1 mt-2">Edit Job Details</button></a></li>
-            <% } %> 
-
-            <li>
-              <button class="logout-btn new--sidebar-btn px-2 py-1 mt-2">Logout</button>
-            </li>
+                          <li>
+                            <button class="logout-btn btn btn-warning px-2 py-1 mt-2">Logout</button>
+                          </li>
           </ul>
         </div>
-
-        <!-- Logout button script -->
-        <script>
-          const logoutBtn = document.querySelectorAll(".logout-btn");
-          
-          logoutBtn.forEach((item)=>{
-            item.addEventListener('click',() =>{
-              fetch("<%-logoutLink%>",{method:"DELETE"})
-              .then((res)=>{
-                if(res.redirected) window.location.href = res.url;
-              });
-            });
-          })
-        </script>
-      <% } %> 
-
-      <div class="fluid-container">
-      
-
-      <!-- ########################### FILTERS -->
-      <div class="container">
-            <div class="row">
-              <div class="text-left">Filter By:</div>
-            </div>
-              <div class="row text-center">
-                <!-- <div class="col-md-10 text-center"> -->
-                  <% filterArray.forEach((item)=>{ %>
-                    <div class="m-1"><a href=<%= `/getdata/startups/${item}` %> ><button class="btn btn-dark"> <%= item %> </button></a></div>
-                    <% }) %>
-                <!-- </div> -->
-              </div>
       </div>
-      
-      <!-- ########################### Startups -->
-      <div class="container cont-height">
+      <% } %>
 
-        <% startups.forEach((item,index)=>{ %>
+        <div id="parent-row">
 
-          <div class="container section my-5 section1 shadow-border">
-            <!-- ###########################Details -->
-            <div class="row" style="position: relative; ">
-              <div class="col-md-4">
-                <div>
-                  <div class="name mb-2">
-                    <p class="startup">
-                      <%= item.startup_name %>
-                    </p>
-                    <p class="mb-0">
-                      <%= item.about_company %>
-                    </p>
-                    <p class="text-secondary">Website: <a href=<%=`http://${item.website_link}` %>><%= item.website_link
-                          %></a> </p>
+          <% if(isLogin) {%>
+            <script>
+              document.querySelector('.login-nav').innerText = "PROFILE";
+            </script>
+
+            <link rel="stylesheet" href="/css/sidebar.css">
+            <div class="container sidebar-container ">
+              <ul>
+                <li><a href=<%=`/editdata/member/${memberData.mid}` %>><button
+                      class="new--sidebar-btn px-2 py-1 mt-2">Edit Profile</button></a></li>
+                <li><a href=<%=`/adddata/profile/member/${memberData.mid}` %> ><button
+                      class="new--sidebar-btn px-2 py-1 mt-2">Edit Profile Pic</button></a></li>
+                <li><a href=<%=`/getdata/jobalerts/${memberData.mid}` %> ><button
+                      class="new--sidebar-btn px-2 py-1 mt-2">See Jobs</button></a></li>
+                <li><a href=<%=`/adddata/resume/member/${memberData.mid}` %> ><button
+                      class="new--sidebar-btn px-2 py-1 mt-2">Add/Edit Resume</button></a></li>
+                <li><a href=<%=`/adddata/teammember/skills/${memberData.mid}` %> ><button
+                      class="new--sidebar-btn px-2 py-1 mt-2">Add/Edit Skills</button></a></li>
+
+                <% if(memberData.linkedin_url){ %>
+                  <li><a href=<%=`https://${memberData.linkedin_url}` %> ><button class="my-2 new--sidebar-btn">View
+                        LinkedIn Profile</button></a></li>
+                  <% } %>
+
+                    <% if(memberData.resume_url){ %>
+                      <li><a href=<%=`${memberData.resume_url}` %> ><button class="new--sidebar-btn px-2 py-1 mt-2">View
+                            Resume</button></a></li>
+                      <% } %>
+
+                        <% if(!isEmployed){ %>
+                          <li><a href=<%=`/adddata/teammember/jobdetails/${memberData.mid}`%> ><button
+                                class="new--sidebar-btn px-2 py-1 mt-2">Add Job Details</button></a></li>
+                          <% } else{%>
+                            <li><a href=<%=`/editdata/teammember/editDetails/${memberData.mid}`%> ><button
+                                  class="new--sidebar-btn px-2 py-1 mt-2">Edit Job Details</button></a></li>
+                            <% } %>
+
+                              <li>
+                                <button class="logout-btn new--sidebar-btn px-2 py-1 mt-2">Logout</button>
+                              </li>
+              </ul>
+            </div>
+
+            <!-- Logout button script -->
+            <script>
+              const logoutBtn = document.querySelectorAll(".logout-btn");
+
+              logoutBtn.forEach((item) => {
+                item.addEventListener('click', () => {
+                  fetch("<%-logoutLink%>", { method: "DELETE" })
+                    .then((res) => {
+                      if (res.redirected) window.location.href = res.url;
+                    });
+                });
+              })
+            </script>
+            <div class="container mx-auto flex-row justify-content-center align-items-center">
+              <div class="card  pe-3 my-2">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-7 pe-3 mt-3">
+                      <h5 class="card-title">Member Details:
+                      </h5>
+                      <p class="card-text">
+                        <strong>Name:</strong>
+                        <%= memberData.member_name %>
+                      </p>
+                      <p class="card-text">
+                        <strong>Phone:</strong>
+                        <%= memberData.mobile_no %>
+                      </p>
+                      <p class="card-text">
+                        <strong>LinkedIn URL:</strong>
+                        <%= memberData.linkedin_url %>
+                      </p>
+                      <p class="card-text">
+                        <strong>Email ID:</strong>
+                        <%= memberData.member_Email %>
+                      </p>
+
+                    </div>
+                    <div class="col-md-3 ms-3">
+                      <img src=<%=memberData.pic_url %> alt="CA_image" class ="
+                      img-thumbnail
+                      "/>
+                    </div>
+
                   </div>
+                </div>
+              </div>
 
-                  <div class="diary">
-                    <p class="text-secondary">Email:&nbsp <%= item.email_official %>
-                    </p>
-                    <p class="text-secondary">Phone:&nbsp <%= item.mobile_no %>
-                    </p>
-                    <p class="text-secondary">Industry:&nbsp <%= item.Industry %>
-                    </p>
-                    <p class="text-secondary">Headquarters:&nbsp <%= item.city %>
-                    </p>
+            </div>
+        </div>
+
+        <!-- Experience Container  -->
+        <div class="container my-3 ms-4 justify-content-center align-items-center ">
+          <div class="row ms-3 justify-content-center align-items-center">
+            <div class="contents rounded border my-3" id="contents">
+              <div class="heads flex-row">
+                <h5 class="title my-2 text-center font-weight-bold">Experience
+                  <% if(isLogin) { %>
+                    <button class="btn btn-warning mt-1 mx-5" id="user-btn">Add</button>
+                    <% } %>
+                </h5>
+              </div>
+
+              <style>
+                .dis-class {
+                  display: none;
+                }
+              </style>
+
+              <div class="container p-2 my-1 user-add-container">
+                <div class="main-container carousel2">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <form method="post" id="experience-form"
+                        action=<%=`/adddata/user/${memberData.mid}/addexperience`%>
+                        >
+                        <!-- <div class="form-group m-2 py-2">
+                          <label for="resume_upload">Upload Resume</label>
+                          <input class="form-control" id="resume_upload" type="file" name="resume_upload" />
+                        </div> -->
+                        <div class="form-group m-2 py-2">
+                          <textarea class="form-control" name="experience"
+                            placeholder="Tells us about your experience in Mentoring" rows="6" col="10"></textarea>
+                        </div>
+                        <div class="text-center my-2">
+                          <button type="submit" class="btn btn-primary" id="experience-submit">Submit</button>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
-
-                <div class="my-2">
-                  <a href=<%= `/getdata/startup/${item.uid}` %> >View more details</a>
-                </div>
-              </div>
-              <div class="col-md-4 logo-div d-flex flex-column justify-content-center align-items-center">
-                <div class="image-box d-flex flex-column justify-content-center align-items-center">
-                  <img src=<%= item.pic_url %>  class="img-fluid logo" alt="startup-img" style="border: 2px solid #c9c9c9; padding: 3px; box-shadow: 0px 0px 9px 1px #d4d4d4"/>
-                </div>
               </div>
 
-              <!-- ###################### Portfolio -->
-              <div
-                class="portfolio col-md-4 text-center px-0 pl-3 pr-3 pl-md-5 mt-4 mb-4 d-flex flex-column justify-content-end">
-                <div class="col-md-12 borderlight">
-                  <img src=<%= founderArray[index].pic_url %> class="img-fluid mt-3 mb-lg-4"
-                    alt="founder-img" />
-                  <div class="my-3">
-                    <p class="text-secondary">Name:&nbsp <%= founderArray[index].member_name %>
+              <script>
+                var addBtn = document.getElementById('user-btn');
+                var addContainer = document.querySelector('.user-add-container');
+
+                addContainer.classList.add('dis-class');
+                addBtn.addEventListener('click', () => {
+                  addContainer = document.querySelector('.user-add-container');
+                  addContainer.classList.toggle('dis-class');
+                })
+              </script>
+
+              <div class="container mx-auto justify-content-center ">
+                <div class="col border bg-dark border-secondary rounded py-2 my-3">
+                  <% userExpData.forEach((item)=> { %>
+                    <p class="px-2 text-white text-justify">
+                      <%= item.experience %>
                     </p>
-                    <p class="text-secondary">Designation:&nbsp <%= jobDetailData.job_title?jobDetailData.job_title:"Founder" %>  </p>
-                  </div>
+                    <% }) %>
                 </div>
               </div>
-              <div class="new__wrap col-12" style=" position: absolute; height: 50%;  z-index: -1; ">
-              </div>
+
             </div>
           </div>
+        </div>
+        <%- include('./_partials/footer') %>
 
-          <% }) %>
-      </div>
 
-    </div>
-
-    </div>
-
-    <%- include('./_partials/footer') %>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"></script>
+          <% } %>
 </body>
 
 </html>

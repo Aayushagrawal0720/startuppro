@@ -21,7 +21,7 @@ startupForm.addEventListener("submit", (e) => {
   startupRegData.startupDetails.about_company = startupForm.elements.about_company.value;
   startupRegData.startupDetails.website_link = startupForm.elements.website_link.value;
 
-  if(startupRegData.startupDetails.password!=startupRegData.startupDetails.confirm_password){
+  if (startupRegData.startupDetails.password != startupRegData.startupDetails.confirm_password) {
     alert("Passwords do not match");
     throw new Error("Passwords do not match");
   }
@@ -127,18 +127,18 @@ startupForm.addEventListener("submit", (e) => {
 
   const checkFounderFormPass = () => {
     var password = document.getElementById("o-pass");
-        var confirm_password = document.getElementById("c-pass");
+    var confirm_password = document.getElementById("c-pass");
 
-        function validatePassword(){
-        if(password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("Passwords Don't Match");
-        } else {
-            confirm_password.setCustomValidity('');
-        }
-        }
+    function validatePassword() {
+      if (password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
 
-        password.onchange = validatePassword;
-        confirm_password.onkeyup = validatePassword;
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
   }
   checkFounderFormPass();
 
@@ -154,7 +154,7 @@ startupForm.addEventListener("submit", (e) => {
 
     startupRegData.jobDetails.job_title = founderForm.elements.job_title.value;
 
-    if(startupRegData.founderDetails.password!=startupRegData.founderDetails.confirm_password){
+    if (startupRegData.founderDetails.password != startupRegData.founderDetails.confirm_password) {
       alert("Passwords do not match");
       throw new Error("Passwords do not match");
     }
@@ -167,15 +167,15 @@ startupForm.addEventListener("submit", (e) => {
       },
     })
       .then((res) => {
-        if(res.redirected){
+        if (res.redirected) {
           alert("Successfully Registered ! You will be redirected to the Login Page.\nClick Ok to continue");
           // setTimeout(()=>{
-            window.location.href = res.url;
+          window.location.href = res.url;
           // },3000)
         }
-        if(res.status==400){
-          res.json().then((data)=>{
-            alert(`${JSON.stringify(data)}`);
+        if (res.status === 400) {
+          res.json().then((data) => {
+            alert(`${JSON.stringify(data)}`)
           })
         }
       })

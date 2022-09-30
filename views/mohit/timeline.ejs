@@ -1,0 +1,150 @@
+<div class="process-wrapper">
+  <div id="progress-bar-container">
+    <ul>
+      <li class="step step01 active">
+        <div class="step-inner">
+          <img src=<%=foundData[0].picUrl %> alt="" checked class="img-cla" >
+          <br >
+          <br >
+          <br >
+          <%= foundData[0].event_title %>
+        </div>
+      </li>
+
+      <% foundData.forEach(function(item, index) { %>
+        <% if (index> 0 && index < 5) { %>
+            <li class="step step0<%= index + 1 %>">
+              <div class="step-inner">
+                <img src=<%=foundData[index].picUrl %>
+                alt=""
+                checked
+                class="img-cla"
+                >
+                <br>
+                <br>
+                <br>
+                <%= foundData[index].event_title %>
+              </div>
+            </li>
+            <% } %>
+              <% }); %>
+
+
+    </ul>
+
+    <div id="line">
+      <div id="line-progress"></div>
+    </div>
+  </div>
+
+  <div id="progress-content-section">
+    <div class="section-content discovery active">
+      <h2>
+        <%= foundData[0].event_title %>
+      </h2>
+      <p>
+        <%= foundData[0].description %>
+      </p>
+    </div>
+
+    <% foundData.forEach(function(item, index) { %>
+      <% if (index> 0 && index < 5) { %>
+          <div class="section-content desc0<%= index + 1 %>">
+            <h2>
+              <%= foundData[index].event_title %>
+            </h2>
+            <p>
+              <%= foundData[index].description %>
+            </p>
+          </div>
+          <% } %>
+            <% }); %>
+  </div>
+</div>
+
+<!-- <div class="section-content strategy">
+      <h2>dumm2</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
+
+    <div class="section-content creative">
+      <h2>dummy3</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
+
+    <div class="section-content production">
+      <h2>dummy4</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
+
+    <div class="section-content analysis">
+      <h2>dummy5</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque
+        justo, consequat non fermentum ac, tempor eu turpis. Proin nulla eros,
+        placerat non ipsum ut, dapibus ullamcorper ex. Nulla in dapibus lorem.
+        Suspendisse vitae velit ac ante consequat placerat ut sed eros. Nullam
+        porttitor mattis mi, id fringilla ex consequat eu. Praesent pulvinar
+        tincidunt leo et condimentum. Maecenas volutpat turpis at felis egestas
+        malesuada. Phasellus sem odio, venenatis at ex a, lacinia suscipit orci.
+      </p>
+    </div>
+  </div> -->
+<!-- </div> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+  $(".step").click(function () {
+    $(this).addClass("active").prevAll().addClass("active");
+    $(this).nextAll().removeClass("active");
+  });
+
+  $(".step01").click(function () {
+    $("#line-progress").css("width", "3%");
+    $(".desc01").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step02").click(function () {
+    $("#line-progress").css("width", "25%");
+    $(".desc02").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step03").click(function () {
+    $("#line-progress").css("width", "50%");
+    $(".desc03").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step04").click(function () {
+    $("#line-progress").css("width", "75%");
+    $(".desc04").addClass("active").siblings().removeClass("active");
+  });
+
+  $(".step05").click(function () {
+    $("#line-progress").css("width", "100%");
+    $(".desc05").addClass("active").siblings().removeClass("active");
+  });
+</script>

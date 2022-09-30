@@ -1,41 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Mentor Details</title>
-    <meta charset="UTF8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/memberRegister.css" />
-    <link rel="stylesheet" href="/css/startupRegister.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <!-- <link rel="stylesheet" href="website.css"> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/af3eeee1f8.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <%- include('./_partials/navbar_2') %> 
-    
+
+<head>
+  <title>Mentor Details</title>
+  <meta charset="UTF8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/memberRegister.css" />
+  <link rel="stylesheet" href="/css/startupRegister.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <!-- <link rel="stylesheet" href="website.css"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
+
     <!-- ################################### HEADING  -->
-    <div class="container py-2">
+    <div class="container mt-5 py-4">
       <div class="row">
         <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
           <h3>Mentor Details</h3>
@@ -47,43 +34,21 @@
     <div class="container cont-height">
       <div class="row shadow">
         <div class="col-md-12">
-          <form id="ca-reg-form" method="POST" action=<%= `/editdata/mentor/${men_data.men_id}` %> >
+          <form id="ca-reg-form" method="POST" action=<%=`/editdata/mentor/${men_data.men_id}` %> >
             <div class="row">
               <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star">Name</label><br />
-                <input
-                  type="text"
-                  name="men_name"
-                  placeholder="Name"
-                  class="p-1 outline"
-                  required
-                /><br /><br />
+                <input type="text" name="men_name" placeholder="Name" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0 star">Phone Number</label><br />
-                <input
-                  type="number"
-                  name="mobile_no"
-                  placeholder="Phone Number"
-                  class="p-1 outline"
-                  required
-                /><br /><br />
+                <input type="number" name="mobile_no" placeholder="Phone Number" class="p-1 outline"
+                  required /><br /><br />
 
                 <label class="mb-0 ml-0 star">Email</label><br />
-                <input
-                  type="email"
-                  name="men_email"
-                  placeholder="Email"
-                  class="p-1 outline"
-                  required
-                /><br /><br />
+                <input type="email" name="men_email" placeholder="Email" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0">LinkedIn URL</label><br />
-                <input
-                  type="text"
-                  name="linkedin_url"
-                  placeholder="LinkedIn URL"
-                  class="p-1 outline"
-                /><br /><br />
+                <input type="text" name="linkedin_url" placeholder="LinkedIn URL" class="p-1 outline" /><br /><br />
               </div>
               <!-- <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star" for="o-pass">Password</label><br />
@@ -120,11 +85,8 @@
             </div>
             <div class="row">
               <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
-                <input
-                  type="submit"
-                  class="btn btn-warning py-2 px-5"
-                  value="Submit"
-                />
+                <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
+                <input type="submit" class="btn btn-warning py-2 px-5" value="Submit" />
               </div>
             </div>
           </form>
@@ -132,21 +94,21 @@
       </div>
     </div>
 
-    <%- include('./_partials/footer') %> 
+    <%- include('./_partials/footer') %>
 
-    <script>
-        const men_data = <%- JSON.stringify(men_data) %>;
+      <script>
+        const men_data = <% - JSON.stringify(men_data) %>;
         const form = document.getElementById('ca-reg-form');
 
         form.elements.men_name.value = men_data.men_name;
         form.elements.mobile_no.value = men_data.mobile_no;
         form.elements.men_email.value = men_data.men_email;
-        form.elements.linkedin_url.value = men_data.linkedin_url?men_data.linkedin_url:null;
+        form.elements.linkedin_url.value = men_data.linkedin_url ? men_data.linkedin_url : null;
 
-    </script>
+      </script>
 
-    <!-- For Password Validation -->
-    <!-- <script>
+      <!-- For Password Validation -->
+      <!-- <script>
         var password = document.getElementById("o-pass");
         var confirm_password = document.getElementById("c-pass");
 
@@ -161,5 +123,6 @@
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
     </script> -->
-  </body>
+</body>
+
 </html>

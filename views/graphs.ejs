@@ -26,6 +26,7 @@
 
   <body>
     <div class="outer-container"></div>
+    <span hidden id="dataspan"><%- JSON.stringify(resArray) %></span>
 
     <script>
       function createChart(id, labelArr, valArr, type_title) {
@@ -80,8 +81,8 @@
     </script>
 
     <script>
-      let graphArr = <%- JSON.stringify(resArray) %>
-        // console.log(graphArr);
+      let graphArr = '<%- JSON.stringify(resArray) %>';     
+         // console.log(graphArr);
 
       graphArr.forEach((item, index) => {
         // if(index==3) throw new Error('x');

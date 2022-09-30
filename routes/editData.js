@@ -34,15 +34,16 @@ router.get("/startup/:uid/basicdetails", isAuth, async (req, res) => {
 
     res.status(200).render("startupDetailsEdit", { startupData });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send("Server Error");
   }
 });
 
 // Startup Basic Details Route
-router.post("/startup/basicdetails", isAuth, async (req, res) => {
+router.post("/startup/:uid/basicdetails", isAuth, async (req, res) => {
   try {
-    const uid = req.headers.uid;
+    //console.log("Hello");
+    const uid = req.params.uid;
     const values = Object.keys(req.body);
 
     // UPDATING IN startups COLLECTION
@@ -51,8 +52,8 @@ router.post("/startup/basicdetails", isAuth, async (req, res) => {
       { $set: req.body },
       { new: true },
       (err, doc) => {
-        if (err) return console.log(err);
-        // console.log(doc);
+        if (err) return //console.log(err);
+        // //console.log(doc);
       }
     );
 
@@ -64,7 +65,7 @@ router.post("/startup/basicdetails", isAuth, async (req, res) => {
       }
     });
 
-    console.log(updatedData);
+    //console.log(updatedData);
 
     // res.status(200).send("Updated");
     res.redirect("/startup/profile");
@@ -86,9 +87,9 @@ router.get("/member/:mid", isUserAuth, async (req, res) => {
 });
 
 // Team Member Details Edit Route
-router.post("/startup/teammember", isUserAuth, async (req, res) => {
+router.post("/member/:mid", isUserAuth, async (req, res) => {
   try {
-    const mid = req.headers.mid;
+    const mid = req.params.mid;
     const values = Object.keys(req.body);
 
     // UPDATING DATA IN teamMembers COLLECTION
@@ -97,7 +98,7 @@ router.post("/startup/teammember", isUserAuth, async (req, res) => {
       { $set: req.body },
       { new: true },
       (err, doc) => {
-        if (err) return console.log(err);
+        if (err) return //console.log(err);
       }
     );
 
@@ -109,7 +110,7 @@ router.post("/startup/teammember", isUserAuth, async (req, res) => {
       }
     });
 
-    // console.log(updatedData);
+    // //console.log(updatedData);
 
     // res.status(200).send("Updated");
     res.redirect("/member/profile");
@@ -128,7 +129,7 @@ router.post("/startup/teammember/changestatus", isAuth, async (req, res) => {
       { new: true }
     );
 
-    console.log(updatedData);
+    //console.log(updatedData);
 
     if (req.body.status == "Approved") {
       const foundMemberData = await membersModel.findOne({ mid: mid });
@@ -143,7 +144,7 @@ router.post("/startup/teammember/changestatus", isAuth, async (req, res) => {
         event_title: `${foundMemberData.member_name} joined as member`,
       });
       const savedTData = await tDataToBeAdded.save();
-      console.log(savedTData);
+      //console.log(savedTData);
     }
     res.status(201).send("Updated status in Job Details Collection");
   } catch (err) {
@@ -160,7 +161,7 @@ router.get("/teammember/editDetails/:mid", isUserAuth, async (req, res) => {
 
     res.status(201).render("jobDetailsEdit", { jobDetailData, startups, mid });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -182,7 +183,7 @@ router.post("/teammember/jobdetails", isUserAuth, async (req, res) => {
 
     res.redirect("/member/profile");
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(400).send(e);
   }
 });
@@ -196,10 +197,10 @@ router.post("/jobposts", isAuth, async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-    console.log(updateData);
+    //console.log(updateData);
     res.status(200).json(updateData);
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send(err);
   }
 });
@@ -213,10 +214,10 @@ router.post("/jobposts/changestatus", isAuth, async (req, res) => {
       { $set: { status: req.body.status } },
       { new: true }
     );
-    console.log(updateData);
+    //console.log(updateData);
     res.status(200).send("Updated Status");
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(200).send(err);
   }
 });
@@ -233,7 +234,7 @@ router.post("/jobposts/apply/changestatus", isAuth, async (req, res) => {
       { $set: { status: status } },
       { new: true }
     );
-    // console.log(updatedData);
+    // //console.log(updatedData);
 
     // IF CANDIDATE IS HIRED THEN MODIFY CANDIDATE DATA AND ADD JOB DETAILS DATA
     if (status == "Hired") {
@@ -243,7 +244,7 @@ router.post("/jobposts/apply/changestatus", isAuth, async (req, res) => {
         { $set: { startupMember: uidData } },
         { new: true }
       );
-      console.log(updatedMemberData);
+      //console.log(updatedMemberData);
       const foundJobPost = await jobPostModel.findOne({ jid: updatedData.jid });
       const job_title = foundJobPost.title;
       const detailDataToBeSaved = {
@@ -266,14 +267,14 @@ router.post("/jobposts/apply/changestatus", isAuth, async (req, res) => {
         event_title: `${updatedMemberData.member_name} joined as member`,
       });
       const savedTData = await tDataToBeAdded.save();
-      // console.log(savedTData);
+      // //console.log(savedTData);
 
-      // console.log(savedJobDetail);
+      // //console.log(savedJobDetail);
     }
 
     res.status(200).send("Updated status and data of the candidate");
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(200).send(err);
   }
 });
@@ -285,7 +286,7 @@ router.get("/ca/:ca_id", isCAAuth, async (req, res) => {
     const caData = await caModel.findOne({ ca_id: ca_id });
     res.status(200).render("caDetailsEdit", { caData });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -299,12 +300,12 @@ router.post("/ca/:ca_id", isCAAuth, async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-    console.log(caData);
+    //console.log(caData);
 
     // res.redirect("..");
     res.redirect('/ca/profile');
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send("Error");
   }
 });
@@ -316,7 +317,7 @@ router.get("/mentor/:men_id", isMentorAuth, async (req, res) => {
     const men_data = await mentorModel.findOne({ men_id: men_id });
     res.status(200).render("mentorDetailsEdit", { men_data });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -330,11 +331,11 @@ router.post("/mentor/:men_id", isMentorAuth, async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-    console.log(men_data);
+    //console.log(men_data);
 
     res.redirect('/mentor/profile');
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send("Error");
   }
 });

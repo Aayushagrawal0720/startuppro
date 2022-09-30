@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Startup Finacials</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/fin.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/financials.css">
+    <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <%- include('./_partials/navbar_2') %>
+    <% if(isAuthenticated){ %>
+        <script>
+            document.querySelector('.login-nav').innerText = "DASHBOARD";
+        </script>
+    <% } %>
+
+    
+    <form method="post" action="appManualForm" id="fin-form">
+        
+        
+        <div class="main">
+            <div class="hed">
+                <p>You are required to answer all the questions in each of the three sections – What are you creating, Start-up organisation, Startup-details. </p>
+
+            </div>
+            <div class="rowe">
+                <h2>
+                    What are you creating 
+                </h2>
+                <p>
+                    Please describe your start-up in your own words. Please describe your start-up in your own words. 
+                </p>
+                <textarea  name="description" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.description %>
+                <% } %></textarea>
+
+                <p>
+                    1.	Describe the problem you have identified and are solving. 
+                </p>
+                <textarea name="problem" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.problem %>
+                <% } %></textarea>
+
+                <p>
+                    2.	The value of your solution to the customers targeted by you. Identify if possible the basis of your assessment. <br>Share preliminarily information of any trial conducted. 
+                </p>
+                <textarea name="solution" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.solution %>
+                <% } %></textarea>
+
+                <p>
+                    
+                3.	Identify the first segment of customers you have targeted to gain early adoption.<br> How did you decide on the early adopter segment?
+
+                </p>
+                <textarea name="customer_and_adoption" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.customer_and_adoption %>
+                <% } %></textarea>
+
+                <p>
+                    4.	Describe how you make money based on your pricing and costs. And how you create demand<br> and acquire customers.  
+                </p>
+                <textarea name="money_making" minlength="250" required><% if(locals.appManualData) { %><%= appManualData.money_making %>
+                <% } %></textarea>
+
+            </div>
+            <!-- <input id="button" type="button" value="Submit" onclick="sub()"> -->
+        </div>
+         
+        <div class="main2">
+            <div class="head">
+                <h2>Start-up Organisation</h2>
+                <h3>A few questions about your organisation</h3>
+            </div>
+            <div class="rowe2">
+                <p>
+                    1.	Name of your company (as registered). If not registered, name identified. 
+                </p>
+                <input type="text" name="company_name" maxlength="100" required
+                <% if(locals.appManualData) { %>
+                    value="<%= appManualData.company_name %>"
+                <% } %> />
+
+                <p>
+                    2.	The brand name of your product or service. If a brand name is not used<br>
+                        please tell us the name that you have identified. 
+                </p>
+                <input type="text" name="brand_name" maxlength="100" required
+                <% if(locals.appManualData) { %>
+                    value="<%= appManualData.brand_name %>"
+                <% } %> />
+    
+
+                <p>
+                    3.	Please describe your role in the start-up.
+                </p>
+                <input type="text" name="role" maxlength="100" required
+                <% if(locals.appManualData) { %>
+                    value="<%= appManualData.role %>"
+                <% } %> />
+                
+            </div>
+            <div class="main3">
+                <h2>Startup-details</h2>
+                <h3>A few questions about funding</h3>
+                <p>1.	Total investment in your startup.</p>
+
+                <select name="investment_currecy" required id="currency">
+                    <% if(locals.appManualData) { %>
+                        <option value="dollar" 
+                        <% if(appManualData.investment_currecy == "dollar") {%>
+                            selected
+                        <% } %> > dollar</option>
+                        <option value="INR"
+                        <% if(appManualData.investment_currecy == "INR") {%>
+                            selected
+                        <% } %> > INR</option>
+                    <% }else{ %> />
+                        <option value="dollar"> dollar</option>
+                        <option value="INR"> INR</option>
+                    <% } %> />
+                </select>
+                <input type="number" name="investment_amount" required class="cur" placeholder="Amount"
+                <% if(locals.appManualData) { %>
+                    value="<%= appManualData.investment_amount %>"
+                <% } %> />
+                
+                
+                <p>2.	What is your funding requirement? </p>
+
+                <select name="required_funding_currecy" required id="currency">
+                    <% if(locals.appManualData) { %>
+                        <option value="dollar" 
+                        <% if(appManualData.required_funding_currecy == "dollar") {%>
+                            selected
+                        <% } %> > dollar</option>
+                        <option value="INR"
+                        <% if(appManualData.required_funding_currecy == "INR") {%>
+                            selected
+                        <% } %> > INR</option>
+                    <% }else{ %> />
+                        <option value="dollar"> dollar</option>
+                        <option value="INR"> INR</option>
+                    <% } %> />
+                </select>
+                <input type="number" name="required_funding_amount" required class="cur" placeholder="Amount"
+                <% if(locals.appManualData) { %>
+                    value="<%= appManualData.required_funding_amount %>"
+                <% } %> />
+                
+                
+                <p>3.	Any written commitments for any portion of this funding on date of application? </p>
+
+                <select name="written_commitments_currecy"  required id="currency">
+                    <% if(locals.appManualData) { %>
+                        <option value="dollar" 
+                        <% if(appManualData.written_commitments_currecy == "dollar") {%>
+                            selected
+                        <% } %> > dollar</option>
+                        <option value="INR"
+                        <% if(appManualData.written_commitments_currecy == "INR") {%>
+                            selected
+                        <% } %> > INR</option>
+                    <% }else{ %> />
+                        <option value="dollar"> dollar</option>
+                        <option value="INR"> INR</option>
+                    <% } %> />
+                </select>
+                <input type="number" name="written_commitments_amount" required class="cur" placeholder="Amount"
+                <% if(locals.appManualData) { %>
+                    value="<%= appManualData.written_commitments_amount %>"
+                <% } %> />
+                
+                
+                <p>4.	What challenges does your business face in the coming three months?  </p>
+                <textarea name="challenges" minlength="250" required class="las"><% if(locals.appManualData) { %><%= appManualData.challenges %>
+                <% } %></textarea>
+    
+    
+            </div>
+            <div style="width: 100%; text-align: center; padding-bottom: 30px; padding-top: 20px;">
+                <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
+                <input  type="button" class="btn btn-warning py-2 px-5" value="Submit" onclick="sub()">
+              </div>
+        </div>
+    
+    
+    </form>
+        
+        
+        
+        
+    <script>
+        function sub() {
+            alert("Submitted Suscessfully")
+            document.getElementById("fin-form").submit();
+        }
+    </script>  
+
+    <%- include('./_partials/footer') %>
+
+</body>
+
+</html>

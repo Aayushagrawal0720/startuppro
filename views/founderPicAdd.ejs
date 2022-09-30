@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= p_name %> - Add Founder Image</title>
+    <meta charset="UTF8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/memberRegister.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/startupRegister.css"
+    />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <!-- <link rel="stylesheet" href="website.css"> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      .image-box img{
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        box-shadow: 0 0 9px 1px rgb(156, 156, 156);
+        border: 2px solid #fff;
+      }
+    </style>
+
+  </head>
+  <body>
+    <%- include('./_partials/navbar_2') %>
+
+    <div class="edit_profile"> <!------------------- rachit gupta ------------------->
+
+      <!-- ################################### HEADING  -->
+      <div class="container py-2">
+        <div class="row">
+          <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
+            <h3>Add Founder Image</h3>
+          </div>
+        </div>
+      </div>
+  
+      <!-- ############################################## form -->
+      <div class="container cont-height">
+        
+        <div class="row shadow">
+          <div class="col-md-12">
+            <div class="row image-box p-2 m-2">
+              <img src=<%= p_picUrl %>  class="img-fluid">
+            </div>
+            <form class="ml-3 my-3" id="profile-add-form" method="POST" enctype="multipart/form-data" action=<%= url %> >
+              <div class="row">
+                <label style="font-size: 1.2rem;" for="profile_pic">Add Founder Pic</label>
+                <input type="file" name="founder_pic" id="'founder_pic" />
+                <div class="form-text">Kindly upload a pic with Aspect Ratio 1:1 for best view</div>
+              </div>
+  
+              <div class="row">
+                <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
+                  <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
+                  <input
+                    type="submit"
+                    class="btn btn-warning py-2 px-5"
+                    value="Update"
+                  />
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+    <%- include('./_partials/footer') %>
+  </body>
+</html>

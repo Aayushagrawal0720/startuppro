@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Startup Finacials</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/financial-projections.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/financials.css">
+    <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <%- include('./_partials/navbar_2') %>
+    <% if(isAuthenticated){ %>
+        <script>
+            document.querySelector('.login-nav').innerText = "DASHBOARD";
+        </script>
+    <% } %>
+    
+    <% if(locals.projectionData) { %>
+    
+      <div class="financials">
+        <table style="width:50%" id="collapsee">
+          <tr>
+            <th>Key Financials (in INR Lakhs)
+          </th>
+            <th>FYXX     (Proj.)
+          </th>
+            <th>FYXX <br> (Proj.)
+          </th>
+            <th>FYXX <br>(Proj.)
+          </th>
+          </tr>
+          <tr>
+            <td>Net Rev/FPO
+            </td>
+            <td class="txt"><p> <%= projectionData.net_revenue_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.net_revenue_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.net_revenue_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>CAC/Farmer (INR)
+            </td>
+            <td class="txt"><p> <%= projectionData.CAC_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.CAC_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.CAC_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Total Revenue
+            </td>
+            <td class="txt"><p> <%= projectionData.total_revenue_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.total_revenue_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.total_revenue_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>% Growth
+
+            </td>
+            <td class="txt"><p> <%= projectionData.growth_percent_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.growth_percent_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.growth_percent_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Direct Cost Breakup
+            </td>
+            <td class="txt"><p> <%= projectionData.direct_cost_breakup_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.direct_cost_breakup_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.direct_cost_breakup_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Gross Margin
+            </td>
+            <td class="txt"><p> <%= projectionData.gross_margin_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.gross_margin_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.gross_margin_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>% of Revenue
+            </td>
+            <td class="txt"><p> <%= projectionData.revenue_percent_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.revenue_percent_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.revenue_percent_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Salaries
+            </td>
+            <td class="txt"><p> <%= projectionData.salaries_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.salaries_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.salaries_3 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">Founders
+            </td>
+            <td class="txt"><p> <%= projectionData.founders_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.founders_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.founders_3 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">Tech Team
+            </td>
+            <td class="txt"><p> <%= projectionData.tech_team_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.tech_team_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.tech_team_3 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">Sales
+            </td>
+            <td class="txt"><p> <%= projectionData.sales_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.sales_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.sales_3 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">Sr Mgt
+            </td>
+            <td class="txt"><p> <%= projectionData.senior_management_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.senior_management_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.senior_management_3 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">OPS
+            </td>
+            <td class="txt"><p> <%= projectionData.OPS_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.OPS_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.OPS_3 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">FINANCE
+
+            </td>
+            <td><p> <%= projectionData.finance_1 %> </p></td>
+            <td><p> <%= projectionData.finance_2 %> </p></td>
+            <td><p> <%= projectionData.finance_3 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">CREDIT
+            </td>
+            <td class="txt"><p> <%= projectionData.credit_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.credit_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.credit_1 %> </p></td>
+          </tr>
+          <tr>
+            <td align="right">OUTSOURCED
+            </td>
+            <td class="txt"><p> <%= projectionData.outsourced_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.outsourced_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.outsourced_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Marketing
+            </td>
+            <td class="txt"><p> <%= projectionData.marketing_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.marketing_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.marketing_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Office & Tech infra
+            </td>
+            <td class="txt"><p> <%= projectionData.office_tech_infra_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.office_tech_infra_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.office_tech_infra_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Rentals, Travel & Other expenses
+            </td>
+            <td class="txt"><p> <%= projectionData.rentals_travel_other_expenses_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.rentals_travel_other_expenses_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.rentals_travel_other_expenses_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>Total Expenses
+            </td>
+            <td class="txt"><p> <%= projectionData.total_expenses_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.total_expenses_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.total_expenses_3 %> </p></td>
+          </tr>
+          <tr>
+            <td>EBIDTA
+            </td>
+            <td class="txt"><p> <%= projectionData.EBIDTA_1 %> </p></td>
+            <td class="txt"><p> <%= projectionData.EBIDTA_2 %> </p></td>
+            <td class="txt"><p> <%= projectionData.EBIDTA_3 %> </p></td>
+          </tr>
+                          
+        </table>
+      </div>
+    
+    <% } else{ %>
+      <p>You have to submit the projection form.</p>
+     <% } %> 
+    
+    <%- include('./_partials/footer') %>
+    
+</body>
+
+</html>

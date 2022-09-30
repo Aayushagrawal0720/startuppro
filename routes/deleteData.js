@@ -20,7 +20,7 @@ router.delete("/startup/teammember", async (req, res) => {
     const deletedData = await membersModel.findOneAndDelete({ mid: mid });
     // Here, deletedData gives the data that is deleted
 
-    console.log(deletedData);
+    //console.log(deletedData);
 
     res.status(200).send("Deleted");
   } catch (err) {

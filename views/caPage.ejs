@@ -24,10 +24,10 @@
                 document.querySelector('.login-nav').innerText = "PROFILE";
             </script>
 
-            <div class="container mt-2 d-flex justify-content-center justify-content-lg-end">
+            <div class="fluid-container mt-5 d-flex justify-content-center justify-content-lg-end">
                 <div class="dropdown">
                     <button class="btn btn-warning dropdown-toggle d-lg-none" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <%= caData.ca_name %>
                     </button>
                     <ul class="dropdown-menu text-left"
@@ -50,11 +50,12 @@
             </div>
             <% } %>
 
+
                 <div id="parent-row">
 
                     <% if(isLogin) {%>
                         <link rel="stylesheet" href="/css/sidebar.css">
-                        <div class="container sidebar-container ">
+                        <div class="fluid-container mx-2 py-2 sidebar-container ">
                             <ul>
                                 <li><a href=<%=`/editdata/ca/${caData.ca_id}` %> ><button class="my-2">Edit
                                             Profile</button></a></li>
@@ -86,7 +87,7 @@
                         <% } %>
 
 
-                            <div class="container my-auto mx-auto flex-row justify-content-center align-items-center">
+                            <div class="container mx-auto flex-row justify-content-center align-items-center">
                                 <div class="card  pe-3 my-2">
                                     <div class="card-body">
                                         <div class="row">
@@ -112,10 +113,9 @@
 
                                             </div>
                                             <div class="col-md-3 ms-3">
-                                                <a href=<%=`/adddata/profile/ca/${caData.ca_id}` %> id="messagehover">
-                                                    <img src=<%=caData.pic_url %> alt="CA_image" class =" img-thumbnail
-                                                    "/>
-                                                </a>
+                                                <img src=<%=caData.pic_url %> alt="CA_image" class ="
+                                                img-thumbnail
+                                                "/>
                                             </div>
 
                                         </div>
@@ -123,37 +123,84 @@
                                 </div>
                             </div>
                 </div>
-                <div class="experience my-3 col-md-12 justify-content-center align-items-center ">
+
+
+
+
+                <!-- Experience Container  -->
+                <div class="container my-3 ms-4 justify-content-center align-items-center ">
                     <div class="row ms-3 justify-content-center align-items-center">
                         <div class="contents rounded border my-3" id="contents">
-                            <h5 class="title my-2 text-center font-weight-bold">Experience
-                            </h5>
-                            <form method="post" id="experience-submit" action=<%=`/adddata/cadetail/${caData.ca_id}`%> >
-                                <div class="form-group m-2">
-                                    <label for="certificate_no">certificate_no</label>
-                                    <input class="form-control" id="certificate_no" type="number" name="experience" />
+                            <div class="heads flex-row">
+                                <h5 class="title my-2 text-center font-weight-bold">Experience
+                                    <% if(isLogin) { %>
+                                        <button class="btn btn-warning mt-1 mx-5" id="ca-btn">Add</button>
+                                        <% } %>
+                                </h5>
+                            </div>
+
+                            <style>
+                                .dis-class {
+                                    display: none;
+                                }
+                            </style>
+
+                            <div class="container p-2 my-1 ca-add-container">
+                                <div class="main-container carousel2">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form method="post" id="experience-form"
+                                                action=<%=`/adddata/ca/${caData.ca_id}/addexperience`%>>
+                                                <div class="form-group m-2">
+                                                    <label for="certificate_no">Certificate No:</label>
+                                                    <input class="form-control" id="certificate_no"
+                                                        name="certificate_no" />
+                                                </div>
+                                                <div class="form-group m-2 py-2">
+                                                    <label for="certificate_upload">Upload Certificate</label>
+                                                    <input class="form-control" id="certificate_upload" type="file"
+                                                        name="certificate" />
+                                                </div>
+                                                <div class="form-group m-2 py-2">
+                                                    <textarea class="form-control"
+                                                        placeholder="Tells us about your experience " rows="6" col="10"
+                                                        name="experience"></textarea>
+                                                </div>
+                                                <div class="col-md-12 text-sm-right text-center">
+                                                    <input type="submit" class="btn my-4 btn-warning" value="Post">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group m-2 ">
-                                    <label for="certificate_upload">Upload Certificate</label>
-                                    <input class="form-control" id="certificate_upload" type="file"
-                                        name="certificate_upload" />
+                            </div>
+
+                            <script>
+                                var addBtn = document.getElementById('ca-btn');
+                                var addContainer = document.querySelector('.ca-add-container');
+
+                                addContainer.classList.add('dis-class');
+                                addBtn.addEventListener('click', () => {
+                                    addContainer = document.querySelector('.ca-add-container');
+                                    addContainer.classList.toggle('dis-class');
+                                })
+                            </script>
+
+                            <div class="container mx-auto justify-content-center ">
+                                <div class="col border bg-dark border-secondary rounded py-2 my-3">
+                                    <% caExpData.forEach((item)=> { %>
+                                        <p class="px-2 text-white text-justify">
+                                            <%= item.experience %>
+                                        </p>
+                                        <% }) %>
                                 </div>
-                                <div class="form-group m-2">
-                                    <textarea class="form-control" id="experience"
-                                        placeholder="Tells us about your experience " rows="6">
-                            </textarea>
-                                </div>
-                                <div class="text-center my-2">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-                            </form>
-                            <!-- <div class="button-container text-center align-items-center justify-content-center">
-                                <a href="/"><button type="submit" class="p-5 my-3"><i
-                                            class="fas fa-plus"></i></button></a>
-                            </div> -->
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
+
 </body>
 
 </html>

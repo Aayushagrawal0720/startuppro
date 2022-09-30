@@ -4,6 +4,13 @@ const mongo = require("./config/database");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const {isAuthenticated} = require("./middleware/authFuncs");
+
+// const port = 3000;
+
+//    *************
+//    Connect to db
+//    **************
 
 const port = process.env.PORT || 3000;
 
@@ -12,7 +19,7 @@ const port = process.env.PORT || 3000;
 //    **************
 
 mongoose.connect("mongodb+srv://Ayush-startuppro:Ayush-startuppro@cluster0.bgawn.mongodb.net/Coreexpert_dev?retryWrites=true&w=majority", {
-useNewUrlParser: true,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -98,7 +105,9 @@ app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, 
 //get request for the contact route
 app.get("/contact", (req, res) => {
   try {
-    res.status(200).render("contact");
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("contact", {isAuthenticated});
   } catch (e) {//look for an error and if it exists, log the error
     console.log(e);
     res.status(500).send("Server Error");
@@ -108,7 +117,10 @@ app.get("/contact", (req, res) => {
 //get request for the about route
 app.get("/about", (req, res) => {
   try {
-    res.status(200).render("about");
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("about", {isAuthenticated});
   } catch (e) {
     console.log(e);
     res.status(500).send("Server Error");
@@ -124,4 +136,44 @@ app.use("/getData", getDataRoute);
 //checking if the server is up and running
 app.listen(port, () => {
   console.log(`Website is working! Listening on port ${port}`);
+});
+
+
+//get request for the financials route
+app.get("/financials", (req, res) => {
+  try {
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("financials", {isAuthenticated});
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Server Error");
+  }
+});
+
+//get request for the Prepare for investors questions financials route (For Startup)
+app.get("/startupFinancialsPrepare", (req, res) => {
+  try {
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("startupFinancialsPrepare", {isAuthenticated});
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Server Error");
+  }
+});
+
+//get request for the Pitch Deck financials route (For Startup)
+app.get("/startupFinancialsPitchDeck", (req, res) => {
+  try {
+    console.log(req.session);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    res.status(200).render("startupFinancialsPitchDeck", {isAuthenticated});
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Server Error");
+  }
 });

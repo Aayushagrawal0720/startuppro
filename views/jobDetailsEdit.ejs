@@ -1,41 +1,29 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Job Details</title>
-    <meta charset="UTF8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="/css/memberRegister.css" />
-    <link rel="stylesheet" href="/css/startupRegister.css" />
-    <link rel="stylesheet" href="/css/navbar.css" />
-    <!-- <link rel="stylesheet" href="website.css"> -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/af3eeee1f8.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <%- include('./_partials/navbar_2') %> 
-    
+
+<head>
+  <title>Job Details</title>
+  <meta charset="UTF8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/memberRegister.css" />
+  <link rel="stylesheet" href="/css/startupRegister.css" />
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <!-- <link rel="stylesheet" href="website.css"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <%- include('./_partials/navbar_2') %>
+
+
     <!-- ################################### HEADING  -->
-    <div class="container py-2">
+    <div class="container mt-5 py-3">
       <div class="row">
         <div class="col-md-12 heading text-center mt-lg-2 mt-md-1">
           <h3>Enter about your work</h3>
@@ -51,47 +39,34 @@
             <div class="row">
               <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star">Role</label><br />
-                <input
-                  type="text"
-                  name="job_title"
-                  placeholder="Name"
-                  class="p-1 outline"
-                  required
-                /><br /><br />
-                <input
-                  type="date"
-                  name="from_date"
-                  placeholder="Name"
-                  class="p-1 outline"
-                /><br /><br />
+                <input type="text" name="job_title" placeholder="Name" class="p-1 outline" required /><br /><br />
+                <input type="date" name="from_date" placeholder="Name" class="p-1 outline" /><br /><br />
                 <label for="startup-select">Startup in which you work</label>
                 <select name="uid" id="startup-select" required>
-                    <% startups.forEach((item) =>{ %>
-                        <option value="<%= item.uid %>"> <%= item.startup_name %> </option>
-                    <% }) %> 
+                  <% startups.forEach((item)=>{ %>
+                    <option value="<%= item.uid %>">
+                      <%= item.startup_name %>
+                    </option>
+                    <% }) %>
                 </select>
 
               </div>
             </div>
             <div class="row">
               <div class="col-md-12 text-center mb-3 mt-lg-5 mt-4">
-                <input
-                  type="submit"
-                  class="btn btn-warning py-2 px-5"
-                  value="Update"
-                />
+                <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
+                <input type="submit" class="btn btn-warning py-2 px-5" value="Update" />
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-
     <%- include('./_partials/footer') %>
 
-    <!-- Set input data script -->
-    <script>
-        const jobDetailData = <%- JSON.stringify(jobDetailData) %>;
+      <!-- Set input data script -->
+      <script>
+        const jobDetailData = <% - JSON.stringify(jobDetailData) %>;
 
         var d = new Date(jobDetailData.from_date);
         var ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
@@ -104,36 +79,37 @@
         form.elements.from_date.value = `${ye}-${mo}-${da}`;
         form.elements.uid.value = jobDetailData.uid;
 
-    </script>
+      </script>
 
-    <!-- form submission script -->
-    <script>
-      var form = document.getElementById("job-detail-form");
-      form.addEventListener("submit",(e)=>{
-        e.preventDefault();
-        const formBody = {};
-        formBody.job_title = form.elements.job_title.value;
-        formBody.from_date = form.elements.from_date.value;
-        formBody.uid = form.elements.uid.value;
-        formBody.mid = "<%= mid %>";
+      <!-- form submission script -->
+      <script>
+        var form = document.getElementById("job-detail-form");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const formBody = {};
+          formBody.job_title = form.elements.job_title.value;
+          formBody.from_date = form.elements.from_date.value;
+          formBody.uid = form.elements.uid.value;
+          formBody.mid = "<%= mid %>";
 
-        fetch("/editdata/teammember/jobdetails",{
-          method:"POST",
-          body:JSON.stringify(formBody),
-          headers:{
-            "Content-type":"application/json"
-          }
-        }).then((res)=>{
-          if(res.redirected){
+          fetch("/editdata/teammember/jobdetails", {
+            method: "POST",
+            body: JSON.stringify(formBody),
+            headers: {
+              "Content-type": "application/json"
+            }
+          }).then((res) => {
+            if (res.redirected) {
               alert("Details updated successfully.\nYou're now being redirected to your profile.\nClick Ok to continue")
-            window.location.href = res.url;
-          }
-          if(res.status === 400){
-            alert("Error\nCould not save details");
-          }
+              window.location.href = res.url;
+            }
+            if (res.status === 400) {
+              alert("Error\nCould not save details");
+            }
+          })
         })
-      })
-    </script>
+      </script>
 
-  </body>
+</body>
+
 </html>

@@ -1,25 +1,11 @@
-​.experience {
-  min-width: 80%;
-  position: relative;
-  justify-content: center;
-  left: 20%;
-  margin: 2px auto;
-}
-
-.experience .row {
-  width: 60%;
-  margin-left: 25rem;
-}
-
 #contents {
   margin-right: 1rem;
   width: 100% !important;
   align-items: center;
 }
 
-button {
-  width: 60%;
-  background-color: white;
-  border: dashed 1px black;
+#experience-submit {
+  width: 30%;
+  margin-top: 1rem;
   border-radius: 10px;
 }

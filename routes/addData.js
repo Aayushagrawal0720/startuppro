@@ -11,10 +11,14 @@ const jobDetailModel = require("../models/jobDetailModel");
 const jobPostModel = require("../models/jobPostModel");
 const appliedJobsModel = require("../models/appliedJobsModel");
 const dynamicColSchemas = require("../models/dynamicCollectionSchema");
+const dynamicExperienceSchema = require("../models/experienceSchema");
 const timelineEventSchema = require("../models/timelineEventSchema");
+const productDetailSchema = require("../models/productDetailSchema");
+const pressReleaseSchema = require("../models/pressReleaseSchema");
 const caModel = require("../models/CASchema");
 const mentorModel = require("../models/mentorSchema");
-
+const ApplicationManualModel = require("../models/financialApplicationManual");
+const ProjectionModel = require("../models/financialProjection");
 
 // Middlewares
 const {
@@ -73,7 +77,7 @@ router.get("/startup/teammember", async (req, res) => {
   try {
     res.status(200).render("memberRegister");
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -97,7 +101,7 @@ router.post("/startup/teammember", async (req, res) => {
     // const newData = new pendingMemberModel(dataToBeAdded);
     const savedData = await newData.save();
 
-    console.log(savedData);
+    // console.log(savedData);
     // res.status(201).json(savedData);
     var redirectMsg =
       "Successfully Registered.\n You're now being redirected to the Login Page";
@@ -122,7 +126,7 @@ router.get("/profile/startup/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("profilePicAdd", { p_id, p_name, p_picUrl, url });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -145,7 +149,51 @@ router.post(
       // res.status(201).send("Uploaded");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
+      res.status(500).send("Error");
+    }
+  }
+);
+
+// ADD Profile Pic Founder Render Page
+router.get("/profile/founder/:mid", isAuth, async (req, res) => {
+  try {
+    const mid = req.params.mid;
+    const founderData = await teamMemberModel.findOne({ mid: mid });
+
+    var p_name = founderData.member_name;
+    var p_id = founderData.mid;
+    var p_picUrl = founderData.pic_url;
+
+    var url = `/adddata/profile/founder/${p_id}`;
+
+    res.status(200).render("founderPicAdd", { p_id, p_name, p_picUrl, url });
+  } catch (err) {
+    //console.log(err);
+    res.status(500).send("Error");
+  }
+}
+);
+
+//ADD Profile Pic Founder Route
+router.post(
+  "/profile/founder/:mid",
+  isAuth,
+  upload.single("founder_pic"),
+  async (req, res) => {
+    try {
+      const mid = req.params.mid;
+      const setData = await teamMemberModel.findOneAndUpdate(
+        { mid: req.params.mid },
+        { $set: { pic_url: `/${req.file.filename}` } },
+        { new: true }
+      );
+
+      // console.log(setData);
+      // res.status(201).send("Uploaded");
+      res.redirect("/startup/profile");
+    } catch (err) {
+     // console.log(err);
       res.status(500).send("Error");
     }
   }
@@ -183,11 +231,11 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      // console.log(setData);
       // res.status(201).send("Uploaded");
       res.redirect("/member/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -225,11 +273,11 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      //console.log(setData);
       // res.status(201).send("Uploaded");
-      res.redirect(`/getdata/cadetail/${ca_id}`);
+      res.redirect("/ca/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -267,11 +315,11 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      //console.log(setData);
       // res.status(201).send("Uploaded");
       res.redirect("/mentor/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -289,7 +337,7 @@ router.get("/resume/member/:mid", isUserAuth, async (req, res) => {
 
     res.render("resumeAdd", { p_name, url });
   } catch (e) {
-    console.log(e);
+   // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -314,7 +362,7 @@ router.post(
 
       res.render("redirectPage", { redirectMsg, redirectUrl });
     } catch (e) {
-      console.log(e);
+     // console.log(e);
       res.status(400).send("Error");
     }
   }
@@ -330,7 +378,7 @@ router.get("/teammember/jobdetails/:mid", isUserAuth, async (req, res) => {
 
     res.render("jobDetailsRegister", { mid, startups });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Server Error");
   }
 });
@@ -342,7 +390,7 @@ router.post("/teammember/jobdetails", isUserAuth, async (req, res) => {
     if (!inData.from_date) inData.from_date = Date.now();
     const dataToAdd = new jobDetailModel(inData);
     const savedData = await dataToAdd.save();
-    console.log(savedData);
+    //console.log(savedData);
     res.status(201).send("Saved");
   } catch (err) {
     res.status(400).send(err);
@@ -355,7 +403,7 @@ router.get("/teammember/skills/:mid", isUserAuth, async (req, res) => {
 
     res.status(200).render("skillsAddEdit", { mid });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -366,7 +414,7 @@ router.get("/jobposts/:uid", isAuth, async (req, res) => {
     const uid = req.params.uid;
     res.status(200).render("jobAlertAdd", { uid });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -380,12 +428,12 @@ router.post("/jobposts", isAuth, async (req, res) => {
 
     const newData = new jobPostModel(dataToBeSaved);
     const savedData = await newData.save();
-    console.log(savedData);
+   // console.log(savedData);
 
     // res.status(201).json(savedData);
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send(err);
   }
 });
@@ -402,7 +450,7 @@ router.post("/jobposts/apply", isUserAuth, async (req, res) => {
 
     res.status(201).json(savedData);
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send(err);
   }
 });
@@ -415,16 +463,16 @@ router.get("/timelinegraph/type/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("addGraphDataType", { startupData });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Server Error");
   }
 });
 
 // ADDING event type DATA BY CREATING COLLECTIONS DYNAMICALLY
-router.post("/timelinegraph/type", isAuth, async (req, res) => {
+router.post("/timelinegraph/type/:uid", isAuth, async (req, res) => {
   try {
-    console.log(req.body);
-    const uid = req.body.uid;
+   // console.log(req.body);
+    const uid = req.params.uid;
     const type_id = uuidv4();
 
     // CREATING COLLECTION DYNAMICALLY
@@ -437,13 +485,30 @@ router.post("/timelinegraph/type", isAuth, async (req, res) => {
       type: req.body.type,
       type_id: type_id,
       timeline: req.body.timeline,
+      type_of_graph: req.body.type_of_graph,
     });
     const savedData = await typeToBeSaved.save();
     // console.log(savedData);
     // res.status(201).send(savedData);
+    
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `added ${req.body.title}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
+    
+    
     res.redirect(`/adddata/timelinegraph/${req.session.uid}`);
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(400).send(err);
   }
 });
@@ -461,7 +526,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("addGraphData", { startupData, typesData });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -469,7 +534,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 // ADDING event DATA BY CREATING COLLECTIONS DYNAMICALLY
 router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
   try {
-    console.log(req.body);
+   // console.log(req.body);
     const uid = req.body.uid;
     const type_id = req.body.type_id;
     let total;
@@ -508,25 +573,27 @@ router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
     // console.log(savedGraphEveData);
 
     // ADDING TIMELINE EVENT
-    const dynamicTEventModel = new mongoose.model(
-      `${uid}_timeline_collection`,
-      timelineEventSchema
-    );
-    const tDataToBeAdded = new dynamicTEventModel({
-      date: Date.now(),
-      event_title: `Now ${req.body.type_title} are ${total}`,
-    });
-    const savedTData = await tDataToBeAdded.save();
-    // console.log(savedTData);
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `Now ${req.body.type_title} are ${total}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
 
     // res.status(201).send(savedGraphEveData);
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 });
-
 // ADDING TIMELINE EVENT DATA
 router.post(
   "/timeline/:uid/timelineevent",
@@ -543,9 +610,9 @@ router.post(
       let picUrl;
       if (req.file) {
         if (req.file.filename) picUrl = `/${req.file.filename}`;
-        else picUrl = null;
+        else picUrl = "/default_profile.png" ;
       } else {
-        picUrl = null;
+        picUrl = "/default_profile.png";
       }
 
       const dataToBeAdded = new dynamicEventModel({
@@ -558,35 +625,397 @@ router.post(
       // res.status(201).json("Posted press back");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(400).send(err);
     }
   }
 );
 
-//#################################################
-//CA Details page where experience data is posted.
-router.post("/cadetail/:uid", (req, res) => {
-  const uid = req.params.uid;
+router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
+  async (req, res) => {
+    try {
+      const uid = req.params.uid;
+      const dynamicProductModel = new mongoose.model(
+        `${uid}_products_collections`,
+        productDetailSchema
+      );
 
-  const experience = req.body.experience;
-  console.log(uid, req.body);
-  if (!uid || !experience) {
-    console.log(uid, experience);
-    return res.status(422).json({ error: "values feed missing" });
+      let picUrl;
+      if (req.file) {
+        if (req.file.filename) picUrl = `/${req.file.filename}`;
+        else picUrl = null;
+      } else {
+        picUrl = null;
+      }
 
+      const dataToBeAdded = new dynamicProductModel({
+        date: req.body.date ? req.body.date : Date.now(),
+        product_title: req.body.product_title,
+        picUrl: picUrl,
+      });
+      const savedData = await dataToBeAdded.save();
+      // console.log(savedData);
+      // res.status(201).json("Posted press back");
+      res.redirect("/startup/profile");
+    } catch (err) {
+     // console.log(err);
+      res.status(400).send(err);
+    }
+  });
+
+router.post("/press/:uid/addpress", isAuth, async (req, res) => {
+  try {
+    const uid = req.params.uid;
+    // console.log(req.body);
+    const dynamicPressModel = new mongoose.model(
+      `${uid}_press_collections`,
+      pressReleaseSchema
+    );
+
+
+
+    const dataToBeAdded = new dynamicPressModel({
+      job_title: req.body.job_title,
+      first: req.body.first,
+      second: req.body.second,
+      description: req.body.description,
+    });
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted press back");
+    res.redirect("/startup/profile");
+  } catch (err) {
+    // console.log(err);
+    res.status(400).send(err);
   }
-  const addExp = new experieneSchema({ uid, experience });
-  addExp.save().then(() => {
-    res.status(200).json({ message: "Added experience" });
-    res.redirect("/ca/profile");
-  }
-  ).catch(err => {
-    res.status(400).json({ message: "Error" });
-  }
-  );
 }
 );
-//#################################################
+
+router.post("/ca/:ca_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const ca_id = req.params.ca_id;
+    const caExperienceModel = new mongoose.model(
+      `${ca_id}_ca_experience_collections`,
+      dynamicExperienceSchema.caExperienceSchema
+    );
+
+    const dataToBeAdded = new caExperienceModel({
+      certificate_no: req.body.certificate_no,
+      certificate: req.body.certificate,
+      experience: req.body.experience,
+
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted ca experience");
+    res.redirect("/ca/profile");
+  } catch (err) {
+    // console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
+
+router.post("/mentor/:mentor_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const mentor_id = req.params.mentor_id;
+    const mentorExperienceModel = new mongoose.model(
+      `${mentor_id}_mentor_experience_collections`,
+      dynamicExperienceSchema.mentorExperienceSchema
+    );
+
+    const dataToBeAdded = new mentorExperienceModel({
+      resume: req.body.resume_upload,
+      experience: req.body.experience,
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted mentor experience");
+    res.redirect("/mentor/profile");
+  } catch (err) {
+    // console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
+
+router.post("/user/:user_id/addexperience", async (req, res) => {
+  try {
+    // console.log("passing parameters");
+    const user_id = req.params.user_id;
+    const userExperienceModel = new mongoose.model(
+      `${user_id}_user_experience_collections`,
+      dynamicExperienceSchema.userExperienceSchema
+    );
+
+    const dataToBeAdded = new userExperienceModel({
+      resume: req.body.resume_upload,
+      experience: req.body.experience,
+    });
+
+    const savedData = await dataToBeAdded.save();
+    // console.log(savedData);
+    // res.status(201).json("Posted user experience");
+    res.status(201).redirect("/member/profile");
+  } catch (err) {
+    // console.log(err);
+    res.status(400).send(err);
+  }
+}
+);
+
+
+// FINANCIALS ---> RENDERING PROJECTIONS FORM
+router.get("/startup/:uid/financials/projectionsForm", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/startup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    var projectionData = await ProjectionModel.findOne({uid: uid});
+    
+    if(projectionData)
+      res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn, uid, projectionData});
+    else
+      res.status(200).render("startupFinancialsProjections", {isAuthenticated, isStartUpLoggedIn, uid});
+    
+    
+  } catch(e) {
+    // console.log(e);
+    res.status(500).send("Server Error");
+  }
+})
+
+router.post("/startup/:uid/financials/projectionsForm", async(req, res) => {
+  try{
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/starup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    const uid = req.params.uid;
+    
+    const projectionData = new ProjectionModel({
+      uid: req.params.uid,
+      net_revenue_1: req.body.net_revenue_1,
+      net_revenue_2: req.body.net_revenue_2,
+      net_revenue_3: req.body.net_revenue_3,
+      
+      CAC_1: req.body.CAC_1,
+      CAC_2: req.body.CAC_2,
+      CAC_3: req.body.CAC_3,
+      
+      total_revenue_1: req.body.total_revenue_1,
+      total_revenue_2: req.body.total_revenue_2,
+      total_revenue_3: req.body.total_revenue_3,
+      
+      growth_percent_1: req.body.growth_percent_1,
+      growth_percent_2: req.body.growth_percent_2,
+      growth_percent_3: req.body.growth_percent_3,
+      
+      direct_cost_breakup_1: req.body.direct_cost_breakup_1,
+      direct_cost_breakup_2: req.body.direct_cost_breakup_2,
+      direct_cost_breakup_3: req.body.direct_cost_breakup_3,
+      
+      gross_margin_1: req.body.gross_margin_1,
+      gross_margin_2: req.body.gross_margin_2,
+      gross_margin_3: req.body.gross_margin_3,
+      
+      revenue_percent_1: req.body.revenue_percent_1,
+      revenue_percent_2: req.body.revenue_percent_2,
+      revenue_percent_3: req.body.revenue_percent_3,
+      
+      salaries_1: req.body.salaries_1,
+      salaries_2: req.body.salaries_2,
+      salaries_3: req.body.salaries_3,
+      
+      founders_1: req.body.founders_1,
+      founders_2: req.body.founders_2,
+      founders_3: req.body.founders_3,
+      
+      tech_team_1: req.body.tech_team_1,
+      tech_team_2: req.body.tech_team_2,
+      tech_team_3: req.body.tech_team_3,
+      
+      sales_1: req.body.sales_1,
+      sales_2: req.body.sales_2,
+      sales_3: req.body.sales_3,
+      
+      senior_management_1: req.body.senior_management_1,
+      senior_management_2: req.body.senior_management_2,
+      senior_management_3: req.body.senior_management_3,
+      
+      OPS_1: req.body.OPS_1,
+      OPS_2: req.body.OPS_2,
+      OPS_3: req.body.OPS_3,
+      
+      finance_1: req.body.finance_1,
+      finance_2: req.body.finance_2,
+      finance_3: req.body.finance_3,
+      
+      credit_1: req.body.credit_1,
+      credit_2: req.body.credit_2,
+      credit_3: req.body.credit_3,
+      
+      outsourced_1: req.body.outsourced_1,
+      outsourced_2: req.body.outsourced_2,
+      outsourced_3: req.body.outsourced_3,
+      
+      marketing_1: req.body.marketing_1,
+      marketing_2: req.body.marketing_2,
+      marketing_3: req.body.marketing_3,
+      
+      office_tech_infra_1: req.body.office_tech_infra_1,
+      office_tech_infra_2: req.body.office_tech_infra_2,
+      office_tech_infra_3: req.body.office_tech_infra_3,
+      
+      rentals_travel_other_expenses_1: req.body.rentals_travel_other_expenses_1,
+      rentals_travel_other_expenses_2: req.body.rentals_travel_other_expenses_2,
+      rentals_travel_other_expenses_3: req.body.rentals_travel_other_expenses_3,
+      
+      total_expenses_1: req.body.total_expenses_1,
+      total_expenses_2: req.body.total_expenses_2,
+      total_expenses_3: req.body.total_expenses_3,
+      
+      EBIDTA_1: req.body.EBIDTA_1,
+      EBIDTA_2: req.body.EBIDTA_2,
+      EBIDTA_3: req.body.EBIDTA_3
+    })
+    
+    
+    var data = await ProjectionModel.findOne({uid: uid});
+    
+    if(data)
+    {
+      // console.log(data._id);
+      projectionData._id = data._id;
+      var updated_data = await ProjectionModel.findOneAndUpdate(
+        {uid: uid},
+        {$set: projectionData},
+        {new: true}
+      );
+      
+      // console.log(updated_data._id);
+    }
+    else{
+      var data = await projectionData.save();
+    }
+    
+    // res.send("startup Financials AppManual data has been added.");
+    var redirectMsg = "startup Financials Projection data has been added.";
+    var redirectUrl = `/getdata/startup/${uid}/financials/projections`;
+    return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    
+  }catch(e){
+    // console.log(e);
+    res.status(500).send("Server Error");
+  }
+})
+
+
+// FINANCIALS ---> RENDERING APPLICATION MANUAL FORM
+router.get("/startup/:uid/financials/appManualForm", async (req, res) => {
+  try{
+    const uid = req.params.uid;
+    
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuthenticated = isAuth?true:false;
+    
+    const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/startup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    var appManualData = await ApplicationManualModel.findOne({uid: uid});
+    
+    if(appManualData)
+      res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn, uid, appManualData});
+    else
+      res.status(200).render("startupFinancialsAppManual", {isAuthenticated, isStartUpLoggedIn, uid});
+
+  } catch(e) {
+    res.status(500).send("Server Error");
+  }
+})
+
+router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
+  try{  
+    if( !req.session?.isAuth)
+    {
+      var redirectMsg = "You have to login as startup.";
+      var redirectUrl = "/login/startup";
+      return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    }
+    
+    const uid = req.params.uid;
+    
+    const appManualData = new ApplicationManualModel({
+      uid: uid,
+      description: req.body.description,
+      problem: req.body.problem,
+      solution: req.body.solution,
+      customer_and_adoption: req.body.customer_and_adoption,
+      money_making: req.body.money_making,
+      company_name: req.body.company_name,
+      brand_name: req.body.brand_name,
+      role: req.body.role,
+      investment_currecy: req.body.investment_currecy,
+      investment_amount: req.body.investment_amount,
+      required_funding_currecy: req.body.required_funding_currecy,
+      required_funding_amount: req.body.required_funding_amount,
+      written_commitments_currecy: req.body.written_commitments_currecy,
+      written_commitments_amount: req.body.written_commitments_amount,
+      challenges: req.body.challenges
+    })
+    
+    var data = await ApplicationManualModel.findOne({uid: uid});
+    // console.log(data._id);
+    
+    if(data)
+    {
+      appManualData._id = data._id;
+      var updated_data = await ApplicationManualModel.findOneAndUpdate(
+        {uid: uid},
+        {$set: appManualData},
+        {new: true}
+      );
+      
+      // console.log(updated_data._id);
+    }
+    else{
+      var data = await appManualData.save();
+    }
+    
+    // res.send("startup Financials AppManual data has been added.");
+    var redirectMsg = "startup Financials AppManual data has been added.";
+    var redirectUrl = `/getdata/startup/${uid}/financials/appManual`;
+    return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
+    
+  }catch(e){
+    // console.log(e);
+    res.status(500).send(e.message);
+  }
+})
+
 
 module.exports = router;

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Startup Financials</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/financials.css">
+    <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <%- include('./_partials/navbar_2') %>
+        <% if(isAuthenticated){ %>
+            <script>
+                document.querySelector('.login-nav').innerText = "DASHBOARD";
+            </script>
+            <% } %>
+
+                <div class="edit_about">
+                    <div class="container py-5">
+                        <div class="box">
+                            <div class="row">
+                                <div class="col-md-12 py-3 text-center">
+                                    <h1 style="color: #1687A7; text-shadow: 1px 1px 2px grey;">PITCH DECK</h1>
+                                </div>
+                            </div>
+                            <div class="row" style="color: #1687A7;">
+                                <div class="col-md-12">
+                                    <ol style="list-style: circle;" class="px-3">
+                                        <li><strong>Slide 1 - BRIEF of the deal</strong></li><br>
+                                        <li><strong>Slide 2 - PROBLEM</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>What is the problem you are trying to solve?</li>
+                                                <li>Validate the problem with real life examples</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 2 - PROBLEM</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>What is the problem you are trying to solve?</li>
+                                                <li>Validate the problem with real life examples</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 3 - SOLUTION</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>What is your solution to the problem?</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 4 - TARGET MARKET</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>The size of the market vs the percentage you are targeting</li>
+                                                <li>A granular profiling of your customer e.g. age, geography,
+                                                    purchase habits, personal traits, etc. that drive the consumer to
+                                                    search for a solution</li>
+                                                <li>What channels will you use to get to this market?</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 5 - YOUR PRODUCT/SERVICE</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>Explain how your product/service adds value</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 6 - UNIQUE SELLING PROPOSITION</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>What characteristics make your solution a “never-before” solution
+                                                </li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 7 - DIFFERENTIATION, COMPETITION (direct and indirect) &
+                                                BARRIER TO ENTRY</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>How do the current solutions compare with your solution?</li>
+                                                <li>How easy is it to replicate your solution?</li>
+                                                <li>What category of competitors do you belong to?</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 8 - GO TO MARKET</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>How do you plan to reach the target customers?</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 9 - YOUR EXISTING CLIENTS</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>What is the problem you are trying to solve?</li>
+                                                <li>Validate the problem with real life examples</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>SLIDE 10 - REVENUE MODEL</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>How do you make money off your solution Ex: subscription Model,
+                                                    Direct Sales, Ad-based, etc.</li>
+                                                <li>Unit economics </li>
+                                                <li>3 to 5-year projections (year wise)</li>
+                                                <li>Your top cash burn reasons</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 11 - FUNDING SO FAR</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>Mention funds raised through other investors & soft commitments
+                                                </li>
+                                                <li>Mention realistic numbers for expected funding</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>Slide 12 - Fund Ask and utilization and Cap Table</strong><br>
+                                        </li><br>
+                                        <li><strong>Slide 13 - Exit options</strong><br>
+                                        </li><br>
+                                        <li><strong>Slide 14 - THE TEAM</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>Your founding members along with credentials</li>
+                                            </ol>
+                                        </li><br>
+                                        <li><strong>NOTES</strong><br>
+                                            <ol style="padding-left: 30px;">
+                                                <li>Validate every possible slide with data
+                                                </li>
+                                                <li>Don't focus on your thinking, but because your target customers said
+                                                    so.</li>
+                                            </ol>
+                                        </li><br>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <%- include('./_partials/footer') %>
+
+</body>
+
+</html>
