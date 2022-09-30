@@ -76,6 +76,10 @@ const bargGraphEvent = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // value: {
+  //   type: Number,
+  //   required: true,
+  // },
   
 });
 

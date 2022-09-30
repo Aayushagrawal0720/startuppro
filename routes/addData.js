@@ -1017,5 +1017,70 @@ router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
   }
 })
 
+//Implementing Bar Graph Calculation of value
+
+router.post("/timelinegraph/:type_id/bargraph", isAuth, async (req, res) => {
+  try {
+   // console.log(req.body);
+    const uid = req.body.uid;
+    const type_id = req.params.type_id;
+    const total = req.body.total;
+
+    // CREATING COLLECTION DYNAMICALLY
+    const dynamicEveModel = new mongoose.model(
+      `${uid}_graph_eventcollections_bar`,
+      dynamicColSchemas.bargGraphEvent
+    );
+
+    const graph = await dynamicColSchemas.typeSchema.find({ type_id: type_id });
+    console.log(graph);
+    // Checking previous data
+    // const findPrevData = await dynamicEveModel.find({ type_id: type_id });
+    // console.log("Previous Data");
+    // console.log(findPrevData);
+    // res.json(findPrevData);
+    // if (findPrevData.length == 0) {
+    //   total = req.body.diff;
+    // } else {
+    // Condition to check if there is anm increase or decrease in data
+    //   if (req.body.isLess == true)
+    //     total = findPrevData[findPrevData.length - 1].total - req.body.diff;
+    //   else total = findPrevData[findPrevData.length - 1].total + req.body.diff;
+    // }
+    // total = req.body.diff;
+
+    const dataToBeAdded = new dynamicEveModel({
+      type_id: type_id,
+      total: total,
+      type_title: graph.title,
+      type_type: graph.type,
+      date: Date.now(),
+    });
+    const savedGraphEveData = await dataToBeAdded.save();
+    // console.log(savedGraphEveData);
+
+    // ADDING TIMELINE EVENT
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `Now ${graph.type_title} are ${total}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
+
+    // res.status(201).send(savedGraphEveData);
+    res.redirect("/startup/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
+
 
 module.exports = router;
