@@ -45,6 +45,10 @@
           .down-arrow{
               cursor: pointer;
           }
+          .shadow{
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px !important;
+            padding: 10px;
+          }
       </style>
       <!-- ######### SUBMIT FORM FUNCTION -->
       <script src="/js/apiAddresses.js"></script>
@@ -84,7 +88,7 @@
     <% if(typesData.length!=0){ %> 
     <% typesData.forEach((item,index)=>{ %> 
 
-    <div class="container my-5 shadow">
+    <div class="  container my-2 shadow">
         <!-- ################################### HEADING  -->
         <div class="container py-2">
         <div class="row">
@@ -153,7 +157,11 @@
                       <input
                       type="number"
                       name="total"
+<<<<<<< HEAD
                       placeholder="Enter the difference"
+=======
+                      placeholder="Enter the value"
+>>>>>>> 02284fa45d78ff955931ca49b4541d26dcf5129c
                       class="p-1 outline"
                       required
                       /><br /><br />
@@ -188,19 +196,20 @@
               </div>
           </div>
           </div>
+          </div>
         
 
     <% }) %> 
     <% } %>
 
-    <div class="container text-center">
+    <div class="container text-center" style="margin:2rem ;">
       <INPUT TYPE="button"  class="btn btn-warning py-2 px-5" VALUE="Back" onClick="history.go(-1);">
       <a href=<%= `/adddata/timelinegraph/type/${startupData.uid}` %> ><button class="btn btn-warning my-2">Add New Type for Analysis</button></a>
     </div>
-
-  </div>
+    </div>
+    <div>
     <%- include('./_partials/footer') %>
-
+    </div>
     <script>
         function toggleDisplay(){
             const formContainers = document.querySelectorAll('.form-cont');
@@ -220,7 +229,31 @@
         })
 
     </script>
-
+    <!--#bar graph submit form
+    
+function submitForm(type_id,type_title,type_type,type_of_graph,total, timeline){
+            const uid = '<%- startupData.uid %>';
+            const formBody = {
+                uid:uid,
+                type_id:type_id,
+                type_title:type_title,
+                type_type: type_type,
+                type_of_graph: type_of_graph,
+             	total:total;
+                timeline: timeline
+            };
+          fetch('/adddata/timelinegraph/graphevent',{
+                method:'POST',
+                body:JSON.stringify(formBody),
+                headers:{
+                    'Content-type':'application/json'
+                }
+            }).then((res)=>{
+                if(res.redirected) window.location.href = res.url;
+                //else if(res.status===400) alert('could not add data')
+            })
+          }
+    -->
     <!--############################# Form Submission Handler -->
     <script>
         const typesArr = <%- JSON.stringify(typesData) %>
@@ -237,5 +270,21 @@
             })
         })
     </script>
+    <!--
+      <script>
+        const typesArr = <%- JSON.stringify(typesData) %>
+
+        typesArr.forEach((item)=>{
+            document.getElementById(`${item.type_id}-form`).addEventListener('submit',(e)=>{
+                e.preventDefault();
+                var total = document.getElementById(`${item.type_id}-form`).total.value;
+                var timeline= document.getElementById(`${item.type_id}-form`).timeline.value;
+                
+                submitForm(item.type_id,item.title,item.type,item.total, timeline);
+
+            })
+        })
+    </script>
+    -->
   </body>
 </html>
