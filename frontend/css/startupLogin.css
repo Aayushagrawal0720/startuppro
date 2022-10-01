@@ -488,7 +488,7 @@ position: relative;
 }
 
 .carousel2 {
-  height: 270px;
+  height: 318px;
 }
 
 .carousel {
@@ -505,7 +505,7 @@ position: relative;
 .hi-slide .hi-next,
 .hi-slide .hi-prev {
   position: absolute;
-  top: 50%;
+  top: 33%;
   width: 40px;
   height: 40px;
   margin-top: -20px;
@@ -761,6 +761,7 @@ position: relative;
 /* <<added by shubham agarwal */
 .wrapper{
   overflow: hidden;
+  margin-top: 2px;
 }
 .it1{
   font-weight: bold;
@@ -780,7 +781,7 @@ position: relative;
   
 @media (min-width: 778px) and (max-width: 994px) {
   .hi-prev{
-    /* margin-right: 10px; */
+    
    z-index: 12;
    left: 3px !important;
   }
@@ -788,14 +789,14 @@ position: relative;
   
 @media (min-width: 778px) and (max-width: 994px) {
   .hi-next{
-    /* margin-right: 10px; */
+    
    z-index: 12;
-   right: 61px !important;
+   right: 105px !important;
   }
 }
 @media (min-width: 526px) and (max-width: 773px) {
   .hi-slide{
-    /* margin-right: 10px; */
+    
   
    right: 130px !important;
   }
@@ -804,7 +805,7 @@ position: relative;
 
 @media (min-width: 540px) and (max-width: 779px) {
   .hi-prev{
-    /* margin-right: 10px; */
+    
    z-index: 12;
    left: 127px !important;
   }
@@ -812,7 +813,7 @@ position: relative;
 
 @media (min-width: 540px) and (max-width: 779px) {
   .hi-next{
-    /* margin-right: 10px; */
+   
    z-index: 12;
    right: 139px !important;
   }
