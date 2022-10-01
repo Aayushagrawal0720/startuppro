@@ -297,7 +297,8 @@
                         <div class="main-container carousel4">
                           <div class="mt-2 d-flex justify-content-around">
 
-                            <h2 style="text-align: center; padding-top: 10px; width: 100%;" class="text-center">Timeline</h2>
+                            <h2 style="text-align: center; padding-top: 10px; width: 100%;" class="text-center">Timeline
+                            </h2>
                             <% if(isLogin) {%>
                               <h3><button class="btn btn-warning mt-1" id="add-btn">Add</button></h3>
                               <% } %>
@@ -368,9 +369,9 @@
 
                         <!--product-->
                         <div class="container my-5">
-                         
+
                           <div class="main-container carousel4 ">
-                            
+
                             <div class="mt-2 d-flex justify-content-around">
 
                               <h2 style="text-align: center; padding-top: 10px;" class="text-center">Product Details
@@ -411,7 +412,7 @@
                                       </div>
                                       </form>
                                     </row>
-                                  
+
                                   </div>
                                 </div>
 
@@ -427,16 +428,16 @@
                                 </script>
 
                                 <% } %>
-                              
-                            
-                            
-                                <div class="wrapper" style="margin-top: -14px;">
-                              <div class="carousel2" >
-                                <%- include('./mohit/carousel') %>
-                              </div>
-                        </div>
+
+
+
+                                  <div class="wrapper" style="margin-top: -14px;">
+                                    <div class="carousel2">
+                                      <%- include('./mohit/carousel') %>
+                                    </div>
+                                  </div>
                             </div>
-                     
+
                             <div class="col-md-12">
                               <a href="<%= `/getdata/product/${startupData?.uid}` %>">
                                 <h6 class="text-right">View More</h6>
@@ -461,10 +462,12 @@
                                   style=" box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; ">
                                   <div class="m-3">
 
-                                    <div class="imageadd >
-
-                                      <h1 class="head1">press Releases</h1>
-                                      <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                    <div class="imageadd">
+                                      <img src="https://protkd.com/wp-content/uploads/2017/04/default-image.jpg"
+                                        alt="" class="press-release-img">
+                                      <h1 class=" head1">
+                                        press Release
+                                      </h1>
                                     </div>
 
 
@@ -481,289 +484,290 @@
                                 </div>
 
 
-                                
-                                <% pressReleaseData.forEach(function(item,index) { %>
-                                  <div class="container col-md-5 my-3 jobbox"
-                                    style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
-                                    <div class="m-3">
-                                      <div class="imageadd">
-                                        <h1 class="head1">
-                                          <%= item.job_title %>
-                                        </h1>
-                                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                                      </div>
 
-                                      <div class="box-desc">
-                                        <h4 class="it it1"><b>
-                                            <%= item.first %>
-                                          </b></h4>
-                                        <h6 class="it it1">
-                                          <%= item.second %>
-                                        </h6>
-                                        <h6 class="it" style="font-size: .7rem;">
-                                          <%= item.description %>
-                                        </h6>
-                                      </div>
-                                    </div>
-                                  </div>
-                                 
-                                  <% }); %>
-                                
-                              </div>
-                              <% if(isLogin) {%>
-                                <h3><button class="btn btn-warning mt-1" id="press-add-btn">Add</button></h3>
-                                <div class="col-md-12">
-                                  <a href="<%= `/getdata/pressrelease/${startupData?.uid}` %>">
-                                    <h6 class="text-right">View More</h6>
-                                  </a>
-                                </div>
-                                <% } %>
+                              <% pressReleaseData.forEach(function(item,index) { %>
+                                <%if (index>0 && index < 4){ %>
+                                    <div class="container col-md-5 my-3 jobbox"
+                                      style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; overflow: hidden;margin: 10px;">
+                                      <div class="m-3">
+                                        <div class="imageadd">
+                                          <img src="https://protkd.com/wp-content/uploads/2017/04/default-image.jpg"
+                                            alt="" class="press-release-img">
+                                          <h1 class=" head1">
+                                            press Release
+                                          </h1>
+                                        </div>
 
-                                  <div>
-                                    <!-- PRESS EVENT ADD -->
-                                    <% if(isLogin){ %>
-                                      <style>
-                                        .display-class {
-                                          display: none;
-                                        }
-                                      </style>
-
-                                      <div class="container p-2 my-1 press-add-container">
-                                        <div class="main-container carousel2">
-                                          <div class="row">
-                                            <div class="col-md-12">
-                                              <form class="col-md-12 d-flex flex-column align-items-stretch"
-                                                method="POST" action=<%=`/adddata/press/${startupData?.uid}/addpress` %>
-                                                >
-                                                <input name="job_title" id="post-input" type="text"
-                                                  class="col-md-12 my-4 mx-sm-2 p-2"
-                                                  placeholder="What's the job Title?">
-                                                  <input name="event_pic" type="file" class="mx-2 d-block"
-                                            placeholder="Select">
-                                                <input name="first" type="text" class="mx-2 d-block"
-                                                  placeholder="First Value"><br>
-                                                <input name="second" type="text" class="mx-2 d-block"
-                                                  placeholder="Second Value"><br>
-                                                <textarea name="description" type="text" class="mx-2 d-block"
-                                                  placeholder="Description"></textarea><br>
-                                                <row>
-                                                  <div class="col-md-12 text-sm-right text-center">
-                                                    <input type="submit" class="btn my-4 btn-warning" value="Post">
-                                                  </div>
-                                                </row>
-                                              </form>
-                                            </div>
-                                          </div>
-
+                                        <div class="box-desc">
+                                          <h4 class="it it1"><b>
+                                              <%= item.first %>
+                                            </b></h4>
+                                          <h6 class="it it1">
+                                            <%= item.second %>
+                                          </h6>
+                                          <h6 class="it" style="font-size: .7rem;">
+                                            <%= item.description %>
+                                          </h6>
                                         </div>
                                       </div>
+                                    </div>
+                                    <% } %>
 
-                                      <script>
-                                        var addBtn = document.getElementById('press-add-btn');
-                                        var addContainer = document.querySelector('.press-add-container');
-
-                                        addContainer.classList.add('display-class');
-                                        addBtn.addEventListener('click', () => {
-                                          addContainer = document.querySelector('.press-add-container');
-                                          addContainer.classList.toggle('display-class');
-                                        })
-                                      </script>
-
-                                      <% } %>
-                                  </div>
+                                      <% }); %>
 
                             </div>
-                          </div>
-                          <!-- GRAPH -->
-                          <div class="container my-5" style="position: relative;">
-                            <div class="main-container">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <h2 class="text-center my-3">Analytics</h2>
-                                  <span hidden id="dataSpan">
-                                    <%= resArray %>
-                                      </span>
-                                      <span hidden id="dataSpan">
-                                        <%= resArray %>
-                                      </span>
-                                      <% if(resArray.length==0) {%>
-                                        <h3 class="text-center">No data present</h3>
-                                        <% } %>
-                                </div>
+                            <% if(isLogin) {%>
+                              <h3><button class="btn btn-warning mt-1" id="press-add-btn">Add</button></h3>
+                              <div class="col-md-12">
+                                <a href="<%= `/getdata/pressrelease/${startupData?.uid}` %>">
+                                  <h6 class="text-right">View More</h6>
+                                </a>
                               </div>
-                              <div class="outer-graph-container row p-3 px-5">
+                              <% } %>
 
-                              </div>
-                              <script>
-                                  function createChart(id, labelArr, valArr, type_title) {
-                                    const colors = [
-                                      "green",
-                                      "blue",
-                                      "red",
-                                      "yellow",
-                                      "pink",
-                                      "orange",
-                                      "purple",
-                                      "#00ffd9",
-                                      "#ff003c",
-                                      "#6aff00",
-                                      "#ffaa00",
-                                    ];
-                                    let myChart = document.getElementById(id).getContext('2d');
-
-                                    let newChart = new Chart(myChart, {
-                                      type: "line",
-                                      data: {
-                                        labels: labelArr,
-                                        datasets: [
-                                          {
-                                            label: type_title,
-                                            data: valArr,
-                                            backgroundColor: "rgba(0,0,0,0)",
-                                            borderColor:
-                                              colors[Math.floor(Math.random() * colors.length)],
-                                          
-                                          },
-                                        ],
-                                      },
-                                      options: {
-                                        scales: {
-                                          xAxes: [
-                                            {
-                                              gridLines: {
-                                                display: false,
-                                              },
-                                            },
-                                          ],
-                                          yAxes: [
-                                            {
-                                              gridLines: {
-                                                display: false,
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    });
-                                  }
-                              </script>
-                              <script>
-                                  let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
-                                  if (graphArr.length != 0) {
-
-                                    graphArr.forEach((item, index) => {
-                                      // if(index==3) throw new Error('x');
-                                      // console.log(item);
-                                      if (item.length != 0) {
-                                        const outerContainer = document.querySelector('.outer-graph-container');
-
-                                        let valArr = [];
-                                        let labelArr = [];
-
-                                        item.forEach((subItem) => {
-                                          valArr.push(subItem.total);
-
-                                          const d = new Date(subItem.date);
-                                          const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                                          const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                                          const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-
-                                          labelArr.push(`${da}-${mo}-${ye}`);
-                                        })
-                                        // console.log(valArr);
-                                        // console.log(labelArr);
-
-                                        //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
-                                        var canvasEl = document.createElement('div');
-                                        canvasEl.classList.add('col-lg-5');
-                                        canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                                        outerContainer.append(canvasEl);
-                                        canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
-
-                                        createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
+                                <div>
+                                  <!-- PRESS EVENT ADD -->
+                                  <% if(isLogin){ %>
+                                    <style>
+                                      .display-class {
+                                        display: none;
                                       }
+                                    </style>
+
+                                    <div class="container p-2 my-1 press-add-container " style="height: 350px;">
+                                      <div class="main-container carousel2" style="height: 290px;">
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <form class="col-md-12 d-flex flex-column align-items-stretch" method="POST"
+                                              action=<%=`/adddata/press/${startupData?.uid}/addpress` %>
+                                              >
+                                              <input name="job_title" id="post-input" type="text"
+                                                class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's the job Title?">
+                                              <input name="event_pic" type="file" class="mx-2 d-block"
+                                                placeholder="Select">
+                                              <input name="first" type="text" class="mx-2 d-block"
+                                                placeholder="First Value"><br>
+                                              <input name="second" type="text" class="mx-2 d-block"
+                                                placeholder="Second Value"><br>
+                                              <textarea name="description" type="text" class="mx-2 d-block"
+                                                placeholder="Description">
+                                                </textarea>
+                                              <div class="col-md-12 text-sm-right text-center">
+                                                <input type="submit" class="btn my-4 btn-warning" value="Post">
+                                              </div>
+                                            </form>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+
+                                    <script>
+                                      var addBtn = document.getElementById('press-add-btn');
+                                      var addContainer = document.querySelector('.press-add-container');
+
+                                      addContainer.classList.add('display-class');
+                                      addBtn.addEventListener('click', () => {
+                                        addContainer = document.querySelector('.press-add-container');
+                                        addContainer.classList.toggle('display-class');
+                                      })
+                                    </script>
+
+                                    <% } %>
+                                </div>
+
+                          </div>
+                        </div>
+                        <!-- GRAPH -->
+                        <div class="container my-5" style="position: relative;">
+                          <div class="main-container">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <h2 class="text-center my-3">Analytics</h2>
+                                <span hidden id="dataSpan">
+                                  <%= resArray %>
+                                </span>
+                                <span hidden id="dataSpan">
+                                  <%= resArray %>
+                                </span>
+                                <% if(resArray.length==0) {%>
+                                  <h3 class="text-center">No data present</h3>
+                                  <% } %>
+                              </div>
+                            </div>
+                            <div class="outer-graph-container row p-3 px-5">
+
+                            </div>
+                            <script>
+                              function createChart(id, labelArr, valArr, type_title) {
+                                const colors = [
+                                  "green",
+                                  "blue",
+                                  "red",
+                                  "yellow",
+                                  "pink",
+                                  "orange",
+                                  "purple",
+                                  "#00ffd9",
+                                  "#ff003c",
+                                  "#6aff00",
+                                  "#ffaa00",
+                                ];
+                                let myChart = document.getElementById(id).getContext('2d');
+
+                                let newChart = new Chart(myChart, {
+                                  type: "line",
+                                  data: {
+                                    labels: labelArr,
+                                    datasets: [
+                                      {
+                                        label: type_title,
+                                        data: valArr,
+                                        backgroundColor: "rgba(0,0,0,0)",
+                                        borderColor:
+                                          colors[Math.floor(Math.random() * colors.length)],
+
+                                      },
+                                    ],
+                                  },
+                                  options: {
+                                    scales: {
+                                      xAxes: [
+                                        {
+                                          gridLines: {
+                                            display: false,
+                                          },
+                                        },
+                                      ],
+                                      yAxes: [
+                                        {
+                                          gridLines: {
+                                            display: false,
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                });
+                              }
+                            </script>
+                            <script>
+                              let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
+                              if (graphArr.length != 0) {
+
+                                graphArr.forEach((item, index) => {
+                                  // if(index==3) throw new Error('x');
+                                  // console.log(item);
+                                  if (item.length != 0) {
+                                    const outerContainer = document.querySelector('.outer-graph-container');
+
+                                    let valArr = [];
+                                    let labelArr = [];
+
+                                    item.forEach((subItem) => {
+                                      valArr.push(subItem.total);
+
+                                      const d = new Date(subItem.date);
+                                      const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                      const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                      const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+                                      labelArr.push(`${da}-${mo}-${ye}`);
                                     })
+                                    // console.log(valArr);
+                                    // console.log(labelArr);
+
+                                    //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                    var canvasEl = document.createElement('div');
+                                    canvasEl.classList.add('col-lg-5');
+                                    canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                    outerContainer.append(canvasEl);
+                                    canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
+
+                                    createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
                                   }
-                              </script>
-                              <script>
-                                  let text = ``;
-                                  const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
-                                  for (let item in graphData) {
-                                    const element = graphData[item][graphData[item].length - 1];
-                                    text += `<li>
+                                })
+                              }
+                            </script>
+                            <script>
+                              let text = ``;
+                              const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
+                              for (let item in graphData) {
+                                const element = graphData[item][graphData[item].length - 1];
+                                text += `<li>
                                   ${element.type_title}: <b style="color: ${element.isLess ? " red" : "green"}">${element.isLess ? "-" : "+"}${element.diff}  </b>
                                   </li>`;
 
-                                  }
-                                  document.getElementById("analyticsList").innerHTML = text;
-                              </script>
-                            </div>
-                            <!-- ************* -->
-                            <div class="bar_graph-container">
-                              <canvas id="bar_graph" style="margin: 1rem;
+                              }
+                              document.getElementById("analyticsList").innerHTML = text;
+                            </script>
+                          </div>
+                          <!-- ************* -->
+                          <div class="bar_graph-container">
+                            <canvas id="bar_graph" style="margin: 1rem;
                             width:100%;max-width:530px;"></canvas>
 
-                              <script>
-                                  var xValues = [2021, 2022, 2023, 2024, 2025,2035];
-                                  var yValues = [55, 49, 60, 24, 20,45];
-                                  var barColors = [
-                                    // "red", "green", "blue", "orange", "brown"
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(255, 159, 64, 0.2)',
-                                    'rgba(255, 205, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(153, 102, 255, 0.2)',
-                                    'rgba(201, 203, 207, 0.2)',
-                                  ];
+                            <script>
+                              var xValues = [2021, 2022, 2023, 2024, 2025, 2035];
+                              var yValues = [55, 49, 60, 24, 20, 45];
+                              var barColors = [
+                                // "red", "green", "blue", "orange", "brown"
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)',
+                              ];
 
-                                  new Chart("bar_graph", {
-                                    type: "bar",
-                                    data: {
-                                      labels: xValues,
-                                      datasets: [{
-                                        backgroundColor: barColors,
-                                        data: yValues,
-                                        borderColor: [
-                                          'rgb(255, 99, 132)',
-                                          'rgba(224, 202, 0, 1)',
-                                          'rgb(75, 192, 192)',
-                                          'rgb(54, 162, 235)',
-                                          'rgb(153, 102, 255)',
-                                          'rgb(201, 203, 207)'
-                                        ],
-                                        hoverBorderColor: 'red',
-                                        borderWidth: 1,
-                                        hoverBorderWidth: 2,
-                                        barPercentage: 0.5,
-                                        //  barThickness: 6, 
-                                        
-                                        }]
-                                    },
-                                    options: {
-                                      legend: { display: false },
-                                      title: {
-                                        display: true,
-                                        text: "Bar Graph"
-                                      },
-                                    }
-                                  });
-                              </script>
-                            </div>
+                              new Chart("bar_graph", {
+                                type: "bar",
+                                data: {
+                                  labels: xValues,
+                                  datasets: [{
+                                    backgroundColor: barColors,
+                                    data: yValues,
+                                    borderColor: [
+                                      'rgb(255, 99, 132)',
+                                      'rgba(224, 202, 0, 1)',
+                                      'rgb(75, 192, 192)',
+                                      'rgb(54, 162, 235)',
+                                      'rgb(153, 102, 255)',
+                                      'rgb(201, 203, 207)'
+                                    ],
+                                    hoverBorderColor: 'red',
+                                    borderWidth: 1,
+                                    hoverBorderWidth: 2,
+                                    barPercentage: 0.5,
+                                    //  barThickness: 6, 
+
+                                  }]
+                                },
+                                options: {
+                                  legend: { display: false },
+                                  title: {
+                                    display: true,
+                                    text: "Bar Graph"
+                                  },
+                                }
+                              });
+                            </script>
                           </div>
-
                         </div>
-                      </div>
 
+                      </div>
                 </div>
 
           </div>
-          <!-- #################################### footer -->
-          <%- include('./_partials/footer') %>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-              integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-              crossorigin="anonymous"></script>
+      </div>
+      <!-- #################################### footer -->
+      <%- include('./_partials/footer') %>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"></script>
 </body>
 
 </html>
