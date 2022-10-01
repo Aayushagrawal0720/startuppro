@@ -83,6 +83,6 @@ const bargGraphEvent = new mongoose.Schema({
   
 });
 
-const dynamicColSchemas = { typeSchema, typeEventSchema, bargGraphEvent};
+const dynamicColSchemas = { typeSchema, typeEventSchema, bargGraphEvent };
 
 module.exports = dynamicColSchemas;

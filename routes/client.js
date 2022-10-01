@@ -367,7 +367,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     );
 
     const foundTypes = await dynamicTypeModel.find();
-    // console.log(foundTypes);
+    //  console.log(foundTypes);
 
     if (foundTypes.length != 0) {
       foundTypes.forEach((item, index) => {
@@ -399,9 +399,53 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     });
     if (emptyEls == resArray.length) resArray = [];
 
-    // console.log(JSON.stringify(resArray));
+    // 
+   //  console.log(JSON.stringify(resArray));
     resArray = JSON.stringify(resArray);
     const isLogin = true;
+
+    //FETCHING BAR GRAPH DATA
+    let barArray = [];
+    const dynamicBarTypeModel = new mongoose.model(
+      `${uid}_typecollections`,
+      dynamicColSchemas.typeSchema
+    );
+    const bargraphModel = new mongoose.model(
+      `${uid}_graph_eventcollections_bar`,
+      dynamicColSchemas.bargGraphEvent
+    );
+    const barfoundTypes = await dynamicBarTypeModel.find().where({type_of_graph:"Bar Graph"});
+
+    if (barfoundTypes.length != 0) {
+      barfoundTypes.forEach((item, index) => {
+        barArray.push(
+          new Promise((resolve, reject) => {
+            bargraphModel
+              .find({ type_id: item.type_id }, { _id: 0, date: 0, })
+              .sort({ date: 1 })
+              .select({
+                date: 1,
+                total: 1,
+                type_title: 1,
+                type_type: 1,
+              })
+              .then((data) => resolve(data))
+              .catch((err) => reject(err));
+          })
+        );
+      });
+      barArray = await Promise.all(barArray);
+    }
+    let baremptyEls = 0;
+    barArray.forEach((item) => {
+      if (item.length == 0) baremptyEls += 1;
+    });
+    if (baremptyEls == barArray.length) barArray = [];
+
+    console.log(barArray);
+    const barisLogin = true;
+    // console.log(barfoundTypes);
+
 
     // FETCHING FOUNDER DATA
     const mid = startupData.founders[0];
@@ -461,8 +505,10 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       productData,
       pressReleaseData,
       startupData,
-      resArray,
+      resArray,  
       isLogin,
+      barArray,
+      barisLogin,
       founderData,
       jobDetailData,
       jobAlerts,
