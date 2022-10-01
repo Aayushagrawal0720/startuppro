@@ -150,6 +150,8 @@ startupSchema.pre("save", async function (next) {
   }
 });
 
+
+
 const startup = mongoose.model("startup", startupSchema);
 
 module.exports = startup;

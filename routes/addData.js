@@ -661,9 +661,9 @@ router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
      // console.log(err);
       res.status(400).send(err);
     }
-  });
+  }); 
 
-router.post("/press/:uid/addpress", isAuth, async (req, res) => {
+router.post("/press/:uid/addpress", isAuth, upload.single("event_pic"), async (req, res) => {
   try {
     const uid = req.params.uid;
     // console.log(req.body);
@@ -672,17 +672,32 @@ router.post("/press/:uid/addpress", isAuth, async (req, res) => {
       pressReleaseSchema
     );
 
-
-
-    const dataToBeAdded = new dynamicPressModel({
-      job_title: req.body.job_title,
-      first: req.body.first,
-      second: req.body.second,
-      description: req.body.description,
-    });
+    let picUrl;
+      if (req.file) 
+      {
+        console.log(req.file.filename);
+        if (req.file.filename) 
+          picUrl = `/${req.file.filename}`;
+        else 
+          picUrl = "/default_profile.png" ;
+      } else {
+        console.log("Inside else");
+        picUrl = "/default_profile.png";
+      }
+   
+      
+      const dataToBeAdded = new dynamicPressModel({
+          job_title: req.body.job_title,
+          first: req.body.first,
+          second: req.body.second,
+          description: req.body.description,
+          imagePress: picUrl,
+        });
+      
+    
     const savedData = await dataToBeAdded.save();
-    // console.log(savedData);
-    // res.status(201).json("Posted press back");
+     //console.log(savedData);
+     //res.status(201).json("Posted press back");
     res.redirect("/startup/profile");
   } catch (err) {
     // console.log(err);

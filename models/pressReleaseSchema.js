@@ -4,7 +4,7 @@ const pressReleaseSchema = new mongoose.Schema({
     job_title: {
         type: String,
         required: true,
-    },
+    }, 
     first: {
         type: String,
         required: true,
@@ -17,6 +17,12 @@ const pressReleaseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    imagePress: {
+        type: String,
+        default: "/default_profile.png",
+    },
 });
 
 module.exports = pressReleaseSchema;
+
+
