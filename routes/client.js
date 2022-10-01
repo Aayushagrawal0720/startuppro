@@ -442,8 +442,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     });
     if (baremptyEls == barArray.length) barArray = [];
 
-    console.log(barArray);
-    const barisLogin = true;
+   // console.log(barArray);
     // console.log(barfoundTypes);
 
 
@@ -508,7 +507,6 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       resArray,  
       isLogin,
       barArray,
-      barisLogin,
       founderData,
       jobDetailData,
       jobAlerts,
