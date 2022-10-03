@@ -495,6 +495,28 @@ router.get("/product/:uid", async (req, res) => {
     res.status(500).send(err);
   }
 });
+//GET press release data
+router.get("/pressrelease/:uid", async (req, res) => {
+  try {
+    const uid = req.params.uid;
+    var startupData = await startUpScheme
+      .findOne({ uid: uid })
+      .select({ startup_name: 1 });
+
+      const pressReleaseModel = new mongoose.model(
+        `${uid}_press_collection`,
+        pressReleaseSchema
+      );
+  
+      const pressReleaseData = await pressReleaseModel.find();
+    // console.log(foundData);
+    // res.status(200).json(foundData);
+    res.status(200).render("pressrelease", { pressReleaseData, startupData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
 // GET GRAPH DATA
 router.get("/graph/:uid", async (req, res) => {
   try {

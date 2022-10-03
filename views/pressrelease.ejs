@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>product </title>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/userLogin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/af3eeee1f8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+<body>
+
+  <%- include('./_partials/navbar_2') %>
+  <div class="container d-flex flex-column justify-content-center p-2 my-2">
+ 
+ 
+    <% pressReleaseData.forEach(function(item,index) { %>
+        <div class="container col-md-5 my-3 jobbox"
+          style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+          <div class="m-3">
+            <div>
+              <img src="https://protkd.com/wp-content/uploads/2017/04/default-image.jpg" style="width: 100%; height: 200px">
+            </div>
+              <h1 class="head1">
+                <%= item.job_title %>
+              </h1>
+            </div>
+
+            <div class="box-desc">
+              <h4 class="it it1" style="margin: 10px;"><b>
+                  <%= item.first %>
+                </b></h4>
+              <h6 class="it it1" style="margin: 10px;">
+                <%= item.second %>
+              </h6>
+              <h6 class="it" style="font-size: .7rem; margin: 10px;">
+                <%= item.description %>
+              </h6>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+        </div>
+  
+        <%- include('./_partials/footer') %>
+  </body>
+  
+  
+    </html>

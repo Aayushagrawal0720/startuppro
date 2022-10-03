@@ -361,16 +361,15 @@ position: relative;
 .jobbox {
   display: flex;
   padding: 0px;
-  margin: 4.0px;
+  margin: 1px;
  max-width: 180px;
   height: 290px;
   background: #f6f6f6;
   
  
 }
-.overf{
-  overflow: scroll;
-}
+
+
 .jobbox:hover {
   transform: scale(1.08);
 }
@@ -387,12 +386,17 @@ position: relative;
   /* margin-bottom: 00px; */
   border-radius: 10px 10px 5px 5px;
   border: 1px solid grey;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   text-align: center;
+}
+.press-release-img{
+  width: 100%;
+  height: 100%;
 }
 
 .box-desc{
   padding: 20px 0px;
+  margin: 25px 0px;
 }
 .it1{
 
@@ -489,7 +493,7 @@ position: relative;
 }
 
 .carousel2 {
-  height: 270px;
+  height: 318px;
 }
 
 .carousel {
@@ -499,14 +503,14 @@ position: relative;
 .hi-slide {
   position: relative;
   width: 754px;
-  height: 292px;
+  height: 441px;
   margin: 5px auto 0;
 }
 
 .hi-slide .hi-next,
 .hi-slide .hi-prev {
   position: absolute;
-  top: 50%;
+  top: 33%;
   width: 40px;
   height: 40px;
   margin-top: -20px;
@@ -582,7 +586,7 @@ position: relative;
   width: 90%;
   margin: auto;
   height: 100px;
-  margin-top: 65px;
+  margin-top: 105px;
   z-index: 1;
 }
 
@@ -762,17 +766,61 @@ position: relative;
 /* <<added by shubham agarwal */
 .wrapper{
   overflow: hidden;
+  
 }
 .it1{
   font-weight: bold;
 }
 .head1{
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 100px; */
+  margin: 10px 0px;
    font-weight: bold;
    font-size: 1.1rem; 
   color: rgb(1, 2, 3);
   text-shadow: 0 0 3px #06404e;
   }
+  
+  /* added by shubham */
+  
+@media (min-width: 778px) and (max-width: 994px) {
+  .hi-prev{
+    
+   z-index: 12;
+   left: 3px !important;
+  }
+}
+  
+@media (min-width: 778px) and (max-width: 994px) {
+  .hi-next{
+    
+   z-index: 12;
+   right: 105px !important;
+  }
+}
+@media (min-width: 526px) and (max-width: 773px) {
+  .hi-slide{
+    
+  
+   right: 130px !important;
+  }
+}
+
+
+@media (min-width: 540px) and (max-width: 779px) {
+  .hi-prev{
+    
+   z-index: 12;
+   left: 127px !important;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 779px) {
+  .hi-next{
+   
+   z-index: 12;
+   right: 139px !important;
+  }
+}
