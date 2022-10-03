@@ -366,7 +366,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       dynamicColSchemas.typeEventSchema
     );
 
-    const foundTypes = await dynamicTypeModel.find();
+    const foundTypes = await dynamicTypeModel.find().where({type_of_graph:"Line Graph"});
     //  console.log(foundTypes);
 
     if (foundTypes.length != 0) {
@@ -444,6 +444,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
 
     console.log(barArray);
     const barisLogin = true;
+    barArray = JSON.stringify(barArray);
     // console.log(barfoundTypes);
 
 
@@ -508,7 +509,6 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       resArray,  
       isLogin,
       barArray,
-      barisLogin,
       founderData,
       jobDetailData,
       jobAlerts,
