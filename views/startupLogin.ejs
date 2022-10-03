@@ -297,7 +297,8 @@
                         <div class="main-container carousel4">
                           <div class="mt-2 d-flex justify-content-around">
 
-                            <h2 style="text-align: center; padding-top: 10px; width: 100%;" class="text-center">Timeline</h2>
+                            <h2 style="text-align: center; padding-top: 10px; width: 100%;" class="text-center">Timeline
+                            </h2>
                             <% if(isLogin) {%>
                               <h3><button class="btn btn-warning mt-1" id="add-btn">Add</button></h3>
                               <% } %>
@@ -368,9 +369,9 @@
 
                         <!--product-->
                         <div class="container my-5">
-                         
+
                           <div class="main-container carousel4 ">
-                            
+
                             <div class="mt-2 d-flex justify-content-around">
 
                               <h2 style="text-align: center; padding-top: 10px;" class="text-center">Product Details
@@ -411,7 +412,7 @@
                                       </div>
                                       </form>
                                     </row>
-                                  
+
                                   </div>
                                 </div>
 
@@ -427,16 +428,16 @@
                                 </script>
 
                                 <% } %>
-                              
-                            
-                            
-                                <div class="wrapper" style="margin-top: -14px;">
-                              <div class="carousel2" >
-                                <%- include('./mohit/carousel') %>
-                              </div>
-                        </div>
+
+
+
+                                  <div class="wrapper" style="margin-top: -14px;">
+                                    <div class="carousel2">
+                                      <%- include('./mohit/carousel') %>
+                                    </div>
+                                  </div>
                             </div>
-                     
+
                             <div class="col-md-12">
                               <a href="<%= `/getdata/product/${startupData?.uid}` %>">
                                 <h6 class="text-right">View More</h6>
@@ -463,7 +464,7 @@
 
                                     <div class="imageadd >
 
-                                      <h1 class="head1">press Releases</h1>
+                                      <h1 class=" head1">press Releases</h1>
                                       <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                     </div>
 
@@ -481,7 +482,7 @@
                                 </div>
 
 
-                                
+
                                 <% pressReleaseData.forEach(function(item,index) { %>
                                   <div class="container col-md-5 my-3 jobbox"
                                     style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
@@ -506,9 +507,9 @@
                                       </div>
                                     </div>
                                   </div>
-                                 
+
                                   <% }); %>
-                                
+
                               </div>
                               <% if(isLogin) {%>
                                 <h3><button class="btn btn-warning mt-1" id="press-add-btn">Add</button></h3>
@@ -538,8 +539,8 @@
                                                 <input name="job_title" id="post-input" type="text"
                                                   class="col-md-12 my-4 mx-sm-2 p-2"
                                                   placeholder="What's the job Title?">
-                                                  <input name="event_pic" type="file" class="mx-2 d-block"
-                                            placeholder="Select">
+                                                <input name="event_pic" type="file" class="mx-2 d-block"
+                                                  placeholder="Select">
                                                 <input name="first" type="text" class="mx-2 d-block"
                                                   placeholder="First Value"><br>
                                                 <input name="second" type="text" class="mx-2 d-block"
@@ -582,168 +583,168 @@
                                   <h2 class="text-center my-3">Analytics</h2>
                                   <span hidden id="dataSpan">
                                     <%= resArray %>
-                                      </span>
-                                      <span hidden id="dataSpan">
-                                        <%= resArray %>
-                                      </span>
-                                      <% if(resArray.length==0) {%>
-                                        <h3 class="text-center">No data present</h3>
-                                        <% } %>
+                                  </span>
+                                  <span hidden id="dataSpan">
+                                    <%= resArray %>
+                                  </span>
+                                  <% if(resArray.length==0) {%>
+                                    <h3 class="text-center">No data present</h3>
+                                    <% } %>
                                 </div>
                               </div>
                               <div class="outer-graph-container row p-3 px-5">
 
                               </div>
                               <script>
-                                  function createChart(id, labelArr, valArr, type_title) {
-                                    const colors = [
-                                      "green",
-                                      "blue",
-                                      "red",
-                                      "yellow",
-                                      "pink",
-                                      "orange",
-                                      "purple",
-                                      "#00ffd9",
-                                      "#ff003c",
-                                      "#6aff00",
-                                      "#ffaa00",
-                                    ];
-                                    let myChart = document.getElementById(id).getContext('2d');
+                                function createChart(id, labelArr, valArr, type_title) {
+                                  const colors = [
+                                    "green",
+                                    "blue",
+                                    "red",
+                                    "yellow",
+                                    "pink",
+                                    "orange",
+                                    "purple",
+                                    "#00ffd9",
+                                    "#ff003c",
+                                    "#6aff00",
+                                    "#ffaa00",
+                                  ];
+                                  let myChart = document.getElementById(id).getContext('2d');
 
-                                    let newChart = new Chart(myChart, {
-                                      type: "line",
-                                      data: {
-                                        labels: labelArr,
-                                        datasets: [
+                                  let newChart = new Chart(myChart, {
+                                    type: "line",
+                                    data: {
+                                      labels: labelArr,
+                                      datasets: [
+                                        {
+                                          label: type_title,
+                                          data: valArr,
+                                          backgroundColor: "rgba(0,0,0,0)",
+                                          borderColor:
+                                            colors[Math.floor(Math.random() * colors.length)],
+
+                                        },
+                                      ],
+                                    },
+                                    options: {
+                                      scales: {
+                                        xAxes: [
                                           {
-                                            label: type_title,
-                                            data: valArr,
-                                            backgroundColor: "rgba(0,0,0,0)",
-                                            borderColor:
-                                              colors[Math.floor(Math.random() * colors.length)],
-                                          
+                                            gridLines: {
+                                              display: false,
+                                            },
+                                          },
+                                        ],
+                                        yAxes: [
+                                          {
+                                            gridLines: {
+                                              display: false,
+                                            },
                                           },
                                         ],
                                       },
-                                      options: {
-                                        scales: {
-                                          xAxes: [
-                                            {
-                                              gridLines: {
-                                                display: false,
-                                              },
-                                            },
-                                          ],
-                                          yAxes: [
-                                            {
-                                              gridLines: {
-                                                display: false,
-                                              },
-                                            },
-                                          ],
-                                        },
-                                      },
-                                    });
-                                     console.log(type_title)
-                                  }
+                                    },
+                                  });
+                                  console.log(type_title)
+                                }
                               </script>
                               <script>
-                                  let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
-                                  if (graphArr.length != 0) {
+                                let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
+                                if (graphArr.length != 0) {
 
-                                    graphArr.forEach((item, index) => {
-                                      // if(index==3) throw new Error('x');
-                                      // console.log(item);
-                                      if (item.length != 0) {
-                                        const outerContainer = document.querySelector('.outer-graph-container');
+                                  graphArr.forEach((item, index) => {
+                                    // if(index==3) throw new Error('x');
+                                    // console.log(item);
+                                    if (item.length != 0) {
+                                      const outerContainer = document.querySelector('.outer-graph-container');
 
-                                        let valArr = [];
-                                        let labelArr = [];
+                                      let valArr = [];
+                                      let labelArr = [];
 
-                                        item.forEach((subItem) => {
-                                          valArr.push(subItem.total);
+                                      item.forEach((subItem) => {
+                                        valArr.push(subItem.total);
 
-                                          const d = new Date(subItem.date);
-                                          const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                                          const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                                          const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+                                        const d = new Date(subItem.date);
+                                        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
-                                          labelArr.push(`${da}-${mo}-${ye}`);
-                                        })
-                                        // console.log(valArr);
-                                        // console.log(labelArr);
+                                        labelArr.push(`${da}-${mo}-${ye}`);
+                                      })
+                                      // console.log(valArr);
+                                      // console.log(labelArr);
 
-                                        //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
-                                        var canvasEl = document.createElement('div');
-                                        canvasEl.classList.add('col-lg-5');
-                                        canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                                        outerContainer.append(canvasEl);
-                                        canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                      //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                      var canvasEl = document.createElement('div');
+                                      canvasEl.classList.add('col-lg-5');
+                                      canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                      outerContainer.append(canvasEl);
+                                      canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
 
-                                        createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
-                                      }
-                                    })
-                                  }
+                                      createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
+                                    }
+                                  })
+                                }
                               </script>
                               <script>
-                                  let text = ``;
-                                  const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
-                                  for (let item in graphData) {
-                                    const element = graphData[item][graphData[item].length - 1];
-                                    text += `<li>
+                                let text = ``;
+                                const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
+                                for (let item in graphData) {
+                                  const element = graphData[item][graphData[item].length - 1];
+                                  text += `<li>
                                   ${element.type_title}: <b style="color: ${element.isLess ? " red" : "green"}">${element.isLess ? "-" : "+"}${element.diff}  </b>
                                   </li>`;
 
-                                  }
-                                  document.getElementById("analyticsList").innerHTML = text;
+                                }
+                                document.getElementById("analyticsList").innerHTML = text;
                               </script>
                             </div>
                             <!-- *******Bar Graph ********Sayantan ****** -->
                             <div class="bar_graph-container">
                               <div class="row">
                                 <span hidden id="bar_dataSpan">
-                                    <%= barArray %>
-                                  </span>
-                                  <% if(barArray.length==0) {%>
-                                    <h3 class="text-center">No data present</h3>
-                                    <% } %>
-                                
+                                  <%= barArray %>
+                                </span>
+                                <% if(barArray.length==0) {%>
+                                  <h3 class="text-center">No data present</h3>
+                                  <% } %>
+
                               </div>
-                            <div class="outer-bar_graph-container row p-3 px-5">
-                            
-                            </div>
+                              <div class="outer-bar_graph-container row p-3 px-5">
 
-                            <script>
-                              let bar_graphArr = JSON.parse(document.getElementById("bar_dataSpan").innerText)
-                               bar_graphArr.forEach((bar_graph,index) =>{ 
-                                const outerContainer = document.querySelector('.outer-bar_graph-container');
+                              </div>
 
- 
-                                var xValues =[];
-                                var yValues =[];
+                              <script>
+                                let bar_graphArr = JSON.parse(document.getElementById("bar_dataSpan").innerText)
+                                bar_graphArr.forEach((bar_graph, index) => {
+                                  const outerContainer = document.querySelector('.outer-bar_graph-container');
 
-                                bar_graph.forEach((entry) =>{ 
-                                  const d = new Date(entry.date);
-                                  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                                  const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                                  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
-                                  xValues.push(`${da}-${mo}-${ye}`);
-                                  
-                                   yValues.push(entry.total);
-                                 
-                                   }) 
-                                   var canvasEl = document.createElement('div');
-                                 canvasEl.classList.add('col-lg-5');
-                                 canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                                 outerContainer.append(canvasEl);
-                                 canvasEl.innerHTML += `<canvas id="bar_chart-${index}"></canvas>`
+                                  var xValues = [];
+                                  var yValues = [];
 
-                                create_bargraph(`bar_chart-${index}`, xValues, yValues, bar_graph[0].type_title);
-                             })
-                            
-                                function create_bargraph(id,xValues,yValues,type_title){
+                                  bar_graph.forEach((entry) => {
+                                    const d = new Date(entry.date);
+                                    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                    const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+                                    xValues.push(`${da}-${mo}-${ye}`);
+
+                                    yValues.push(entry.total);
+
+                                  })
+                                  var canvasEl = document.createElement('div');
+                                  canvasEl.classList.add('col-lg-5');
+                                  canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                  outerContainer.append(canvasEl);
+                                  canvasEl.innerHTML += `<canvas id="bar_chart-${index}"></canvas>`
+
+                                  create_bargraph(`bar_chart-${index}`, xValues, yValues, bar_graph[0].type_title);
+                                })
+
+                                function create_bargraph(id, xValues, yValues, type_title) {
                                   var barColors = [
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(255, 159, 64, 0.2)',
@@ -755,22 +756,22 @@
                                   ];
                                   let myChart = document.getElementById(id).getContext('2d');
 
-                               var barchart =   new Chart(myChart, {
+                                  var barchart = new Chart(myChart, {
                                     type: "bar",
                                     data: {
                                       labels: xValues,
                                       datasets: [{
-                                        backgroundColor: barColors[Math.floor(Math.random() * barColors.length)], 
+                                        backgroundColor: barColors[Math.floor(Math.random() * barColors.length)],
                                         data: yValues,
                                         borderColor: barColors[Math.floor(Math.random() * barColors.length)],
                                         hoverBorderColor: 'red',
                                         borderWidth: 1,
                                         hoverBorderWidth: 2,
-                                         barThickness: 20, 
-                                        
-                                        }]
+                                        barThickness: 20,
+
+                                      }]
                                     },
-                                  
+
                                     options: {
                                       legend: { display: false },
                                       title: {

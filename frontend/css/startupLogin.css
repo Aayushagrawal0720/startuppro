@@ -389,9 +389,14 @@ position: relative;
   overflow-wrap: normal;
   text-align: center;
 }
+.press-release-img{
+  width: 100%;
+  height: 100%;
+}
 
 .box-desc{
   padding: 20px 0px;
+  margin: 25px 0px;
 }
 .it1{
  padding-top: 8px;
@@ -767,10 +772,11 @@ position: relative;
   font-weight: bold;
 }
 .head1{
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 100px; */
+  margin: 10px 0px;
    font-weight: bold;
    font-size: 1.1rem; 
   color: rgb(1, 2, 3);
