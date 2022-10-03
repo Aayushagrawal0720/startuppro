@@ -681,7 +681,6 @@ router.post("/press/:uid/addpress", isAuth, upload.single("event_pic"), async (r
         else 
           picUrl = "/default_profile.png" ;
       } else {
-        console.log("Inside else");
         picUrl = "/default_profile.png";
       }
    
