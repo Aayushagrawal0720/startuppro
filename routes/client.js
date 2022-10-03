@@ -444,6 +444,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
 
     console.log(barArray);
     const barisLogin = true;
+    barArray = JSON.stringify(barArray);
     // console.log(barfoundTypes);
 
 

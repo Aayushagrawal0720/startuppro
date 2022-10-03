@@ -645,6 +645,7 @@
                                         },
                                       },
                                     });
+                                     console.log(type_title)
                                   }
                               </script>
                               <script>
@@ -698,16 +699,52 @@
                                   document.getElementById("analyticsList").innerHTML = text;
                               </script>
                             </div>
-                            <!-- ************* -->
+                            <!-- *******Bar Graph ********Sayantan ****** -->
                             <div class="bar_graph-container">
-                              <canvas id="bar_graph" style="margin: 1rem;
-                            width:100%;max-width:530px;"></canvas>
+                              <div class="row">
+                                <span hidden id="bar_dataSpan">
+                                    <%= barArray %>
+                                  </span>
+                                  <% if(barArray.length==0) {%>
+                                    <h3 class="text-center">No data present</h3>
+                                    <% } %>
+                                
+                              </div>
+                            <div class="outer-bar_graph-container row p-3 px-5">
+                            
+                            </div>
 
-                              <script>
-                                  var xValues = [2021, 2022, 2023, 2024, 2025,2035];
-                                  var yValues = [55, 49, 60, 24, 20,45];
+                            <script>
+                              let bar_graphArr = JSON.parse(document.getElementById("bar_dataSpan").innerText)
+                               bar_graphArr.forEach((bar_graph,index) =>{ 
+                                const outerContainer = document.querySelector('.outer-bar_graph-container');
+
+ 
+                                var xValues =[];
+                                var yValues =[];
+
+                                bar_graph.forEach((entry) =>{ 
+                                  const d = new Date(entry.date);
+                                  const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                  const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                  const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+                                  xValues.push(`${da}-${mo}-${ye}`);
+                                  
+                                   yValues.push(entry.total);
+                                 
+                                   }) 
+                                   var canvasEl = document.createElement('div');
+                                 canvasEl.classList.add('col-lg-5');
+                                 canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                 outerContainer.append(canvasEl);
+                                 canvasEl.innerHTML += `<canvas id="bar_chart-${index}"></canvas>`
+
+                                create_bargraph(`bar_chart-${index}`, xValues, yValues, bar_graph[0].type_title);
+                             })
+                            
+                                function create_bargraph(id,xValues,yValues,type_title){
                                   var barColors = [
-                                    // "red", "green", "blue", "orange", "brown"
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(255, 159, 64, 0.2)',
                                     'rgba(255, 205, 86, 0.2)',
@@ -716,40 +753,37 @@
                                     'rgba(153, 102, 255, 0.2)',
                                     'rgba(201, 203, 207, 0.2)',
                                   ];
+                                  let myChart = document.getElementById(id).getContext('2d');
 
-                                  new Chart("bar_graph", {
+                               var barchart =   new Chart(myChart, {
                                     type: "bar",
                                     data: {
                                       labels: xValues,
                                       datasets: [{
-                                        backgroundColor: barColors,
+                                        backgroundColor: barColors[Math.floor(Math.random() * barColors.length)], 
                                         data: yValues,
-                                        borderColor: [
-                                          'rgb(255, 99, 132)',
-                                          'rgba(224, 202, 0, 1)',
-                                          'rgb(75, 192, 192)',
-                                          'rgb(54, 162, 235)',
-                                          'rgb(153, 102, 255)',
-                                          'rgb(201, 203, 207)'
-                                        ],
+                                        borderColor: barColors[Math.floor(Math.random() * barColors.length)],
                                         hoverBorderColor: 'red',
                                         borderWidth: 1,
                                         hoverBorderWidth: 2,
-                                        barPercentage: 0.5,
-                                        //  barThickness: 6, 
+                                         barThickness: 20, 
                                         
                                         }]
                                     },
+                                  
                                     options: {
                                       legend: { display: false },
                                       title: {
                                         display: true,
-                                        text: "Bar Graph"
+                                        text: type_title,
                                       },
                                     }
                                   });
+                                  console.log(type_title)
+                                }
                               </script>
                             </div>
+                            <!-- ***********************sayantan end****** -->
                           </div>
 
                         </div>
