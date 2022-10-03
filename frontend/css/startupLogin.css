@@ -581,7 +581,7 @@ position: relative;
   width: 90%;
   margin: auto;
   height: 100px;
-  margin-top: 65px;
+  margin-top: 105px;
   z-index: 1;
 }
 
@@ -761,7 +761,7 @@ position: relative;
 /* <<added by shubham agarwal */
 .wrapper{
   overflow: hidden;
-  margin-top: 2px;
+  
 }
 .it1{
   font-weight: bold;
