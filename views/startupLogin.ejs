@@ -701,14 +701,15 @@
                               </script>
                             </div>
                             <!-- *******Bar Graph ********Sayantan ****** -->
+                            <% if(locals.barArray) { %>
                             <div class="bar_graph-container">
                               <div class="row">
                                 <span hidden id="bar_dataSpan">
                                   <%= barArray %>
                                 </span>
-                                <% if(barArray.length==0) {%>
+                                <% if(barArray.length === 0) {%>
                                   <h3 class="text-center">No data present</h3>
-                                  <% } %>
+                                <% } %>
 
                               </div>
                               <div class="outer-bar_graph-container row p-3 px-5">
@@ -784,6 +785,7 @@
                                 }
                               </script>
                             </div>
+                            <% } %>
                             <!-- ***********************sayantan end****** -->
                           </div>
 
