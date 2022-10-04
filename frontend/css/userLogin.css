@@ -469,3 +469,12 @@ form div #experience-submit {
   margin-top: 1rem;
   border-radius: 10px;
 }
+ @media(max-width:768px){
+  .card{
+    text-align: center;
+  }
+  .col-md-9{
+  padding-top: 15px;
+ }
+ }
+ 

@@ -52,25 +52,6 @@ body{
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.box1{
-    /* background: #f0eaea; */
-}
 .mapbox{
     border-radius: 10px;
 }
@@ -95,9 +76,7 @@ ul li{
     list-style: none;
     color: black;
 }
-.fluid-container{
-    /* position: fixed; */
-}
+
 .parent-container{
     min-height: 80vh;
 }
@@ -180,14 +159,11 @@ form .star::after{
     color: white;
     letter-spacing: 2px;
 }
-
-
-
-
-
-
-
-
+.col-md-3 p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: small;
+}
 
 
 
@@ -337,18 +313,6 @@ opacity: 0;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 @media(max-width:992px){
     .text-area{
         width: 300px;
@@ -400,7 +364,7 @@ opacity: 0;
     .hamburger-menu .hamburger-items li{
         list-style: none;
     }
-@media(max-width:576px){
+  @media(max-width:576px){
     .footer ul li a{
         font-size: 10px;
         /* color: white; */
@@ -413,11 +377,11 @@ opacity: 0;
         color: white;
     }
 }
-@media(max-width:500px){
+    @media(max-width:500px){
     .text-area{
         width: 200px;
     }
     .outline{
         width: 200px;
     }
-}
+}}
