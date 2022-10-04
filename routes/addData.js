@@ -610,11 +610,7 @@ router.post(
       let picUrl;
       if (req.file) {
         if (req.file.filename) picUrl = `/${req.file.filename}`;
-<<<<<<< HEAD
-        else picUrl = "/default_profile.png";
-=======
         else picUrl = "/default_profile.png" ;
->>>>>>> merge-updates-fixes
       } else {
         picUrl = "/default_profile.png";
       }
