@@ -8,5 +8,14 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 0 9px 1px rgb(209, 209, 209);
-  width: 500px;
+  width: 350px;
+  height: 180px;
+  margin: 15px 44px 15px 10px !important;
+}
+.barClass{
+      padding-right: 15px;
+    padding-left: 15px;
+}
+.barCnv{
+  height: 175px !important;
 }

@@ -737,10 +737,10 @@
 
                                   })
                                   var canvasEl = document.createElement('div');
-                                  canvasEl.classList.add('col-lg-5');
+                                  canvasEl.classList.add('barClass');
                                   canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
                                   outerContainer.append(canvasEl);
-                                  canvasEl.innerHTML += `<canvas id="bar_chart-${index}"></canvas>`
+                                  canvasEl.innerHTML += `<canvas id="bar_chart-${index}" class="barCnv"></canvas>`
 
                                   create_bargraph(`bar_chart-${index}`, xValues, yValues, bar_graph[0].type_title);
                                 })
