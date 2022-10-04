@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/adminPanel.css">
+    <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <%- include('./_partials/navbar_2') %>
+        <div id="parent-row">
+            <script>
+                document.querySelector('.login-nav').innerText = "PROFILE";
+            </script>
+            <link rel="stylesheet" href="/css/sidebar.css">
+            <div class="container sidebar-container">
+                <ul>
+                    <li>
+                        <form action="/logout/developer" method="GET">
+                            <input class="logout-btn new--sidebar-btn px-2 py-1 mt-2" type="submit" value="Logout">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="feedback">
+                <div class="container">
+                    <div class="feedback-list">
+
+                        <% feedbacks.forEach( (item, index)=> { %>
+                            <div class="boxes">
+                                <h4>
+                                    <%= item.full_name %>
+                                </h4>
+                                <h7>
+                                    <%= item.email %>
+                                </h7>
+                                <h6>
+                                    <%= item.contact %>
+                                </h6>
+                                <div class="message">
+                                    <p>
+                                        <%= item.message %>
+                                    </p>
+                                </div>
+                            </div>
+                            <% }); %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('./_partials/footer') %>
+
+</body>
+
+</html>

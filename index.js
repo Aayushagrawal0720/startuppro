@@ -105,7 +105,7 @@ app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, 
 //get request for the contact route
 app.get("/contact", (req, res) => {
   try {
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA) || (req.session?.isAuthDeveloper);
     const isAuthenticated = isAuth?true:false;
     res.status(200).render("contact", {isAuthenticated});
   } catch (e) {//look for an error and if it exists, log the error
@@ -114,11 +114,40 @@ app.get("/contact", (req, res) => {
   }
 });
 
+
+const FeedbackModel = require("./models/feedback");
+
+app.post("/contact", async (req, res) => {
+  try{
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA) || (req.session?.isAuthDeveloper);
+    const isAuthenticated = isAuth?true:false;
+    
+    
+    const {p_name, p_phone, p_email, p_msg} = req.body;
+    
+    const new_feedback = new FeedbackModel({
+      full_name: p_name,
+      contact: p_phone,
+      email: p_email,
+      message: p_msg
+    })
+    
+    // console.log(new_feedback);
+    const saved_feedback = await new_feedback.save();
+    // console.log(saved_feedback);
+    
+    res.status(200).render("contact", {isAuthenticated});
+  }catch(e){
+    // console.log(e);
+    res.status(400).send(e.message);
+  }
+})
+
 //get request for the about route
 app.get("/about", (req, res) => {
   try {
     console.log(req.session);
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA) || (req.session?.isAuthDeveloper);
     const isAuthenticated = isAuth?true:false;
     res.status(200).render("about", {isAuthenticated});
   } catch (e) {
@@ -136,44 +165,4 @@ app.use("/getData", getDataRoute);
 //checking if the server is up and running
 app.listen(port, () => {
   console.log(`Website is working! Listening on port ${port}`);
-});
-
-
-//get request for the financials route
-app.get("/financials", (req, res) => {
-  try {
-    console.log(req.session);
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
-    const isAuthenticated = isAuth?true:false;
-    res.status(200).render("financials", {isAuthenticated});
-  } catch (e) {
-    console.log(e);
-    res.status(500).send("Server Error");
-  }
-});
-
-//get request for the Prepare for investors questions financials route (For Startup)
-app.get("/startupFinancialsPrepare", (req, res) => {
-  try {
-    console.log(req.session);
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
-    const isAuthenticated = isAuth?true:false;
-    res.status(200).render("startupFinancialsPrepare", {isAuthenticated});
-  } catch (e) {
-    console.log(e);
-    res.status(500).send("Server Error");
-  }
-});
-
-//get request for the Pitch Deck financials route (For Startup)
-app.get("/startupFinancialsPitchDeck", (req, res) => {
-  try {
-    console.log(req.session);
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
-    const isAuthenticated = isAuth?true:false;
-    res.status(200).render("startupFinancialsPitchDeck", {isAuthenticated});
-  } catch (e) {
-    console.log(e);
-    res.status(500).send("Server Error");
-  }
 });

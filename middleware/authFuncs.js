@@ -54,6 +54,13 @@ const isMentorLoggedIn = (req, res, next) => {
   return next();
 };
 
+const isDeveloperLoggedIn = (req, res, next) => {
+  if(req.session.isAuthDeveloper)
+    return res.redirect("/getdata/admin");
+  
+  return next();
+}
+
 const middlewareFuncs = {
   isAuth: isAuth,
   isStartupLoggedIn: isStartupLoggedIn,

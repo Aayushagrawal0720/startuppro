@@ -379,7 +379,7 @@ position: relative;
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 40%;
+  height: 48%;
   width: 100%;
   /* padding: 10px; */
   
@@ -399,7 +399,7 @@ position: relative;
   margin: 25px 0px;
 }
 .it1{
- padding-top: 8px;
+
  overflow-wrap: break-word;
 }
 .it {
