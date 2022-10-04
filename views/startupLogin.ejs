@@ -23,6 +23,7 @@
     integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/af3eeee1f8.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <link rel="stylesheet" href="/css/startupLogin.css" />
   <link rel="stylesheet" href="/css/timeline.css" />
   <link rel="stylesheet" href="/css/graphs.css" />
@@ -58,7 +59,7 @@
               <li><a href=<%=`/adddata/timelinegraph/${startupData?.uid}` %> ><button
                     class="btn btn-warning mt-2 px-2 py-1">Add Update</button></a></li>
               <li><a href=<%=`/getdata/startup/jobdetails/${startupData?.uid}` %> ><button
-                    class="btn btn-warning mt-2 px-2 py-1">See Job Details</button></a></li>
+                    class="btn btn-warning mt-2 px-2 py-1">Team Members</button></a></li>
               <li><a href=<%=`/adddata/jobposts/${startupData?.uid}` %> ><button
                     class="btn btn-warning mt-2 px-2 py-1">Add Job Post/Alert</button></a></li>
               <li><a href=<%=`/getdata/startup/jobalerts/${startupData?.uid}` %> ><button
@@ -103,7 +104,7 @@
                         <li><a href=<%=`/adddata/timelinegraph/${startupData?.uid}` %> ><button
                               class="new--sidebar-btn mt-2 px-2 py-1">Add Update</button></a></li>
                         <li><a href=<%=`/getdata/startup/jobdetails/${startupData?.uid}` %> ><button
-                              class="new--sidebar-btn mt-2 px-2 py-1">See Job Details</button></a></li>
+                              class="new--sidebar-btn mt-2 px-2 py-1">Team Members</button></a></li>
                         <li><a href=<%=`/adddata/jobposts/${startupData?.uid}` %> ><button
                               class="new--sidebar-btn mt-2 px-2 py-1">Add Job Post/Alert</button></a></li>
                         <li><a href=<%=`/getdata/startup/jobalerts/${startupData?.uid}` %> ><button
@@ -251,7 +252,7 @@
                                 <% jobAlerts.forEach((item)=> { %>
 
                                   <div class="container col-md-5 my-3 jobbox"
-                                    style="box-shadow: 0px 0px 9px 1px rgb(221, 216, 216); border-radius: 10px; padding: 0px; ">
+                                    style="box-shadow: 0px 0px 9px 1px rgb(221, 216, 216); border-radius: 10px; padding: 0px;margin: 4.0px; ">
                                     <div class="m-3">
                                       <div class="imageadd">
                                         <h1>Job title</h1>
@@ -296,7 +297,8 @@
                         <div class="main-container carousel4">
                           <div class="mt-2 d-flex justify-content-around">
 
-                            <h2 style="text-align: center; padding-top: 10px;" class="text-center">Timeline</h2>
+                            <h2 style="text-align: center; padding-top: 10px; width: 100%;" class="text-center">Timeline
+                            </h2>
                             <% if(isLogin) {%>
                               <h3><button class="btn btn-warning mt-1" id="add-btn">Add</button></h3>
                               <% } %>
@@ -328,7 +330,7 @@
                                     </div>
                                   </div>
                                   <row>
-                                    <div class="col-md-12 text-sm-right text-center">
+                                    <div class="col-md-12 text-sm-right text-center" style="top: -3%;">
                                       <input type="submit" class="btn my-4 btn-warning" value="Post">
                                     </div>
                                     </form>
@@ -367,7 +369,9 @@
 
                         <!--product-->
                         <div class="container my-5">
-                          <div class="main-container carousel4">
+
+                          <div class="main-container carousel4 ">
+
                             <div class="mt-2 d-flex justify-content-around">
 
                               <h2 style="text-align: center; padding-top: 10px;" class="text-center">Product Details
@@ -387,26 +391,28 @@
                                   }
                                 </style>
 
-                                <div class="container p-2 my-1 product-add-container">
-                                  <div class="main-container carousel2">
+                                <div class="container p-2 my-1 product-add-container ">
+                                  <div class="main-container carousel2 ">
                                     <div class="row">
                                       <div class="col-md-12">
                                         <form class="col-md-12 d-flex flex-column align-items-stretch"
                                           enctype="multipart/form-data" method="POST"
                                           action=<%=`/adddata/product/${startupData?.uid}/addproduct` %>>
-                                           <input type="text" id="" class="outline d-block my-5 py-0" placeholder="What's On Your Mind?">
+                                          <input type="text" id="" class="outline d-block my-5 py-0"
+                                            placeholder="What's On Your Mind?">
                                           <h2><input name="product_title" id="post-input" type="text"
                                               class="col-md-12 my-4 mx-sm-2 p-2" placeholder="What's the Title"></h2>
                                           <input name="event_pic" type="file" class="mx-2 d-block"
-                                            placeholder="Select"><br> 
+                                            placeholder="Select"><br>
                                       </div>
                                     </div>
                                     <row>
-                                      <div class="col-md-12 text-sm-right text-center">
+                                      <div class="col-md-12 text-sm-right text-center" style="top: -16%;">
                                         <input type="submit" class="btn my-4 btn-warning" value="Post">
                                       </div>
                                       </form>
                                     </row>
+
                                   </div>
                                 </div>
 
@@ -422,16 +428,21 @@
                                 </script>
 
                                 <% } %>
+
+
+
+                                  <div class="wrapper" style="margin-top: -14px;">
+                                    <div class="carousel2">
+                                      <%- include('./mohit/carousel') %>
+                                    </div>
+                                  </div>
                             </div>
-                            <% if(productData.length==0) { %>
-                              <h3 class="text-center">No Product</h3>
-                              <% } else{ %>
-                                <div class="carousel2">
-                                  <%- include('./mohit/carousel') %>
 
-                                    <% } %>
-                                </div>
-
+                            <div class="col-md-12">
+                              <a href="<%= `/getdata/product/${startupData?.uid}` %>">
+                                <h6 class="text-right">View More</h6>
+                              </a>
+                            </div>
                           </div>
 
 
@@ -446,14 +457,14 @@
 
                                 <hr>
                               </div>
-                              <div class="container d-flex flex-column flex-md-row justify-content-center overf">
-                                <div class="container col-md-5 my-3 jobbox "
-                                  style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
+                              <div class="container d-flex flex-column flex-md-row justify-content-center wrapper">
+                                <div class="container col-md-5 my-3 jobbox"
+                                  style=" box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; ">
                                   <div class="m-3">
 
-                                    <div class="imageadd " >
+                                    <div class="imageadd >
 
-                                      <h1 class="head1">press Releases</h1>
+                                      <h1 class=" head1">press Releases</h1>
                                       <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                     </div>
 
@@ -461,7 +472,7 @@
                                     <div class="box-desc">
 
                                       <h4 class="it it1"><b>First</b></h4>
-                                      <h6 class="it it1" >Second</h6>
+                                      <h6 class="it it1">Second</h6>
                                       <h6 class="it " style="font-size: .7rem;">Description of the job posted</h6>
 
                                     </div>
@@ -496,11 +507,17 @@
                                       </div>
                                     </div>
                                   </div>
+
                                   <% }); %>
 
                               </div>
                               <% if(isLogin) {%>
                                 <h3><button class="btn btn-warning mt-1" id="press-add-btn">Add</button></h3>
+                                <div class="col-md-12">
+                                  <a href="<%= `/getdata/pressrelease/${startupData?.uid}` %>">
+                                    <h6 class="text-right">View More</h6>
+                                  </a>
+                                </div>
                                 <% } %>
 
                                   <div>
@@ -522,6 +539,8 @@
                                                 <input name="job_title" id="post-input" type="text"
                                                   class="col-md-12 my-4 mx-sm-2 p-2"
                                                   placeholder="What's the job Title?">
+                                                <input name="event_pic" type="file" class="mx-2 d-block"
+                                                  placeholder="Select">
                                                 <input name="first" type="text" class="mx-2 d-block"
                                                   placeholder="First Value"><br>
                                                 <input name="second" type="text" class="mx-2 d-block"
@@ -564,6 +583,7 @@
                                   <h2 class="text-center my-3">Analytics</h2>
                                   <span hidden id="dataSpan">
                                     <%= resArray %>
+<<<<<<< HEAD
                                       </span>
                                       <span hidden id="dataSpan">
                                         <%= resArray %>
@@ -571,6 +591,15 @@
                                       <% if(resArray.length==0) {%>
                                         <h3 class="text-center">No data present</h3>
                                         <% } %>
+=======
+                                  </span>
+                                  <span hidden id="dataSpan">
+                                    <%= resArray %>
+                                  </span>
+                                  <% if(resArray.length==0) {%>
+                                    <h3 class="text-center">No data present</h3>
+                                    <% } %>
+>>>>>>> merge-updates-fixes
                                 </div>
                               </div>
                               <div class="outer-graph-container row p-3 px-5">
@@ -604,6 +633,7 @@
                                           backgroundColor: "rgba(0,0,0,0)",
                                           borderColor:
                                             colors[Math.floor(Math.random() * colors.length)],
+
                                         },
                                       ],
                                     },
@@ -626,6 +656,7 @@
                                       },
                                     },
                                   });
+                                  console.log(type_title)
                                 }
                               </script>
                               <script>
@@ -679,6 +710,93 @@
                                 document.getElementById("analyticsList").innerHTML = text;
                               </script>
                             </div>
+                            <!-- *******Bar Graph ********Sayantan ****** -->
+                            <% if(locals.barArray) { %>
+                            <div class="bar_graph-container">
+                              <div class="row">
+                                <span hidden id="bar_dataSpan">
+                                  <%= barArray %>
+                                </span>
+                                <% if(barArray.length === 0) {%>
+                                  <h3 class="text-center">No data present</h3>
+                                <% } %>
+
+                              </div>
+                              <div class="outer-bar_graph-container row p-3 px-5">
+
+                              </div>
+
+                              <script>
+                                let bar_graphArr = JSON.parse(document.getElementById("bar_dataSpan").innerText)
+                                bar_graphArr.forEach((bar_graph, index) => {
+                                  const outerContainer = document.querySelector('.outer-bar_graph-container');
+
+
+                                  var xValues = [];
+                                  var yValues = [];
+
+                                  bar_graph.forEach((entry) => {
+                                    const d = new Date(entry.date);
+                                    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                    const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+                                    xValues.push(`${da}-${mo}-${ye}`);
+
+                                    yValues.push(entry.total);
+
+                                  })
+                                  var canvasEl = document.createElement('div');
+                                  canvasEl.classList.add('col-lg-5');
+                                  canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                  outerContainer.append(canvasEl);
+                                  canvasEl.innerHTML += `<canvas id="bar_chart-${index}"></canvas>`
+
+                                  create_bargraph(`bar_chart-${index}`, xValues, yValues, bar_graph[0].type_title);
+                                })
+
+                                function create_bargraph(id, xValues, yValues, type_title) {
+                                  var barColors = [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(255, 205, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(201, 203, 207, 0.2)',
+                                  ];
+                                  let myChart = document.getElementById(id).getContext('2d');
+
+                                  var barchart = new Chart(myChart, {
+                                    type: "bar",
+                                    data: {
+                                      labels: xValues,
+                                      datasets: [{
+                                        backgroundColor: barColors[Math.floor(Math.random() * barColors.length)],
+                                        data: yValues,
+                                        borderColor: barColors[Math.floor(Math.random() * barColors.length)],
+                                        hoverBorderColor: 'red',
+                                        borderWidth: 1,
+                                        hoverBorderWidth: 2,
+                                        barThickness: 20,
+
+                                      }]
+                                    },
+
+                                    options: {
+                                      legend: { display: false },
+                                      title: {
+                                        display: true,
+                                        text: type_title,
+                                      },
+                                    }
+                                  });
+                                  console.log(type_title)
+                                }
+                              </script>
+                            </div>
+                            <% } %>
+                            <!-- ***********************sayantan end****** -->
                           </div>
 
                         </div>

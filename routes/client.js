@@ -42,7 +42,7 @@ router.post("/contact", async (req, res) => {
     const newData = new contactModel(req.body);
     const savedData = await newData.save();
 
-    console.log(savedData);
+    // console.log(savedData);
 
     var redirectMsg =
       "Thankyou for reaching out, your response has been submitted successfully. We'll connect to you shortly.";
@@ -59,7 +59,7 @@ router.get("/register/startup", async (req, res) => {
   try {
     res.render("startupRegister");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -92,7 +92,7 @@ router.post("/register/startup", async (req, res) => {
 
     const startup = await startUpScheme(startupDataToBeSaved);
     const savedStartupData = await startup.save();
-    console.log(savedStartupData);
+    // console.log(savedStartupData);
 
     // PROCESS REGARDING FOUNDER DATA
     const founderDataToBeSaved = founderDetails;
@@ -106,7 +106,7 @@ router.post("/register/startup", async (req, res) => {
 
     const founder = await memberModel(founderDataToBeSaved);
     const savedFounderData = await founder.save();
-    console.log(savedFounderData);
+    // console.log(savedFounderData);
 
     // PROCESS REGARDING SAVING JOB DETAILS DATA
     const jobDataToBeSaved = jobDetails;
@@ -117,7 +117,7 @@ router.post("/register/startup", async (req, res) => {
 
     const newJobData = await jobDetailModel(jobDataToBeSaved);
     const savedJobData = await newJobData.save();
-    console.log(savedJobData);
+    // console.log(savedJobData);
 
     // res.status(201).json({ status: "saved" });
     res.redirect("/login/startup");
@@ -131,7 +131,7 @@ router.get("/register/ca", async (req, res) => {
   try {
     res.status(200).render("caRegister");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -145,7 +145,7 @@ router.post("/register/ca", async (req, res) => {
 
     const dataToBeSaved = new caModel(caData);
     const savedData = await dataToBeSaved.save();
-    console.log(savedData);
+    // console.log(savedData);
 
     const redirectUrl = "/login/ca";
     const redirectMsg =
@@ -153,7 +153,7 @@ router.post("/register/ca", async (req, res) => {
 
     res.status(201).render("redirectPage", { redirectUrl, redirectMsg });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send("Error");
   }
 });
@@ -163,7 +163,7 @@ router.get("/register/mentor", async (req, res) => {
   try {
     res.status(200).render("mentorRegister");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -177,7 +177,7 @@ router.post("/register/mentor", async (req, res) => {
 
     const dataToBeSaved = new mentorModel(menData);
     const savedData = await dataToBeSaved.save();
-    console.log(savedData);
+    // console.log(savedData);
 
     const redirectUrl = "/login/mentor";
     const redirectMsg =
@@ -185,7 +185,7 @@ router.post("/register/mentor", async (req, res) => {
 
     res.status(201).render("redirectPage", { redirectUrl, redirectMsg });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send("Error");
   }
 });
@@ -225,7 +225,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const startupData = await startUpScheme.findOne({
         email_official: email,
@@ -259,7 +259,7 @@ router.post(
       res.redirect("/startup/profile");
       // res.redirect("/startup/profile/posts");
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send(e);
     }
   }
@@ -309,7 +309,7 @@ router.get("/startup/profile/posts", isAuth, async (req, res) => {
       filterArray.push(item.Industry);
     });
     filterArray = [...new Set(filterArray)];
-    console.log(filterArray)
+    // console.log(filterArray)
 
     const isLogin = true;
 
@@ -321,7 +321,7 @@ router.get("/startup/profile/posts", isAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 })
@@ -346,7 +346,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       productDetailSchema
     );
 
-    const productData = await productModel.find();
+    const productData = await productModel.find().sort({ date: -1 });
     // console.log(productData);
 
     //FETCHING PRESS RELEASE DATA
@@ -369,8 +369,8 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       dynamicColSchemas.typeEventSchema
     );
 
-    const foundTypes = await dynamicTypeModel.find();
-    // console.log(foundTypes);
+    const foundTypes = await dynamicTypeModel.find().where({type_of_graph:"Line Graph"});
+    //  console.log(foundTypes);
 
     if (foundTypes.length != 0) {
       foundTypes.forEach((item, index) => {
@@ -402,9 +402,54 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     });
     if (emptyEls == resArray.length) resArray = [];
 
-    // console.log(JSON.stringify(resArray));
+    // 
+   //  console.log(JSON.stringify(resArray));
     resArray = JSON.stringify(resArray);
     const isLogin = true;
+
+    //FETCHING BAR GRAPH DATA
+    let barArray = [];
+    const dynamicBarTypeModel = new mongoose.model(
+      `${uid}_typecollections`,
+      dynamicColSchemas.typeSchema
+    );
+    const bargraphModel = new mongoose.model(
+      `${uid}_graph_eventcollections_bar`,
+      dynamicColSchemas.bargGraphEvent
+    );
+    const barfoundTypes = await dynamicBarTypeModel.find().where({type_of_graph:"Bar Graph"});
+
+    if (barfoundTypes.length != 0) {
+      barfoundTypes.forEach((item, index) => {
+        barArray.push(
+          new Promise((resolve, reject) => {
+            bargraphModel
+              .find({ type_id: item.type_id }, { _id: 0, date: 0, })
+              .sort({ date: 1 })
+              .select({
+                date: 1,
+                total: 1,
+                type_title: 1,
+                type_type: 1,
+              })
+              .then((data) => resolve(data))
+              .catch((err) => reject(err));
+          })
+        );
+      });
+      barArray = await Promise.all(barArray);
+    }
+    let baremptyEls = 0;
+    barArray.forEach((item) => {
+      if (item.length == 0) baremptyEls += 1;
+    });
+    if (baremptyEls == barArray.length) barArray = [];
+
+    console.log(barArray);
+    const barisLogin = true;
+    barArray = JSON.stringify(barArray);
+    // console.log(barfoundTypes);
+
 
     // FETCHING FOUNDER DATA
     const mid = startupData.founders[0];
@@ -464,15 +509,16 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       productData,
       pressReleaseData,
       startupData,
-      resArray,
+      resArray,  
       isLogin,
+      barArray,
       founderData,
       jobDetailData,
       jobAlerts,
       finalTeamArray,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return res.status(500).send("Server Error");
   }
 });
@@ -509,7 +555,7 @@ router.get(
     var number_of_mentorExpData = mentorExpData.length;
     res.render("homePage", { type, loginLink,number_of_startups,number_of_caExpData, number_of_mentorExpData });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     }
   }
@@ -524,7 +570,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const memberData = await memberModel.findOne({ member_Email: email });
       if (!memberData) {
@@ -554,7 +600,7 @@ router.post(
       req.session.mid = memberData.mid;
       res.redirect("/member/profile");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       res.status(400).send(err);
     }
   }
@@ -642,7 +688,7 @@ router.get("/member/profile", isUserAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -679,7 +725,7 @@ router.get(
     var number_of_mentorExpData = mentorExpData.length;
       res.render("homePage", { type, loginLink, number_of_startups, number_of_caExpData, number_of_mentorExpData });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(500).send("Server Error");
     }
   }
@@ -694,7 +740,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const caData = await caModel.findOne({ ca_email: email });
       if (!caData) {
@@ -721,7 +767,7 @@ router.post(
       req.session.ca_id = caData.ca_id;
       res.redirect(`/ca/profile`);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send("Error");
     }
   }
@@ -777,7 +823,7 @@ router.get("/ca/profile", isCAAuth, async (req, res) => {
     );
 
     const caExpData = await caExpModel.find();
-    console.log(caExpData);
+    // console.log(caExpData);
 
 
     const isLogin = true;
@@ -801,7 +847,7 @@ router.get("/ca/profile", isCAAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -813,7 +859,7 @@ router.delete("/logout/ca", async (req, res) => {
     delete req.session.ca_id;
     res.redirect("/login/ca");
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send(Error);
   }
 });
@@ -843,7 +889,7 @@ router.get(
     var number_of_mentorExpData = mentorExpData.length;
       res.render("homePage", { type, loginLink, number_of_startups, number_of_caExpData, number_of_mentorExpData });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(500).send("Server Error");
     }
   }
@@ -858,7 +904,7 @@ router.post(
   isMentorLoggedIn,
   async (req, res) => {
     try {
-      console.log(req.body);
+      // console.log(req.body);
       const email = await req.body.email;
       const mentorData = await mentorModel.findOne({ men_email: email });
       if (!mentorData) {
@@ -887,7 +933,7 @@ router.post(
       req.session.men_id = mentorData.men_id;
       res.redirect("/mentor/profile");
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       res.status(400).send("Error");
     }
   }
@@ -967,7 +1013,7 @@ router.get("/mentor/profile", isMentorAuth, async (req, res) => {
       filterArray,
     });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -979,7 +1025,7 @@ router.delete("/logout/mentor", async (req, res) => {
     delete req.session.men_id;
     res.redirect("/login/mentor");
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send(Error);
   }
 });

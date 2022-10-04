@@ -19,6 +19,10 @@ const typeSchema = new mongoose.Schema({
     required: true,
     default: true,
   },
+  type_of_graph: {
+    type: String,
+    required: true,
+  },
 });
 
 const typeEventSchema = new mongoose.Schema({
@@ -51,7 +55,34 @@ const typeEventSchema = new mongoose.Schema({
     default: false,
   },
 });
+const bargGraphEvent = new mongoose.Schema({
+  date: {
+    type: Date,
+    required: true,
+  },
+  type_id: {
+    type: String,
+    required: true,
+  },
+  total: {
+    type: Number,
+    required: true,
+  },
+  type_title: {
+    type: String,
+    required: true,
+  },
+  type_type: {
+    type: String,
+    required: true,
+  },
+  // value: {
+  //   type: Number,
+  //   required: true,
+  // },
+  
+});
 
-const dynamicColSchemas = { typeSchema, typeEventSchema };
+const dynamicColSchemas = { typeSchema, typeEventSchema, bargGraphEvent };
 
 module.exports = dynamicColSchemas;

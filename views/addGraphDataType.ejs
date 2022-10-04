@@ -47,7 +47,7 @@
     <div class="container cont-height">
       <div class="row shadow">
         <div class="col-md-12">
-          <form id="add-type-form" method="POST">
+          <form id="add-type-form" method="post" action="/adddata/timelinegraph/type/<%= startupData.uid %>">
             <div class="row">
               <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star">Title</label><br />
@@ -59,6 +59,7 @@
                   required
                 /><br /><br />
 
+                <fieldset id="type">
                 <label class="mb-0 ml-0 star">Type</label><br />
                 <input
                 type="radio"
@@ -77,14 +78,26 @@
                 />
                 <label class="mb-0 ml-0 star" for="Corporate">Corporate</label>
                 <br /><br />
+                </fieldset>
 
-                <!--<input
+                <fieldset id="graphs">
+                <label class="mb-0 ml-0 star">Graphs</label><br />
+                <!-- ******************************** -->
+                <input type="radio" name="type_of_graph" required value="Line Graph" id="line graph" />
+                <label class="mb-0 ml-0 star" for="Line Graph">Line Graph</label><br />
+                <input type="radio" name="type_of_graph" required value="Bar Graph" id="bar graph" />
+                <label class="mb-0 ml-0 star" for="Bar Graph">Bar Graph</label>
+                <br /><br />
+                </fieldset>
+                <!-- ********************* -->
+
+                <input
                   type="checkbox"
                   name="timeline"
                   id="timeline-checkbox"
-                  
+                  value="true"
                 />
-                <label class="mb-0 ml-0 star" for="timeline-checkbox">Timeline</label><br><br>-->
+                <label class="mb-0 ml-0 star" for="timeline-checkbox">Timeline</label><br><br>
 
                 </div>
             </div>
@@ -93,7 +106,6 @@
                 <input
                   type="submit"
                   class="btn btn-warning py-2 px-5"
-                  value="Add"
                 />
                </div>
             </div>
@@ -108,27 +120,27 @@
     <script>
         const uid = '<%=startupData.uid%>';
         const form = document.getElementById('add-type-form');
-        form.addEventListener('submit',(e)=>{
-            e.preventDefault();
-            var dataToSubmit = {
-                uid: uid,
-                title: form.elements.title.value,
-                type: form.elements.type.value,
-                timeline: form.elements.timeline.checked
-            };
-            // console.log(dataToSubmit)
+        // form.addEventListener('submit',(e)=>{
+        //     e.preventDefault();
+        //     var dataToSubmit = {
+        //         uid: uid,
+        //         title: form.elements.title.value,
+        //         type: form.elements.type.value,
+        //         timeline: form.elements.timeline.checked
+        //     };
+        //     // console.log(dataToSubmit)
 
-            fetch(api_addGraphDataType,{
-                method:'POST',
-                body:JSON.stringify(dataToSubmit),
-                headers:{
-                    'Content-type':'application/json'
-                }
-            }).then(res=>{
-                if(res.redirected) window.location.href = res.url;
-               // else if(res.status===400) alert('Could not add data')
-            })
-        })
+        //     fetch(api_addGraphDataType,{
+        //         method:'POST',
+        //         body:JSON.stringify(dataToSubmit),
+        //         headers:{
+        //             'Content-type':'application/json'
+        //         }
+        //     }).then(res=>{
+        //         if(res.redirected) window.location.href = res.url;
+        //        // else if(res.status===400) alert('Could not add data')
+        //     })
+        // })
     </script>
   </body>
 </html>

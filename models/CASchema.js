@@ -18,7 +18,7 @@ const caSchema = mongoose.Schema({
     validate(value) {
       const phone = validate.isMobilePhone(value.toString());
       if (!phone) {
-        console.log("incorrect phone no");
+        //console.log("incorrect phone no");
       }
     },
   },
@@ -29,7 +29,7 @@ const caSchema = mongoose.Schema({
     validate(value) {
       const email = validate.isEmail(value);
       if (!email) {
-        console.log("incorrect email");
+        //console.log("incorrect email");
       }
     },
   },
@@ -72,7 +72,7 @@ caSchema.pre("save", async function (next) {
 
     next();
   } catch (e) {
-    console.log(e.message);
+    //console.log(e.message);
   }
 });
 

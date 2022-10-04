@@ -77,7 +77,7 @@ router.get("/startup/teammember", async (req, res) => {
   try {
     res.status(200).render("memberRegister");
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -126,7 +126,7 @@ router.get("/profile/startup/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("profilePicAdd", { p_id, p_name, p_picUrl, url });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Error");
   }
 });
@@ -149,7 +149,7 @@ router.post(
       // res.status(201).send("Uploaded");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(500).send("Error");
     }
   }
@@ -169,7 +169,7 @@ router.get("/profile/founder/:mid", isAuth, async (req, res) => {
 
     res.status(200).render("founderPicAdd", { p_id, p_name, p_picUrl, url });
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(500).send("Error");
   }
 }
@@ -193,7 +193,7 @@ router.post(
       // res.status(201).send("Uploaded");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(500).send("Error");
     }
   }
@@ -235,7 +235,7 @@ router.post(
       // res.status(201).send("Uploaded");
       res.redirect("/member/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -273,11 +273,11 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      //console.log(setData);
       // res.status(201).send("Uploaded");
       res.redirect("/ca/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -315,11 +315,11 @@ router.post(
         { new: true }
       );
 
-      console.log(setData);
+      //console.log(setData);
       // res.status(201).send("Uploaded");
       res.redirect("/mentor/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(400).send("Error");
     }
   }
@@ -337,7 +337,7 @@ router.get("/resume/member/:mid", isUserAuth, async (req, res) => {
 
     res.render("resumeAdd", { p_name, url });
   } catch (e) {
-    console.log(e);
+   // console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -362,7 +362,7 @@ router.post(
 
       res.render("redirectPage", { redirectMsg, redirectUrl });
     } catch (e) {
-      console.log(e);
+     // console.log(e);
       res.status(400).send("Error");
     }
   }
@@ -378,7 +378,7 @@ router.get("/teammember/jobdetails/:mid", isUserAuth, async (req, res) => {
 
     res.render("jobDetailsRegister", { mid, startups });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Server Error");
   }
 });
@@ -390,7 +390,7 @@ router.post("/teammember/jobdetails", isUserAuth, async (req, res) => {
     if (!inData.from_date) inData.from_date = Date.now();
     const dataToAdd = new jobDetailModel(inData);
     const savedData = await dataToAdd.save();
-    console.log(savedData);
+    //console.log(savedData);
     res.status(201).send("Saved");
   } catch (err) {
     res.status(400).send(err);
@@ -403,7 +403,7 @@ router.get("/teammember/skills/:mid", isUserAuth, async (req, res) => {
 
     res.status(200).render("skillsAddEdit", { mid });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -414,7 +414,7 @@ router.get("/jobposts/:uid", isAuth, async (req, res) => {
     const uid = req.params.uid;
     res.status(200).render("jobAlertAdd", { uid });
   } catch (e) {
-    console.log(e);
+    //console.log(e);
     res.status(500).send("Server Error");
   }
 });
@@ -428,12 +428,12 @@ router.post("/jobposts", isAuth, async (req, res) => {
 
     const newData = new jobPostModel(dataToBeSaved);
     const savedData = await newData.save();
-    console.log(savedData);
+   // console.log(savedData);
 
     // res.status(201).json(savedData);
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send(err);
   }
 });
@@ -450,7 +450,7 @@ router.post("/jobposts/apply", isUserAuth, async (req, res) => {
 
     res.status(201).json(savedData);
   } catch (err) {
-    console.log(err);
+    //console.log(err);
     res.status(400).send(err);
   }
 });
@@ -463,16 +463,16 @@ router.get("/timelinegraph/type/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("addGraphDataType", { startupData });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send("Server Error");
   }
 });
 
 // ADDING event type DATA BY CREATING COLLECTIONS DYNAMICALLY
-router.post("/timelinegraph/type", isAuth, async (req, res) => {
+router.post("/timelinegraph/type/:uid", isAuth, async (req, res) => {
   try {
-    console.log(req.body);
-    const uid = req.body.uid;
+   // console.log(req.body);
+    const uid = req.params.uid;
     const type_id = uuidv4();
 
     // CREATING COLLECTION DYNAMICALLY
@@ -485,13 +485,30 @@ router.post("/timelinegraph/type", isAuth, async (req, res) => {
       type: req.body.type,
       type_id: type_id,
       timeline: req.body.timeline,
+      type_of_graph: req.body.type_of_graph,
     });
     const savedData = await typeToBeSaved.save();
     // console.log(savedData);
     // res.status(201).send(savedData);
+    
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `added ${req.body.title}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
+    
+    
     res.redirect(`/adddata/timelinegraph/${req.session.uid}`);
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(400).send(err);
   }
 });
@@ -509,7 +526,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 
     res.status(200).render("addGraphData", { startupData, typesData });
   } catch (err) {
-    console.log(err);
+   // console.log(err);
     res.status(500).send(err);
   }
 });
@@ -517,7 +534,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 // ADDING event DATA BY CREATING COLLECTIONS DYNAMICALLY
 router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
   try {
-    console.log(req.body);
+   // console.log(req.body);
     const uid = req.body.uid;
     const type_id = req.body.type_id;
     let total;
@@ -556,21 +573,24 @@ router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
     // console.log(savedGraphEveData);
 
     // ADDING TIMELINE EVENT
-    const dynamicTEventModel = new mongoose.model(
-      `${uid}_timeline_collection`,
-      timelineEventSchema
-    );
-    const tDataToBeAdded = new dynamicTEventModel({
-      date: Date.now(),
-      event_title: `Now ${req.body.type_title} are ${total}`,
-    });
-    const savedTData = await tDataToBeAdded.save();
-    // console.log(savedTData);
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `Now ${req.body.type_title} are ${total}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
 
     // res.status(201).send(savedGraphEveData);
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 });
@@ -590,7 +610,11 @@ router.post(
       let picUrl;
       if (req.file) {
         if (req.file.filename) picUrl = `/${req.file.filename}`;
+<<<<<<< HEAD
         else picUrl = "/default_profile.png";
+=======
+        else picUrl = "/default_profile.png" ;
+>>>>>>> merge-updates-fixes
       } else {
         picUrl = "/default_profile.png";
       }
@@ -605,7 +629,7 @@ router.post(
       // res.status(201).json("Posted press back");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       res.status(400).send(err);
     }
   }
@@ -638,7 +662,7 @@ router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
       // res.status(201).json("Posted press back");
       res.redirect("/startup/profile");
     } catch (err) {
-      console.log(err);
+     // console.log(err);
       res.status(400).send(err);
     }
   });
@@ -646,7 +670,7 @@ router.post("/product/:uid/addproduct", isAuth, upload.single("event_pic"),
 router.post("/press/:uid/addpress", isAuth, async (req, res) => {
   try {
     const uid = req.params.uid;
-    console.log(req.body);
+    // console.log(req.body);
     const dynamicPressModel = new mongoose.model(
       `${uid}_press_collections`,
       pressReleaseSchema
@@ -665,7 +689,7 @@ router.post("/press/:uid/addpress", isAuth, async (req, res) => {
     // res.status(201).json("Posted press back");
     res.redirect("/startup/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -692,7 +716,7 @@ router.post("/ca/:ca_id/addexperience", async (req, res) => {
     // res.status(201).json("Posted ca experience");
     res.redirect("/ca/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -717,7 +741,7 @@ router.post("/mentor/:mentor_id/addexperience", async (req, res) => {
     // res.status(201).json("Posted mentor experience");
     res.redirect("/mentor/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -738,11 +762,11 @@ router.post("/user/:user_id/addexperience", async (req, res) => {
     });
 
     const savedData = await dataToBeAdded.save();
-    console.log(savedData);
+    // console.log(savedData);
     // res.status(201).json("Posted user experience");
     res.status(201).redirect("/member/profile");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send(err);
   }
 }
@@ -775,7 +799,7 @@ router.get("/startup/:uid/financials/projectionsForm", async (req, res) => {
     
     
   } catch(e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 })
@@ -903,7 +927,7 @@ router.post("/startup/:uid/financials/projectionsForm", async(req, res) => {
     return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     
   }catch(e){
-    console.log(e);
+    // console.log(e);
     res.status(500).send("Server Error");
   }
 })
@@ -992,10 +1016,75 @@ router.post("/startup/:uid/financials/appManualForm", async(req, res) => {
     return res.status(201).render("redirectPage", { redirectMsg, redirectUrl });
     
   }catch(e){
-    console.log(e);
+    // console.log(e);
     res.status(500).send(e.message);
   }
 })
+
+//Implementing Bar Graph Calculation of value
+
+router.post("/timelinegraph/:type_id/bargraph", isAuth, async (req, res) => {
+  try {
+   // console.log(req.body);
+    const uid = req.body.uid;
+    const type_id = req.params.type_id;
+    const total = req.body.total;
+
+    // CREATING COLLECTION DYNAMICALLY
+    const dynamicEveModel = new mongoose.model(
+      `${uid}_graph_eventcollections_bar`,
+      dynamicColSchemas.bargGraphEvent
+    );
+
+    // const graph = await dynamicEveModel.find({ type_id: type_id });
+    // console.log(graph);
+    // Checking previous data
+    // const findPrevData = await dynamicEveModel.find({ type_id: type_id });
+    // console.log("Previous Data");
+    // console.log(findPrevData);
+    // res.json(findPrevData);
+    // if (findPrevData.length == 0) {
+    //   total = req.body.diff;
+    // } else {
+    // Condition to check if there is anm increase or decrease in data
+    //   if (req.body.isLess == true)
+    //     total = findPrevData[findPrevData.length - 1].total - req.body.diff;
+    //   else total = findPrevData[findPrevData.length - 1].total + req.body.diff;
+    // }
+    // total = req.body.diff;
+
+    const dataToBeAdded = new dynamicEveModel({
+      type_id: type_id,
+      total: total,
+      type_title: req.body.type_title,
+      type_type: req.body.type_type,
+      date: Date.now(),
+    });
+    const savedGraphEveData = await dataToBeAdded.save();
+    // console.log(savedGraphEveData);
+
+    // ADDING TIMELINE EVENT
+    if(req.body.timeline == "true")
+    {
+      const dynamicTEventModel = new mongoose.model(
+        `${uid}_timeline_collection`,
+        timelineEventSchema
+      );
+      const tDataToBeAdded = new dynamicTEventModel({
+        date: Date.now(),
+        event_title: `Now ${req.body.type_title} are ${total}`,
+      });
+      const savedTData = await tDataToBeAdded.save();
+      // console.log(savedTData);
+    }
+
+    // res.status(201).send(savedGraphEveData);
+    res.redirect("/startup/profile");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send(err);
+  }
+});
 
 
 module.exports = router;
