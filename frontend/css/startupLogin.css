@@ -399,8 +399,13 @@ position: relative;
   margin: 25px 0px;
 }
 .it1{
+font-size: 1.25rem;
+display: -webkit-box;
+max-width: 200px;
+-webkit-line-clamp: 5;
+-webkit-box-orient: vertical;
+overflow: hidden;
 
- overflow-wrap: break-word;
 }
 .it {
   position: relative;
