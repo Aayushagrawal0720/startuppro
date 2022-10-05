@@ -405,7 +405,7 @@ position: relative;
 .it {
   position: relative;
   top: 100px;
-  padding: 3px 5px ;
+  padding: 1px 5px ;
   overflow-wrap: anywhere;
 }
 .button {
@@ -776,7 +776,6 @@ position: relative;
   justify-content: center;
   align-items: center;
   height: 100px; */
-  margin: 10px 0px;
    font-weight: bold;
    font-size: 1.1rem; 
   color: rgb(1, 2, 3);

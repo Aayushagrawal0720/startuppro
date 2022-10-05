@@ -9,6 +9,10 @@ const pressReleaseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    imagePress:{
+        type: String,
+        default:"/default-image.jpg",
+    },
     second: {
         type: String,
         required: true,

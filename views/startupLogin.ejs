@@ -492,17 +492,18 @@
                                     style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                     <div class="m-3">
                                       <div class="imageadd">
-                                        <h1 class="head1">
-                                          <%= item.job_title %>
-                                        </h1>
-                                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
+                                         <img src="<%= item.imagePress %>" class="imageadd" style="width: 100%; height: 100%;"> 
                                       </div>
 
                                       <div class="box-desc">
-                                        <h4 class="it it1"><b>
+                                        
+                                        <h4 class="it it1">
+                                          <%= item.job_title %>
+                                        </h4>
+                                        <h5 class="it it1"><b>
                                             <%= item.first %>
                                           </b></h4>
-                                        <h6 class="it it1">
+                                        <h5 class="it it1">
                                           <%= item.second %>
                                         </h6>
                                         <h6 class="it" style="font-size: .7rem;">
