@@ -407,7 +407,11 @@
                                       </div>
                                     </div>
                                     <row>
+<<<<<<< HEAD
+                                    
+=======
                                       <div class="col-md-12 text-sm-right text-center" style="top: -16%;">
+>>>>>>> 598a759db5d8405834a1dd4f3561f37033bd8d86
                                         <input type="submit" class="btn my-4 btn-warning" value="Post">
                                       </div>
                                       </form>
@@ -737,10 +741,10 @@
 
                                   })
                                   var canvasEl = document.createElement('div');
-                                  canvasEl.classList.add('col-lg-5');
+                                  canvasEl.classList.add('barClass');
                                   canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
                                   outerContainer.append(canvasEl);
-                                  canvasEl.innerHTML += `<canvas id="bar_chart-${index}"></canvas>`
+                                  canvasEl.innerHTML += `<canvas id="bar_chart-${index}" class="barCnv"></canvas>`
 
                                   create_bargraph(`bar_chart-${index}`, xValues, yValues, bar_graph[0].type_title);
                                 })
