@@ -38,21 +38,21 @@
             <div class="row">
               <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star">Name</label><br />
-                <input type="text" name="ca_name" placeholder="Name" class="p-1 outline" required /><br /><br />
+                <input type="text" name="ca_name" placeholder="<%=caData.ca_name %>" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0 star">Phone Number</label><br />
-                <input type="number" name="mobile_no" placeholder="Phone Number" class="p-1 outline"
+                <input type="number" name="mobile_no" placeholder="<%= caData.mobile_no %>" class="p-1 outline"
                   required /><br /><br />
 
                 <label class="mb-0 ml-0 star">Certificate Number</label><br />
-                <input type="text" name="certificate_no" placeholder="Certificate Number" class="p-1 outline"
+                <input type="text" name="certificate_no" placeholder="<%= caData.certificate_no %>" class="p-1 outline"
                   required /><br /><br />
 
                 <label class="mb-0 ml-0 star">Email</label><br />
-                <input type="email" name="ca_email" placeholder="Email" class="p-1 outline" required /><br /><br />
+                <input type="email" name="ca_email" placeholder="<%= caData.ca_email %>" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0">LinkedIn URL</label><br />
-                <input type="text" name="linkedin_url" placeholder="LinkedIn URL" class="p-1 outline" /><br /><br />
+                <input type="text" name="linkedin_url" placeholder="<%= caData.linkedin_url %>" class="p-1 outline" /><br /><br />
               </div>
               <!-- <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star" for="o-pass">Password</label><br />

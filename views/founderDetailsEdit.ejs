@@ -38,18 +38,18 @@
             <div class="row">
               <div class="col-md-6 parent">
                 <label class="mb-0 ml-0 star">Name</label><br />
-                <input type="text" name="member_name" placeholder="Name" class="p-1 outline" required /><br /><br />
+                <input type="text" name="member_name" placeholder=" <%= memberData.member_name %>" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0 star">Phone Number</label><br />
-                <input type="number" name="mobile_no" placeholder="Phone Number" class="p-1 outline"
+                <input type="number" name="mobile_no" placeholder="<%= memberData.mobile_no %>" class="p-1 outline"
                   required /><br /><br />
               </div>
               <div class="col-md-6">
                 <label class="mb-0 ml-0 star">Email</label><br />
-                <input type="email" name="member_Email" placeholder="Email" class="p-1 outline" required /><br /><br />
+                <input type="email" name="member_Email" placeholder="<%= memberData.member_Email %>" class="p-1 outline" required /><br /><br />
 
                 <label class="mb-0 ml-0">LinkedIn Url</label><br />
-                <input type="text" name="linkedin_url" placeholder="LinkedIn Url" class="p-1 outline" /><br /><br />
+                <input type="text" name="linkedin_url" placeholder="<%= memberData.linkedin_url %>" class="p-1 outline" /><br /><br />
 
                 <!-- <label class="mb-0 ml-0 star">Job Title</label><br />
                 <input
