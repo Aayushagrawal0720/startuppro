@@ -1057,12 +1057,16 @@ router.get("/startup/:uid/financials", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
-    res.status(200).render("financials", {isAuthenticated, isStartUpLoggedIn, uid});
+    res.status(200).render("financials", {isAuth, isAuthenticated, isStartUpLoggedIn, uid});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1073,12 +1077,12 @@ router.get("/startup/:uid/financials/prepare", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsPrepare", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("startupFinancialsPrepare", {isAuth, isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1089,12 +1093,12 @@ router.get("/startup/:uid/financials/pitchDeck", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
-    res.status(200).render("startupFinancialsPitchDeck", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("startupFinancialsPitchDeck", {isAuth, isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1105,14 +1109,14 @@ router.get("/startup/:uid/financials/projections", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
     var projectionData = await ProjectionModel.findOne({uid: uid});
     
-    res.status(200).render("startupFinancialsProjectionsData", {isAuthenticated, isStartUpLoggedIn, projectionData});
+    res.status(200).render("startupFinancialsProjectionsData", {isAuth, isAuthenticated, isStartUpLoggedIn, projectionData});
   } catch(e) {
     res.status(500).send("Server Error");
   }
