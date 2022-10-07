@@ -1081,6 +1081,9 @@ router.get("/startup/:uid/financials/prepare", async (req, res) => {
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
     res.status(200).render("startupFinancialsPrepare", {isAuth, isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
@@ -1097,6 +1100,10 @@ router.get("/startup/:uid/financials/pitchDeck", async (req, res) => {
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
     res.status(200).render("startupFinancialsPitchDeck", {isAuth, isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
@@ -1115,6 +1122,10 @@ router.get("/startup/:uid/financials/projections", async (req, res) => {
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
     var projectionData = await ProjectionModel.findOne({uid: uid});
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
     res.status(200).render("startupFinancialsProjectionsData", {isAuth, isAuthenticated, isStartUpLoggedIn, projectionData});
   } catch(e) {
@@ -1133,6 +1144,10 @@ router.get("/startup/:uid/financials/appManual", async (req, res) => {
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
     var appManualData = await ApplicationManualModel.findOne({uid: uid});
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
     res.status(200).render("startupFinancialsAppManualData", {isAuth,isAuthenticated, isStartUpLoggedIn, appManualData});
   } catch(e) {
