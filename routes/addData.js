@@ -149,7 +149,7 @@ router.post(
       const isAuth = (req.session?.isAuth);
       // console.log(setData);
       // res.status(201).send("Uploaded");
-      res.redirect("/startup/profile", isAuth);
+      res.redirect("/startup/profile");
     } catch (err) {
       //console.log(err);
       res.status(500).send("Error");
