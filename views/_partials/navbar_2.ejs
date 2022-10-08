@@ -26,7 +26,19 @@
         <li class="mb-0"><a href="/login/startup" class="login-nav"> LOGIN</a></li>
       </h4> -->
       <h4 class="mb-0">
-        <a class="login-nav" href="/login/startup">LOGIN</a>
+        <% if(locals.isAuth && isAuth == true) { %>
+        <a class="login-nav" href="/startup/profile">DASHBOARD</a>
+        <% }else if(locals.isAuthUser && isAuthUser == true){ %>
+          <a class="login-nav" href="/login/member">DASHBOARD</a>
+        <% } else if(locals.isAuthDeveloper && isAuthDeveloper == true) { %>
+          <a class="login-nav" href="/login/developer">DASHBOARD</a>
+        <% } else if(locals.isAuthCA && isAuthCA == true) { %>
+          <a class="login-nav" href="/login/ca">DASHBOARD</a>
+        <% } else if(locals.isAuthMentor && isAuthMentor == true) { %>
+          <a class="login-nav" href="/login/mentor">DASHBOARD</a>
+        <% } else{ %>
+          <a class="login-nav" href="/login/startup">LOGIN</a>
+        <% } %>
       </h4>
     </ul>
   </div>

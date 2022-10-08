@@ -31,8 +31,9 @@ router.get("/startup/:uid/basicdetails", isAuth, async (req, res) => {
   try {
     const uid = req.params.uid;
     const startupData = await startUpScheme.findOne({ uid: uid });
+    const isAuth = (req.session?.isAuth);
 
-    res.status(200).render("startupDetailsEdit", { startupData });
+    res.status(200).render("startupDetailsEdit", {isAuth, startupData });
   } catch (err) {
     //console.log(err);
     res.status(500).send("Server Error");
@@ -78,9 +79,10 @@ router.post("/startup/:uid/basicdetails", isAuth, async (req, res) => {
 router.get("/member/:mid", isUserAuth, async (req, res) => {
   try {
     const mid = req.params.mid;
+    const isAuthUser = (req.session?.isAuthUser);
     const memberData = await membersModel.findOne({ mid: mid });
 
-    res.status(200).render("founderDetailsEdit", { memberData });
+    res.status(200).render("founderDetailsEdit", { memberData,isAuthUser });
   } catch (err) {
     res.status(500).send("Server Error");
   }
@@ -158,8 +160,9 @@ router.get("/teammember/editDetails/:mid", isUserAuth, async (req, res) => {
     const mid = req.params.mid;
     const jobDetailData = await jobDetailModel.findOne({ mid: mid });
     const startups = await startUpScheme.find();
+    const isAuthUser = (req.session?.isAuthUser);
 
-    res.status(201).render("jobDetailsEdit", { jobDetailData, startups, mid });
+    res.status(201).render("jobDetailsEdit", {isAuthUser, jobDetailData, startups, mid });
   } catch (e) {
     //console.log(e);
     res.status(500).send("Server Error");
@@ -284,7 +287,8 @@ router.get("/ca/:ca_id", isCAAuth, async (req, res) => {
   try {
     const ca_id = req.params.ca_id;
     const caData = await caModel.findOne({ ca_id: ca_id });
-    res.status(200).render("caDetailsEdit", { caData });
+    const isAuthCA = (req.session?.isAuthCA);
+    res.status(200).render("caDetailsEdit", {isAuthCA, caData });
   } catch (err) {
     //console.log(err);
     res.status(500).send("Error");
@@ -315,7 +319,8 @@ router.get("/mentor/:men_id", isMentorAuth, async (req, res) => {
   try {
     const men_id = req.params.men_id;
     const men_data = await mentorModel.findOne({ men_id: men_id });
-    res.status(200).render("mentorDetailsEdit", { men_data });
+    const isAuthMentor = (req.session?.isAuthMentor);
+    res.status(200).render("mentorDetailsEdit", {isAuthMentor, men_data });
   } catch (err) {
     //console.log(err);
     res.status(500).send("Error");
