@@ -547,7 +547,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 // ADDING event DATA BY CREATING COLLECTIONS DYNAMICALLY
 router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
   try {
-   // console.log(req.body);
+   console.log(req.body);
     const uid = req.body.uid;
     const type_id = req.body.type_id;
     let total;
