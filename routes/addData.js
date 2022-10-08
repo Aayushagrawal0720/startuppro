@@ -121,10 +121,11 @@ router.get("/profile/startup/:uid", isAuth, async (req, res) => {
     var p_name = startupData.startup_name;
     var p_id = startupData.uid;
     var p_picUrl = startupData.pic_url;
+    const isAuth = (req.session?.isAuth);
 
     var url = `/adddata/profile/startup/${p_id}`;
 
-    res.status(200).render("profilePicAdd", { p_id, p_name, p_picUrl, url });
+    res.status(200).render("profilePicAdd", {isAuth, p_id, p_name, p_picUrl, url });
   } catch (err) {
    // console.log(err);
     res.status(500).send("Error");
@@ -145,9 +146,10 @@ router.post(
         { new: true }
       );
 
+      const isAuth = (req.session?.isAuth);
       // console.log(setData);
       // res.status(201).send("Uploaded");
-      res.redirect("/startup/profile");
+      res.redirect("/startup/profile", isAuth);
     } catch (err) {
       //console.log(err);
       res.status(500).send("Error");
@@ -160,6 +162,7 @@ router.get("/profile/founder/:mid", isAuth, async (req, res) => {
   try {
     const mid = req.params.mid;
     const founderData = await teamMemberModel.findOne({ mid: mid });
+    const isAuth = (req.session?.isAuth);
 
     var p_name = founderData.member_name;
     var p_id = founderData.mid;
@@ -167,7 +170,7 @@ router.get("/profile/founder/:mid", isAuth, async (req, res) => {
 
     var url = `/adddata/profile/founder/${p_id}`;
 
-    res.status(200).render("founderPicAdd", { p_id, p_name, p_picUrl, url });
+    res.status(200).render("founderPicAdd", {isAuth, p_id, p_name, p_picUrl, url });
   } catch (err) {
     //console.log(err);
     res.status(500).send("Error");
@@ -209,9 +212,11 @@ router.get("/profile/member/:mid", isUserAuth, async (req, res) => {
     var p_name = memberData.member_name;
     var p_picUrl = memberData.pic_url;
 
+    const isAuthUser = (req.session?.isAuthUser);
+
     var url = `/addData/profile/member/${p_id}`;
 
-    res.status(200).render("profilePicAdd", { p_id, p_name, p_picUrl, url });
+    res.status(200).render("profilePicAdd", {isAuthUser, p_id, p_name, p_picUrl, url });
   } catch (err) {
     res.status(500).send("Error");
   }
@@ -231,9 +236,11 @@ router.post(
         { new: true }
       );
 
+      const isAuthUser = (req.session?.isAuthUser);
+
       // console.log(setData);
       // res.status(201).send("Uploaded");
-      res.redirect("/member/profile");
+      res.redirect("/member/profile",{isAuthUser});
     } catch (err) {
      // console.log(err);
       res.status(400).send("Error");
@@ -246,6 +253,7 @@ router.get("/profile/ca/:ca_id", isCAAuth, async (req, res) => {
   try {
     const ca_id = req.params.ca_id;
     const caData = await caModel.findOne({ ca_id: ca_id });
+    const isAuthCA = (req.session?.isAuthCA);
 
     var p_id = caData.ca_id;
     var p_name = caData.ca_name;
@@ -253,7 +261,7 @@ router.get("/profile/ca/:ca_id", isCAAuth, async (req, res) => {
 
     var url = `/addData/profile/ca/${p_id}`;
 
-    res.status(200).render("profilePicAdd", { p_id, p_name, p_picUrl, url });
+    res.status(200).render("profilePicAdd", {isAuthCA, p_id, p_name, p_picUrl, url });
   } catch (err) {
     res.status(500).send("Error");
   }
@@ -288,6 +296,7 @@ router.get("/profile/mentor/:men_id", isMentorAuth, async (req, res) => {
   try {
     const men_id = req.params.men_id;
     const menData = await mentorModel.findOne({ men_id: men_id });
+    const isAuthMentor = (req.session?.isAuthMentor);
 
     var p_id = menData.men_id;
     var p_name = menData.men_name;
@@ -295,7 +304,7 @@ router.get("/profile/mentor/:men_id", isMentorAuth, async (req, res) => {
 
     var url = `/addData/profile/mentor/${p_id}`;
 
-    res.status(200).render("profilePicAdd", { p_id, p_name, p_picUrl, url });
+    res.status(200).render("profilePicAdd", {isAuthMentor, p_id, p_name, p_picUrl, url });
   } catch (err) {
     res.status(500).send("Error");
   }
@@ -335,7 +344,8 @@ router.get("/resume/member/:mid", isUserAuth, async (req, res) => {
     var p_name = userData.member_name;
     var url = `/adddata/resume/member/${mid}`;
 
-    res.render("resumeAdd", { p_name, url });
+    const isAuthUser = (req.session?.isAuthUser);
+    res.render("resumeAdd", {isAuthUser, p_name, url });
   } catch (e) {
    // console.log(e);
     res.status(500).send("Server Error");
@@ -400,8 +410,9 @@ router.post("/teammember/jobdetails", isUserAuth, async (req, res) => {
 router.get("/teammember/skills/:mid", isUserAuth, async (req, res) => {
   try {
     const mid = req.params.mid;
+    const isAuthUser = (req.session?.isAuthUser);
 
-    res.status(200).render("skillsAddEdit", { mid });
+    res.status(200).render("skillsAddEdit", {isAuthUser, mid });
   } catch (e) {
     //console.log(e);
     res.status(500).send("Server Error");
@@ -412,7 +423,8 @@ router.get("/teammember/skills/:mid", isUserAuth, async (req, res) => {
 router.get("/jobposts/:uid", isAuth, async (req, res) => {
   try {
     const uid = req.params.uid;
-    res.status(200).render("jobAlertAdd", { uid });
+    const isAuth = (req.session?.isAuth);
+    res.status(200).render("jobAlertAdd", {isAuth, uid });
   } catch (e) {
     //console.log(e);
     res.status(500).send("Server Error");
@@ -523,8 +535,9 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
       dynamicColSchemas.typeSchema
     );
     const typesData = await dynamicTypeModel.find();
+    const isAuth = (req.session?.isAuth);
 
-    res.status(200).render("addGraphData", { startupData, typesData });
+    res.status(200).render("addGraphData", {isAuth, startupData, typesData });
   } catch (err) {
    // console.log(err);
     res.status(500).send(err);
@@ -534,7 +547,7 @@ router.get("/timelinegraph/:uid", isAuth, async (req, res) => {
 // ADDING event DATA BY CREATING COLLECTIONS DYNAMICALLY
 router.post("/timelinegraph/graphevent", isAuth, async (req, res) => {
   try {
-   // console.log(req.body);
+   console.log(req.body);
     const uid = req.body.uid;
     const type_id = req.body.type_id;
     let total;

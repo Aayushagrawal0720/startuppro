@@ -53,7 +53,7 @@
       <!-- ######### SUBMIT FORM FUNCTION -->
       <script src="/js/apiAddresses.js"></script>
       <script>
-          function submitForm(type_id,diff,type_title,type_type,type_of_graph,isLess, timeline){
+          function submitForm(type_id,diff,type_title,type_type,isLess, timeline){
             const uid = '<%- startupData.uid %>';
             const formBody = {
                 uid:uid,
@@ -61,7 +61,6 @@
                 diff:parseFloat(diff),
                 type_title:type_title,
                 type_type: type_type,
-                type_of_graph: type_of_graph,
                 isLess: isLess,
                 timeline: timeline
             };

@@ -574,6 +574,7 @@ router.get("/graph/:uid", async (req, res) => {
 // GET JOB DETAILS SET BY USERS OF A STARTUP DATA
 router.get("/startup/jobdetails/:uid", isAuth, async (req, res) => {
   const uid = req.params.uid;
+  const isAuth = (req.session?.isAuth);
   const startupData = await startUpScheme
     .findOne({ uid: uid })
     .select({ startup_name: 1 });
@@ -608,7 +609,7 @@ router.get("/startup/jobdetails/:uid", isAuth, async (req, res) => {
   finalArray = await Promise.all(finalArray);
 
   // res.send(finalArray);
-  res.status(200).render("jobDetailsPage", { finalArray });
+  res.status(200).render("jobDetailsPage", {isAuth, finalArray });
 });
 
 // SEE JOB ALTERTS SET BY COMPANY FOR EVERYONE
@@ -630,6 +631,7 @@ const checkUserForJobDetail = (req, res, next) => {
 router.get("/jobalerts", checkUserForJobs, async (req, res) => {
   try {
     const jobAlerts = await jobPostModel.find();
+    const isAuth = (req.session?.isAuth);
 
     var noAlerts = false;
 
@@ -665,7 +667,7 @@ router.get("/jobalerts", checkUserForJobs, async (req, res) => {
     });
 
     resArray = await Promise.all(resArray);
-    res.status(200).render("jobAlertsPagePublic", { resArray, noAlerts });
+    res.status(200).render("jobAlertsPagePublic", {isAuth, resArray, noAlerts });
   } catch (e) {
     //console.log(e);
     res.status(500).send("Server Error");
@@ -690,6 +692,7 @@ router.get("/jobalerts/:mid", isUserAuth, async (req, res) => {
   try {
     const mid = req.params.mid;
     const jobAlerts = await jobPostModel.find();
+    const isAuthUser = (req.session?.isAuthUser);
 
     var noAlerts = false;
 
@@ -725,7 +728,7 @@ router.get("/jobalerts/:mid", isUserAuth, async (req, res) => {
     });
 
     resArray = await Promise.all(resArray);
-    res.status(200).render("jobAlertsPage", { mid, resArray, noAlerts });
+    res.status(200).render("jobAlertsPage", {isAuthUser, mid, resArray, noAlerts });
   } catch (e) {
     //console.log(e);
     res.status(500).send("Server Error");
@@ -737,6 +740,7 @@ router.get("/jobalert/:jid/:mid", isUserAuth, async (req, res) => {
   try {
     const jid = req.params.jid;
     const mid = req.params.mid;
+    const isAuthUser = (req.session?.isAuthUser);
 
     const jobAlert = await jobPostModel.findOne({ jid: jid });
     const userData = await teamMemberModel
@@ -746,7 +750,7 @@ router.get("/jobalert/:jid/:mid", isUserAuth, async (req, res) => {
 
     res
       .status(200)
-      .render("jobAlertDetail", { jobAlert, userData, startupData });
+      .render("jobAlertDetail", {isAuthUser, jobAlert, userData, startupData });
   } catch (e) {
     //console.log(e);
     res.status(500).send("Server Error");
@@ -758,12 +762,13 @@ router.get("/startup/jobalerts/:uid", isAuth, async (req, res) => {
   try {
     const uid = req.params.uid;
     const jobAlerts = await jobPostModel.find({ uid: uid });
+    const isAuth = (req.session?.isAuth);
 
     var noAlerts = false;
 
     if (jobAlerts.length === 0) {
       noAlerts = true;
-      return res.render("jobAlertsPage", { noAlerts });
+      return res.render("jobAlertsPage", {isAuth, noAlerts });
     }
 
     let resArray = [];
@@ -793,7 +798,7 @@ router.get("/startup/jobalerts/:uid", isAuth, async (req, res) => {
     });
 
     resArray = await Promise.all(resArray);
-    res.status(200).render("jobAlertsPageStartup", { resArray, noAlerts });
+    res.status(200).render("jobAlertsPageStartup", {isAuth, resArray, noAlerts });
   } catch (e) { }
 });
 
@@ -802,6 +807,7 @@ router.get("/startup/jobalerts/public/:uid", async (req, res) => {
   try {
     const uid = req.params.uid;
     const jobAlerts = await jobPostModel.find({ uid: uid });
+    const isAuth = (req.session?.isAuth);
 
     var noAlerts = false;
 
@@ -839,7 +845,7 @@ router.get("/startup/jobalerts/public/:uid", async (req, res) => {
     resArray = await Promise.all(resArray);
     res
       .status(200)
-      .render("jobAlertsPageStartupPublic", { resArray, noAlerts });
+      .render("jobAlertsPageStartupPublic", {isAuth, resArray, noAlerts });
   } catch (e) { }
 });
 
@@ -855,6 +861,8 @@ router.get(
       const jobData = await jobPostModel.findOne({ jid: jid });
 
       const appliedCandidates = await appliedJobsModel.find({ jid: jid });
+
+      const isAuth = (req.session?.isAuth);
 
       if (appliedCandidates.length === 0) {
         var redirectMsg =
@@ -901,7 +909,7 @@ router.get(
       finalArray = await Promise.all(finalArray);
 
       // res.send(finalArray);
-      res.status(200).render("appliedCandidatesPage", { finalArray, jobData });
+      res.status(200).render("appliedCandidatesPage", {isAuth, finalArray, jobData });
     } catch (e) {
       //console.log(e);
       res.status(500).send("Server Error");
@@ -917,6 +925,7 @@ router.get(
     try {
       const jid = req.params.jid;
       const status = req.params.status;
+      const isAuth = (req.session?.isAuth);
 
       const jobData = await jobPostModel.findOne({ jid: jid });
 
@@ -970,7 +979,7 @@ router.get(
       finalArray = await Promise.all(finalArray);
 
       // res.send(finalArray);
-      res.status(200).render("appliedCandidatesPage", { finalArray, jobData });
+      res.status(200).render("appliedCandidatesPage", {isAuth, finalArray, jobData });
     } catch (e) {
       //console.log(e);
       res.status(500).send("Server Error");
@@ -982,6 +991,7 @@ router.get(
 router.get("/startup/teammembers/:uid", async (req, res) => {
   try {
     const uid = req.params.uid;
+    const isAuth = (req.session?.isAuth);
 
     let finalArray = [];
 
@@ -1000,7 +1010,7 @@ router.get("/startup/teammembers/:uid", async (req, res) => {
     if (team.length === 0) {
       return res
         .status(200)
-        .render("startupTeamPage", { startupData, finalArray });
+        .render("startupTeamPage", {isAuth, startupData, finalArray });
     }
 
     team.forEach((item) => {
@@ -1047,12 +1057,16 @@ router.get("/startup/:uid/financials", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
-    res.status(200).render("financials", {isAuthenticated, isStartUpLoggedIn, uid});
+    res.status(200).render("financials", {isAuth, isAuthenticated, isStartUpLoggedIn, uid});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1063,12 +1077,15 @@ router.get("/startup/:uid/financials/prepare", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
-    res.status(200).render("startupFinancialsPrepare", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("startupFinancialsPrepare", {isAuth, isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1079,12 +1096,16 @@ router.get("/startup/:uid/financials/pitchDeck", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
-    res.status(200).render("startupFinancialsPitchDeck", {isAuthenticated, isStartUpLoggedIn});
+    res.status(200).render("startupFinancialsPitchDeck", {isAuth, isAuthenticated, isStartUpLoggedIn});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1095,14 +1116,18 @@ router.get("/startup/:uid/financials/projections", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
     var projectionData = await ProjectionModel.findOne({uid: uid});
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
-    res.status(200).render("startupFinancialsProjectionsData", {isAuthenticated, isStartUpLoggedIn, projectionData});
+    res.status(200).render("startupFinancialsProjectionsData", {isAuth, isAuthenticated, isStartUpLoggedIn, projectionData});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1113,14 +1138,18 @@ router.get("/startup/:uid/financials/appManual", async (req, res) => {
   try{
     const uid = req.params.uid;
     
-    const isAuth = (req.session?.isAuth) || (req.session?.isAuthUser) || (req.session?.isAuthCA);
+    const isAuth = (req.session?.isAuth);
     const isAuthenticated = isAuth?true:false;
     
     const isStartUpLoggedIn = (req.session?.isAuth) || false;
     
     var appManualData = await ApplicationManualModel.findOne({uid: uid});
+
+    if(!isAuth){
+      res.redirect("/login/startup");
+    }
     
-    res.status(200).render("startupFinancialsAppManualData", {isAuthenticated, isStartUpLoggedIn, appManualData});
+    res.status(200).render("startupFinancialsAppManualData", {isAuth,isAuthenticated, isStartUpLoggedIn, appManualData});
   } catch(e) {
     res.status(500).send("Server Error");
   }
@@ -1133,13 +1162,13 @@ const FeedbackModel = require("../models/feedback");
 // ADMIN PANEL
 router.get("/admin", async (req, res) => {
   try{
-    const isAuth = (req.session?.isAuthDeveloper);
+    const isAuthDeveloper = (req.session?.isAuthDeveloper);
 
-    if(isAuth){
+    if(isAuthDeveloper){
       const feedbacks = await FeedbackModel.find();
       // console.log(feedbacks);
       
-      res.render("adminPanel", {feedbacks});
+      res.render("adminPanel", {isAuthDeveloper,feedbacks});
     }else{
       res.redirect("/login/developer");
     }
