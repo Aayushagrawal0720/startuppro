@@ -42,7 +42,8 @@ router.get("/startups", async (req, res) => {
     let startupFoundersArray = [];
 
     // GETTING STARTUP DATAs AND THEIR FOUNDER DATAs
-    const startups = await startUpScheme.find();
+    const startups = await startUpScheme.find()
+                            .sort({_id: -1});
     // console.log(startups);
 
     // creating array which only has founder info
