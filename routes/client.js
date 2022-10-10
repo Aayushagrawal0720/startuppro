@@ -337,7 +337,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
       `${uid}_timeline_collection`,
       timelineEventSchema
     );
-    const foundData = await timelineModel.find().sort({ date: -1 });
+    const foundData = await timelineModel.find().sort({ date: -1 }).limit(5);
     // console.log(foundData);
 
     //Fetching PRODUCT DETAILS DATA
@@ -445,7 +445,7 @@ router.get("/startup/profile", isAuth, async (req, res) => {
     });
     if (baremptyEls == barArray.length) barArray = [];
 
-    console.log(barArray);
+    // console.log(barArray);
     const barisLogin = true;
     barArray = JSON.stringify(barArray);
     // console.log(barfoundTypes);
