@@ -404,7 +404,7 @@ li {
 }
 
 .wrapper .left {
-  height: 450px;
+  height: 525px;
   width: 35%;
   background: #1687a7;
   padding: 30px 25px;
@@ -421,7 +421,7 @@ li {
 
 .wrapper .right {
   /* padding-right: ; */
-  height: 450px;
+  height: 525px;
   width: 65%;
   background: #f6f5f5;
   border-top-right-radius: 5px;

@@ -76,6 +76,24 @@
             </ul></p>
             </div>
           </div>
+          <div class="projects-data">
+            <div class="data">
+              <h4 style="font-size:25px">Salary/Stipend</h4>
+              <p  style="font-size:18px"><ul class="ml-3">
+                <% jobAlert.skills.forEach((item) =>{ %>
+                  <li style="list-style: disc; font-size: 18px;"><i><%= item %></i> </li>
+              <% }) %> 
+              </ul></p>
+            </div>
+              <div class="data">
+              <h4 style="font-size:25px">Duration(Months)</h4>
+              <p  style="font-size:18px"> <ul class="ml-3">
+                <% jobAlert.shift.forEach((item) =>{ %>
+                    <li style="list-style: disc; font-size: 18px;"><i><%= item %></i> </li>
+                <% }) %> 
+            </ul></p>
+            </div>
+          </div>
 
         </div>
         <div class="social_media">
