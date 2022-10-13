@@ -477,4 +477,10 @@ form div #experience-submit {
   padding-top: 15px;
  }
  }
+ .filter{
+  margin-left: 64%;
+  margin-top: 2%;
+  cursor: pointer;
+  outline: 0;
+ }
  
