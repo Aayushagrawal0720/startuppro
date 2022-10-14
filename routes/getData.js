@@ -1126,6 +1126,45 @@ router.get("/startup/:uid/financials/appManual", async (req, res) => {
   }
 })
 
+router.get("/jobsFilter/:industry", async (req, res) =>{
+
+  const uid = req.body.uid;
+
+  let industry = req.params.industry;
+
+    if (req.params.industry == "Information") {
+      industry = "Information Technology";
+    }
+    if (req.params.industry == "Marketing") {
+      industry = "Marketing and Advertisement";
+    }
+
+  const startup_industry = await startUpScheme.find({Industry:industry});
+  // console.log(startup_industry);
+
+  // const filteredData = new startup_industry({
+  //   uid : uid,
+  //   Industry : Industry,
+  // });
+  // const savedData = await filteredData.save();
+  let jobs_array = [];
+
+  // startup_industry.forEach(async(startup, index) => {
+    
+  //   let jobs = await jobPostModel.find({"uid" : startup.uid});
+  //   jobs_array.push(...jobs);
+  //   console.log(jobs_array);
+  // })
+
+  for(let i=0;i<startup_industry.length; i++){
+    let jobs = await jobPostModel.find({"uid" : startup_industry[i].uid});
+    jobs_array.push(...jobs);
+    console.log(jobs_array);
+  }
+
+  res.send(jobs_array);
+});
+
 
 
 module.exports = router;
