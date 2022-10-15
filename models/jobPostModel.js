@@ -22,7 +22,7 @@ const jobPostSchema = new mongoose.Schema({
     required: true,
   },
   salary: {
-    type: Number,
+    type: Array,
     required: true,
   },
   gender: {
@@ -62,6 +62,9 @@ const jobPostSchema = new mongoose.Schema({
     required: true,
     default: Date.now(),
   },
+  duration: {
+    type: Array,
+  }
 });
 
 module.exports = new mongoose.model("jobposts", jobPostSchema);

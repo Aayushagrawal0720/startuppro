@@ -54,7 +54,7 @@
                   <input type="number" id="experience_req" name="experience_req" placeholder="in years"
                     class="p-1 outline" required /><br /><br />
 
-                  <label class="mb-0 ml-0 star" for="o-pass">Salary / Stipend</label><br />
+                  <label class="mb-0 ml-0 star" for="salary">Salary / Stipend</label><br />
                   <input type="number" name="salary" id="salary" placeholder="Salary / Stipend"
                     class="p-1 outline" /><br /><br />
 
@@ -94,7 +94,7 @@
                   <input type="text" id="joining_from" name="joining_from" placeholder="Joining From"
                     class="p-1 outline" required /><br /><br />
                   <label class="mb-0 ml-0 " for="duration">Duration(Months)</label><br />
-                  <input type="number" id="duration" name="joining_from" placeholder="Duration(Months)"
+                  <input type="number" id="duration" name="duration" placeholder="Duration(Months)"
                     class="p-1 outline" /><br /><br />
                 </div>
               </div>
@@ -129,6 +129,7 @@
           formBody.perks = form.elements.perks.value;
           formBody.shift = form.elements.shift.value.split(",");
           formBody.joining_from = form.elements.joining_from.value;
+          formBody.duration = parseFloat(form.elements.duration.value);
 
           // console.log(formBody);
           fetch('/adddata/jobposts', {

@@ -86,12 +86,22 @@
             <p>
             <p>
                 <p>Salary/Stipend</p>
+                <ul class="ml-3">
+                  <% jobAlert.salary.forEach((item) =>{ %>
+                      <li style="list-style: disc;"><%= item %> </li>
+                  <% }) %> 
+              </ul>
 
             </p>
             <p>
 
             <p>
                 <p>Duration</p>
+                <ul class="ml-3">
+                  <% jobAlert.duration.forEach((item) =>{ %>
+                      <li style="list-style: disc;"><%= item %> </li>
+                  <% }) %> 
+              </ul>
 
             </p>
         </div>
