@@ -398,8 +398,12 @@ position: relative;
   padding: 20px 0px;
   margin: 25px 0px;
 }
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;
+}
 .it1{
-font-size: 1.25rem;
+font-size: 1rem;
 display: -webkit-box;
 max-width: 200px;
 -webkit-line-clamp: 5;
