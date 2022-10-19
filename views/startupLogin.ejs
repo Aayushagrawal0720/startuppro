@@ -37,7 +37,6 @@
     <% if(isLogin){ %>
       <script>
         document.querySelector('.login-nav').innerText = "DASHBOARD";
-        alert("Login Succesfully");
       </script>
 
       <div class="edit_login">
@@ -298,8 +297,7 @@
                         <div class="main-container carousel4">
                           <div class="mt-2 d-flex justify-content-around">
 
-                            <h2 style="text-align: center; padding-top: 10px; width: 100%;" class="text-center">Timeline
-                            </h2>
+                            <h2 style="text-align: center; padding-top: 10px; width: 100%;" class="text-center">Timeline</h2>
                             <% if(isLogin) {%>
                               <h3><button class="btn btn-warning mt-1" id="add-btn">Add</button></h3>
                               <% } %>
@@ -316,7 +314,7 @@
                               </style>
 
                               <div class="container p-2 my-1 timeline-add-container">
-                                <div class="main-container carousel2 mb-4">
+                                <div class="main-container carousel2">
                                   <div class="row">
                                     <div class="col-md-12">
                                       <form class="col-md-12 d-flex flex-column align-items-stretch"
@@ -331,7 +329,7 @@
                                     </div>
                                   </div>
                                   <row>
-                                    <div class="col-md-12 text-sm-right text-center" style="top: -3%;">
+                                    <div class="col-md-12 text-sm-right text-center">
                                       <input type="submit" class="btn my-4 btn-warning" value="Post">
                                     </div>
                                     </form>
@@ -370,18 +368,15 @@
 
                         <!--product-->
                         <div class="container my-5">
-
+                         
                           <div class="main-container carousel4 ">
+                            
+                            <div class="mt-2 d-flex justify-content-around">
 
-                            <div class="d-flex justify-content-center position-relative ">
-
-                              <h2  >Product Details
+                              <h2 style="text-align: center; padding-top: 10px;" class="text-center">Product Details
                               </h2>
                               <% if(isLogin) {%>
-                                <div style="position:absolute;left: 87%;" >
-
-                                  <h3 ><button class="btn btn-warning mt-1  "  id="prod-btn">Add</button></h3>
-                                </div>
+                                <h3><button class="btn btn-warning mt-1" id="prod-btn">Add</button></h3>
                                 <% } %>
                             </div>
                             <br>
@@ -411,12 +406,12 @@
                                       </div>
                                     </div>
                                     <row>
-                                      <div class="col-md-12 text-sm-right text-center" style="top: -16%;">
-                                        <input type="submit" class="btn my-4 btn-warning " style="position: absolute;top: -4%;left: 88%;" value="Post">
+                                      <div class="col-md-12 text-sm-right text-center">
+                                        <input type="submit" class="btn my-4 btn-warning" value="Post">
                                       </div>
                                       </form>
                                     </row>
-
+                                  
                                   </div>
                                 </div>
 
@@ -432,16 +427,16 @@
                                 </script>
 
                                 <% } %>
-
-
-
-                                  <div class="wrapper" style="margin-top: -14px;">
-                                    <div class="carousel2">
-                                      <%- include('./mohit/carousel') %>
-                                    </div>
-                                  </div>
+                              
+                            
+                            
+                                
+                              <div class="carousel2 wrapper" >
+                                <%- include('./mohit/carousel') %>
+                          
+                        </div>
                             </div>
-
+                     
                             <div class="col-md-12">
                               <a href="<%= `/getdata/product/${startupData?.uid}` %>">
                                 <h6 class="text-right">View More</h6>
@@ -462,15 +457,15 @@
                                 <hr>
                               </div>
                               <div class="container d-flex flex-column flex-md-row justify-content-center wrapper">
-                                <!-- <div class="container col-md-5 my-3 jobbox"
+                                <div class="container col-md-5 my-3 jobbox"
                                   style=" box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px; ">
                                   <div class="m-3">
 
                                     <div class="imageadd >
 
-                                      <h1 class=" head1">press Releases</h1> -->
+                                      <h1 class="head1">press Releases</h1>
                                       <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
-                                    <!-- </div>
+                                    </div>
 
 
                                     <div class="box-desc">
@@ -483,39 +478,37 @@
 
 
                                   </div>
-                                </div>  -->
+                                </div>
 
 
-
+                                
                                 <% pressReleaseData.forEach(function(item,index) { %>
                                   <div class="container col-md-5 my-3 jobbox"
-                                    style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;overflow: auto;">
+                                    style="box-shadow: 0px 0px 9px 1px rgb(175, 175, 175); border-radius: 10px; padding: 0px;">
                                     <div class="m-3">
                                       <div class="imageadd">
-                                         <img src="<%= item.imagePress %>" class="imageadd" style="width: 100%; height: 100%;"> 
+                                        <h1 class="head1">
+                                          <%= item.job_title %>
+                                        </h1>
+                                        <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fjob-vacancy&psig=AOvVaw1CoyK6qFe0D1fP-r3PDlMg&ust=1653718080225000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCMjinoiC__cCFQAAAAAdAAAAABAK" class="imageadd"> -->
                                       </div>
 
-                                       <div class="box-desc" >
-                                       
-                                        <h4 class="it it1 text_overflow" >
-                                          <%= item.job_title %>
-                                        </h4>
-                                
-                                        <h5 class="it it1"><b>
+                                      <div class="box-desc">
+                                        <h4 class="it it1"><b>
                                             <%= item.first %>
                                           </b></h4>
-                                        <h5 class="it it1">
+                                        <h6 class="it it1">
                                           <%= item.second %>
                                         </h6>
                                         <h6 class="it" style="font-size: .7rem;">
                                           <%= item.description %>
                                         </h6>
-                                      </div> 
+                                      </div>
                                     </div>
                                   </div>
-
+                                 
                                   <% }); %>
-
+                                
                               </div>
                               <% if(isLogin) {%>
                                 <h3><button class="btn btn-warning mt-1" id="press-add-btn">Add</button></h3>
@@ -538,14 +531,15 @@
                                       <div class="container p-2 my-1 press-add-container">
                                         <div class="main-container carousel2">
                                           <div class="row">
-                                            <div class="col-md-12" style="margin-top: -7px;">
+                                            <div class="col-md-12">
                                               <form class="col-md-12 d-flex flex-column align-items-stretch"
-                                              enctype="multipart/form-data" method="POST" action=<%=`/adddata/press/${startupData?.uid}/addpress` %>
+                                                method="POST" action=<%=`/adddata/press/${startupData?.uid}/addpress` %>
+                                                enctype="multipart/form-data"
                                                 >
                                                 <input name="job_title" id="post-input" type="text"
                                                   class="col-md-12 my-4 mx-sm-2 p-2"
                                                   placeholder="What's the job Title?">
-                                                <input name="event_pic" type="file" class="mx-2 d-block"
+                                                  <input name="event_pic" type="file" class="mx-2 d-block"
                                                   placeholder="Select">
                                                 <input name="first" type="text" class="mx-2 d-block"
                                                   placeholder="First Value"><br>
@@ -554,7 +548,7 @@
                                                 <textarea name="description" type="text" class="mx-2 d-block"
                                                   placeholder="Description"></textarea><br>
                                                 <row>
-                                                  <div class="col-md-12 text-sm-right text-center" style="margin-top: -37px;">
+                                                  <div class="col-md-12 text-sm-right text-center">
                                                     <input type="submit" class="btn my-4 btn-warning" value="Post">
                                                   </div>
                                                 </row>
@@ -602,157 +596,119 @@
 
                               </div>
                               <script>
-                                function createChart(id, labelArr, valArr, type_title) {
-                                  const colors = [
-                                    "green",
-                                    "blue",
-                                    "red",
-                                    "yellow",
-                                    "pink",
-                                    "orange",
-                                    "purple",
-                                    "#00ffd9",
-                                    "#ff003c",
-                                    "#6aff00",
-                                    "#ffaa00",
-                                  ];
-                                  let myChart = document.getElementById(id).getContext('2d');
+                                  function createChart(id, labelArr, valArr, type_title) {
+                                    const colors = [
+                                      "green",
+                                      "blue",
+                                      "red",
+                                      "yellow",
+                                      "pink",
+                                      "orange",
+                                      "purple",
+                                      "#00ffd9",
+                                      "#ff003c",
+                                      "#6aff00",
+                                      "#ffaa00",
+                                    ];
+                                    let myChart = document.getElementById(id).getContext('2d');
 
-                                  let newChart = new Chart(myChart, {
-                                    type: "line",
-                                    data: {
-                                      labels: labelArr,
-                                      datasets: [
-                                        {
-                                          label: type_title,
-                                          data: valArr,
-                                          backgroundColor: "rgba(0,0,0,0)",
-                                          borderColor:
-                                            colors[Math.floor(Math.random() * colors.length)],
-
-                                        },
-                                      ],
-                                    },
-                                    options: {
-                                      scales: {
-                                        xAxes: [
+                                    let newChart = new Chart(myChart, {
+                                      type: "line",
+                                      data: {
+                                        labels: labelArr,
+                                        datasets: [
                                           {
-                                            gridLines: {
-                                              display: false,
-                                            },
-                                          },
-                                        ],
-                                        yAxes: [
-                                          {
-                                            gridLines: {
-                                              display: false,
-                                            },
+                                            label: type_title,
+                                            data: valArr,
+                                            backgroundColor: "rgba(0,0,0,0)",
+                                            borderColor:
+                                              colors[Math.floor(Math.random() * colors.length)],
+                                          
                                           },
                                         ],
                                       },
-                                    },
-                                  });
-                                  console.log(type_title)
-                                }
+                                      options: {
+                                        scales: {
+                                          xAxes: [
+                                            {
+                                              gridLines: {
+                                                display: false,
+                                              },
+                                            },
+                                          ],
+                                          yAxes: [
+                                            {
+                                              gridLines: {
+                                                display: false,
+                                              },
+                                            },
+                                          ],
+                                        },
+                                      },
+                                    });
+                                  }
                               </script>
                               <script>
-                                let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
-                                if (graphArr.length != 0) {
+                                  let graphArr = JSON.parse(document.getElementById("dataSpan").innerText);
+                                  if (graphArr.length != 0) {
 
-                                  graphArr.forEach((item, index) => {
-                                    // if(index==3) throw new Error('x');
-                                    // console.log(item);
-                                    if (item.length != 0) {
-                                      const outerContainer = document.querySelector('.outer-graph-container');
+                                    graphArr.forEach((item, index) => {
+                                      // if(index==3) throw new Error('x');
+                                      // console.log(item);
+                                      if (item.length != 0) {
+                                        const outerContainer = document.querySelector('.outer-graph-container');
 
-                                      let valArr = [];
-                                      let labelArr = [];
+                                        let valArr = [];
+                                        let labelArr = [];
 
-                                      item.forEach((subItem) => {
-                                        valArr.push(subItem.total);
+                                        item.forEach((subItem) => {
+                                          valArr.push(subItem.total);
 
-                                        const d = new Date(subItem.date);
-                                        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                                        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                                        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+                                          const d = new Date(subItem.date);
+                                          const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+                                          const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+                                          const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
-                                        labelArr.push(`${da}-${mo}-${ye}`);
-                                      })
-                                      // console.log(valArr);
-                                      // console.log(labelArr);
+                                          labelArr.push(`${da}-${mo}-${ye}`);
+                                        })
+                                        // console.log(valArr);
+                                        // console.log(labelArr);
 
-                                      //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
-                                      var canvasEl = document.createElement('div');
-                                      canvasEl.classList.add('col-lg-5');
-                                      canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                                      outerContainer.append(canvasEl);
-                                      canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                        //outerContainer.innerHTML += `<canvas id="chart-${index}"></canvas>`
+                                        var canvasEl = document.createElement('div');
+                                        canvasEl.classList.add('col-lg-5');
+                                        canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
+                                        outerContainer.append(canvasEl);
+                                        canvasEl.innerHTML += `<canvas id="chart-${index}"></canvas>`
 
-                                      createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
-                                    }
-                                  })
-                                }
+                                        createChart(`chart-${index}`, labelArr, valArr, item[0].type_title);
+                                      }
+                                    })
+                                  }
                               </script>
                               <script>
-                                let text = ``;
-                                const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
-                                for (let item in graphData) {
-                                  const element = graphData[item][graphData[item].length - 1];
-                                  text += `<li>
+                                  let text = ``;
+                                  const graphData = JSON.parse(document.getElementById("dataSpan").innerText);
+                                  for (let item in graphData) {
+                                    const element = graphData[item][graphData[item].length - 1];
+                                    text += `<li>
                                   ${element.type_title}: <b style="color: ${element.isLess ? " red" : "green"}">${element.isLess ? "-" : "+"}${element.diff}  </b>
                                   </li>`;
 
-                                }
-                                document.getElementById("analyticsList").innerHTML = text;
+                                  }
+                                  document.getElementById("analyticsList").innerHTML = text;
                               </script>
                             </div>
-                            <!-- *******Bar Graph ********Sayantan ****** -->
-                            <% if(locals.barArray) { %>
+                            <!-- ************* -->
                             <div class="bar_graph-container">
-                              <div class="row">
-                                <span hidden id="bar_dataSpan">
-                                  <%= barArray %>
-                                </span>
-                                <% if(barArray.length === 0) {%>
-                                  <h3 class="text-center">No data present</h3>
-                                <% } %>
-
-                              </div>
-                              <div class="outer-bar_graph-container row p-3 px-5">
-
-                              </div>
+                              <canvas id="bar_graph" style="margin: 1rem;
+                            width:100%;max-width:530px;"></canvas>
 
                               <script>
-                                let bar_graphArr = JSON.parse(document.getElementById("bar_dataSpan").innerText)
-                                bar_graphArr.forEach((bar_graph, index) => {
-                                  const outerContainer = document.querySelector('.outer-bar_graph-container');
-
-
-                                  var xValues = [];
-                                  var yValues = [];
-
-                                  bar_graph.forEach((entry) => {
-                                    const d = new Date(entry.date);
-                                    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-                                    const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-                                    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-
-                                    xValues.push(`${da}-${mo}-${ye}`);
-
-                                    yValues.push(entry.total);
-
-                                  })
-                                  var canvasEl = document.createElement('div');
-                                  canvasEl.classList.add('barClass');
-                                  canvasEl.classList.add('mx-auto', 'my-md-3', 'my-2', 'graph-box');
-                                  outerContainer.append(canvasEl);
-                                  canvasEl.innerHTML += `<canvas id="bar_chart-${index}" class="barCnv"></canvas>`
-
-                                  create_bargraph(`bar_chart-${index}`, xValues, yValues, bar_graph[0].type_title);
-                                })
-
-                                function create_bargraph(id, xValues, yValues, type_title) {
+                                  var xValues = [2021, 2022, 2023, 2024, 2025,2035];
+                                  var yValues = [55, 49, 60, 24, 20,45];
                                   var barColors = [
+                                    // "red", "green", "blue", "orange", "brown"
                                     'rgba(255, 99, 132, 0.2)',
                                     'rgba(255, 159, 64, 0.2)',
                                     'rgba(255, 205, 86, 0.2)',
@@ -761,38 +717,40 @@
                                     'rgba(153, 102, 255, 0.2)',
                                     'rgba(201, 203, 207, 0.2)',
                                   ];
-                                  let myChart = document.getElementById(id).getContext('2d');
 
-                                  var barchart = new Chart(myChart, {
+                                  new Chart("bar_graph", {
                                     type: "bar",
                                     data: {
                                       labels: xValues,
                                       datasets: [{
-                                        backgroundColor: barColors[Math.floor(Math.random() * barColors.length)],
+                                        backgroundColor: barColors,
                                         data: yValues,
-                                        borderColor: barColors[Math.floor(Math.random() * barColors.length)],
+                                        borderColor: [
+                                          'rgb(255, 99, 132)',
+                                          'rgba(224, 202, 0, 1)',
+                                          'rgb(75, 192, 192)',
+                                          'rgb(54, 162, 235)',
+                                          'rgb(153, 102, 255)',
+                                          'rgb(201, 203, 207)'
+                                        ],
                                         hoverBorderColor: 'red',
                                         borderWidth: 1,
                                         hoverBorderWidth: 2,
-                                        barThickness: 20,
-
-                                      }]
+                                        barPercentage: 0.5,
+                                        //  barThickness: 6, 
+                                        
+                                        }]
                                     },
-
                                     options: {
                                       legend: { display: false },
                                       title: {
                                         display: true,
-                                        text: type_title,
+                                        text: "Bar Graph"
                                       },
                                     }
                                   });
-                                  console.log(type_title)
-                                }
                               </script>
                             </div>
-                            <% } %>
-                            <!-- ***********************sayantan end****** -->
                           </div>
 
                         </div>
