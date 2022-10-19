@@ -30,7 +30,7 @@ db.once("open", () => {
   console.log("connected to mongodb");
 });
 
-//    ****************
+//    **************** 
 //    Initializing app
 //    ****************
 const app = express();
@@ -98,7 +98,7 @@ app.get("/", isStartupLoggedIn, isUserLoggedIn, isCALoggedIn, isMentorLoggedIn, 
   // const type = "Startup";
   // const loginLink = "/login/startup";
   // const showMemberOption = true;
-  // res.render("homePage", { type, loginLink, showMemberOption });
+   res.render("homePage", { type, loginLink, showMemberOption, success:'' });
   res.redirect("/getdata/startups");
 });
 
